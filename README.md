@@ -3,7 +3,9 @@
 [![A WikiBonsai Project](https://img.shields.io/badge/%F0%9F%8E%8B-A%20WikiBonsai%20Project-brightgreen)](https://github.com/wikibonsai/wikibonsai)
 [![NPM package](https://img.shields.io/npm/v/caml-mkdn)](https://npmjs.org/package/caml-mkdn)
 
-![](./caml.svg)
+<p align="center">
+  <img src="./caml.svg" width="300" height="300"/>
+</p>
 
 CAML is a **C**olon **A**ttribute **M**arkup **L**anguage similar to [YAML](https://yaml.org/) with some key differences:
 
