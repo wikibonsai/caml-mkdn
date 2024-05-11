@@ -19,8 +19,10 @@ CAML is a **C**olon **A**ttribute **M**arkup **L**anguage similar to [YAML](http
 🕸 Weave a semantic web in your [🎋 WikiBonsai](https://github.com/wikibonsai/wikibonsai) digital garden.
 
 TODO:
-- Attribute types may be intermingled, except for `[[wikirefs]]`; e.g. `:key::string,1` will work but `:key::string,[[wikiref]]` will not.
-- Ordered list values.
+
+- [ ] ordered lists (1. 2. 3.).
+- [ ] yaml-style multi-line strings (`>`, `|`, `>-`, `>|`)
+- [ ] allow primitive type and wiki type mixing in lists (ex: `:attr::[[wikiref]],caml-primitive`).
 
 ## Install
 
