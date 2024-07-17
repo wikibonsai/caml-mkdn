@@ -57,12 +57,16 @@ Comma-separated lists.
 
 Markdown-style bullet lists.
 
+Dashes.
+
 ```markdown
 :attrtype::
 - string-a
 - string-b
 - string-c
 ```
+
+Pluses.
 
 ```markdown
 :attrtype::
@@ -71,12 +75,16 @@ Markdown-style bullet lists.
 + string-c
 ```
 
+Asterisks.
+
 ```markdown
 :attrtype::
 * string-a
 * string-b
 * string-c
 ```
+
+Mixed.
 
 ```markdown
 :attrtype::
@@ -94,7 +102,7 @@ attrtype::
 - string-c
 ```
 
-Flexible whitespace.
+Flexible whitespace (see note below).
 
 ```markdown
 : attrtype ::
@@ -118,9 +126,9 @@ Resulting HTML:
 </aside>
 ```
 
-Lists also support flexible whitespacing: Attrtype text may be prefixed (between first colon `:` and attrtype text) or suffixed (between attrtype text and double colon `::`) by one space. List item prefix whitespace (space before the bullet `-*+`) can have any number of spaces.
+Note on Flexible Whitespace:
 
-The result allows for pretty-printed wikiattrs:
+The purpose of flexible whitespacing is for pretty-printing for better legibility:
 
 ```markdown
 : type             :: string-a
@@ -132,6 +140,11 @@ The result allows for pretty-printed wikiattrs:
                       - string-e
                       - string-f
 ```
+
+Optional whitespace is defined as follows:
+
+- Attrtype text may be prefixed (between first colon `:` and attrtype text) or suffixed (between attrtype text and double colon `::`) by one space.
+- List item prefix whitespace (space before the bullet `-*+`) can have any number of spaces.
 
 ### Types
 
