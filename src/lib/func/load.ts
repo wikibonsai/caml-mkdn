@@ -77,11 +77,12 @@ export function load(content: string): CamlLoadPayload {
         do {
           valMatch = listItemsGottaCatchEmAll.exec(matchText);
           if (valMatch) {
-            const trimmedVal: string = valMatch[2].trim();
+            const valText: string = valMatch[2];
+            const trimmedVal: string = valText.trim();
             const valParsed = resolve(trimmedVal);
             itemOffset = matchText.indexOf(trimmedVal, itemOffset);
             res.data[trimmedKey].push(valParsed.value);
-            itemOffset += valMatch[2].length;
+            itemOffset += valText.length;
           }
         } while (valMatch);
       }

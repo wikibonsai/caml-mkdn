@@ -57,14 +57,15 @@ export function scan(content: string): (CamlScanResKey | CamlScanResVal)[] {
         do {
           valMatch = listItemsGottaCatchEmAll.exec(matchText);
           if (valMatch) {
-            const trimmedVal: string = valMatch[2].trim();
+            const valText: string = valMatch[2];
+            const trimmedVal: string = valText.trim();
             itemOffset = matchText.indexOf(trimmedVal, itemOffset);
             const valParsed = resolve(trimmedVal);
             res.push({
               type: valParsed.type,
               val: [trimmedVal, contentOffset + itemOffset],
             } as CamlScanResVal);
-            itemOffset += valMatch[2].length;
+            itemOffset += valText.length;
           }
         } while (valMatch);
       }
