@@ -72,6 +72,26 @@ Note: To use commas (,) inside of singular caml string value, make sure to surro
 
 Serializes object as a CAML document. Similar to [js-yaml's dump()](https://github.com/nodeca/js-yaml#dump-object---options-).
 
+```typescript
+import { dump } from 'caml-mkdn';
+import type { CamlDumpOpts } from 'caml-mkdn';
+
+const attrs: Record<string, any> = {
+  title: 'My Document',
+  tags: ['tag1', 'tag2', 'tag3'],
+};
+const result: string = dump(attrs);
+// result = ': title :: My Document\n'
+//        + ': tags  ::\n'
+//        + '           - tag1\n'
+//        + '           - tag2\n'
+//        + '           - tag3\n'
+
+const compact: string = dump(attrs, { format: 'none', listFormat: 'comma', prefix: true });
+// compact = ':title::My Document\n'
+//         + ':tags::tag1,tag2,tag3\n'
+```
+
 #### Options
 
 ##### `format: 'pretty' | 'pad' | 'none'`
@@ -141,9 +161,47 @@ Whether or not to use the colon `:` prefix when dumping CAML attributes.
 
 Load a content string, parse CAML attributes, and store attributes in `data` and the rest of the content string in `content`. Similar to [graymatter](https://github.com/jonschlinkert/gray-matter#what-does-this-do).
 
+```typescript
+import { load } from 'caml-mkdn';
+import type { CamlLoadPayload } from 'caml-mkdn';
+
+const payload: CamlLoadPayload = load(
+  ': title :: My Document\n'
++ ': tags  :: tag1, tag2, tag3\n'
++ '\n'
++ 'And some content!\n'
+);
+// payload = {
+//   data: {
+//     title: 'My Document',
+//     tags: ['tag1', 'tag2', 'tag3'],
+//   },
+//   content: 'And some content!',
+// }
+```
+
 ### `resolve(value: string): CamlValData`
 
-Take a CAML attribute value as a string, parse it, and return `CamlValData`, which looks like:
+Take a CAML attribute value as a string, parse it, and return `CamlValData`.
+
+```typescript
+import { resolve } from 'caml-mkdn';
+import type { CamlValData } from 'caml-mkdn';
+
+const str: CamlValData = resolve('hello');
+// str = { type: 'string', string: 'hello', value: 'hello' }
+
+const num: CamlValData = resolve('42');
+// num = { type: 'int', string: '42', value: 42 }
+
+const bool: CamlValData = resolve('true');
+// bool = { type: 'bool', string: 'true', value: true }
+
+const nil: CamlValData = resolve('null');
+// nil = { type: 'null', string: 'null', value: null }
+```
+
+`CamlValData` looks like:
 
 ```js
 interface CamlValData {
@@ -161,6 +219,19 @@ interface CamlValData {
 ### `scan(content: string): (CamlScanResKey | CamlScanResVal)[]`
 
 Scan a given `content` string and return an array of descriptions of all valid CAML attributes constructs.
+
+```typescript
+import { scan } from 'caml-mkdn';
+import type { CamlScanResKey, CamlScanResVal } from 'caml-mkdn';
+
+const results: (CamlScanResKey | CamlScanResVal)[] = scan(': title :: My Document\n: count :: 42\n');
+// results = [
+//   { key: ['title', 2] },
+//   { type: 'string', val: ['My Document', 11] },
+//   { key: ['count', 25] },
+//   { type: 'int', val: ['42', 34] },
+// ]
+```
 
 Result formats:
 
