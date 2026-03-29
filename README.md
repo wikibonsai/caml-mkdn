@@ -39,6 +39,7 @@ import * as caml from 'caml-mkdn';
 
 let text = `
 :key::value
+data-view-key::data-view-value
 :another-key::val1,val2,val3
 :yet-another-key::
 - 1
@@ -53,6 +54,7 @@ console.log(payload.data);
 // should produce:
 // {
 //    key: 'value',
+//    data-view-key: 'data-view-value',
 //    another-key: ['val1', 'val2', 'val3'],
 //    yet-another-key: [1, 2, 3],
 //  }
