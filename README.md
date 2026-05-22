@@ -21,7 +21,6 @@ CAML is a **C**olon **A**ttribute **M**arkup **L**anguage similar to [YAML](http
 TODO:
 
 - [ ] ordered lists (1. 2. 3.).
-- [ ] yaml-style multi-line strings (`>`, `|`, `>-`, `>|`)
 - [ ] allow primitive type and wiki type mixing in lists (ex: `:attr::[[wikiref]],caml-primitive`).
 
 ## Install

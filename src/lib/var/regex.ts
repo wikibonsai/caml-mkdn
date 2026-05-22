@@ -13,6 +13,8 @@ export namespace RGX {
     KEY_PRFX       : /(?:: ?)/,
     // match: wikilink's RGX.SP_CHAR.LINKTYPE
     COL            : /(?: *:: ?)/,
+    // multi-line string indicators
+    MLINE_STR      : /(>-|>\||>|\|)/,
   } as const;
 
   // for whitespace handling...
@@ -33,6 +35,7 @@ export namespace RGX {
   export const CAP_GRP = {
     KEY            : new RegExp('(' + VALID_CHARS.KEY.source + ')'),
     VAL            : new RegExp('(' + VALID_CHARS.VAL.source + ')'),
+    VAL_MSTR       : /((?:\s+.*\n?)*)/,
   } as const;
 
   export const LINE = {
@@ -50,6 +53,42 @@ export namespace RGX {
                                     + CAP_GRP.VAL.source
                                   + '$'
                                   , 'im'),
+  } as const;
+
+  // <------------------------------------------------------------------------>
+  //  multi-line string patterns (compositional approach)
+  // <------------------------------------------------------------------------>
+
+  export const MLINE = {
+    // standalone multi-line string: ":key:: >\n  content"
+    SINGLE         : new RegExp(
+                                  '^'
+                                  + MARKER.KEY_PRFX.source + '?'
+                                  + CAP_GRP.KEY.source
+                                  + MARKER.COL.source
+                                  + ' *'
+                                  + MARKER.MLINE_STR.source
+                                  + '\\n'
+                                  + CAP_GRP.VAL_MSTR.source
+                                , 'im'),
+    
+    // multi-line in comma list: "first, >\n  content"
+    IN_COMMA       : new RegExp(
+                                  ', *'
+                                  + MARKER.MLINE_STR.source
+                                  + '\\n'
+                                  + CAP_GRP.VAL_MSTR.source
+                                , 'im'),
+    
+    // multi-line in markdown list: "- >\n  content"  
+    IN_MKDN_LIST   : new RegExp(
+                                  '^'
+                                  + ' *'
+                                  + MARKER.BULLET.source
+                                  + MARKER.MLINE_STR.source
+                                  + '\\n'
+                                  + CAP_GRP.VAL_MSTR.source
+                                , 'im'),
   } as const;
 
   export const CAML = new RegExp(

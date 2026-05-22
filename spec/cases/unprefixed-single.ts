@@ -445,4 +445,118 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
       }],
     },
   },
+  // multi-line strings
+  // folded style (>)
+  {
+    descr: 'unprefixed; single; string; folded (>); basic',
+    mkdn: 'attribute:: >\n  line one\n  line two\n',
+    html: htmlSingle('attribute', 'string', 'line one line two'),
+    strData: {
+      'attribute': ' >\n  line one\n  line two',
+    },
+    valData: {
+      'attribute': 'line one line two',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'string',
+        string: ' >\n  line one\n  line two',
+        value: 'line one line two',
+      }],
+    },
+  },
+  {
+    descr: 'unprefixed; single; string; folded (>); with trailing newline',
+    mkdn: 'attribute:: >\n  line one\n  line two\n\n',
+    html: htmlSingle('attribute', 'string', 'line one line two '),
+    strData: {
+      'attribute': ' >\n  line one\n  line two\n',
+    },
+    valData: {
+      'attribute': 'line one line two ',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'string',
+        string: ' >\n  line one\n  line two\n',
+        value: 'line one line two ',
+      }],
+    },
+  },
+  // literal style (|)
+  {
+    descr: 'unprefixed; single; string; literal (|); basic',
+    mkdn: 'attribute:: |\n  line one\n  line two\n',
+    html: htmlSingle('attribute', 'string', 'line one\nline two'),
+    strData: {
+      'attribute': ' |\n  line one\n  line two',
+    },
+    valData: {
+      'attribute': 'line one\nline two',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'string',
+        string: ' |\n  line one\n  line two',
+        value: 'line one\nline two',
+      }],
+    },
+  },
+  // chomped folded (>-)
+  {
+    descr: 'unprefixed; single; string; folded chomped (>-); strips trailing newlines',
+    mkdn: 'attribute:: >-\n  line one\n  line two\n\n',
+    html: htmlSingle('attribute', 'string', 'line one line two'),
+    strData: {
+      'attribute': ' >-\n  line one\n  line two\n',
+    },
+    valData: {
+      'attribute': 'line one line two',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'string',
+        string: ' >-\n  line one\n  line two\n',
+        value: 'line one line two',
+      }],
+    },
+  },
+  // chomped literal (>|)
+  {
+    descr: 'unprefixed; single; string; literal chomped (>|); strips trailing newlines',
+    mkdn: 'attribute:: >|\n  line one\n  line two\n\n',
+    html: htmlSingle('attribute', 'string', 'line one\nline two'),
+    strData: {
+      'attribute': ' >|\n  line one\n  line two\n',
+    },
+    valData: {
+      'attribute': 'line one\nline two',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'string',
+        string: ' >|\n  line one\n  line two\n',
+        value: 'line one\nline two',
+      }],
+    },
+  },
+  // edge cases
+  {
+    descr: 'unprefixed; single; string; folded (>); empty block',
+    mkdn: 'attribute:: >\n\n',
+    html: htmlSingle('attribute', 'string', ''),
+    strData: {
+      'attribute': ' >\n',
+    },
+    valData: {
+      'attribute': '',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'string',
+        string: ' >\n',
+        value: '',
+      }],
+    },
+  },
 ];

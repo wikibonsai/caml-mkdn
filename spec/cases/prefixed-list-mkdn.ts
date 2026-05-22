@@ -600,4 +600,160 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
       ],
     },
   },
+  // multi-line strings
+  // folded style (>)
+  {
+    descr: 'prefixed; list; mkdn-separated; string; folded (>); basic',
+    mkdn: ':attribute::\n- first\n- >\n  line one\n  line two\n',
+    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', 'line one line two'),
+    strData: {
+      'attribute': '\n- first\n- >\n  line one\n  line two',
+    },
+    valData: {
+      'attribute': ['first', 'line one line two'],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '>\n  line one\n  line two',
+          value: 'line one line two',
+        },
+      ],
+    },
+  },
+  {
+    descr: 'prefixed; list; mkdn-separated; string; folded (>); with trailing newline',
+    mkdn: ':attribute::\n- first\n- >\n  line one\n  line two\n\n',
+    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', 'line one line two '),
+    strData: {
+      'attribute': '\n- first\n- >\n  line one\n  line two\n',
+    },
+    valData: {
+      'attribute': ['first', 'line one line two '],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '>\n  line one\n  line two\n',
+          value: 'line one line two ',
+        },
+      ],
+    },
+  },
+  // literal style (|)
+  {
+    descr: 'prefixed; list; mkdn-separated; string; literal (|); basic',
+    mkdn: ':attribute::\n- first\n- |\n  line one\n  line two\n',
+    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', 'line one\nline two'),
+    strData: {
+      'attribute': '\n- first\n- |\n  line one\n  line two',
+    },
+    valData: {
+      'attribute': ['first', 'line one\nline two'],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '|\n  line one\n  line two',
+          value: 'line one\nline two',
+        },
+      ],
+    },
+  },
+  // chomped folded (>-)
+  {
+    descr: 'prefixed; list; mkdn-separated; string; folded chomped (>-); strips trailing newlines',
+    mkdn: ':attribute::\n- first\n- >-\n  line one\n  line two\n\n',
+    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', 'line one line two'),
+    strData: {
+      'attribute': '\n- first\n- >-\n  line one\n  line two\n',
+    },
+    valData: {
+      'attribute': ['first', 'line one line two'],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '>-\n  line one\n  line two\n',
+          value: 'line one line two',
+        },
+      ],
+    },
+  },
+  // chomped literal (>|)
+  {
+    descr: 'prefixed; list; mkdn-separated; string; literal chomped (>|); strips trailing newlines',
+    mkdn: ':attribute::\n- first\n- >|\n  line one\n  line two\n\n',
+    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', 'line one\nline two'),
+    strData: {
+      'attribute': '\n- first\n- >|\n  line one\n  line two\n',
+    },
+    valData: {
+      'attribute': ['first', 'line one\nline two'],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '>|\n  line one\n  line two\n',
+          value: 'line one\nline two',
+        },
+      ],
+    },
+  },
+  // edge cases
+  {
+    descr: 'prefixed; list; mkdn-separated; string; folded (>); empty block',
+    mkdn: ':attribute::\n- first\n- >\n\n',
+    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', ''),
+    strData: {
+      'attribute': '\n- first\n- >\n',
+    },
+    valData: {
+      'attribute': ['first', ''],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '>\n',
+          value: '',
+        },
+      ],
+    },
+  },
 ];

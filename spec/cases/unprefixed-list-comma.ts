@@ -601,4 +601,160 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
       ],
     },
   },
+  // multi-line strings
+  // folded style (>)
+  {
+    descr: 'unprefixed; list; comma-separated; string; folded (>); basic',
+    mkdn: 'attribute::first, >\n  line one\n  line two\n',
+    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', 'line one line two'),
+    strData: {
+      'attribute': 'first, >\n  line one\n  line two',
+    },
+    valData: {
+      'attribute': ['first', 'line one line two'],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '>\n  line one\n  line two',
+          value: 'line one line two',
+        },
+      ],
+    },
+  },
+  {
+    descr: 'unprefixed; list; comma-separated; string; folded (>); with trailing newline',
+    mkdn: 'attribute::first, >\n  line one\n  line two\n\n',
+    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', 'line one line two '),
+    strData: {
+      'attribute': 'first, >\n  line one\n  line two\n',
+    },
+    valData: {
+      'attribute': ['first', 'line one line two '],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '>\n  line one\n  line two\n',
+          value: 'line one line two ',
+        },
+      ],
+    },
+  },
+  // literal style (|)
+  {
+    descr: 'unprefixed; list; comma-separated; string; literal (|); basic',
+    mkdn: 'attribute::first, |\n  line one\n  line two\n',
+    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', 'line one\nline two'),
+    strData: {
+      'attribute': 'first, |\n  line one\n  line two',
+    },
+    valData: {
+      'attribute': ['first', 'line one\nline two'],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '|\n  line one\n  line two',
+          value: 'line one\nline two',
+        },
+      ],
+    },
+  },
+  // chomped folded (>-)
+  {
+    descr: 'unprefixed; list; comma-separated; string; folded chomped (>-); strips trailing newlines',
+    mkdn: 'attribute::first, >-\n  line one\n  line two\n\n',
+    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', 'line one line two'),
+    strData: {
+      'attribute': 'first, >-\n  line one\n  line two\n',
+    },
+    valData: {
+      'attribute': ['first', 'line one line two'],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '>-\n  line one\n  line two\n',
+          value: 'line one line two',
+        },
+      ],
+    },
+  },
+  // chomped literal (>|)
+  {
+    descr: 'unprefixed; list; comma-separated; string; literal chomped (>|); strips trailing newlines',
+    mkdn: 'attribute::first, >|\n  line one\n  line two\n\n',
+    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', 'line one\nline two'),
+    strData: {
+      'attribute': 'first, >|\n  line one\n  line two\n',
+    },
+    valData: {
+      'attribute': ['first', 'line one\nline two'],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '>|\n  line one\n  line two\n',
+          value: 'line one\nline two',
+        },
+      ],
+    },
+  },
+  // edge cases
+  {
+    descr: 'unprefixed; list; comma-separated; string; folded (>); empty block',
+    mkdn: 'attribute::first, >\n\n',
+    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', ''),
+    strData: {
+      'attribute': 'first, >\n',
+    },
+    valData: {
+      'attribute': ['first', ''],
+    },
+    parseData: {
+      'attribute': [
+        {
+          type: 'string',
+          string: 'first',
+          value: 'first',
+        },
+        {
+          type: 'string',
+          string: '>\n',
+          value: '',
+        },
+      ],
+    },
+  },
 ];
