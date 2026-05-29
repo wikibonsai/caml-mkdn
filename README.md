@@ -18,11 +18,6 @@ CAML is a **C**olon **A**ttribute **M**arkup **L**anguage similar to [YAML](http
 
 🕸 Weave a semantic web in your [🎋 WikiBonsai](https://github.com/wikibonsai/wikibonsai) digital garden.
 
-TODO:
-
-- [ ] ordered lists (1. 2. 3.).
-- [ ] allow primitive type and wiki type mixing in lists (ex: `:attr::[[wikiref]],caml-primitive`).
-
 ## Install
 
 Install with [npm](https://docs.npmjs.com/cli/v9/commands/npm-install):

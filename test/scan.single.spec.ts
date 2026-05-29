@@ -498,12 +498,20 @@ describe('scan() -- single', () => {
 
   describe('wikilinks', () => {
 
-    it('[[wikilinks]] should not be handled here', testSingle({
+    it('[[wikilinks]] resolved as wiki type', testSingle({
       mkdn: 'attr :: [[wikilink]]\n',
-      data: [],
+      data: [
+        {
+          key: ['attr', 0],
+        },
+        {
+          type: 'wiki',
+          val: ['[[wikilink]]', 8],
+        },
+      ],
     }));
 
-    it('[[wikilinks]] should not be handled here, but primitives still handled', testSingle({
+    it('[[wikilinks]] alongside primitives', testSingle({
       mkdn: 'attr1 :: a string\nattr2 :: [[wikilink]]\n',
       data: [
         {
@@ -512,6 +520,13 @@ describe('scan() -- single', () => {
         {
           type: 'string',
           val: ['a string', 9],
+        },
+        {
+          key: ['attr2', 18],
+        },
+        {
+          type: 'wiki',
+          val: ['[[wikilink]]', 27],
         },
       ],
     }));

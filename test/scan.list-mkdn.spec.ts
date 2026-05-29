@@ -434,9 +434,17 @@ describe('scan() -- list-mkdn', () => {
 
   describe('wikilinks', () => {
 
-    it('[[wikilinks]] should not be handled here', testListMkdn({
-      mkdn: 'attr :: \n- [[wikilink]]\n',
-      data: [],
+    it('[[wikilinks]] resolved as wiki type', testListMkdn({
+      mkdn: 'attr::\n- [[wikilink]]\n',
+      data: [
+        {
+          key: ['attr', 0],
+        },
+        {
+          type: 'wiki',
+          val: ['[[wikilink]]', 9],
+        },
+      ],
     }));
 
   });

@@ -27,9 +27,7 @@ export namespace RGX {
     // todo: add link
     // match: wikilink's RGX.USABLE_CHAR.LINKTYPE
     KEY            : /[^\n\r!:^|[\]]+/i,
-    // todo: now excluding brackets to ignore [[wiki values]]...would be better as a lookahead,
-    //       but not sure how to combine single char excludes with pattern excludes...
-    VAL            : /[^\n[\]]+/,
+    VAL            : /[^\n]+/,
   } as const;
 
   export const CAP_GRP = {

@@ -171,17 +171,7 @@ export function load(content: string): CamlLoadPayload {
   } as CamlLoadPayload;
   
   // Preprocess multi-line strings - they get parsed directly into res.data
-  const originalContent = content;
   content = preprocessMultiLineStrings(content, res);
-  
-  // Debug logging (remove in production)
-  if (content !== originalContent) {
-    console.log('=== PREPROCESSING DEBUG ===');
-    console.log('Original:', JSON.stringify(originalContent));
-    console.log('Processed:', JSON.stringify(content));
-    console.log('Parsed data so far:', JSON.stringify(res.data));
-    console.log('========================');
-  }
   const replaceMatches: string[] = [];
   let attrMatch, valMatch: RegExpExecArray | null;
   const attrsGottaCatchEmAll: RegExp = new RegExp(RGX.CAML, 'gim');

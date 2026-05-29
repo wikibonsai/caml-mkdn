@@ -96,19 +96,19 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       'attribute': '\n- [[wikiref1]]\n- [[wikiref2]]',
     },
     valData: {
-      'attribute': [{ ref: 'wikiref1' }, { ref: 'wikiref2' }],
+      'attribute': ['wikiref1', 'wikiref2'],
     },
     parseData: {
       'attribute': [
         {
           type: 'wiki',
           string: '[[wikiref1]]',
-          value: { ref: 'wikiref1' },
+          value: 'wikiref1',
         },
         {
           type: 'wiki',
           string: '[[wikiref2]]',
-          value: { ref: 'wikiref2' },
+          value: 'wikiref2',
         },
       ],
     },
@@ -130,19 +130,19 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       'attribute': '[[wikiref1]],[[wikiref2]]',
     },
     valData: {
-      'attribute': [{ ref: 'wikiref1' }, { ref: 'wikiref2' }],
+      'attribute': ['wikiref1', 'wikiref2'],
     },
     parseData: {
       'attribute': [
         {
           type: 'wiki',
           string: '[[wikiref1]]',
-          value: { ref: 'wikiref1' },
+          value: 'wikiref1',
         },
         {
           type: 'wiki',
           string: '[[wikiref2]]',
-          value: { ref: 'wikiref2' },
+          value: 'wikiref2',
         },
       ],
     },
@@ -164,19 +164,19 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       'attribute': '\n- [[wikiref1]]\n- [[wikiref2]]',
     },
     valData: {
-      'attribute': [{ ref: 'wikiref1' }, { ref: 'wikiref2' }],
+      'attribute': ['wikiref1', 'wikiref2'],
     },
     parseData: {
       'attribute': [
         {
           type: 'wiki',
           string: '[[wikiref1]]',
-          value: { ref: 'wikiref1' },
+          value: 'wikiref1',
         },
         {
           type: 'wiki',
           string: '[[wikiref2]]',
-          value: { ref: 'wikiref2' },
+          value: 'wikiref2',
         },
       ],
     },
@@ -198,19 +198,19 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       'attribute': '[[wikiref1]],[[wikiref2]]',
     },
     valData: {
-      'attribute': [{ ref: 'wikiref1' }, { ref: 'wikiref2' }],
+      'attribute': ['wikiref1', 'wikiref2'],
     },
     parseData: {
       'attribute': [
         {
           type: 'wiki',
           string: '[[wikiref1]]',
-          value: { ref: 'wikiref1' },
+          value: 'wikiref1',
         },
         {
           type: 'wiki',
           string: '[[wikiref2]]',
-          value: { ref: 'wikiref2' },
+          value: 'wikiref2',
         },
       ],
     },
@@ -233,14 +233,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       'attribute': '\n- [[wikiref]]\n- 42',
     },
     valData: {
-      'attribute': [{ ref: 'wikiref' }, 42],
+      'attribute': ['wikiref', 42],
     },
     parseData: {
       'attribute': [
         {
           type: 'wiki',
           string: '[[wikiref]]',
-          value: { ref: 'wikiref' },
+          value: 'wikiref',
         },
         {
           type: 'int',
@@ -267,14 +267,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       'attribute': '[[wikiref]],42',
     },
     valData: {
-      'attribute': [{ ref: 'wikiref' }, 42],
+      'attribute': ['wikiref', 42],
     },
     parseData: {
       'attribute': [
         {
           type: 'wiki',
           string: '[[wikiref]]',
-          value: { ref: 'wikiref' },
+          value: 'wikiref',
         },
         {
           type: 'int',
@@ -301,14 +301,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       'attribute': '\n- [[wikiref]]\n- 42',
     },
     valData: {
-      'attribute': [{ ref: 'wikiref' }, 42],
+      'attribute': ['wikiref', 42],
     },
     parseData: {
       'attribute': [
         {
           type: 'wiki',
           string: '[[wikiref]]',
-          value: { ref: 'wikiref' },
+          value: 'wikiref',
         },
         {
           type: 'int',
@@ -335,14 +335,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       'attribute': '[[wikiref]],42',
     },
     valData: {
-      'attribute': [{ ref: 'wikiref' }, 42],
+      'attribute': ['wikiref', 42],
     },
     parseData: {
       'attribute': [
         {
           type: 'wiki',
           string: '[[wikiref]]',
-          value: { ref: 'wikiref' },
+          value: 'wikiref',
         },
         {
           type: 'int',
@@ -369,14 +369,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       'attribute': '\n- [[wikiref]]\n- true',
     },
     valData: {
-      'attribute': [{ ref: 'wikiref' }, true],
+      'attribute': ['wikiref', true],
     },
     parseData: {
       'attribute': [
         {
           type: 'wiki',
           string: '[[wikiref]]',
-          value: { ref: 'wikiref' },
+          value: 'wikiref',
         },
         {
           type: 'bool',
@@ -403,14 +403,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       'attribute': '[[wikiref]],true',
     },
     valData: {
-      'attribute': [{ ref: 'wikiref' }, true],
+      'attribute': ['wikiref', true],
     },
     parseData: {
       'attribute': [
         {
           type: 'wiki',
           string: '[[wikiref]]',
-          value: { ref: 'wikiref' },
+          value: 'wikiref',
         },
         {
           type: 'bool',
@@ -438,14 +438,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       'attribute': '[[wikiref]],[[invalid',
     },
     valData: {
-      'attribute': [{ ref: 'wikiref' }, '[[invalid'],
+      'attribute': ['wikiref', '[[invalid'],
     },
     parseData: {
       'attribute': [
         {
           type: 'wiki',
           string: '[[wikiref]]',
-          value: { ref: 'wikiref' },
+          value: 'wikiref',
         },
         {
           type: 'string',

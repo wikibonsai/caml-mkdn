@@ -49,8 +49,23 @@ function parseYamlScalar(indicator: string, block: string): string {
   }
 }
 
+// matches wikirefs' _BASE regex (MARKER.OPEN + VALID_CHARS.FILENAME + MARKER.CLOSE)
+// see: wikirefs/src/lib/var/regex.ts
+const WIKI_RGX: RegExp = /^\[\[[^\n\r!#:^|[\]]+\]\]$/i;
+
 // todo: what if there's leading/trailing whitespace? (trimming beforehand, for now)
 export function resolve(value: string): CamlValData {
+  // wikilink
+  if (WIKI_RGX.test(value.trim())) {
+    const trimmed: string = value.trim();
+    // strip [[ and ]] to extract filename
+    const filename: string = trimmed.slice(2, -2);
+    return {
+      type: 'wiki',
+      string: trimmed,
+      value: filename,
+    };
+  }
   // if the value is a multi-line string, treat it as a string
   const multiLineIndicators: string[] = ['>-', '>|', '>', '|'];
   if (multiLineIndicators.some(ind => value.trim().startsWith(ind))) {
