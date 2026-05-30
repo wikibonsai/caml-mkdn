@@ -1,11 +1,11 @@
-import * as assert from 'assert';
+import assert from 'node:assert/strict';
 
 import * as caml from '../src';
 
 
 describe('scan() -- list-comma', () => {
 
-  const testListComma = (params: any) => () => { 
+  const testListComma = (params: any) => () => {
     const mkdn: string = params.mkdn;
     const expdData: any = params.data;
     const actlData: any = caml.scan(mkdn);
@@ -18,16 +18,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::null, null\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'null', val: { text: 'null', start: 6 } },
+            { type: 'null', val: { text: 'null', start: 12 } },
+          ],
         },
-        {
-          type: 'null',
-          val: ['null', 6],
-        },
-        {
-          type: 'null',
-          val: ['null', 12],
-        }
       ],
     }));
 
@@ -35,16 +31,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::Null, Null\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'null', val: { text: 'Null', start: 6 } },
+            { type: 'null', val: { text: 'Null', start: 12 } },
+          ],
         },
-        {
-          type: 'null',
-          val: ['Null', 6],
-        },
-        {
-          type: 'null',
-          val: ['Null', 12],
-        }
       ],
     }));
 
@@ -52,16 +44,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::NULL, NULL\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'null', val: { text: 'NULL', start: 6 } },
+            { type: 'null', val: { text: 'NULL', start: 12 } },
+          ],
         },
-        {
-          type: 'null',
-          val: ['NULL', 6],
-        },
-        {
-          type: 'null',
-          val: ['NULL', 12],
-        }
       ],
     }));
 
@@ -73,16 +61,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::true, false\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'bool', val: { text: 'true', start: 6 } },
+            { type: 'bool', val: { text: 'false', start: 12 } },
+          ],
         },
-        {
-          type: 'bool',
-          val: ['true', 6],
-        },
-        {
-          type: 'bool',
-          val: ['false', 12],
-        }
       ],
     }));
 
@@ -90,16 +74,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::True, False\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'bool', val: { text: 'True', start: 6 } },
+            { type: 'bool', val: { text: 'False', start: 12 } },
+          ],
         },
-        {
-          type: 'bool',
-          val: ['True', 6],
-        },
-        {
-          type: 'bool',
-          val: ['False', 12],
-        }
       ],
     }));
 
@@ -107,16 +87,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::TRUE, FALSE\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'bool', val: { text: 'TRUE', start: 6 } },
+            { type: 'bool', val: { text: 'FALSE', start: 12 } },
+          ],
         },
-        {
-          type: 'bool',
-          val: ['TRUE', 6],
-        },
-        {
-          type: 'bool',
-          val: ['FALSE', 12],
-        }
       ],
     }));
 
@@ -128,16 +104,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::10, -123\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'int', val: { text: '10', start: 6 } },
+            { type: 'int', val: { text: '-123', start: 10 } },
+          ],
         },
-        {
-          type: 'int',
-          val: ['10', 6],
-        },
-        {
-          type: 'int',
-          val: ['-123', 10],
-        }
       ],
     }));
 
@@ -145,16 +117,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::0o10, 0o123\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'int', val: { text: '0o10', start: 6 } },
+            { type: 'int', val: { text: '0o123', start: 12 } },
+          ],
         },
-        {
-          type: 'int',
-          val: ['0o10', 6],
-        },
-        {
-          type: 'int',
-          val: ['0o123', 12],
-        }
       ],
     }));
 
@@ -162,16 +130,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::0xC, 0x14\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'int', val: { text: '0xC', start: 6 } },
+            { type: 'int', val: { text: '0x14', start: 11 } },
+          ],
         },
-        {
-          type: 'int',
-          val: ['0xC', 6],
-        },
-        {
-          type: 'int',
-          val: ['0x14', 11],
-        }
       ],
     }));
 
@@ -183,16 +147,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::1.23015, -1.23015\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'float', val: { text: '1.23015', start: 6 } },
+            { type: 'float', val: { text: '-1.23015', start: 15 } },
+          ],
         },
-        {
-          type: 'float',
-          val: ['1.23015', 6],
-        },
-        {
-          type: 'float',
-          val: ['-1.23015', 15],
-        }
       ],
     }));
 
@@ -200,16 +160,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::12.3015e+02, 12.3015e-02\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'float', val: { text: '12.3015e+02', start: 6 } },
+            { type: 'float', val: { text: '12.3015e-02', start: 19 } },
+          ],
         },
-        {
-          type: 'float',
-          val: ['12.3015e+02', 6],
-        },
-        {
-          type: 'float',
-          val: ['12.3015e-02', 19],
-        }
       ],
     }));
 
@@ -217,16 +173,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::.NaN, .nan\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'float', val: { text: '.NaN', start: 6 } },
+            { type: 'float', val: { text: '.nan', start: 12 } },
+          ],
         },
-        {
-          type: 'float',
-          val: ['.NaN', 6],
-        },
-        {
-          type: 'float',
-          val: ['.nan', 12],
-        }
       ],
     }));
 
@@ -238,16 +190,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::2001-12-15T02:59:43.1Z, 2022-12-15T02:59:43.1Z\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-15T02:59:43.1Z', start: 6 } },
+            { type: 'time', val: { text: '2022-12-15T02:59:43.1Z', start: 30 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-15T02:59:43.1Z', 6],
-        },
-        {
-          type: 'time',
-          val: ['2022-12-15T02:59:43.1Z', 30],
-        }
       ],
     }));
 
@@ -255,16 +203,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::2001-12-14t21:59:43.10-05:00, 2022-12-14t21:59:43.10-05:00\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-14t21:59:43.10-05:00', start: 6 } },
+            { type: 'time', val: { text: '2022-12-14t21:59:43.10-05:00', start: 36 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-14t21:59:43.10-05:00', 6],
-        },
-        {
-          type: 'time',
-          val: ['2022-12-14t21:59:43.10-05:00', 36],
-        }
       ],
     }));
 
@@ -272,16 +216,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::2001-12-14 21:59:43.10 -5, 2022-12-14 21:59:43.10 -5\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-14 21:59:43.10 -5', start: 6 } },
+            { type: 'time', val: { text: '2022-12-14 21:59:43.10 -5', start: 33 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-14 21:59:43.10 -5', 6],
-        },
-        {
-          type: 'time',
-          val: ['2022-12-14 21:59:43.10 -5', 33],
-        }
       ],
     }));
 
@@ -289,16 +229,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::2001-12-14, 2022-12-14\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-14', start: 6 } },
+            { type: 'time', val: { text: '2022-12-14', start: 18 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-14', 6],
-        },
-        {
-          type: 'time',
-          val: ['2022-12-14', 18],
-        }
       ],
     }));
 
@@ -306,16 +242,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::+12:00, 12:00\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '+12:00', start: 6 } },
+            { type: 'time', val: { text: '12:00', start: 14 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['+12:00', 6],
-        },
-        {
-          type: 'time',
-          val: ['12:00', 14],
-        }
       ],
     }));
 
@@ -323,16 +255,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::+12:00.123, 12:00.123\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '+12:00.123', start: 6 } },
+            { type: 'time', val: { text: '12:00.123', start: 18 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['+12:00.123', 6],
-        },
-        {
-          type: 'time',
-          val: ['12:00.123', 18],
-        }
       ],
     }));
 
@@ -344,16 +272,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::value-w/out-whitespace, and-another\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'value-w/out-whitespace', start: 6 } },
+            { type: 'string', val: { text: 'and-another', start: 30 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value-w/out-whitespace', 6],
-        },
-        {
-          type: 'string',
-          val: ['and-another', 30],
-        }
       ],
     }));
 
@@ -361,16 +285,12 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::value with whitespace, and another\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 6 } },
+            { type: 'string', val: { text: 'and another', start: 29 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 6],
-        },
-        {
-          type: 'string',
-          val: ['and another', 29],
-        }
       ],
     }));
 
@@ -378,16 +298,12 @@ describe('scan() -- list-comma', () => {
       mkdn: ':attr::value with whitespace, and another\n',
       data: [
         {
-          key: ['attr', 1],
+          key: { text: 'attr', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 7 } },
+            { type: 'string', val: { text: 'and another', start: 30 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 7],
-        },
-        {
-          type: 'string',
-          val: ['and another', 30],
-        }
       ],
     }));
 
@@ -395,16 +311,12 @@ describe('scan() -- list-comma', () => {
       mkdn: ': attr  ::value with whitespace, and another\n',
       data: [
         {
-          key: ['attr', 2],
+          key: { text: 'attr', start: 2 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 10 } },
+            { type: 'string', val: { text: 'and another', start: 33 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 10],
-        },
-        {
-          type: 'string',
-          val: ['and another', 33],
-        }
       ],
     }));
 
@@ -412,20 +324,13 @@ describe('scan() -- list-comma', () => {
       mkdn: 'attr::test,test,test\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'test', start: 6 } },
+            { type: 'string', val: { text: 'test', start: 11 } },
+            { type: 'string', val: { text: 'test', start: 16 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['test', 6],
-        },
-        {
-          type: 'string',
-          val: ['test', 11],
-        },
-        {
-          type: 'string',
-          val: ['test', 16],
-        }
       ],
     }));
 

@@ -242,33 +242,46 @@ const dated = update(': date :: 2001-12-14\n', 'date', '2022-11-14', { type: 'ti
 
 Constrain the match to a specific value type (e.g. `'timestamp'`, `'int'`, `'bool'`). If omitted, matches any value.
 
-### `scan(content: string): (CamlScanResKey | CamlScanResVal)[]`
+### `scan(content: string): CamlScanResult[]`
 
-Scan a given `content` string and return an array of descriptions of all valid CAML attributes constructs.
+Scan a given `content` string and return an array of descriptions of all valid CAML attribute constructs. Each result groups a key with its values.
 
 ```typescript
 import { scan } from 'caml-mkdn';
-import type { CamlScanResKey, CamlScanResVal } from 'caml-mkdn';
+import type { CamlScanResult } from 'caml-mkdn';
 
-const results: (CamlScanResKey | CamlScanResVal)[] = scan(': title :: My Document\n: count :: 42\n');
+const results: CamlScanResult[] = scan(': title :: My Document\n: count :: 42\n');
 // results = [
-//   { key: ['title', 2] },
-//   { type: 'string', val: ['My Document', 11] },
-//   { key: ['count', 25] },
-//   { type: 'int', val: ['42', 34] },
+//   {
+//     key: { text: 'title', start: 2 },
+//     vals: [
+//       { type: 'string', val: { text: 'My Document', start: 11 } },
+//     ],
+//   },
+//   {
+//     key: { text: 'count', start: 25 },
+//     vals: [
+//       { type: 'int', val: { text: '42', start: 34 } },
+//     ],
+//   },
 // ]
 ```
 
 Result formats:
 
-```js
-// caml attribute key
-interface ScanResCamlKey {
-  key: [string, number];
+```typescript
+interface ScanTxt {
+  text: string;
+  start: number;
 }
-// caml attribute value
-interface ScanResCamlVal {
+
+interface CamlScanResVal {
   type: string;
-  val: [string, number];
+  val: ScanTxt;
 }
-``` 
+
+interface CamlScanResult {
+  key: ScanTxt;
+  vals: CamlScanResVal[];
+}
+```

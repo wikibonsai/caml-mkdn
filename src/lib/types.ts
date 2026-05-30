@@ -25,11 +25,17 @@ export interface CamlLoadPayload {
 
 // scan()
 
-export interface CamlScanResKey {
-  key: [string, number];
+export interface ScanTxt {
+  text: string;
+  start: number;
 }
 
 export interface CamlScanResVal {
   type: string;
-  val: [string, number];
+  val: ScanTxt;
+}
+
+export interface CamlScanResult {
+  key: ScanTxt;
+  vals: CamlScanResVal[];
 }

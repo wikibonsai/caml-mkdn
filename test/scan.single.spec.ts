@@ -5,7 +5,7 @@ import * as caml from '../src';
 
 describe('scan() -- single', () => {
 
-  const testSingle = (params: any) => () => { 
+  const testSingle = (params: any) => () => {
     const mkdn: string = params.mkdn;
     const expdData: any = params.data;
     const actlData: any = caml.scan(mkdn);
@@ -23,12 +23,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::null\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'null', val: { text: 'null', start: 6 } },
+          ],
         },
-        {
-          type: 'null',
-          val: ['null', 6],
-        }
       ],
     }));
 
@@ -36,12 +35,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::Null\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'null', val: { text: 'Null', start: 6 } },
+          ],
         },
-        {
-          type: 'null',
-          val: ['Null', 6],
-        }
       ],
     }));
 
@@ -49,12 +47,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::NULL\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'null', val: { text: 'NULL', start: 6 } },
+          ],
         },
-        {
-          type: 'null',
-          val: ['NULL', 6],
-        }
       ],
     }));
 
@@ -66,12 +63,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::true\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'bool', val: { text: 'true', start: 6 } },
+          ],
         },
-        {
-          type: 'bool',
-          val: ['true', 6],
-        }
       ],
     }));
 
@@ -79,12 +75,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::True\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'bool', val: { text: 'True', start: 6 } },
+          ],
         },
-        {
-          type: 'bool',
-          val: ['True', 6],
-        }
       ],
     }));
 
@@ -92,12 +87,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::TRUE\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'bool', val: { text: 'TRUE', start: 6 } },
+          ],
         },
-        {
-          type: 'bool',
-          val: ['TRUE', 6],
-        }
       ],
     }));
 
@@ -109,12 +103,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::10\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'int', val: { text: '10', start: 6 } },
+          ],
         },
-        {
-          type: 'int',
-          val: ['10', 6],
-        }
       ],
     }));
 
@@ -122,12 +115,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::0o10\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'int', val: { text: '0o10', start: 6 } },
+          ],
         },
-        {
-          type: 'int',
-          val: ['0o10', 6],
-        }
       ],
     }));
 
@@ -135,12 +127,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::0x14\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'int', val: { text: '0x14', start: 6 } },
+          ],
         },
-        {
-          type: 'int',
-          val: ['0x14', 6],
-        }
       ],
     }));
 
@@ -152,12 +143,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::1.23015\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'float', val: { text: '1.23015', start: 6 } },
+          ],
         },
-        {
-          type: 'float',
-          val: ['1.23015', 6],
-        }
       ],
     }));
 
@@ -165,12 +155,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::12.3015e+02\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'float', val: { text: '12.3015e+02', start: 6 } },
+          ],
         },
-        {
-          type: 'float',
-          val: ['12.3015e+02', 6],
-        }
       ],
     }));
 
@@ -178,12 +167,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::.nan\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'float', val: { text: '.nan', start: 6 } },
+          ],
         },
-        {
-          type: 'float',
-          val: ['.nan', 6],
-        }
       ],
     }));
 
@@ -195,12 +183,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::2001-12-15T02:59:43.1Z\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-15T02:59:43.1Z', start: 6 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-15T02:59:43.1Z', 6],
-        }
       ],
     }));
 
@@ -208,12 +195,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::2001-12-14t21:59:43.10-05:00\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-14t21:59:43.10-05:00', start: 6 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-14t21:59:43.10-05:00', 6],
-        }
       ],
     }));
 
@@ -221,12 +207,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::2001-12-14 21:59:43.10 -5\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-14 21:59:43.10 -5', start: 6 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-14 21:59:43.10 -5', 6],
-        }
       ],
     }));
 
@@ -234,12 +219,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::2001-12-14\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-14', start: 6 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-14', 6],
-        }
       ],
     }));
 
@@ -247,12 +231,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::+12:00\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '+12:00', start: 6 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['+12:00', 6],
-        }
       ],
     }));
 
@@ -260,12 +243,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::+12:00.123\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '+12:00.123', start: 6 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['+12:00.123', 6],
-        }
       ],
     }));
 
@@ -277,12 +259,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::value-w/out-whitespace\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'value-w/out-whitespace', start: 6 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value-w/out-whitespace', 6],
-        }
       ],
     }));
 
@@ -290,12 +271,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::value with whitespace\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 6 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 6],
-        }
       ],
     }));
 
@@ -303,12 +283,11 @@ describe('scan() -- single', () => {
       mkdn: ':attr::value with whitespace\n',
       data: [
         {
-          key: ['attr', 1],
+          key: { text: 'attr', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 7 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 7],
-        }
       ],
     }));
 
@@ -316,12 +295,11 @@ describe('scan() -- single', () => {
       mkdn: ': attr  ::value with whitespace\n',
       data: [
         {
-          key: ['attr', 2],
+          key: { text: 'attr', start: 2 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 10 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 10],
-        }
       ],
     }));
 
@@ -329,12 +307,11 @@ describe('scan() -- single', () => {
       mkdn: ': gravity :: 9.8m/s^2\n',
       data: [
         {
-          key: ['gravity', 2],
+          key: { text: 'gravity', start: 2 },
+          vals: [
+            { type: 'string', val: { text: '9.8m/s^2', start: 13 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['9.8m/s^2', 13],
-        }
       ],
     }));
 
@@ -342,12 +319,11 @@ describe('scan() -- single', () => {
       mkdn: ': tldr :: \'\'\n\n[[wikilink]]\n',
       data: [
         {
-          key: ['tldr', 2],
+          key: { text: 'tldr', start: 2 },
+          vals: [
+            { type: 'string', val: { text: '\'\'', start: 10 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['\'\'', 10],
-        }
       ],
     }));
 
@@ -355,12 +331,11 @@ describe('scan() -- single', () => {
       mkdn: ': tldr :: tldr\n',
       data: [
         {
-          key: ['tldr', 2],
+          key: { text: 'tldr', start: 2 },
+          vals: [
+            { type: 'string', val: { text: 'tldr', start: 10 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['tldr', 10],
-        }
       ],
     }));
 
@@ -370,12 +345,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::>\n  this is a long string\n  that spans multiple\n  lines\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'this is a long string that spans multiple lines', start: 6 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['this is a long string that spans multiple lines', 6],
-        }
       ],
     }));
 
@@ -383,12 +357,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::value with whitespace\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 6 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 6],
-        }
       ],
     }));
 
@@ -396,12 +369,11 @@ describe('scan() -- single', () => {
       mkdn: ':attr::value with whitespace\n',
       data: [
         {
-          key: ['attr', 1],
+          key: { text: 'attr', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 7 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 7],
-        }
       ],
     }));
 
@@ -409,12 +381,11 @@ describe('scan() -- single', () => {
       mkdn: ': attr  ::value with whitespace\n',
       data: [
         {
-          key: ['attr', 2],
+          key: { text: 'attr', start: 2 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 10 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 10],
-        }
       ],
     }));
 
@@ -422,12 +393,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::value-w/out-whitespace\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'value-w/out-whitespace', start: 6 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value-w/out-whitespace', 6],
-        }
       ],
     }));
 
@@ -435,12 +405,11 @@ describe('scan() -- single', () => {
       mkdn: 'attr::value with whitespace\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 6 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 6],
-        }
       ],
     }));
 
@@ -448,12 +417,11 @@ describe('scan() -- single', () => {
       mkdn: ':attr::value with whitespace\n',
       data: [
         {
-          key: ['attr', 1],
+          key: { text: 'attr', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 7 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 7],
-        }
       ],
     }));
 
@@ -461,12 +429,11 @@ describe('scan() -- single', () => {
       mkdn: ': attr  ::value with whitespace\n',
       data: [
         {
-          key: ['attr', 2],
+          key: { text: 'attr', start: 2 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 10 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 10],
-        }
       ],
     }));
 
@@ -478,18 +445,16 @@ describe('scan() -- single', () => {
       mkdn: 'attr1::value-w/out-whitespace\nattr2::123\n',
       data: [
         {
-          key: ['attr1', 0],
+          key: { text: 'attr1', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'value-w/out-whitespace', start: 7 } },
+          ],
         },
         {
-          type: 'string',
-          val: ['value-w/out-whitespace', 7],
-        },
-        {
-          key: ['attr2', 30],
-        },
-        {
-          type: 'int',
-          val: ['123', 37],
+          key: { text: 'attr2', start: 30 },
+          vals: [
+            { type: 'int', val: { text: '123', start: 37 } },
+          ],
         },
       ],
     }));
@@ -502,11 +467,10 @@ describe('scan() -- single', () => {
       mkdn: 'attr :: [[wikilink]]\n',
       data: [
         {
-          key: ['attr', 0],
-        },
-        {
-          type: 'wiki',
-          val: ['[[wikilink]]', 8],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[wikilink]]', start: 8 } },
+          ],
         },
       ],
     }));
@@ -515,18 +479,16 @@ describe('scan() -- single', () => {
       mkdn: 'attr1 :: a string\nattr2 :: [[wikilink]]\n',
       data: [
         {
-          key: ['attr1', 0],
+          key: { text: 'attr1', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'a string', start: 9 } },
+          ],
         },
         {
-          type: 'string',
-          val: ['a string', 9],
-        },
-        {
-          key: ['attr2', 18],
-        },
-        {
-          type: 'wiki',
-          val: ['[[wikilink]]', 27],
+          key: { text: 'attr2', start: 18 },
+          vals: [
+            { type: 'wiki', val: { text: '[[wikilink]]', start: 27 } },
+          ],
         },
       ],
     }));

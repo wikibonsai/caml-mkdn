@@ -1,6 +1,6 @@
 import type {
-  CamlScanResKey,
   CamlScanResVal,
+  CamlScanResult,
 } from './../types';
 import { RGX } from './../var/regex';
 import { resolve} from './resolve';
@@ -8,13 +8,13 @@ import { resolve} from './resolve';
 
 // scan -- useful for syntax highlights
 
-export function scan(content: string): (CamlScanResKey | CamlScanResVal)[] {
-  const res: any[] = [];
+export function scan(content: string): CamlScanResult[] {
+  const res: CamlScanResult[] = [];
   let attrMatch, valMatch: RegExpExecArray | null;
   const attrsGottaCatchEmAll: RegExp = new RegExp(RGX.CAML, 'gim');
   const multiLineGottaCatchEmAll: RegExp = new RegExp(RGX.MLINE.SINGLE, 'gim');
   const listItemsGottaCatchEmAll: RegExp = new RegExp(RGX.LINE.LIST_ITEM, 'gim');
-  
+
   // Handle multi-line strings first
   do {
     attrMatch = multiLineGottaCatchEmAll.exec(content);
@@ -27,23 +27,23 @@ export function scan(content: string): (CamlScanResKey | CamlScanResVal)[] {
       // build results
       const contentOffset: number = attrMatch.index;
       const keyOffset: number = attrMatch.index + matchText.indexOf(keyText);
-      
-      // key
-      const trimmedKey: string = keyText.trim();
-      res.push({
-        key: [trimmedKey, keyOffset],
-      } as CamlScanResKey);
-      
+
       // Handle multi-line string
       const fullValue = ` ${indicator}\n${blockContent}`;
       const valParsed = resolve(fullValue);
+      const trimmedKey: string = keyText.trim();
       res.push({
-        type: valParsed.type,
-        val: [valParsed.value, contentOffset + matchText.indexOf(indicator)],
-      } as CamlScanResVal);
+        key: { text: trimmedKey, start: keyOffset },
+        vals: [
+          {
+            type: valParsed.type,
+            val: { text: valParsed.value as string, start: contentOffset + matchText.indexOf(indicator) },
+          },
+        ],
+      });
     }
   } while (attrMatch);
-  
+
   // Handle regular CAML attributes
   do {
     attrMatch = attrsGottaCatchEmAll.exec(content);
@@ -57,55 +57,58 @@ export function scan(content: string): (CamlScanResKey | CamlScanResVal)[] {
       const keyOffset: number = attrMatch.index + matchText.indexOf(keyText);
       let itemOffset: number = 0;
       if (valText && !/^\s*$/.exec(valText) && !valText.includes('\n') && !/^[>-|]\|?$/.test(valText)) {
-        // key
+        // key + values
         const trimmedKey: string = keyText.trim();
-        res.push({
-          key: [trimmedKey, keyOffset],
-        } as CamlScanResKey);
-        
+        const vals: CamlScanResVal[] = [];
+
         // value(s):                                 // list              // single
-        const vals: string[] = valText.includes(',') ? valText.split(',') : [valText];
-        if (keyText.includes(vals[0])) {
+        const valParts: string[] = valText.includes(',') ? valText.split(',') : [valText];
+        if (keyText.includes(valParts[0])) {
           itemOffset += keyOffset + keyText.length;
         }
-        for (const val of vals) {
+        for (const val of valParts) {
           const trimmedVal: string = val.trim();
           itemOffset = matchText.indexOf(trimmedVal, itemOffset);
           const valParsed = resolve(trimmedVal);
-          res.push({
+          vals.push({
             type: valParsed.type,
-            val: [trimmedVal, contentOffset + itemOffset],
-          } as CamlScanResVal);
+            val: { text: trimmedVal, start: contentOffset + itemOffset },
+          });
           itemOffset += val.length;
         }
+        res.push({
+          key: { text: trimmedKey, start: keyOffset },
+          vals,
+        });
       // list-mkdn
       } else {
         if (RGX.LINE.LIST_ITEM.exec(matchText)) {
-          // key
+          const vals: CamlScanResVal[] = [];
+          do {
+            valMatch = listItemsGottaCatchEmAll.exec(matchText);
+            if (valMatch) {
+              const valText: string = valMatch[2];
+              const trimmedVal: string = valText.trim();
+              itemOffset = matchText.indexOf(trimmedVal, itemOffset);
+              const valParsed = resolve(trimmedVal);
+              vals.push({
+                type: valParsed.type,
+                val: { text: trimmedVal, start: contentOffset + itemOffset },
+              });
+              itemOffset += valText.length;
+            }
+          } while (valMatch);
           res.push({
-            key: [keyText, keyOffset],
-          } as CamlScanResKey);
+            key: { text: keyText, start: keyOffset },
+            vals,
+          });
         }
-        do {
-          valMatch = listItemsGottaCatchEmAll.exec(matchText);
-          if (valMatch) {
-            const valText: string = valMatch[2];
-            const trimmedVal: string = valText.trim();
-            itemOffset = matchText.indexOf(trimmedVal, itemOffset);
-            const valParsed = resolve(trimmedVal);
-            res.push({
-              type: valParsed.type,
-              val: [trimmedVal, contentOffset + itemOffset],
-            } as CamlScanResVal);
-            itemOffset += valText.length;
-          }
-        } while (valMatch);
       }
     }
   } while (attrMatch);
   // only return the results if both keys and values were found
-  const values = res.filter((item) => item.type);
-  if (values.length === 0) {
+  const hasValues = res.some((item) => item.vals.length > 0);
+  if (!hasValues) {
     return [];
   } else {
     return res;

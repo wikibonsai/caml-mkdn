@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import assert from 'node:assert/strict';
 
 import * as caml from '../src';
 
@@ -23,16 +23,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- null\n- null\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'null', val: { text: 'null', start: 9 } },
+            { type: 'null', val: { text: 'null', start: 16 } },
+          ],
         },
-        {
-          type: 'null',
-          val: ['null', 9],
-        },
-        {
-          type: 'null',
-          val: ['null', 16],
-        }
       ],
     }));
 
@@ -40,16 +36,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- Null\n- Null\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'null', val: { text: 'Null', start: 9 } },
+            { type: 'null', val: { text: 'Null', start: 16 } },
+          ],
         },
-        {
-          type: 'null',
-          val: ['Null', 9],
-        },
-        {
-          type: 'null',
-          val: ['Null', 16],
-        }
       ],
     }));
 
@@ -57,16 +49,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- NULL\n- NULL\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'null', val: { text: 'NULL', start: 9 } },
+            { type: 'null', val: { text: 'NULL', start: 16 } },
+          ],
         },
-        {
-          type: 'null',
-          val: ['NULL', 9],
-        },
-        {
-          type: 'null',
-          val: ['NULL', 16],
-        }
       ],
     }));
 
@@ -78,15 +66,11 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- true\n- false\n',
       data: [
         {
-          key: ['attr', 0],
-        },
-        {
-          type: 'bool',
-          val: ['true', 9],
-        },
-        {
-          type: 'bool',
-          val: ['false', 16],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'bool', val: { text: 'true', start: 9 } },
+            { type: 'bool', val: { text: 'false', start: 16 } },
+          ],
         },
       ],
     }));
@@ -95,15 +79,11 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- True\n- False\n',
       data: [
         {
-          key: ['attr', 0],
-        },
-        {
-          type: 'bool',
-          val: ['True', 9],
-        },
-        {
-          type: 'bool',
-          val: ['False', 16],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'bool', val: { text: 'True', start: 9 } },
+            { type: 'bool', val: { text: 'False', start: 16 } },
+          ],
         },
       ],
     }));
@@ -112,15 +92,11 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- TRUE\n- FALSE\n',
       data: [
         {
-          key: ['attr', 0],
-        },
-        {
-          type: 'bool',
-          val: ['TRUE', 9],
-        },
-        {
-          type: 'bool',
-          val: ['FALSE', 16],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'bool', val: { text: 'TRUE', start: 9 } },
+            { type: 'bool', val: { text: 'FALSE', start: 16 } },
+          ],
         },
       ],
     }));
@@ -133,16 +109,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- 10\n- -123\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'int', val: { text: '10', start: 9 } },
+            { type: 'int', val: { text: '-123', start: 14 } },
+          ],
         },
-        {
-          type: 'int',
-          val: ['10', 9],
-        },
-        {
-          type: 'int',
-          val: ['-123', 14],
-        }
       ],
     }));
 
@@ -150,15 +122,11 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- 0o10\n- 0o123\n',
       data: [
         {
-          key: ['attr', 0],
-        },
-        {
-          type: 'int',
-          val: ['0o10', 9],
-        },
-        {
-          type: 'int',
-          val: ['0o123', 16],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'int', val: { text: '0o10', start: 9 } },
+            { type: 'int', val: { text: '0o123', start: 16 } },
+          ],
         },
       ],
     }));
@@ -167,15 +135,11 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- 0xC\n- 0x14\n',
       data: [
         {
-          key: ['attr', 0],
-        },
-        {
-          type: 'int',
-          val: ['0xC', 9],
-        },
-        {
-          type: 'int',
-          val: ['0x14', 15],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'int', val: { text: '0xC', start: 9 } },
+            { type: 'int', val: { text: '0x14', start: 15 } },
+          ],
         },
       ],
     }));
@@ -188,16 +152,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- 1.23015\n- -1.23015\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'float', val: { text: '1.23015', start: 9 } },
+            { type: 'float', val: { text: '-1.23015', start: 19 } },
+          ],
         },
-        {
-          type: 'float',
-          val: ['1.23015', 9],
-        },
-        {
-          type: 'float',
-          val: ['-1.23015', 19],
-        }
       ],
     }));
 
@@ -205,16 +165,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- 12.3015e+02\n- 12.3015e-02\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'float', val: { text: '12.3015e+02', start: 9 } },
+            { type: 'float', val: { text: '12.3015e-02', start: 23 } },
+          ],
         },
-        {
-          type: 'float',
-          val: ['12.3015e+02', 9],
-        },
-        {
-          type: 'float',
-          val: ['12.3015e-02', 23],
-        }
       ],
     }));
 
@@ -222,16 +178,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- .NaN\n- .nan\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'float', val: { text: '.NaN', start: 9 } },
+            { type: 'float', val: { text: '.nan', start: 16 } },
+          ],
         },
-        {
-          type: 'float',
-          val: ['.NaN', 9],
-        },
-        {
-          type: 'float',
-          val: ['.nan', 16],
-        }
       ],
     }));
 
@@ -243,16 +195,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- 2001-12-15T02:59:43.1Z\n- 2022-12-15T02:59:43.1Z\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-15T02:59:43.1Z', start: 9 } },
+            { type: 'time', val: { text: '2022-12-15T02:59:43.1Z', start: 34 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-15T02:59:43.1Z', 9],
-        },
-        {
-          type: 'time',
-          val: ['2022-12-15T02:59:43.1Z', 34],
-        }
       ],
     }));
 
@@ -260,16 +208,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- 2001-12-14t21:59:43.10-05:00\n- 2022-12-14t21:59:43.10-05:00\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-14t21:59:43.10-05:00', start: 9 } },
+            { type: 'time', val: { text: '2022-12-14t21:59:43.10-05:00', start: 40 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-14t21:59:43.10-05:00', 9],
-        },
-        {
-          type: 'time',
-          val: ['2022-12-14t21:59:43.10-05:00', 40],
-        }
       ],
     }));
 
@@ -277,16 +221,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- 2001-12-14 21:59:43.10 -5\n- 2022-12-14 21:59:43.10 -5\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-14 21:59:43.10 -5', start: 9 } },
+            { type: 'time', val: { text: '2022-12-14 21:59:43.10 -5', start: 37 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-14 21:59:43.10 -5', 9],
-        },
-        {
-          type: 'time',
-          val: ['2022-12-14 21:59:43.10 -5', 37],
-        }
       ],
     }));
 
@@ -294,16 +234,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- 2001-12-14\n- 2022-12-14\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '2001-12-14', start: 9 } },
+            { type: 'time', val: { text: '2022-12-14', start: 22 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['2001-12-14', 9],
-        },
-        {
-          type: 'time',
-          val: ['2022-12-14', 22],
-        }
       ],
     }));
 
@@ -311,16 +247,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- +12:00\n- 12:00\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '+12:00', start: 9 } },
+            { type: 'time', val: { text: '12:00', start: 18 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['+12:00', 9],
-        },
-        {
-          type: 'time',
-          val: ['12:00', 18],
-        }
       ],
     }));
 
@@ -328,16 +260,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- +12:00.123\n- 12:00.123\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'time', val: { text: '+12:00.123', start: 9 } },
+            { type: 'time', val: { text: '12:00.123', start: 22 } },
+          ],
         },
-        {
-          type: 'time',
-          val: ['+12:00.123', 9],
-        },
-        {
-          type: 'time',
-          val: ['12:00.123', 22],
-        }
       ],
     }));
 
@@ -349,16 +277,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- value-w/out-whitespace\n- and-another\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'value-w/out-whitespace', start: 9 } },
+            { type: 'string', val: { text: 'and-another', start: 34 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value-w/out-whitespace', 9],
-        },
-        {
-          type: 'string',
-          val: ['and-another', 34],
-        }
       ],
     }));
 
@@ -366,16 +290,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- value with whitespace\n-  and another\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 9 } },
+            { type: 'string', val: { text: 'and another', start: 34 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 9],
-        },
-        {
-          type: 'string',
-          val: ['and another', 34],
-        }
       ],
     }));
 
@@ -383,16 +303,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: ':attr::\n- value with whitespace\n-  and another\n',
       data: [
         {
-          key: ['attr', 1],
+          key: { text: 'attr', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 10 } },
+            { type: 'string', val: { text: 'and another', start: 35 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 10],
-        },
-        {
-          type: 'string',
-          val: ['and another', 35],
-        }
       ],
     }));
 
@@ -400,16 +316,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: ': attr  ::\n- value with whitespace\n-  and another\n',
       data: [
         {
-          key: ['attr  ', 2],
+          key: { text: 'attr  ', start: 2 },
+          vals: [
+            { type: 'string', val: { text: 'value with whitespace', start: 13 } },
+            { type: 'string', val: { text: 'and another', start: 38 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['value with whitespace', 13],
-        },
-        {
-          type: 'string',
-          val: ['and another', 38],
-        }
       ],
     }));
 
@@ -417,16 +329,12 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- test\n- test\n',
       data: [
         {
-          key: ['attr', 0],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'test', start: 9 } },
+            { type: 'string', val: { text: 'test', start: 16 } },
+          ],
         },
-        {
-          type: 'string',
-          val: ['test', 9],
-        },
-        {
-          type: 'string',
-          val: ['test', 16],
-        }
       ],
     }));
 
@@ -438,11 +346,10 @@ describe('scan() -- list-mkdn', () => {
       mkdn: 'attr::\n- [[wikilink]]\n',
       data: [
         {
-          key: ['attr', 0],
-        },
-        {
-          type: 'wiki',
-          val: ['[[wikilink]]', 9],
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[wikilink]]', start: 9 } },
+          ],
         },
       ],
     }));

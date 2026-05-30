@@ -17,119 +17,171 @@ describe('scan() -- mixed wiki + primitive types', () => {
     it('wiki + string', testMixed({
       mkdn: 'attr :: [[concept]], hello\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',   val: ['[[concept]]', 8] },
-        { type: 'string', val: ['hello', 21] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[concept]]', start: 8 } },
+            { type: 'string', val: { text: 'hello', start: 21 } },
+          ],
+        },
       ],
     }));
 
     it('string + wiki', testMixed({
       mkdn: 'attr :: hello, [[concept]]\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'string', val: ['hello', 8] },
-        { type: 'wiki',   val: ['[[concept]]', 15] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'hello', start: 8 } },
+            { type: 'wiki',   val: { text: '[[concept]]', start: 15 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + int', testMixed({
       mkdn: 'attr :: [[concept]], 42\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki', val: ['[[concept]]', 8] },
-        { type: 'int',  val: ['42', 21] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 8 } },
+            { type: 'int',  val: { text: '42', start: 21 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + bool', testMixed({
       mkdn: 'attr :: [[concept]], true\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki', val: ['[[concept]]', 8] },
-        { type: 'bool', val: ['true', 21] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 8 } },
+            { type: 'bool', val: { text: 'true', start: 21 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + string + int', testMixed({
       mkdn: 'attr :: [[concept]], hello, 42\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',   val: ['[[concept]]', 8] },
-        { type: 'string', val: ['hello', 21] },
-        { type: 'int',    val: ['42', 28] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[concept]]', start: 8 } },
+            { type: 'string', val: { text: 'hello', start: 21 } },
+            { type: 'int',    val: { text: '42', start: 28 } },
+          ],
+        },
       ],
     }));
 
     it('multiple wiki + primitive', testMixed({
       mkdn: 'attr :: [[link-a]], [[link-b]], hello\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',   val: ['[[link-a]]', 8] },
-        { type: 'wiki',   val: ['[[link-b]]', 20] },
-        { type: 'string', val: ['hello', 32] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[link-a]]', start: 8 } },
+            { type: 'wiki',   val: { text: '[[link-b]]', start: 20 } },
+            { type: 'string', val: { text: 'hello', start: 32 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + null', testMixed({
       mkdn: 'attr :: [[concept]], null\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki', val: ['[[concept]]', 8] },
-        { type: 'null', val: ['null', 21] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 8 } },
+            { type: 'null', val: { text: 'null', start: 21 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + int_hex', testMixed({
       mkdn: 'attr :: [[concept]], 0xFF\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',    val: ['[[concept]]', 8] },
-        { type: 'int',  val: ['0xFF', 21] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 8 } },
+            { type: 'int',  val: { text: '0xFF', start: 21 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + int_oct', testMixed({
       mkdn: 'attr :: [[concept]], 0o77\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',    val: ['[[concept]]', 8] },
-        { type: 'int',  val: ['0o77', 21] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 8 } },
+            { type: 'int',  val: { text: '0o77', start: 21 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + float', testMixed({
       mkdn: 'attr :: [[concept]], 3.14\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',  val: ['[[concept]]', 8] },
-        { type: 'float', val: ['3.14', 21] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',  val: { text: '[[concept]]', start: 8 } },
+            { type: 'float', val: { text: '3.14', start: 21 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + float_exp', testMixed({
       mkdn: 'attr :: [[concept]], 1.0e3\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',      val: ['[[concept]]', 8] },
-        { type: 'float', val: ['1.0e3', 21] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',  val: { text: '[[concept]]', start: 8 } },
+            { type: 'float', val: { text: '1.0e3', start: 21 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + float_nan', testMixed({
       mkdn: 'attr :: [[concept]], .NaN\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',      val: ['[[concept]]', 8] },
-        { type: 'float', val: ['.NaN', 21] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',  val: { text: '[[concept]]', start: 8 } },
+            { type: 'float', val: { text: '.NaN', start: 21 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + timestamp', testMixed({
       mkdn: 'attr :: [[concept]], 2026-05-23\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',      val: ['[[concept]]', 8] },
-        { type: 'time', val: ['2026-05-23', 21] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 8 } },
+            { type: 'time', val: { text: '2026-05-23', start: 21 } },
+          ],
+        },
       ],
     }));
 
@@ -140,56 +192,80 @@ describe('scan() -- mixed wiki + primitive types', () => {
     it('wiki + string', testMixed({
       mkdn: ': attr :: [[concept]], hello\n',
       data: [
-        { key: ['attr', 2] },
-        { type: 'wiki',   val: ['[[concept]]', 10] },
-        { type: 'string', val: ['hello', 23] },
+        {
+          key: { text: 'attr', start: 2 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[concept]]', start: 10 } },
+            { type: 'string', val: { text: 'hello', start: 23 } },
+          ],
+        },
       ],
     }));
 
     it('string + wiki', testMixed({
       mkdn: ': attr :: hello, [[concept]]\n',
       data: [
-        { key: ['attr', 2] },
-        { type: 'string', val: ['hello', 10] },
-        { type: 'wiki',   val: ['[[concept]]', 17] },
+        {
+          key: { text: 'attr', start: 2 },
+          vals: [
+            { type: 'string', val: { text: 'hello', start: 10 } },
+            { type: 'wiki',   val: { text: '[[concept]]', start: 17 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + int', testMixed({
       mkdn: ': attr :: [[concept]], 42\n',
       data: [
-        { key: ['attr', 2] },
-        { type: 'wiki', val: ['[[concept]]', 10] },
-        { type: 'int',  val: ['42', 23] },
+        {
+          key: { text: 'attr', start: 2 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 10 } },
+            { type: 'int',  val: { text: '42', start: 23 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + bool', testMixed({
       mkdn: ': attr :: [[concept]], true\n',
       data: [
-        { key: ['attr', 2] },
-        { type: 'wiki', val: ['[[concept]]', 10] },
-        { type: 'bool', val: ['true', 23] },
+        {
+          key: { text: 'attr', start: 2 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 10 } },
+            { type: 'bool', val: { text: 'true', start: 23 } },
+          ],
+        },
       ],
     }));
 
     it('wiki + string + int', testMixed({
       mkdn: ': attr :: [[concept]], hello, 42\n',
       data: [
-        { key: ['attr', 2] },
-        { type: 'wiki',   val: ['[[concept]]', 10] },
-        { type: 'string', val: ['hello', 23] },
-        { type: 'int',    val: ['42', 30] },
+        {
+          key: { text: 'attr', start: 2 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[concept]]', start: 10 } },
+            { type: 'string', val: { text: 'hello', start: 23 } },
+            { type: 'int',    val: { text: '42', start: 30 } },
+          ],
+        },
       ],
     }));
 
     it('multiple wiki + primitive', testMixed({
       mkdn: ': attr :: [[link-a]], [[link-b]], hello\n',
       data: [
-        { key: ['attr', 2] },
-        { type: 'wiki',   val: ['[[link-a]]', 10] },
-        { type: 'wiki',   val: ['[[link-b]]', 22] },
-        { type: 'string', val: ['hello', 34] },
+        {
+          key: { text: 'attr', start: 2 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[link-a]]', start: 10 } },
+            { type: 'wiki',   val: { text: '[[link-b]]', start: 22 } },
+            { type: 'string', val: { text: 'hello', start: 34 } },
+          ],
+        },
       ],
     }));
 
@@ -202,9 +278,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- hello\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',   val: ['[[concept]]', 9] },
-        { type: 'string', val: ['hello', 23] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[concept]]', start: 9 } },
+            { type: 'string', val: { text: 'hello', start: 23 } },
+          ],
+        },
       ],
     }));
 
@@ -213,9 +293,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- hello\n'
           + '- [[concept]]\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'string', val: ['hello', 9] },
-        { type: 'wiki',   val: ['[[concept]]', 17] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'hello', start: 9 } },
+            { type: 'wiki',   val: { text: '[[concept]]', start: 17 } },
+          ],
+        },
       ],
     }));
 
@@ -224,9 +308,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- 42\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki', val: ['[[concept]]', 9] },
-        { type: 'int',  val: ['42', 23] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 9 } },
+            { type: 'int',  val: { text: '42', start: 23 } },
+          ],
+        },
       ],
     }));
 
@@ -235,9 +323,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- true\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki', val: ['[[concept]]', 9] },
-        { type: 'bool', val: ['true', 23] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 9 } },
+            { type: 'bool', val: { text: 'true', start: 23 } },
+          ],
+        },
       ],
     }));
 
@@ -247,10 +339,14 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- hello\n'
           + '- 42\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',   val: ['[[concept]]', 9] },
-        { type: 'string', val: ['hello', 23] },
-        { type: 'int',    val: ['42', 31] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[concept]]', start: 9 } },
+            { type: 'string', val: { text: 'hello', start: 23 } },
+            { type: 'int',    val: { text: '42', start: 31 } },
+          ],
+        },
       ],
     }));
 
@@ -260,10 +356,14 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[link-b]]\n'
           + '- hello\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',   val: ['[[link-a]]', 9] },
-        { type: 'wiki',   val: ['[[link-b]]', 22] },
-        { type: 'string', val: ['hello', 35] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[link-a]]', start: 9 } },
+            { type: 'wiki',   val: { text: '[[link-b]]', start: 22 } },
+            { type: 'string', val: { text: 'hello', start: 35 } },
+          ],
+        },
       ],
     }));
 
@@ -272,9 +372,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- null\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki', val: ['[[concept]]', 9] },
-        { type: 'null', val: ['null', 23] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 9 } },
+            { type: 'null', val: { text: 'null', start: 23 } },
+          ],
+        },
       ],
     }));
 
@@ -283,9 +387,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- 0xFF\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki', val: ['[[concept]]', 9] },
-        { type: 'int',  val: ['0xFF', 23] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 9 } },
+            { type: 'int',  val: { text: '0xFF', start: 23 } },
+          ],
+        },
       ],
     }));
 
@@ -294,9 +402,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- 0o77\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki', val: ['[[concept]]', 9] },
-        { type: 'int',  val: ['0o77', 23] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 9 } },
+            { type: 'int',  val: { text: '0o77', start: 23 } },
+          ],
+        },
       ],
     }));
 
@@ -305,9 +417,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- 3.14\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',  val: ['[[concept]]', 9] },
-        { type: 'float', val: ['3.14', 23] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',  val: { text: '[[concept]]', start: 9 } },
+            { type: 'float', val: { text: '3.14', start: 23 } },
+          ],
+        },
       ],
     }));
 
@@ -316,9 +432,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- 1.0e3\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',  val: ['[[concept]]', 9] },
-        { type: 'float', val: ['1.0e3', 23] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',  val: { text: '[[concept]]', start: 9 } },
+            { type: 'float', val: { text: '1.0e3', start: 23 } },
+          ],
+        },
       ],
     }));
 
@@ -327,9 +447,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- .NaN\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki',  val: ['[[concept]]', 9] },
-        { type: 'float', val: ['.NaN', 23] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki',  val: { text: '[[concept]]', start: 9 } },
+            { type: 'float', val: { text: '.NaN', start: 23 } },
+          ],
+        },
       ],
     }));
 
@@ -338,9 +462,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- 2026-05-23\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki', val: ['[[concept]]', 9] },
-        { type: 'time', val: ['2026-05-23', 23] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 9 } },
+            { type: 'time', val: { text: '2026-05-23', start: 23 } },
+          ],
+        },
       ],
     }));
 
@@ -353,9 +481,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- hello\n',
       data: [
-        { key: ['attr', 1] },
-        { type: 'wiki',   val: ['[[concept]]', 10] },
-        { type: 'string', val: ['hello', 24] },
+        {
+          key: { text: 'attr', start: 1 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[concept]]', start: 10 } },
+            { type: 'string', val: { text: 'hello', start: 24 } },
+          ],
+        },
       ],
     }));
 
@@ -364,9 +496,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- hello\n'
           + '- [[concept]]\n',
       data: [
-        { key: ['attr', 1] },
-        { type: 'string', val: ['hello', 10] },
-        { type: 'wiki',   val: ['[[concept]]', 18] },
+        {
+          key: { text: 'attr', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'hello', start: 10 } },
+            { type: 'wiki',   val: { text: '[[concept]]', start: 18 } },
+          ],
+        },
       ],
     }));
 
@@ -375,9 +511,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- 42\n',
       data: [
-        { key: ['attr', 1] },
-        { type: 'wiki', val: ['[[concept]]', 10] },
-        { type: 'int',  val: ['42', 24] },
+        {
+          key: { text: 'attr', start: 1 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 10 } },
+            { type: 'int',  val: { text: '42', start: 24 } },
+          ],
+        },
       ],
     }));
 
@@ -386,9 +526,13 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[concept]]\n'
           + '- true\n',
       data: [
-        { key: ['attr', 1] },
-        { type: 'wiki', val: ['[[concept]]', 10] },
-        { type: 'bool', val: ['true', 24] },
+        {
+          key: { text: 'attr', start: 1 },
+          vals: [
+            { type: 'wiki', val: { text: '[[concept]]', start: 10 } },
+            { type: 'bool', val: { text: 'true', start: 24 } },
+          ],
+        },
       ],
     }));
 
@@ -398,10 +542,14 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- hello\n'
           + '- 42\n',
       data: [
-        { key: ['attr', 1] },
-        { type: 'wiki',   val: ['[[concept]]', 10] },
-        { type: 'string', val: ['hello', 24] },
-        { type: 'int',    val: ['42', 32] },
+        {
+          key: { text: 'attr', start: 1 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[concept]]', start: 10 } },
+            { type: 'string', val: { text: 'hello', start: 24 } },
+            { type: 'int',    val: { text: '42', start: 32 } },
+          ],
+        },
       ],
     }));
 
@@ -411,10 +559,14 @@ describe('scan() -- mixed wiki + primitive types', () => {
           + '- [[link-b]]\n'
           + '- hello\n',
       data: [
-        { key: ['attr', 1] },
-        { type: 'wiki',   val: ['[[link-a]]', 10] },
-        { type: 'wiki',   val: ['[[link-b]]', 23] },
-        { type: 'string', val: ['hello', 36] },
+        {
+          key: { text: 'attr', start: 1 },
+          vals: [
+            { type: 'wiki',   val: { text: '[[link-a]]', start: 10 } },
+            { type: 'wiki',   val: { text: '[[link-b]]', start: 23 } },
+            { type: 'string', val: { text: 'hello', start: 36 } },
+          ],
+        },
       ],
     }));
 
@@ -425,8 +577,12 @@ describe('scan() -- mixed wiki + primitive types', () => {
     it('single wiki value now returns data', testMixed({
       mkdn: 'attr :: [[wikilink]]\n',
       data: [
-        { key: ['attr', 0] },
-        { type: 'wiki', val: ['[[wikilink]]', 8] },
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[wikilink]]', start: 8 } },
+          ],
+        },
       ],
     }));
 
@@ -434,10 +590,18 @@ describe('scan() -- mixed wiki + primitive types', () => {
       mkdn: 'attr1 :: a string\n'
           + 'attr2 :: [[wikilink]]\n',
       data: [
-        { key: ['attr1', 0] },
-        { type: 'string', val: ['a string', 9] },
-        { key: ['attr2', 18] },
-        { type: 'wiki', val: ['[[wikilink]]', 27] },
+        {
+          key: { text: 'attr1', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'a string', start: 9 } },
+          ],
+        },
+        {
+          key: { text: 'attr2', start: 18 },
+          vals: [
+            { type: 'wiki', val: { text: '[[wikilink]]', start: 27 } },
+          ],
+        },
       ],
     }));
 
