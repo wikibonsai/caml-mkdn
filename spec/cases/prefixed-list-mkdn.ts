@@ -3,18 +3,23 @@
  * really are 'block' or 'flow' elements.
  */
 import type { CamlTestCase } from '../types';
-import { htmlListMkdn } from '../const';
 
 
 export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   // null
   {
     descr: 'prefixed; list; mkdn-separated; null; all lowercase',
-    mkdn: ':attribute::\n- null\n- null\n',
-    html: htmlListMkdn(
-      'attribute', 'null', 'null',
-      'attribute', 'null', 'null',
-    ),
+    mkdn: ':attribute::\n'
+          + '- null\n'
+          + '- null\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'null', 'null' ],
     },
@@ -38,11 +43,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; null; camelCase',
-    mkdn: ':attribute::\n- Null\n- Null\n',
-    html: htmlListMkdn(
-      'attribute', 'null', 'null',
-      'attribute', 'null', 'null',
-    ),
+    mkdn: ':attribute::\n'
+          + '- Null\n'
+          + '- Null\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'Null', 'Null' ],
     },
@@ -66,11 +77,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; null; all uppercase',
-    mkdn: ':attribute::\n- NULL\n- NULL\n',
-    html: htmlListMkdn(
-      'attribute', 'null', 'null',
-      'attribute', 'null', 'null',
-    ),
+    mkdn: ':attribute::\n'
+          + '- NULL\n'
+          + '- NULL\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'NULL', 'NULL' ],
     },
@@ -94,11 +111,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; bool; all lowercase',
-    mkdn: ':attribute::\n- true\n- false\n',
-    html: htmlListMkdn(
-      'attribute', 'bool', 'true',
-      'attribute', 'bool', 'false',
-    ),
+    mkdn: ':attribute::\n'
+          + '- true\n'
+          + '- false\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr bool attribute">true</span></dd>\n'
+        + '<dd><span class="attr bool attribute">false</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'true', 'false' ],
     },
@@ -122,11 +145,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; bool; camelCase',
-    mkdn: ':attribute::\n- True\n- False\n',
-    html: htmlListMkdn(
-      'attribute', 'bool', 'True',
-      'attribute', 'bool', 'False'
-    ),
+    mkdn: ':attribute::\n'
+          + '- True\n'
+          + '- False\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr bool attribute">True</span></dd>\n'
+        + '<dd><span class="attr bool attribute">False</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'True', 'False' ],
     },
@@ -150,11 +179,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; bool; all uppercase',
-    mkdn: ':attribute::\n- TRUE\n- FALSE\n',
-    html: htmlListMkdn(
-      'attribute', 'bool', 'TRUE',
-      'attribute', 'bool', 'FALSE'
-    ),
+    mkdn: ':attribute::\n'
+          + '- TRUE\n'
+          + '- FALSE\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr bool attribute">TRUE</span></dd>\n'
+        + '<dd><span class="attr bool attribute">FALSE</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'TRUE', 'FALSE' ],
     },
@@ -179,11 +214,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   // int
   {
     descr: 'prefixed; list; mkdn-separated; int; canonical',
-    mkdn: ':attribute::\n- 10\n- -123\n',
-    html: htmlListMkdn(
-      'attribute', 'int', '10',
-      'attribute', 'int', '-123'
-    ),
+    mkdn: ':attribute::\n'
+          + '- 10\n'
+          + '- -123\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr int attribute">10</span></dd>\n'
+        + '<dd><span class="attr int attribute">-123</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '10', '-123' ],
     },
@@ -207,11 +248,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; int; octal',
-    mkdn: ':attribute::\n- 0o10\n- 0o123\n',
-    html: htmlListMkdn(
-      'attribute', 'int', '0o10',
-      'attribute', 'int', '0o123'
-    ),
+    mkdn: ':attribute::\n'
+          + '- 0o10\n'
+          + '- 0o123\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr int attribute">0o10</span></dd>\n'
+        + '<dd><span class="attr int attribute">0o123</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '0o10', '0o123' ],
     },
@@ -235,11 +282,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; int; hexadecimal',
-    mkdn: ':attribute::\n- 0xC\n- 0x014D\n',
-    html: htmlListMkdn(
-      'attribute', 'int', '0xC',
-      'attribute', 'int', '0x014D'
-    ),
+    mkdn: ':attribute::\n'
+          + '- 0xC\n'
+          + '- 0x014D\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr int attribute">0xC</span></dd>\n'
+        + '<dd><span class="attr int attribute">0x014D</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '0xC', '0x014D' ],
     },
@@ -264,11 +317,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   // float
   {
     descr: 'prefixed; list; mkdn-separated; float; canonical',
-    mkdn: ':attribute::\n- 1.23015\n- -1.23015\n',
-    html: htmlListMkdn(
-      'attribute', 'float', '1.23015',
-      'attribute', 'float', '-1.23015'
-    ),
+    mkdn: ':attribute::\n'
+          + '- 1.23015\n'
+          + '- -1.23015\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr float attribute">1.23015</span></dd>\n'
+        + '<dd><span class="attr float attribute">-1.23015</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '1.23015', '-1.23015' ],
     },
@@ -292,11 +351,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; float; exp -- exponential',
-    mkdn: ':attribute::\n- 12.3015e+02\n- 12.3015e-02\n',
-    html: htmlListMkdn(
-      'attribute', 'float', '12.3015e+02',
-      'attribute', 'float', '12.3015e-02'
-    ),
+    mkdn: ':attribute::\n'
+          + '- 12.3015e+02\n'
+          + '- 12.3015e-02\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr float attribute">12.3015e+02</span></dd>\n'
+        + '<dd><span class="attr float attribute">12.3015e-02</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '12.3015e+02', '12.3015e-02' ],
     },
@@ -320,11 +385,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; float; nan -- not a number',
-    mkdn: ':attribute::\n- .NaN\n- .nan\n',
-    html: htmlListMkdn(
-      'attribute', 'float', '.NaN',
-      'attribute', 'float', '.nan'
-    ),
+    mkdn: ':attribute::\n'
+          + '- .NaN\n'
+          + '- .nan\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr float attribute">.NaN</span></dd>\n'
+        + '<dd><span class="attr float attribute">.nan</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '.NaN', '.nan' ],
     },
@@ -349,11 +420,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   // time
   {
     descr: 'prefixed; list; mkdn-separated; time; canonical',
-    mkdn: ':attribute::\n- 2001-12-15T02:59:43.1Z\n- 2022-12-15T02:59:43.1Z\n',
-    html: htmlListMkdn(
-      'attribute', 'time', '2001-12-15T02:59:43.1Z',
-      'attribute', 'time', '2022-12-15T02:59:43.1Z'
-    ),
+    mkdn: ':attribute::\n'
+          + '- 2001-12-15T02:59:43.1Z\n'
+          + '- 2022-12-15T02:59:43.1Z\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-15T02:59:43.1Z</span></dd>\n'
+        + '<dd><span class="attr time attribute">2022-12-15T02:59:43.1Z</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '2001-12-15T02:59:43.1Z', '2022-12-15T02:59:43.1Z' ],
     },
@@ -377,11 +454,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; time; iso8601',
-    mkdn: ':attribute::\n- 2001-12-14t21:59:43.10-05:00\n- 2022-12-14t21:59:43.10-05:00\n',
-    html: htmlListMkdn(
-      'attribute', 'time', '2001-12-14t21:59:43.10-05:00',
-      'attribute', 'time', '2022-12-14t21:59:43.10-05:00'
-    ),
+    mkdn: ':attribute::\n'
+          + '- 2001-12-14t21:59:43.10-05:00\n'
+          + '- 2022-12-14t21:59:43.10-05:00\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-14t21:59:43.10-05:00</span></dd>\n'
+        + '<dd><span class="attr time attribute">2022-12-14t21:59:43.10-05:00</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '2001-12-14t21:59:43.10-05:00', '2022-12-14t21:59:43.10-05:00' ],
     },
@@ -405,11 +488,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; time; spaced',
-    mkdn: ':attribute::\n- 2001-12-14 21:59:43.10 -5\n- 2022-12-14 21:59:43.10 -5\n',
-    html: htmlListMkdn(
-      'attribute', 'time', '2001-12-14 21:59:43.10 -5',
-      'attribute', 'time', '2022-12-14 21:59:43.10 -5'
-    ),
+    mkdn: ':attribute::\n'
+          + '- 2001-12-14 21:59:43.10 -5\n'
+          + '- 2022-12-14 21:59:43.10 -5\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-14 21:59:43.10 -5</span></dd>\n'
+        + '<dd><span class="attr time attribute">2022-12-14 21:59:43.10 -5</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '2001-12-14 21:59:43.10 -5', '2022-12-14 21:59:43.10 -5' ],
     },
@@ -433,11 +522,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; time; date only',
-    mkdn: ':attribute::\n- 2001-12-14\n- 2022-12-14\n',
-    html: htmlListMkdn(
-      'attribute', 'time', '2001-12-14',
-      'attribute', 'time', '2022-12-14'
-    ),
+    mkdn: ':attribute::\n'
+          + '- 2001-12-14\n'
+          + '- 2022-12-14\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-14</span></dd>\n'
+        + '<dd><span class="attr time attribute">2022-12-14</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '2001-12-14', '2022-12-14' ],
     },
@@ -461,11 +556,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; time; int',
-    mkdn: ':attribute::\n- +12:00\n- 12:00\n',
-    html: htmlListMkdn(
-      'attribute', 'time', '+12:00',
-      'attribute', 'time', '12:00'
-    ),
+    mkdn: ':attribute::\n'
+          + '- +12:00\n'
+          + '- 12:00\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">+12:00</span></dd>\n'
+        + '<dd><span class="attr time attribute">12:00</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '+12:00', '12:00' ],
     },
@@ -489,11 +590,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; time; float',
-    mkdn: ':attribute::\n- +12:00.123\n- 12:00.123\n',
-    html: htmlListMkdn(
-      'attribute', 'time', '+12:00.123',
-      'attribute', 'time', '12:00.123'
-    ),
+    mkdn: ':attribute::\n'
+          + '- +12:00.123\n'
+          + '- 12:00.123\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">+12:00.123</span></dd>\n'
+        + '<dd><span class="attr time attribute">12:00.123</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '+12:00.123', '12:00.123' ],
     },
@@ -518,11 +625,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   // string
   {
     descr: 'prefixed; list; mkdn-separated; string; single-line; w/o whitespace',
-    mkdn: ':attribute::\n- this-is-a-string\n- and-another-string\n',
-    html: htmlListMkdn(
-      'attribute', 'string', 'this-is-a-string',
-      'attribute', 'string', 'and-another-string'
-    ),
+    mkdn: ':attribute::\n'
+          + '- this-is-a-string\n'
+          + '- and-another-string\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">this-is-a-string</span></dd>\n'
+        + '<dd><span class="attr string attribute">and-another-string</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'this-is-a-string', 'and-another-string' ],
     },
@@ -546,11 +659,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; string; single-line; w/ whitespace',
-    mkdn: ':attribute::\n- this is a string\n- and another string\n',
-    html: htmlListMkdn(
-      'attribute', 'string', 'this is a string',
-      'attribute', 'string', 'and another string'
-    ),
+    mkdn: ':attribute::\n'
+          + '- this is a string\n'
+          + '- and another string\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">this is a string</span></dd>\n'
+        + '<dd><span class="attr string attribute">and another string</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'this is a string', 'and another string' ],
     },
@@ -574,11 +693,17 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; string; single-line; w/o whitespace; quotes (double); comma',
-    mkdn: ':attribute::\n- "this-is,a-string"\n- and-another-string\n',
-    html: htmlListMkdn(
-      'attribute', 'string', '"this-is,a-string"',
-      'attribute', 'string', 'and-another-string'
-    ),
+    mkdn: ':attribute::\n'
+          + '- "this-is,a-string"\n'
+          + '- and-another-string\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">"this-is,a-string"</span></dd>\n'
+        + '<dd><span class="attr string attribute">and-another-string</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     valData: {
       'attribute': [ '"this-is,a-string"', 'and-another-string' ],
     },
@@ -604,10 +729,25 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   // folded style (>)
   {
     descr: 'prefixed; list; mkdn-separated; string; folded (>); basic',
-    mkdn: ':attribute::\n- first\n- >\n  line one\n  line two\n',
-    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', 'line one line two'),
+    mkdn: ':attribute::\n'
+          + '- first\n'
+          + '- >\n'
+          + '  line one\n'
+          + '  line two\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': '\n- first\n- >\n  line one\n  line two',
+      'attribute': '\n'
+                   + '- first\n'
+                   + '- >\n'
+                   + '  line one\n'
+                   + '  line two',
     },
     valData: {
       'attribute': ['first', 'line one line two'],
@@ -629,10 +769,26 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; mkdn-separated; string; folded (>); with trailing newline',
-    mkdn: ':attribute::\n- first\n- >\n  line one\n  line two\n\n',
-    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', 'line one line two '),
+    mkdn: ':attribute::\n'
+          + '- first\n'
+          + '- >\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two </span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': '\n- first\n- >\n  line one\n  line two\n',
+      'attribute': '\n'
+                   + '- first\n'
+                   + '- >\n'
+                   + '  line one\n'
+                   + '  line two\n',
     },
     valData: {
       'attribute': ['first', 'line one line two '],
@@ -655,10 +811,25 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   // literal style (|)
   {
     descr: 'prefixed; list; mkdn-separated; string; literal (|); basic',
-    mkdn: ':attribute::\n- first\n- |\n  line one\n  line two\n',
-    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', 'line one\nline two'),
+    mkdn: ':attribute::\n'
+          + '- first\n'
+          + '- |\n'
+          + '  line one\n'
+          + '  line two\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': '\n- first\n- |\n  line one\n  line two',
+      'attribute': '\n'
+                   + '- first\n'
+                   + '- |\n'
+                   + '  line one\n'
+                   + '  line two',
     },
     valData: {
       'attribute': ['first', 'line one\nline two'],
@@ -681,10 +852,26 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   // chomped folded (>-)
   {
     descr: 'prefixed; list; mkdn-separated; string; folded chomped (>-); strips trailing newlines',
-    mkdn: ':attribute::\n- first\n- >-\n  line one\n  line two\n\n',
-    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', 'line one line two'),
+    mkdn: ':attribute::\n'
+          + '- first\n'
+          + '- >-\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': '\n- first\n- >-\n  line one\n  line two\n',
+      'attribute': '\n'
+                   + '- first\n'
+                   + '- >-\n'
+                   + '  line one\n'
+                   + '  line two\n',
     },
     valData: {
       'attribute': ['first', 'line one line two'],
@@ -707,10 +894,26 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   // chomped literal (>|)
   {
     descr: 'prefixed; list; mkdn-separated; string; literal chomped (>|); strips trailing newlines',
-    mkdn: ':attribute::\n- first\n- >|\n  line one\n  line two\n\n',
-    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', 'line one\nline two'),
+    mkdn: ':attribute::\n'
+          + '- first\n'
+          + '- >|\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': '\n- first\n- >|\n  line one\n  line two\n',
+      'attribute': '\n'
+                   + '- first\n'
+                   + '- >|\n'
+                   + '  line one\n'
+                   + '  line two\n',
     },
     valData: {
       'attribute': ['first', 'line one\nline two'],
@@ -733,10 +936,22 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   // edge cases
   {
     descr: 'prefixed; list; mkdn-separated; string; folded (>); empty block',
-    mkdn: ':attribute::\n- first\n- >\n\n',
-    html: htmlListMkdn('attribute', 'string', 'first', 'attribute', 'string', ''),
+    mkdn: ':attribute::\n'
+          + '- first\n'
+          + '- >\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute"></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': '\n- first\n- >\n',
+      'attribute': '\n'
+                   + '- first\n'
+                   + '- >\n',
     },
     valData: {
       'attribute': ['first', ''],

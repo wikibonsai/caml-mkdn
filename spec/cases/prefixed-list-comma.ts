@@ -3,7 +3,6 @@
  * really are 'block' or 'flow' elements.
  */
 import type { CamlTestCase } from '../types';
-import { htmlListComma } from '../const';
 
 
 export const camlPrefixedListCommaCases: CamlTestCase[] = [
@@ -11,10 +10,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; null; all lowercase',
     mkdn: ':attribute::null,null\n',
-    html: htmlListComma(
-      'attribute', 'null', 'null',
-      'attribute', 'null', 'null',
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'null', 'null' ],
     },
@@ -39,10 +42,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; null; camelCase',
     mkdn: ':attribute::Null,Null\n',
-    html: htmlListComma(
-      'attribute', 'null', 'null',
-      'attribute', 'null', 'null',
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'Null', 'Null' ],
     },
@@ -67,10 +74,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; null; all lowercase',
     mkdn: ':attribute::NULL,NULL\n',
-    html: htmlListComma(
-      'attribute', 'null', 'null',
-      'attribute', 'null', 'null',
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'NULL', 'NULL' ],
     },
@@ -96,10 +107,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; bool; all lowercase',
     mkdn: ':attribute::true,false\n',
-    html: htmlListComma(
-      'attribute', 'bool', 'true',
-      'attribute', 'bool', 'false',
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr bool attribute">true</span></dd>\n'
+        + '<dd><span class="attr bool attribute">false</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'true', 'false' ],
     },
@@ -124,10 +139,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; bool; camelCase',
     mkdn: ':attribute::True,False\n',
-    html: htmlListComma(
-      'attribute', 'bool', 'True',
-      'attribute', 'bool', 'False'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr bool attribute">True</span></dd>\n'
+        + '<dd><span class="attr bool attribute">False</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'True', 'False' ],
     },
@@ -152,10 +171,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; bool; all uppercase',
     mkdn: ':attribute::TRUE,FALSE\n',
-    html: htmlListComma(
-      'attribute', 'bool', 'TRUE',
-      'attribute', 'bool', 'FALSE'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr bool attribute">TRUE</span></dd>\n'
+        + '<dd><span class="attr bool attribute">FALSE</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'TRUE', 'FALSE' ],
     },
@@ -181,10 +204,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; int; canonical',
     mkdn: ':attribute::10,-123\n',
-    html: htmlListComma(
-      'attribute', 'int', '10',
-      'attribute', 'int', '-123'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr int attribute">10</span></dd>\n'
+        + '<dd><span class="attr int attribute">-123</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '10', '-123' ],
     },
@@ -209,10 +236,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; int; octal',
     mkdn: ':attribute::0o10,0o123\n',
-    html: htmlListComma(
-      'attribute', 'int', '0o10',
-      'attribute', 'int', '0o123'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr int attribute">0o10</span></dd>\n'
+        + '<dd><span class="attr int attribute">0o123</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '0o10', '0o123' ],
     },
@@ -237,10 +268,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; int; hexadecimal',
     mkdn: ':attribute::0xC,0x014D\n',
-    html: htmlListComma(
-      'attribute', 'int', '0xC',
-      'attribute', 'int', '0x014D'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr int attribute">0xC</span></dd>\n'
+        + '<dd><span class="attr int attribute">0x014D</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '0xC', '0x014D' ],
     },
@@ -266,10 +301,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; float; canonical',
     mkdn: ':attribute::1.23015,-1.23015\n',
-    html: htmlListComma(
-      'attribute', 'float', '1.23015',
-      'attribute', 'float', '-1.23015'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr float attribute">1.23015</span></dd>\n'
+        + '<dd><span class="attr float attribute">-1.23015</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '1.23015', '-1.23015' ],
     },
@@ -294,10 +333,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; float; exp -- exponential',
     mkdn: ':attribute::12.3015e+02,12.3015e-02\n',
-    html: htmlListComma(
-      'attribute', 'float', '12.3015e+02',
-      'attribute', 'float', '12.3015e-02'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr float attribute">12.3015e+02</span></dd>\n'
+        + '<dd><span class="attr float attribute">12.3015e-02</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '12.3015e+02', '12.3015e-02' ],
     },
@@ -322,10 +365,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; float; nan -- not a number',
     mkdn: ':attribute::.NaN,.nan\n',
-    html: htmlListComma(
-      'attribute', 'float', '.NaN',
-      'attribute', 'float', '.nan'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr float attribute">.NaN</span></dd>\n'
+        + '<dd><span class="attr float attribute">.nan</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '.NaN', '.nan' ],
     },
@@ -351,10 +398,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; time; canonical',
     mkdn: ':attribute::2001-12-15T02:59:43.1Z,2022-12-15T02:59:43.1Z\n',
-    html: htmlListComma(
-      'attribute', 'time', '2001-12-15T02:59:43.1Z',
-      'attribute', 'time', '2022-12-15T02:59:43.1Z'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-15T02:59:43.1Z</span></dd>\n'
+        + '<dd><span class="attr time attribute">2022-12-15T02:59:43.1Z</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '2001-12-15T02:59:43.1Z', '2022-12-15T02:59:43.1Z' ],
     },
@@ -379,10 +430,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; time; iso8601',
     mkdn: ':attribute::2001-12-14t21:59:43.10-05:00,2022-12-14t21:59:43.10-05:00\n',
-    html: htmlListComma(
-      'attribute', 'time', '2001-12-14t21:59:43.10-05:00',
-      'attribute', 'time', '2022-12-14t21:59:43.10-05:00'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-14t21:59:43.10-05:00</span></dd>\n'
+        + '<dd><span class="attr time attribute">2022-12-14t21:59:43.10-05:00</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '2001-12-14t21:59:43.10-05:00', '2022-12-14t21:59:43.10-05:00' ],
     },
@@ -407,10 +462,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; time; spaced',
     mkdn: ':attribute::2001-12-14 21:59:43.10 -5,2022-12-14 21:59:43.10 -5\n',
-    html: htmlListComma(
-      'attribute', 'time', '2001-12-14 21:59:43.10 -5',
-      'attribute', 'time', '2022-12-14 21:59:43.10 -5'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-14 21:59:43.10 -5</span></dd>\n'
+        + '<dd><span class="attr time attribute">2022-12-14 21:59:43.10 -5</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '2001-12-14 21:59:43.10 -5', '2022-12-14 21:59:43.10 -5' ],
     },
@@ -435,10 +494,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; time; date only',
     mkdn: ':attribute::2001-12-14,2022-12-14\n',
-    html: htmlListComma(
-      'attribute', 'time', '2001-12-14',
-      'attribute', 'time', '2022-12-14'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-14</span></dd>\n'
+        + '<dd><span class="attr time attribute">2022-12-14</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '2001-12-14', '2022-12-14' ],
     },
@@ -463,10 +526,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; time; int',
     mkdn: ':attribute::+12:00,12:00\n',
-    html: htmlListComma(
-      'attribute', 'time', '+12:00',
-      'attribute', 'time', '12:00'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">+12:00</span></dd>\n'
+        + '<dd><span class="attr time attribute">12:00</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '+12:00', '12:00' ],
     },
@@ -491,10 +558,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; time; float',
     mkdn: ':attribute::+12:00.123,12:00.123\n',
-    html: htmlListComma(
-      'attribute', 'time', '+12:00.123',
-      'attribute', 'time', '12:00.123'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">+12:00.123</span></dd>\n'
+        + '<dd><span class="attr time attribute">12:00.123</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '+12:00.123', '12:00.123' ],
     },
@@ -520,10 +591,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; string; single-line; w/o whitespace',
     mkdn: ':attribute::this-is-a-string,and-another-string\n',
-    html: htmlListComma(
-      'attribute', 'string', 'this-is-a-string',
-      'attribute', 'string', 'and-another-string'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">this-is-a-string</span></dd>\n'
+        + '<dd><span class="attr string attribute">and-another-string</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'this-is-a-string', 'and-another-string' ],
     },
@@ -548,10 +623,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; string; single-line; w/ whitespace',
     mkdn: ':attribute::this is a string,and another string\n',
-    html: htmlListComma(
-      'attribute', 'string', 'this is a string',
-      'attribute', 'string', 'and another string'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">this is a string</span></dd>\n'
+        + '<dd><span class="attr string attribute">and another string</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ 'this is a string', 'and another string' ],
     },
@@ -576,10 +655,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   {
     descr: 'prefixed; list; comma-separated; string; single-line; w/o whitespace; quotes (double); comma',
     mkdn: ':attribute::"this-is,a-string",and-another-string\n',
-    html: htmlListComma(
-      'attribute', 'string', '"this-is,a-string"',
-      'attribute', 'string', 'and-another-string'
-    ),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">"this-is,a-string"</span></dd>\n'
+        + '<dd><span class="attr string attribute">and-another-string</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': [ '"this-is,a-string"', 'and-another-string' ],
     },
@@ -605,10 +688,21 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   // folded style (>)
   {
     descr: 'prefixed; list; comma-separated; string; folded (>); basic',
-    mkdn: ':attribute::first, >\n  line one\n  line two\n',
-    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', 'line one line two'),
+    mkdn: ':attribute::first, >\n'
+          + '  line one\n'
+          + '  line two\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': 'first, >\n  line one\n  line two',
+      'attribute': 'first, >\n'
+                   + '  line one\n'
+                   + '  line two',
     },
     valData: {
       'attribute': ['first', 'line one line two'],
@@ -630,10 +724,22 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; list; comma-separated; string; folded (>); with trailing newline',
-    mkdn: ':attribute::first, >\n  line one\n  line two\n\n',
-    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', 'line one line two '),
+    mkdn: ':attribute::first, >\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two </span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': 'first, >\n  line one\n  line two\n',
+      'attribute': 'first, >\n'
+                   + '  line one\n'
+                   + '  line two\n',
     },
     valData: {
       'attribute': ['first', 'line one line two '],
@@ -656,10 +762,21 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   // literal style (|)
   {
     descr: 'prefixed; list; comma-separated; string; literal (|); basic',
-    mkdn: ':attribute::first, |\n  line one\n  line two\n',
-    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', 'line one\nline two'),
+    mkdn: ':attribute::first, |\n'
+          + '  line one\n'
+          + '  line two\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': 'first, |\n  line one\n  line two',
+      'attribute': 'first, |\n'
+                   + '  line one\n'
+                   + '  line two',
     },
     valData: {
       'attribute': ['first', 'line one\nline two'],
@@ -682,10 +799,22 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   // chomped folded (>-)
   {
     descr: 'prefixed; list; comma-separated; string; folded chomped (>-); strips trailing newlines',
-    mkdn: ':attribute::first, >-\n  line one\n  line two\n\n',
-    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', 'line one line two'),
+    mkdn: ':attribute::first, >-\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': 'first, >-\n  line one\n  line two\n',
+      'attribute': 'first, >-\n'
+                   + '  line one\n'
+                   + '  line two\n',
     },
     valData: {
       'attribute': ['first', 'line one line two'],
@@ -708,10 +837,22 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   // chomped literal (>|)
   {
     descr: 'prefixed; list; comma-separated; string; literal chomped (>|); strips trailing newlines',
-    mkdn: ':attribute::first, >|\n  line one\n  line two\n\n',
-    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', 'line one\nline two'),
+    mkdn: ':attribute::first, >|\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': 'first, >|\n  line one\n  line two\n',
+      'attribute': 'first, >|\n'
+                   + '  line one\n'
+                   + '  line two\n',
     },
     valData: {
       'attribute': ['first', 'line one\nline two'],
@@ -734,8 +875,16 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   // edge cases
   {
     descr: 'prefixed; list; comma-separated; string; folded (>); empty block',
-    mkdn: ':attribute::first, >\n\n',
-    html: htmlListComma('attribute', 'string', 'first', 'attribute', 'string', ''),
+    mkdn: ':attribute::first, >\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute"></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': 'first, >\n',
     },

@@ -8,7 +8,9 @@ import type { CamlTestCase } from '../types';
 export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: 'no val; prefixed; single; [[wikilinks]]; should not be processed here',
-    mkdn: ': attribute ::\n\n[[wikilink]]\n',
+    mkdn: ': attribute ::\n'
+          + '\n'
+          + '[[wikilink]]\n',
     html: '<p>: attribute ::</p>\n<p>[[wikilink]]</p>\n',
     strData: {},
     valData: {},
@@ -16,7 +18,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; prefixed; single; [[wikilinks]]; should not interfere with empty string processing',
-    mkdn: ': attribute :: \'\'\n\n[[wikilink]]\n',
+    mkdn: ': attribute :: \'\'\n'
+          + '\n'
+          + '[[wikilink]]\n',
     html: '<aside class="attrbox">\n'
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
@@ -41,7 +45,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; unprefixed; single; [[wikilinks]]; should not be processed here',
-    mkdn: ' attribute ::\n\n[[wikilink]]\n',
+    mkdn: ' attribute ::\n'
+          + '\n'
+          + '[[wikilink]]\n',
     html: '<p>attribute ::</p>\n<p>[[wikilink]]</p>\n',
     strData: {},
     valData: {},
@@ -49,7 +55,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; unprefixed; single; [[wikilinks]]; should not interfere with empty string processing',
-    mkdn: 'attribute :: \'\'\n\n[[wikilink]]\n',
+    mkdn: 'attribute :: \'\'\n'
+          + '\n'
+          + '[[wikilink]]\n',
     html: '<aside class="attrbox">\n'
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
@@ -223,7 +231,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   // all wikilinks
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; all wiki',
-    mkdn: ':attribute::\n- [[wikiref1]]\n- [[wikiref2]]\n',
+    mkdn: ':attribute::\n'
+          + '- [[wikiref1]]\n'
+          + '- [[wikiref2]]\n',
     html: '<aside class="attrbox">\n'
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
@@ -233,7 +243,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '</dl>\n'
         + '</aside>\n',
     strData: {
-      'attribute': '\n- [[wikiref1]]\n- [[wikiref2]]',
+      'attribute': '\n'
+                   + '- [[wikiref1]]\n'
+                   + '- [[wikiref2]]',
     },
     valData: {
       'attribute': ['wikiref1', 'wikiref2'],
@@ -287,7 +299,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; all wiki',
-    mkdn: 'attribute::\n- [[wikiref1]]\n- [[wikiref2]]\n',
+    mkdn: 'attribute::\n'
+          + '- [[wikiref1]]\n'
+          + '- [[wikiref2]]\n',
     html: '<aside class="attrbox">\n'
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
@@ -297,7 +311,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '</dl>\n'
         + '</aside>\n',
     strData: {
-      'attribute': '\n- [[wikiref1]]\n- [[wikiref2]]',
+      'attribute': '\n'
+                   + '- [[wikiref1]]\n'
+                   + '- [[wikiref2]]',
     },
     valData: {
       'attribute': ['wikiref1', 'wikiref2'],
@@ -352,7 +368,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   // mixed wikilinks and primitives
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; mixed wiki and int',
-    mkdn: ':attribute::\n- [[wikiref]]\n- 42\n',
+    mkdn: ':attribute::\n'
+          + '- [[wikiref]]\n'
+          + '- 42\n',
     html: '<aside class="attrbox">\n'
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
@@ -362,7 +380,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '</dl>\n'
         + '</aside>\n',
     strData: {
-      'attribute': '\n- [[wikiref]]\n- 42',
+      'attribute': '\n'
+                   + '- [[wikiref]]\n'
+                   + '- 42',
     },
     valData: {
       'attribute': ['wikiref', 42],
@@ -416,7 +436,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and int',
-    mkdn: 'attribute::\n- [[wikiref]]\n- 42\n',
+    mkdn: 'attribute::\n'
+          + '- [[wikiref]]\n'
+          + '- 42\n',
     html: '<aside class="attrbox">\n'
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
@@ -426,7 +448,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '</dl>\n'
         + '</aside>\n',
     strData: {
-      'attribute': '\n- [[wikiref]]\n- 42',
+      'attribute': '\n'
+                   + '- [[wikiref]]\n'
+                   + '- 42',
     },
     valData: {
       'attribute': ['wikiref', 42],
@@ -480,7 +504,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; mixed wiki and bool',
-    mkdn: ':attribute::\n- [[wikiref]]\n- true\n',
+    mkdn: ':attribute::\n'
+          + '- [[wikiref]]\n'
+          + '- true\n',
     html: '<aside class="attrbox">\n'
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
@@ -490,7 +516,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '</dl>\n'
         + '</aside>\n',
     strData: {
-      'attribute': '\n- [[wikiref]]\n- true',
+      'attribute': '\n'
+                   + '- [[wikiref]]\n'
+                   + '- true',
     },
     valData: {
       'attribute': ['wikiref', true],
@@ -585,7 +613,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; invalid wiki (fallback to string)',
-    mkdn: ':attribute::\n- [[invalid\n- 42\n',
+    mkdn: ':attribute::\n'
+          + '- [[invalid\n'
+          + '- 42\n',
     html: '<aside class="attrbox">\n'
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
@@ -595,7 +625,9 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '</dl>\n'
         + '</aside>\n',
     strData: {
-      'attribute': '\n- [[invalid\n- 42',
+      'attribute': '\n'
+                   + '- [[invalid\n'
+                   + '- 42',
     },
     valData: {
       'attribute': ['[[invalid', 42],

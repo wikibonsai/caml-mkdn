@@ -3,7 +3,6 @@
  * really are 'block' or 'flow' elements.
  */
 import type { CamlTestCase } from '../types';
-import { htmlSingle } from '../const';
 
 
 export const camlPrefixedSingleCases: CamlTestCase[] = [
@@ -11,7 +10,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; null; all lowercase',
     mkdn: ':attribute::null\n',
-    html: htmlSingle('attribute', 'null', 'null'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': 'null',
     },
@@ -29,7 +34,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; null; camelCase',
     mkdn: ':attribute::Null\n',
-    html: htmlSingle('attribute', 'null', 'null'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': 'Null',
     },
@@ -47,7 +58,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; null; all uppercase',
     mkdn: ':attribute::NULL\n',
-    html: htmlSingle('attribute', 'null', 'null'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': 'NULL',
     },
@@ -66,7 +83,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; bool; all lowercase',
     mkdn: ':attribute::true\n',
-    html: htmlSingle('attribute', 'bool', 'true'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr bool attribute">true</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': 'true',
     },
@@ -84,7 +107,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; bool; camelCase',
     mkdn: ':attribute::True\n',
-    html: htmlSingle('attribute', 'bool', 'True'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr bool attribute">True</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': 'True',
     },
@@ -102,7 +131,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; bool; all uppercase',
     mkdn: ':attribute::TRUE\n',
-    html: htmlSingle('attribute', 'bool', 'TRUE'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr bool attribute">TRUE</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': 'TRUE',
     },
@@ -121,7 +156,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; int; canonical',
     mkdn: ':attribute::1\n',
-    html: htmlSingle('attribute', 'int', '1'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr int attribute">1</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '1',
     },
@@ -139,7 +180,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; int; octal',
     mkdn: ':attribute::0o14\n',
-    html: htmlSingle('attribute', 'int', '0o14'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr int attribute">0o14</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '0o14',
     },
@@ -157,7 +204,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; int; hexadecimal',
     mkdn: ':attribute::0xC\n',
-    html: htmlSingle('attribute', 'int', '0xC'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr int attribute">0xC</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '0xC',
     },
@@ -176,7 +229,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; float; canonical',
     mkdn: ':attribute::1.23015\n',
-    html: htmlSingle('attribute', 'float', '1.23015'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr float attribute">1.23015</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '1.23015',
     },
@@ -194,7 +253,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; float; exp -- exponential',
     mkdn: ':attribute::12.3015e+02\n',
-    html: htmlSingle('attribute', 'float', '12.3015e+02'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr float attribute">12.3015e+02</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '12.3015e+02',
     },
@@ -212,7 +277,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; float; nan -- not a number',
     mkdn: ':attribute::.nan\n',
-    html: htmlSingle('attribute', 'float', '.nan'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr float attribute">.nan</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '.nan',
     },
@@ -231,7 +302,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; time; canonical',
     mkdn: ':attribute::2001-12-15T02:59:43.1Z\n',
-    html: htmlSingle('attribute', 'time', '2001-12-15T02:59:43.1Z'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-15T02:59:43.1Z</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '2001-12-15T02:59:43.1Z',
     },
@@ -249,7 +326,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; time; iso8601',
     mkdn: ':attribute::2001-12-14t21:59:43.10-05:00\n',
-    html: htmlSingle('attribute', 'time', '2001-12-14t21:59:43.10-05:00'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-14t21:59:43.10-05:00</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '2001-12-14t21:59:43.10-05:00',
     },
@@ -267,7 +350,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; time; spaced',
     mkdn: ':attribute::2001-12-14 21:59:43.10 -5\n',
-    html: htmlSingle('attribute', 'time', '2001-12-14 21:59:43.10 -5'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-14 21:59:43.10 -5</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '2001-12-14 21:59:43.10 -5',
     },
@@ -285,7 +374,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; time; date only',
     mkdn: ':attribute::2001-12-14\n',
-    html: htmlSingle('attribute', 'time', '2001-12-14'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">2001-12-14</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '2001-12-14',
     },
@@ -303,7 +398,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; time; int',
     mkdn: ':attribute::+12:00\n',
-    html: htmlSingle('attribute', 'time', '+12:00'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">+12:00</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '+12:00',
     },
@@ -321,7 +422,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; time; float',
     mkdn: ':attribute::+12:00.123\n',
-    html: htmlSingle('attribute', 'time', '+12:00.123'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr time attribute">+12:00.123</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '+12:00.123',
     },
@@ -340,7 +447,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; single-line; w/o whitespace',
     mkdn: ':attribute::this-is-a-string\n',
-    html: htmlSingle('attribute', 'string', 'this-is-a-string'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">this-is-a-string</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': 'this-is-a-string',
     },
@@ -358,7 +471,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; single-line; w/ whitespace',
     mkdn: ':attribute::this is a string\n',
-    html: htmlSingle('attribute', 'string', 'this is a string'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">this is a string</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': 'this is a string',
     },
@@ -376,7 +495,13 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; single-line; quotes (double); escape commas',
     mkdn: ':attribute::"this, is, a, string"\n',
-    html: htmlSingle('attribute', 'string', '"this, is, a, string"'),
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">"this, is, a, string"</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '"this, is, a, string"',
     },
@@ -395,10 +520,20 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   // folded style (>)
   {
     descr: 'prefixed; single; string; folded (>); basic',
-    mkdn: ':attribute:: >\n  line one\n  line two\n',
-    html: htmlSingle('attribute', 'string', 'line one line two'),
+    mkdn: ':attribute:: >\n'
+          + '  line one\n'
+          + '  line two\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': ' >\n  line one\n  line two',
+      'attribute': ' >\n'
+                   + '  line one\n'
+                   + '  line two',
     },
     valData: {
       'attribute': 'line one line two',
@@ -413,10 +548,21 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   },
   {
     descr: 'prefixed; single; string; folded (>); with trailing newline',
-    mkdn: ':attribute:: >\n  line one\n  line two\n\n',
-    html: htmlSingle('attribute', 'string', 'line one line two '),
+    mkdn: ':attribute:: >\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">line one line two </span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': ' >\n  line one\n  line two\n',
+      'attribute': ' >\n'
+                   + '  line one\n'
+                   + '  line two\n',
     },
     valData: {
       'attribute': 'line one line two ',
@@ -432,10 +578,20 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   // literal style (|)
   {
     descr: 'prefixed; single; string; literal (|); basic',
-    mkdn: ':attribute:: |\n  line one\n  line two\n',
-    html: htmlSingle('attribute', 'string', 'line one\nline two'),
+    mkdn: ':attribute:: |\n'
+          + '  line one\n'
+          + '  line two\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': ' |\n  line one\n  line two',
+      'attribute': ' |\n'
+                   + '  line one\n'
+                   + '  line two',
     },
     valData: {
       'attribute': 'line one\nline two',
@@ -451,10 +607,21 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   // chomped folded (>-)
   {
     descr: 'prefixed; single; string; folded chomped (>-); strips trailing newlines',
-    mkdn: ':attribute:: >-\n  line one\n  line two\n\n',
-    html: htmlSingle('attribute', 'string', 'line one line two'),
+    mkdn: ':attribute:: >-\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': ' >-\n  line one\n  line two\n',
+      'attribute': ' >-\n'
+                   + '  line one\n'
+                   + '  line two\n',
     },
     valData: {
       'attribute': 'line one line two',
@@ -470,10 +637,21 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   // chomped literal (>|)
   {
     descr: 'prefixed; single; string; literal chomped (>|); strips trailing newlines',
-    mkdn: ':attribute:: >|\n  line one\n  line two\n\n',
-    html: htmlSingle('attribute', 'string', 'line one\nline two'),
+    mkdn: ':attribute:: >|\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
-      'attribute': ' >|\n  line one\n  line two\n',
+      'attribute': ' >|\n'
+                   + '  line one\n'
+                   + '  line two\n',
     },
     valData: {
       'attribute': 'line one\nline two',
@@ -489,8 +667,15 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   // edge cases
   {
     descr: 'prefixed; single; string; folded (>); empty block',
-    mkdn: ':attribute:: >\n\n',
-    html: htmlSingle('attribute', 'string', ''),
+    mkdn: ':attribute:: >\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute"></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': ' >\n',
     },
