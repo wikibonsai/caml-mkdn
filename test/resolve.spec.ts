@@ -26,9 +26,10 @@ describe('resolve()', () => {
   function runSingle(contextMsg: string, tests: CamlTestCase[]): void {
     describe(contextMsg, () => {
       for (const test of tests) {
+        if (!test.data) { continue; }
         if (SKIP_DESCR.some((s) => test.descr.includes(s))) { continue; }
-        for (const [key, parsed] of Object.entries(test.parseData as Record<string, any[]>)) {
-          const strVal = (test.strData as Record<string, any>)[key];
+        for (const [key, parsed] of Object.entries(test.data.parse as Record<string, any[]>)) {
+          const strVal = (test.data.string as Record<string, any>)[key];
           if (typeof strVal !== 'string') { continue; }
           if (parsed.length !== 1) { continue; }
           it(test.descr, () => {
@@ -48,8 +49,9 @@ describe('resolve()', () => {
   function runList(contextMsg: string, tests: CamlTestCase[]): void {
     describe(contextMsg, () => {
       for (const test of tests) {
-        for (const [key, parsed] of Object.entries(test.parseData as Record<string, any[]>)) {
-          const strVals = (test.strData as Record<string, any>)[key];
+        if (!test.data) { continue; }
+        for (const [key, parsed] of Object.entries(test.data.parse as Record<string, any[]>)) {
+          const strVals = (test.data.string as Record<string, any>)[key];
           if (!Array.isArray(strVals)) { continue; }
           for (let i = 0; i < strVals.length; i++) {
             it(`${test.descr} [${i}]`, () => {

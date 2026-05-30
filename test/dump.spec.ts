@@ -20,9 +20,10 @@ describe('dump()', () => {
       let i: number = 0;
       for(const test of tests) {
         const desc: string = `[${('00' + (++i)).slice(-3)}] ` + (test.descr || '');
+        if (!test.data) { return; }
         it(desc, () => {
           const opts: any = test.opts;
-          const data: any = test.strData;
+          const data: any = test.data!.string;
           const expdMkdn: string = test.mkdn;
           const actlMkdn: string = caml.dump(data, opts);
           assert.deepStrictEqual(actlMkdn, expdMkdn);

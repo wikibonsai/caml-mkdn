@@ -12,9 +12,11 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '\n'
           + '[[wikilink]]\n',
     html: '<p>: attribute ::</p>\n<p>[[wikilink]]</p>\n',
-    strData: {},
-    valData: {},
-    parseData: {},
+    data: {
+      string: {},
+      value: {},
+      parse: {},
+    },
   },
   {
     descr: '[[wikirefs]]; prefixed; single; [[wikilinks]]; should not interfere with empty string processing',
@@ -29,18 +31,20 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '</dl>\n'
         + '</aside>\n'
         + '<p>[[wikilink]]</p>\n',
-    strData: {
-      'attribute': '\'\'',
-    },
-    valData: {
-      'attribute': '\'\'',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: '\'\'',
-        value: '\'\'',
-      }],
+    data: {
+      string: {
+        'attribute': '\'\'',
+      },
+      value: {
+        'attribute': '\'\'',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: '\'\'',
+          value: '\'\'',
+        }],
+      },
     },
   },
   {
@@ -49,9 +53,11 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '\n'
           + '[[wikilink]]\n',
     html: '<p>attribute ::</p>\n<p>[[wikilink]]</p>\n',
-    strData: {},
-    valData: {},
-    parseData:  {},
+    data: {
+      string: {},
+      value: {},
+      parse: {},
+    },
   },
   {
     descr: '[[wikirefs]]; unprefixed; single; [[wikilinks]]; should not interfere with empty string processing',
@@ -66,18 +72,20 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '</dl>\n'
         + '</aside>\n'
         + '<p>[[wikilink]]</p>\n',
-    strData: {
-      'attribute': '\'\'',
-    },
-    valData: {
-      'attribute': '\'\'',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: '\'\'',
-        value: '\'\'',
-      }],
+    data: {
+      string: {
+        'attribute': '\'\'',
+      },
+      value: {
+        'attribute': '\'\'',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: '\'\'',
+          value: '\'\'',
+        }],
+      },
     },
   },
   ////
@@ -92,18 +100,20 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr wiki attribute">[[wikilink]]</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[wikilink]]',
-    },
-    valData: {
-      'attribute': 'wikilink',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'wiki',
-        string: '[[wikilink]]',
-        value: 'wikilink',
-      }],
+    data: {
+      string: {
+        'attribute': '[[wikilink]]',
+      },
+      value: {
+        'attribute': 'wikilink',
+      },
+      parse: {
+        'attribute': [{
+          type: 'wiki',
+          string: '[[wikilink]]',
+          value: 'wikilink',
+        }],
+      },
     },
   },
   {
@@ -116,18 +126,20 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr wiki attribute">[[wikilink]]</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[wikilink]]',
-    },
-    valData: {
-      'attribute': 'wikilink',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'wiki',
-        string: '[[wikilink]]',
-        value: 'wikilink',
-      }],
+    data: {
+      string: {
+        'attribute': '[[wikilink]]',
+      },
+      value: {
+        'attribute': 'wikilink',
+      },
+      parse: {
+        'attribute': [{
+          type: 'wiki',
+          string: '[[wikilink]]',
+          value: 'wikilink',
+        }],
+      },
     },
   },
   {
@@ -140,18 +152,20 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr wiki attribute">[[my page]]</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[my page]]',
-    },
-    valData: {
-      'attribute': 'my page',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'wiki',
-        string: '[[my page]]',
-        value: 'my page',
-      }],
+    data: {
+      string: {
+        'attribute': '[[my page]]',
+      },
+      value: {
+        'attribute': 'my page',
+      },
+      parse: {
+        'attribute': [{
+          type: 'wiki',
+          string: '[[my page]]',
+          value: 'my page',
+        }],
+      },
     },
   },
   {
@@ -164,18 +178,20 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr wiki attribute">[[my-page]]</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[my-page]]',
-    },
-    valData: {
-      'attribute': 'my-page',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'wiki',
-        string: '[[my-page]]',
-        value: 'my-page',
-      }],
+    data: {
+      string: {
+        'attribute': '[[my-page]]',
+      },
+      value: {
+        'attribute': 'my-page',
+      },
+      parse: {
+        'attribute': [{
+          type: 'wiki',
+          string: '[[my-page]]',
+          value: 'my-page',
+        }],
+      },
     },
   },
   {
@@ -188,18 +204,20 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">[[invalid</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[invalid',
-    },
-    valData: {
-      'attribute': '[[invalid',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: '[[invalid',
-        value: '[[invalid',
-      }],
+    data: {
+      string: {
+        'attribute': '[[invalid',
+      },
+      value: {
+        'attribute': '[[invalid',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: '[[invalid',
+          value: '[[invalid',
+        }],
+      },
     },
   },
   {
@@ -212,18 +230,20 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">[[]]</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[]]',
-    },
-    valData: {
-      'attribute': '[[]]',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: '[[]]',
-        value: '[[]]',
-      }],
+    data: {
+      string: {
+        'attribute': '[[]]',
+      },
+      value: {
+        'attribute': '[[]]',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: '[[]]',
+          value: '[[]]',
+        }],
+      },
     },
   },
   ////
@@ -242,27 +262,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '\n'
-                   + '- [[wikiref1]]\n'
-                   + '- [[wikiref2]]',
-    },
-    valData: {
-      'attribute': ['wikiref1', 'wikiref2'],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'wiki',
-          string: '[[wikiref1]]',
-          value: 'wikiref1',
-        },
-        {
-          type: 'wiki',
-          string: '[[wikiref2]]',
-          value: 'wikiref2',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- [[wikiref1]]\n'
+                     + '- [[wikiref2]]',
+      },
+      value: {
+        'attribute': ['wikiref1', 'wikiref2'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref1]]',
+            value: 'wikiref1',
+          },
+          {
+            type: 'wiki',
+            string: '[[wikiref2]]',
+            value: 'wikiref2',
+          },
+        ],
+      },
     },
   },
   {
@@ -276,25 +298,27 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[wikiref1]],[[wikiref2]]',
-    },
-    valData: {
-      'attribute': ['wikiref1', 'wikiref2'],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'wiki',
-          string: '[[wikiref1]]',
-          value: 'wikiref1',
-        },
-        {
-          type: 'wiki',
-          string: '[[wikiref2]]',
-          value: 'wikiref2',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '[[wikiref1]],[[wikiref2]]',
+      },
+      value: {
+        'attribute': ['wikiref1', 'wikiref2'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref1]]',
+            value: 'wikiref1',
+          },
+          {
+            type: 'wiki',
+            string: '[[wikiref2]]',
+            value: 'wikiref2',
+          },
+        ],
+      },
     },
   },
   {
@@ -310,27 +334,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '\n'
-                   + '- [[wikiref1]]\n'
-                   + '- [[wikiref2]]',
-    },
-    valData: {
-      'attribute': ['wikiref1', 'wikiref2'],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'wiki',
-          string: '[[wikiref1]]',
-          value: 'wikiref1',
-        },
-        {
-          type: 'wiki',
-          string: '[[wikiref2]]',
-          value: 'wikiref2',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- [[wikiref1]]\n'
+                     + '- [[wikiref2]]',
+      },
+      value: {
+        'attribute': ['wikiref1', 'wikiref2'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref1]]',
+            value: 'wikiref1',
+          },
+          {
+            type: 'wiki',
+            string: '[[wikiref2]]',
+            value: 'wikiref2',
+          },
+        ],
+      },
     },
   },
   {
@@ -344,25 +370,27 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[wikiref1]],[[wikiref2]]',
-    },
-    valData: {
-      'attribute': ['wikiref1', 'wikiref2'],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'wiki',
-          string: '[[wikiref1]]',
-          value: 'wikiref1',
-        },
-        {
-          type: 'wiki',
-          string: '[[wikiref2]]',
-          value: 'wikiref2',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '[[wikiref1]],[[wikiref2]]',
+      },
+      value: {
+        'attribute': ['wikiref1', 'wikiref2'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref1]]',
+            value: 'wikiref1',
+          },
+          {
+            type: 'wiki',
+            string: '[[wikiref2]]',
+            value: 'wikiref2',
+          },
+        ],
+      },
     },
   },
   // mixed wikilinks and primitives
@@ -379,27 +407,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr int attribute">42</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '\n'
-                   + '- [[wikiref]]\n'
-                   + '- 42',
-    },
-    valData: {
-      'attribute': ['wikiref', 42],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'wiki',
-          string: '[[wikiref]]',
-          value: 'wikiref',
-        },
-        {
-          type: 'int',
-          string: '42',
-          value: 42,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- [[wikiref]]\n'
+                     + '- 42',
+      },
+      value: {
+        'attribute': ['wikiref', 42],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'int',
+            string: '42',
+            value: 42,
+          },
+        ],
+      },
     },
   },
   {
@@ -413,25 +443,27 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr int attribute">42</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[wikiref]],42',
-    },
-    valData: {
-      'attribute': ['wikiref', 42],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'wiki',
-          string: '[[wikiref]]',
-          value: 'wikiref',
-        },
-        {
-          type: 'int',
-          string: '42',
-          value: 42,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '[[wikiref]],42',
+      },
+      value: {
+        'attribute': ['wikiref', 42],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'int',
+            string: '42',
+            value: 42,
+          },
+        ],
+      },
     },
   },
   {
@@ -447,27 +479,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr int attribute">42</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '\n'
-                   + '- [[wikiref]]\n'
-                   + '- 42',
-    },
-    valData: {
-      'attribute': ['wikiref', 42],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'wiki',
-          string: '[[wikiref]]',
-          value: 'wikiref',
-        },
-        {
-          type: 'int',
-          string: '42',
-          value: 42,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- [[wikiref]]\n'
+                     + '- 42',
+      },
+      value: {
+        'attribute': ['wikiref', 42],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'int',
+            string: '42',
+            value: 42,
+          },
+        ],
+      },
     },
   },
   {
@@ -481,25 +515,27 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr int attribute">42</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[wikiref]],42',
-    },
-    valData: {
-      'attribute': ['wikiref', 42],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'wiki',
-          string: '[[wikiref]]',
-          value: 'wikiref',
-        },
-        {
-          type: 'int',
-          string: '42',
-          value: 42,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '[[wikiref]],42',
+      },
+      value: {
+        'attribute': ['wikiref', 42],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'int',
+            string: '42',
+            value: 42,
+          },
+        ],
+      },
     },
   },
   {
@@ -515,27 +551,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr bool attribute">true</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '\n'
-                   + '- [[wikiref]]\n'
-                   + '- true',
-    },
-    valData: {
-      'attribute': ['wikiref', true],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'wiki',
-          string: '[[wikiref]]',
-          value: 'wikiref',
-        },
-        {
-          type: 'bool',
-          string: 'true',
-          value: true,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- [[wikiref]]\n'
+                     + '- true',
+      },
+      value: {
+        'attribute': ['wikiref', true],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'bool',
+            string: 'true',
+            value: true,
+          },
+        ],
+      },
     },
   },
   {
@@ -549,25 +587,27 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr bool attribute">true</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[wikiref]],true',
-    },
-    valData: {
-      'attribute': ['wikiref', true],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'wiki',
-          string: '[[wikiref]]',
-          value: 'wikiref',
-        },
-        {
-          type: 'bool',
-          string: 'true',
-          value: true,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '[[wikiref]],true',
+      },
+      value: {
+        'attribute': ['wikiref', true],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'bool',
+            string: 'true',
+            value: true,
+          },
+        ],
+      },
     },
   },
   // edge cases
@@ -582,34 +622,38 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">[[invalid</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '[[wikiref]],[[invalid',
-    },
-    valData: {
-      'attribute': ['wikiref', '[[invalid'],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'wiki',
-          string: '[[wikiref]]',
-          value: 'wikiref',
-        },
-        {
-          type: 'string',
-          string: '[[invalid',
-          value: '[[invalid',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '[[wikiref]],[[invalid',
+      },
+      value: {
+        'attribute': ['wikiref', '[[invalid'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'string',
+            string: '[[invalid',
+            value: '[[invalid',
+          },
+        ],
+      },
     },
   },
   {
     descr: '[[wikirefs]]; unprefixed; no val; none is not allowed (see no-val cases)',
     mkdn: 'attribute::\n',
     html: '<p>attribute::</p>\n',
-    strData: {},
-    valData: {},
-    parseData: {},
+    data: {
+      string: {},
+      value: {},
+      parse: {},
+    },
   },
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; invalid wiki (fallback to string)',
@@ -624,27 +668,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '<dd><span class="attr int attribute">42</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '\n'
-                   + '- [[invalid\n'
-                   + '- 42',
-    },
-    valData: {
-      'attribute': ['[[invalid', 42],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'string',
-          string: '[[invalid',
-          value: '[[invalid',
-        },
-        {
-          type: 'int',
-          string: '42',
-          value: 42,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- [[invalid\n'
+                     + '- 42',
+      },
+      value: {
+        'attribute': ['[[invalid', 42],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: '[[invalid',
+            value: '[[invalid',
+          },
+          {
+            type: 'int',
+            string: '42',
+            value: 42,
+          },
+        ],
+      },
     },
   },
 ];

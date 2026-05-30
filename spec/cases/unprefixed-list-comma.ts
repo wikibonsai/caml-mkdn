@@ -18,25 +18,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr null attribute">null</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ 'null', 'null' ],
-    },
-    valData: {
-      'attribute': [ null, null ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'null',
-          string: 'null',
-          value: null,
-        },
-        {
-          type: 'null',
-          string: 'null',
-          value: null,
-        }
-      ],
+    data: {
+      string: {
+        'attribute': [ 'null', 'null' ],
+      },
+      value: {
+        'attribute': [ null, null ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'null',
+            string: 'null',
+            value: null,
+          },
+          {
+            type: 'null',
+            string: 'null',
+            value: null,
+          }
+        ],
+      },
     },
   },
   {
@@ -50,25 +52,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr null attribute">null</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ 'Null', 'Null' ],
-    },
-    valData: {
-      'attribute': [ null, null ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'null',
-          string: 'null',
-          value: null,
-        },
-        {
-          type: 'null',
-          string: 'null',
-          value: null,
-        }
-      ],
+    data: {
+      string: {
+        'attribute': [ 'Null', 'Null' ],
+      },
+      value: {
+        'attribute': [ null, null ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'null',
+            string: 'null',
+            value: null,
+          },
+          {
+            type: 'null',
+            string: 'null',
+            value: null,
+          }
+        ],
+      },
     },
   },
   {
@@ -82,25 +86,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr null attribute">null</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ 'NULL', 'NULL' ],
-    },
-    valData: {
-      'attribute': [ null, null ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'null',
-          string: 'null',
-          value: null,
-        },
-        {
-          type: 'null',
-          string: 'null',
-          value: null,
-        }
-      ],
+    data: {
+      string: {
+        'attribute': [ 'NULL', 'NULL' ],
+      },
+      value: {
+        'attribute': [ null, null ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'null',
+            string: 'null',
+            value: null,
+          },
+          {
+            type: 'null',
+            string: 'null',
+            value: null,
+          }
+        ],
+      },
     },
   },
   // bool
@@ -115,25 +121,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr bool attribute">false</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ 'true', 'false' ],
-    },
-    valData: {
-      'attribute': [ true, false ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'bool',
-          string: 'true',
-          value: true,
-        },
-        {
-          type: 'bool',
-          string: 'false',
-          value: false,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ 'true', 'false' ],
+      },
+      value: {
+        'attribute': [ true, false ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'bool',
+            string: 'true',
+            value: true,
+          },
+          {
+            type: 'bool',
+            string: 'false',
+            value: false,
+          },
+        ],
+      },
     },
   },
   {
@@ -147,25 +155,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr bool attribute">False</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ 'True', 'False' ],
-    },
-    valData: {
-      'attribute': [ true, false ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'bool',
-          string: 'True',
-          value: true,
-        },
-        {
-          type: 'bool',
-          string: 'False',
-          value: false,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ 'True', 'False' ],
+      },
+      value: {
+        'attribute': [ true, false ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'bool',
+            string: 'True',
+            value: true,
+          },
+          {
+            type: 'bool',
+            string: 'False',
+            value: false,
+          },
+        ],
+      },
     },
   },
   {
@@ -179,25 +189,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr bool attribute">FALSE</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ 'TRUE', 'FALSE' ],
-    },
-    valData: {
-      'attribute': [ true, false ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'bool',
-          string: 'TRUE',
-          value: true,
-        },
-        {
-          type: 'bool',
-          string: 'FALSE',
-          value: false,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ 'TRUE', 'FALSE' ],
+      },
+      value: {
+        'attribute': [ true, false ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'bool',
+            string: 'TRUE',
+            value: true,
+          },
+          {
+            type: 'bool',
+            string: 'FALSE',
+            value: false,
+          },
+        ],
+      },
     },
   },
   // int
@@ -212,25 +224,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr int attribute">-123</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '10', '-123' ],
-    },
-    valData: {
-      'attribute': [ 10, -123 ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'int',
-          string: '10',
-          value: 10,
-        },
-        {
-          type: 'int',
-          string: '-123',
-          value: -123,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '10', '-123' ],
+      },
+      value: {
+        'attribute': [ 10, -123 ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'int',
+            string: '10',
+            value: 10,
+          },
+          {
+            type: 'int',
+            string: '-123',
+            value: -123,
+          },
+        ],
+      },
     },
   },
   {
@@ -244,25 +258,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr int attribute">0o123</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '0o10', '0o123' ],
-    },
-    valData: {
-      'attribute': [ 0o10, 0o123 ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'int',
-          string: '0o10',
-          value: 0o10,
-        },
-        {
-          type: 'int',
-          string: '0o123',
-          value: 0o123,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '0o10', '0o123' ],
+      },
+      value: {
+        'attribute': [ 0o10, 0o123 ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'int',
+            string: '0o10',
+            value: 0o10,
+          },
+          {
+            type: 'int',
+            string: '0o123',
+            value: 0o123,
+          },
+        ],
+      },
     },
   },
   {
@@ -276,25 +292,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr int attribute">0x014D</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '0xC', '0x014D' ],
-    },
-    valData: {
-      'attribute': [ 0xC, 0x014D ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'int',
-          string: '0xC',
-          value: 12,
-        },
-        {
-          type: 'int',
-          string: '0x014D',
-          value: 333,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '0xC', '0x014D' ],
+      },
+      value: {
+        'attribute': [ 0xC, 0x014D ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'int',
+            string: '0xC',
+            value: 12,
+          },
+          {
+            type: 'int',
+            string: '0x014D',
+            value: 333,
+          },
+        ],
+      },
     },
   },
   // float
@@ -309,25 +327,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr float attribute">-1.23015</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '1.23015', '-1.23015' ],
-    },
-    valData: {
-      'attribute': [ 1.23015, -1.23015 ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'float',
-          string: '1.23015',
-          value: 1.23015,
-        },
-        {
-          type: 'float',
-          string: '-1.23015',
-          value: -1.23015,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '1.23015', '-1.23015' ],
+      },
+      value: {
+        'attribute': [ 1.23015, -1.23015 ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'float',
+            string: '1.23015',
+            value: 1.23015,
+          },
+          {
+            type: 'float',
+            string: '-1.23015',
+            value: -1.23015,
+          },
+        ],
+      },
     },
   },
   {
@@ -341,25 +361,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr float attribute">12.3015e-02</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '12.3015e+02', '12.3015e-02' ],
-    },
-    valData: {
-      'attribute': [ 12.3015e+02, 12.3015e-02 ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'float',
-          string: '12.3015e+02',
-          value: 1230.15,
-        },
-        {
-          type: 'float',
-          string: '12.3015e-02',
-          value: 0.123015,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '12.3015e+02', '12.3015e-02' ],
+      },
+      value: {
+        'attribute': [ 12.3015e+02, 12.3015e-02 ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'float',
+            string: '12.3015e+02',
+            value: 1230.15,
+          },
+          {
+            type: 'float',
+            string: '12.3015e-02',
+            value: 0.123015,
+          },
+        ],
+      },
     },
   },
   {
@@ -373,25 +395,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr float attribute">.nan</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '.NaN', '.nan' ],
-    },
-    valData: {
-      'attribute': [ NaN, NaN ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'float',
-          string: '.NaN',
-          value: NaN,
-        },
-        {
-          type: 'float',
-          string: '.nan',
-          value: NaN,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '.NaN', '.nan' ],
+      },
+      value: {
+        'attribute': [ NaN, NaN ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'float',
+            string: '.NaN',
+            value: NaN,
+          },
+          {
+            type: 'float',
+            string: '.nan',
+            value: NaN,
+          },
+        ],
+      },
     },
   },
   // time
@@ -406,25 +430,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">2022-12-15T02:59:43.1Z</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '2001-12-15T02:59:43.1Z', '2022-12-15T02:59:43.1Z' ],
-    },
-    valData: {
-      'attribute': [ new Date('2001-12-15T02:59:43.1Z'), new Date('2022-12-15T02:59:43.1Z') ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'time',
-          string: '2001-12-15T02:59:43.1Z',
-          value: new Date('2001-12-15T02:59:43.1Z'),
-        },
-        {
-          type: 'time',
-          string: '2022-12-15T02:59:43.1Z',
-          value: new Date('2022-12-15T02:59:43.1Z'),
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '2001-12-15T02:59:43.1Z', '2022-12-15T02:59:43.1Z' ],
+      },
+      value: {
+        'attribute': [ new Date('2001-12-15T02:59:43.1Z'), new Date('2022-12-15T02:59:43.1Z') ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'time',
+            string: '2001-12-15T02:59:43.1Z',
+            value: new Date('2001-12-15T02:59:43.1Z'),
+          },
+          {
+            type: 'time',
+            string: '2022-12-15T02:59:43.1Z',
+            value: new Date('2022-12-15T02:59:43.1Z'),
+          },
+        ],
+      },
     },
   },
   {
@@ -438,25 +464,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">2022-12-14t21:59:43.10-05:00</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '2001-12-14t21:59:43.10-05:00', '2022-12-14t21:59:43.10-05:00' ],
-    },
-    valData: {
-      'attribute': [ new Date('2001-12-14t21:59:43.10-05:00'), new Date('2022-12-14t21:59:43.10-05:00') ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'time',
-          string: '2001-12-14t21:59:43.10-05:00',
-          value: new Date('2001-12-14t21:59:43.10-05:00'),
-        },
-        {
-          type: 'time',
-          string: '2022-12-14t21:59:43.10-05:00',
-          value: new Date('2022-12-14t21:59:43.10-05:00'),
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '2001-12-14t21:59:43.10-05:00', '2022-12-14t21:59:43.10-05:00' ],
+      },
+      value: {
+        'attribute': [ new Date('2001-12-14t21:59:43.10-05:00'), new Date('2022-12-14t21:59:43.10-05:00') ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'time',
+            string: '2001-12-14t21:59:43.10-05:00',
+            value: new Date('2001-12-14t21:59:43.10-05:00'),
+          },
+          {
+            type: 'time',
+            string: '2022-12-14t21:59:43.10-05:00',
+            value: new Date('2022-12-14t21:59:43.10-05:00'),
+          },
+        ],
+      },
     },
   },
   {
@@ -470,25 +498,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">2022-12-14 21:59:43.10 -5</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '2001-12-14 21:59:43.10 -5', '2022-12-14 21:59:43.10 -5' ],
-    },
-    valData: {
-      'attribute': [ new Date('2001-12-14 21:59:43.10 -5'), new Date('2022-12-14 21:59:43.10 -5') ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'time',
-          string: '2001-12-14 21:59:43.10 -5',
-          value: new Date('2001-12-14 21:59:43.10 -5'),
-        },
-        {
-          type: 'time',
-          string: '2022-12-14 21:59:43.10 -5',
-          value: new Date('2022-12-14 21:59:43.10 -5'),
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '2001-12-14 21:59:43.10 -5', '2022-12-14 21:59:43.10 -5' ],
+      },
+      value: {
+        'attribute': [ new Date('2001-12-14 21:59:43.10 -5'), new Date('2022-12-14 21:59:43.10 -5') ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'time',
+            string: '2001-12-14 21:59:43.10 -5',
+            value: new Date('2001-12-14 21:59:43.10 -5'),
+          },
+          {
+            type: 'time',
+            string: '2022-12-14 21:59:43.10 -5',
+            value: new Date('2022-12-14 21:59:43.10 -5'),
+          },
+        ],
+      },
     },
   },
   {
@@ -502,25 +532,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">2022-12-14</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '2001-12-14', '2022-12-14' ],
-    },
-    valData: {
-      'attribute': [ new Date('2001-12-14'), new Date('2022-12-14') ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'time',
-          string: '2001-12-14',
-          value: new Date('2001-12-14'),
-        },
-        {
-          type: 'time',
-          string: '2022-12-14',
-          value: new Date('2022-12-14'),
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '2001-12-14', '2022-12-14' ],
+      },
+      value: {
+        'attribute': [ new Date('2001-12-14'), new Date('2022-12-14') ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'time',
+            string: '2001-12-14',
+            value: new Date('2001-12-14'),
+          },
+          {
+            type: 'time',
+            string: '2022-12-14',
+            value: new Date('2022-12-14'),
+          },
+        ],
+      },
     },
   },
   {
@@ -534,25 +566,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">12:00</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '+12:00', '12:00' ],
-    },
-    valData: {
-      'attribute': [ 720, 720 ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'time',
-          string: '+12:00',
-          value: 720,
-        },
-        {
-          type: 'time',
-          string: '12:00',
-          value: 720,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '+12:00', '12:00' ],
+      },
+      value: {
+        'attribute': [ 720, 720 ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'time',
+            string: '+12:00',
+            value: 720,
+          },
+          {
+            type: 'time',
+            string: '12:00',
+            value: 720,
+          },
+        ],
+      },
     },
   },
   {
@@ -566,25 +600,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">12:00.123</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '+12:00.123', '12:00.123' ],
-    },
-    valData: {
-      'attribute': [ 720.123, 720.123 ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'time',
-          string: '+12:00.123',
-          value: 720.123,
-        },
-        {
-          type: 'time',
-          string: '12:00.123',
-          value: 720.123,
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '+12:00.123', '12:00.123' ],
+      },
+      value: {
+        'attribute': [ 720.123, 720.123 ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'time',
+            string: '+12:00.123',
+            value: 720.123,
+          },
+          {
+            type: 'time',
+            string: '12:00.123',
+            value: 720.123,
+          },
+        ],
+      },
     },
   },
   // string
@@ -599,25 +635,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">and-another-string</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ 'this-is-a-string', 'and-another-string' ],
-    },
-    valData: {
-      'attribute': [ 'this-is-a-string', 'and-another-string' ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'string',
-          string: 'this-is-a-string',
-          value: 'this-is-a-string',
-        },
-        {
-          type: 'string',
-          string: 'and-another-string',
-          value: 'and-another-string',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ 'this-is-a-string', 'and-another-string' ],
+      },
+      value: {
+        'attribute': [ 'this-is-a-string', 'and-another-string' ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'this-is-a-string',
+            value: 'this-is-a-string',
+          },
+          {
+            type: 'string',
+            string: 'and-another-string',
+            value: 'and-another-string',
+          },
+        ],
+      },
     },
   },
   {
@@ -631,25 +669,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">and another string</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ 'this is a string', 'and another string' ],
-    },
-    valData: {
-      'attribute': [ 'this is a string', 'and another string' ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'string',
-          string: 'this is a string',
-          value: 'this is a string',
-        },
-        {
-          type: 'string',
-          string: 'and another string',
-          value: 'and another string',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ 'this is a string', 'and another string' ],
+      },
+      value: {
+        'attribute': [ 'this is a string', 'and another string' ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'this is a string',
+            value: 'this is a string',
+          },
+          {
+            type: 'string',
+            string: 'and another string',
+            value: 'and another string',
+          },
+        ],
+      },
     },
   },
   {
@@ -663,25 +703,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">and-another-string</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': [ '"this-is,a-string"', 'and-another-string' ],
-    },
-    valData: {
-      'attribute': [ '"this-is,a-string"', 'and-another-string' ],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'string',
-          string: '"this-is,a-string"',
-          value: '"this-is,a-string"',
-        },
-        {
-          type: 'string',
-          string: 'and-another-string',
-          value: 'and-another-string',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': [ '"this-is,a-string"', 'and-another-string' ],
+      },
+      value: {
+        'attribute': [ '"this-is,a-string"', 'and-another-string' ],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: '"this-is,a-string"',
+            value: '"this-is,a-string"',
+          },
+          {
+            type: 'string',
+            string: 'and-another-string',
+            value: 'and-another-string',
+          },
+        ],
+      },
     },
   },
   // multi-line strings
@@ -699,27 +741,29 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'first, >\n'
-                   + '  line one\n'
-                   + '  line two',
-    },
-    valData: {
-      'attribute': ['first', 'line one line two'],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'string',
-          string: 'first',
-          value: 'first',
-        },
-        {
-          type: 'string',
-          string: '>\n  line one\n  line two',
-          value: 'line one line two',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': 'first, >\n'
+                     + '  line one\n'
+                     + '  line two',
+      },
+      value: {
+        'attribute': ['first', 'line one line two'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'first',
+            value: 'first',
+          },
+          {
+            type: 'string',
+            string: '>\n  line one\n  line two',
+            value: 'line one line two',
+          },
+        ],
+      },
     },
   },
   {
@@ -736,27 +780,29 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">line one line two </span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'first, >\n'
-                   + '  line one\n'
-                   + '  line two\n',
-    },
-    valData: {
-      'attribute': ['first', 'line one line two '],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'string',
-          string: 'first',
-          value: 'first',
-        },
-        {
-          type: 'string',
-          string: '>\n  line one\n  line two\n',
-          value: 'line one line two ',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': 'first, >\n'
+                     + '  line one\n'
+                     + '  line two\n',
+      },
+      value: {
+        'attribute': ['first', 'line one line two '],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'first',
+            value: 'first',
+          },
+          {
+            type: 'string',
+            string: '>\n  line one\n  line two\n',
+            value: 'line one line two ',
+          },
+        ],
+      },
     },
   },
   // literal style (|)
@@ -773,27 +819,29 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'first, |\n'
-                   + '  line one\n'
-                   + '  line two',
-    },
-    valData: {
-      'attribute': ['first', 'line one\nline two'],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'string',
-          string: 'first',
-          value: 'first',
-        },
-        {
-          type: 'string',
-          string: '|\n  line one\n  line two',
-          value: 'line one\nline two',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': 'first, |\n'
+                     + '  line one\n'
+                     + '  line two',
+      },
+      value: {
+        'attribute': ['first', 'line one\nline two'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'first',
+            value: 'first',
+          },
+          {
+            type: 'string',
+            string: '|\n  line one\n  line two',
+            value: 'line one\nline two',
+          },
+        ],
+      },
     },
   },
   // chomped folded (>-)
@@ -811,27 +859,29 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'first, >-\n'
-                   + '  line one\n'
-                   + '  line two\n',
-    },
-    valData: {
-      'attribute': ['first', 'line one line two'],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'string',
-          string: 'first',
-          value: 'first',
-        },
-        {
-          type: 'string',
-          string: '>-\n  line one\n  line two\n',
-          value: 'line one line two',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': 'first, >-\n'
+                     + '  line one\n'
+                     + '  line two\n',
+      },
+      value: {
+        'attribute': ['first', 'line one line two'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'first',
+            value: 'first',
+          },
+          {
+            type: 'string',
+            string: '>-\n  line one\n  line two\n',
+            value: 'line one line two',
+          },
+        ],
+      },
     },
   },
   // chomped literal (>|)
@@ -849,27 +899,29 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'first, >|\n'
-                   + '  line one\n'
-                   + '  line two\n',
-    },
-    valData: {
-      'attribute': ['first', 'line one\nline two'],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'string',
-          string: 'first',
-          value: 'first',
-        },
-        {
-          type: 'string',
-          string: '>|\n  line one\n  line two\n',
-          value: 'line one\nline two',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': 'first, >|\n'
+                     + '  line one\n'
+                     + '  line two\n',
+      },
+      value: {
+        'attribute': ['first', 'line one\nline two'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'first',
+            value: 'first',
+          },
+          {
+            type: 'string',
+            string: '>|\n  line one\n  line two\n',
+            value: 'line one\nline two',
+          },
+        ],
+      },
     },
   },
   // edge cases
@@ -885,25 +937,27 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute"></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'first, >\n',
-    },
-    valData: {
-      'attribute': ['first', ''],
-    },
-    parseData: {
-      'attribute': [
-        {
-          type: 'string',
-          string: 'first',
-          value: 'first',
-        },
-        {
-          type: 'string',
-          string: '>\n',
-          value: '',
-        },
-      ],
+    data: {
+      string: {
+        'attribute': 'first, >\n',
+      },
+      value: {
+        'attribute': ['first', ''],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'first',
+            value: 'first',
+          },
+          {
+            type: 'string',
+            string: '>\n',
+            value: '',
+          },
+        ],
+      },
     },
   },
 ];

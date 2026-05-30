@@ -19,9 +19,10 @@ describe('load()', () => {
       let i: number = 0;
       for(const test of tests) {
         const desc: string = `[${('00' + (++i)).slice(-3)}] ` + (test.descr || '');
+        if (!test.data) { return; }
         it(desc, () => {
           const mkdn: string = test.mkdn;
-          const expdData: any = test.valData;
+          const expdData: any = test.data!.value;
           const res: CamlLoadPayload = caml.load(mkdn);
           const actlData: any = res.data;
           assert.deepStrictEqual(actlData, expdData);

@@ -11,16 +11,20 @@ export const camlNoValCases: CamlTestCase[] = [
     descr: 'no val; prefixed; single; no caml value; none is not allowed',
     mkdn: ':attribute::\n',
     html: '<p>:attribute::</p>\n',
-    strData: {},
-    valData:  {},
-    parseData: {},
+    data: {
+      string: {},
+      value: {},
+      parse: {},
+    },
   },
   {
     descr: 'no val; unprefixed; single; no caml value; none is not allowed',
     mkdn: 'attribute::\n',
     html: '<p>attribute::</p>\n',
-    strData: {},
-    valData:  {},
-    parseData:  {},
+    data: {
+      string: {},
+      value: {},
+      parse: {},
+    },
   },
 ];

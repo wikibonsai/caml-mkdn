@@ -17,18 +17,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr null attribute">null</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'null',
-    },
-    valData: {
-      'attribute': null,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'null',
-        string: 'null',
-        value: null,
-      }],
+    data: {
+      string: {
+        'attribute': 'null',
+      },
+      value: {
+        'attribute': null,
+      },
+      parse: {
+        'attribute': [{
+          type: 'null',
+          string: 'null',
+          value: null,
+        }],
+      },
     },
   },
   {
@@ -41,18 +43,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr null attribute">null</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'Null',
-    },
-    valData: {
-      'attribute': null,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'null',
-        string: 'null',
-        value: null,
-      }],
+    data: {
+      string: {
+        'attribute': 'Null',
+      },
+      value: {
+        'attribute': null,
+      },
+      parse: {
+        'attribute': [{
+          type: 'null',
+          string: 'null',
+          value: null,
+        }],
+      },
     },
   },
   {
@@ -65,18 +69,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr null attribute">null</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'NULL',
-    },
-    valData: {
-      'attribute': null,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'null',
-        string: 'null',
-        value: null,
-      }],
+    data: {
+      string: {
+        'attribute': 'NULL',
+      },
+      value: {
+        'attribute': null,
+      },
+      parse: {
+        'attribute': [{
+          type: 'null',
+          string: 'null',
+          value: null,
+        }],
+      },
     },
   },
   // bool
@@ -90,18 +96,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr bool attribute">true</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'true',
-    },
-    valData: {
-      'attribute': true,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'bool',
-        string: 'true',
-        value: true,
-      }],
+    data: {
+      string: {
+        'attribute': 'true',
+      },
+      value: {
+        'attribute': true,
+      },
+      parse: {
+        'attribute': [{
+          type: 'bool',
+          string: 'true',
+          value: true,
+        }],
+      },
     },
   },
   {
@@ -114,18 +122,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr bool attribute">True</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'True',
-    },
-    valData: {
-      'attribute': true,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'bool',
-        string: 'True',
-        value: true,
-      }],
+    data: {
+      string: {
+        'attribute': 'True',
+      },
+      value: {
+        'attribute': true,
+      },
+      parse: {
+        'attribute': [{
+          type: 'bool',
+          string: 'True',
+          value: true,
+        }],
+      },
     },
   },
   {
@@ -138,18 +148,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr bool attribute">TRUE</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'TRUE',
-    },
-    valData: {
-      'attribute': true,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'bool',
-        string: 'TRUE',
-        value: true,
-      }],
+    data: {
+      string: {
+        'attribute': 'TRUE',
+      },
+      value: {
+        'attribute': true,
+      },
+      parse: {
+        'attribute': [{
+          type: 'bool',
+          string: 'TRUE',
+          value: true,
+        }],
+      },
     },
   },
   // int
@@ -163,18 +175,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr int attribute">1</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '1',
-    },
-    valData: {
-      'attribute': 1,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'int',
-        string: '1',
-        value: 1,
-      }],
+    data: {
+      string: {
+        'attribute': '1',
+      },
+      value: {
+        'attribute': 1,
+      },
+      parse: {
+        'attribute': [{
+          type: 'int',
+          string: '1',
+          value: 1,
+        }],
+      },
     },
   },
   {
@@ -187,18 +201,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr int attribute">0o14</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '0o14',
-    },
-    valData: {
-      'attribute': 0o14,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'int',
-        string: '0o14',
-        value: 12,
-      }],
+    data: {
+      string: {
+        'attribute': '0o14',
+      },
+      value: {
+        'attribute': 0o14,
+      },
+      parse: {
+        'attribute': [{
+          type: 'int',
+          string: '0o14',
+          value: 12,
+        }],
+      },
     },
   },
   {
@@ -211,18 +227,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr int attribute">0xC</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '0xC',
-    },
-    valData: {
-      'attribute': 0xC,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'int',
-        string: '0xC',
-        value: 12,
-      }],
+    data: {
+      string: {
+        'attribute': '0xC',
+      },
+      value: {
+        'attribute': 0xC,
+      },
+      parse: {
+        'attribute': [{
+          type: 'int',
+          string: '0xC',
+          value: 12,
+        }],
+      },
     },
   },
   // float
@@ -236,18 +254,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr float attribute">1.23015</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '1.23015',
-    },
-    valData: {
-      'attribute': 1.23015,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'float',
-        string: '1.23015',
-        value: 1.23015,
-      }],
+    data: {
+      string: {
+        'attribute': '1.23015',
+      },
+      value: {
+        'attribute': 1.23015,
+      },
+      parse: {
+        'attribute': [{
+          type: 'float',
+          string: '1.23015',
+          value: 1.23015,
+        }],
+      },
     },
   },
   {
@@ -260,18 +280,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr float attribute">12.3015e+02</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '12.3015e+02',
-    },
-    valData: {
-      'attribute': 12.3015e+02,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'float',
-        string: '12.3015e+02',
-        value: 1230.15,
-      }],
+    data: {
+      string: {
+        'attribute': '12.3015e+02',
+      },
+      value: {
+        'attribute': 12.3015e+02,
+      },
+      parse: {
+        'attribute': [{
+          type: 'float',
+          string: '12.3015e+02',
+          value: 1230.15,
+        }],
+      },
     },
   },
   {
@@ -284,18 +306,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr float attribute">.nan</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '.nan',
-    },
-    valData: {
-      'attribute': NaN,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'float',
-        string: '.nan',
-        value: NaN,
-      }],
+    data: {
+      string: {
+        'attribute': '.nan',
+      },
+      value: {
+        'attribute': NaN,
+      },
+      parse: {
+        'attribute': [{
+          type: 'float',
+          string: '.nan',
+          value: NaN,
+        }],
+      },
     },
   },
   // time
@@ -309,18 +333,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">2001-12-15T02:59:43.1Z</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '2001-12-15T02:59:43.1Z',
-    },
-    valData: {
-      'attribute': new Date('2001-12-15T02:59:43.1Z'),
-    },
-    parseData: {
-      'attribute': [{
-        type: 'time',
-        string: '2001-12-15T02:59:43.1Z',
-        value: new Date('2001-12-15T02:59:43.1Z'),
-      }],
+    data: {
+      string: {
+        'attribute': '2001-12-15T02:59:43.1Z',
+      },
+      value: {
+        'attribute': new Date('2001-12-15T02:59:43.1Z'),
+      },
+      parse: {
+        'attribute': [{
+          type: 'time',
+          string: '2001-12-15T02:59:43.1Z',
+          value: new Date('2001-12-15T02:59:43.1Z'),
+        }],
+      },
     },
   },
   {
@@ -333,18 +359,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">2001-12-14t21:59:43.10-05:00</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '2001-12-14t21:59:43.10-05:00',
-    },
-    valData: {
-      'attribute': new Date('2001-12-14t21:59:43.10-05:00'),
-    },
-    parseData: {
-      'attribute': [{
-        type: 'time',
-        string: '2001-12-14t21:59:43.10-05:00',
-        value: new Date('2001-12-14t21:59:43.10-05:00'),
-      }],
+    data: {
+      string: {
+        'attribute': '2001-12-14t21:59:43.10-05:00',
+      },
+      value: {
+        'attribute': new Date('2001-12-14t21:59:43.10-05:00'),
+      },
+      parse: {
+        'attribute': [{
+          type: 'time',
+          string: '2001-12-14t21:59:43.10-05:00',
+          value: new Date('2001-12-14t21:59:43.10-05:00'),
+        }],
+      },
     },
   },
   {
@@ -357,18 +385,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">2001-12-14 21:59:43.10 -5</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '2001-12-14 21:59:43.10 -5',
-    },
-    valData: {
-      'attribute': new Date('2001-12-14 21:59:43.10 -5'),
-    },
-    parseData: {
-      'attribute': [{
-        type: 'time',
-        string: '2001-12-14 21:59:43.10 -5',
-        value: new Date('2001-12-14 21:59:43.10 -5'),
-      }],
+    data: {
+      string: {
+        'attribute': '2001-12-14 21:59:43.10 -5',
+      },
+      value: {
+        'attribute': new Date('2001-12-14 21:59:43.10 -5'),
+      },
+      parse: {
+        'attribute': [{
+          type: 'time',
+          string: '2001-12-14 21:59:43.10 -5',
+          value: new Date('2001-12-14 21:59:43.10 -5'),
+        }],
+      },
     },
   },
   {
@@ -381,18 +411,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">2001-12-14</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '2001-12-14',
-    },
-    valData: {
-      'attribute': new Date('2001-12-14'),
-    },
-    parseData: {
-      'attribute': [{
-        type: 'time',
-        string: '2001-12-14',
-        value: new Date('2001-12-14'),
-      }],
+    data: {
+      string: {
+        'attribute': '2001-12-14',
+      },
+      value: {
+        'attribute': new Date('2001-12-14'),
+      },
+      parse: {
+        'attribute': [{
+          type: 'time',
+          string: '2001-12-14',
+          value: new Date('2001-12-14'),
+        }],
+      },
     },
   },
   {
@@ -405,18 +437,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">+12:00</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '+12:00',
-    },
-    valData: {
-      'attribute': 720,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'time',
-        string: '+12:00',
-        value: 720,
-      }],
+    data: {
+      string: {
+        'attribute': '+12:00',
+      },
+      value: {
+        'attribute': 720,
+      },
+      parse: {
+        'attribute': [{
+          type: 'time',
+          string: '+12:00',
+          value: 720,
+        }],
+      },
     },
   },
   {
@@ -429,18 +463,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr time attribute">+12:00.123</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '+12:00.123',
-    },
-    valData: {
-      'attribute': 720.123,
-    },
-    parseData: {
-      'attribute': [{
-        type: 'time',
-        string: '+12:00.123',
-        value: 720.123,
-      }],
+    data: {
+      string: {
+        'attribute': '+12:00.123',
+      },
+      value: {
+        'attribute': 720.123,
+      },
+      parse: {
+        'attribute': [{
+          type: 'time',
+          string: '+12:00.123',
+          value: 720.123,
+        }],
+      },
     },
   },
   // string
@@ -454,18 +490,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">this-is-a-string</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'this-is-a-string',
-    },
-    valData: {
-      'attribute': 'this-is-a-string',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: 'this-is-a-string',
-        value: 'this-is-a-string',
-      }],
+    data: {
+      string: {
+        'attribute': 'this-is-a-string',
+      },
+      value: {
+        'attribute': 'this-is-a-string',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: 'this-is-a-string',
+          value: 'this-is-a-string',
+        }],
+      },
     },
   },
   {
@@ -478,18 +516,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">this is a string</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': 'this is a string',
-    },
-    valData: {
-      'attribute': 'this is a string',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: 'this is a string',
-        value: 'this is a string',
-      }],
+    data: {
+      string: {
+        'attribute': 'this is a string',
+      },
+      value: {
+        'attribute': 'this is a string',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: 'this is a string',
+          value: 'this is a string',
+        }],
+      },
     },
   },
   {
@@ -502,18 +542,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">"this is a string"</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '"this is a string"',
-    },
-    valData: {
-      'attribute': '"this is a string"',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: '"this is a string"',
-        value: '"this is a string"',
-      }],
+    data: {
+      string: {
+        'attribute': '"this is a string"',
+      },
+      value: {
+        'attribute': '"this is a string"',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: '"this is a string"',
+          value: '"this is a string"',
+        }],
+      },
     },
   },
   {
@@ -526,18 +568,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">"this, is, a, string"</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '"this, is, a, string"',
-    },
-    valData: {
-      'attribute': '"this, is, a, string"',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: '"this, is, a, string"',
-        value: '"this, is, a, string"',
-      }],
+    data: {
+      string: {
+        'attribute': '"this, is, a, string"',
+      },
+      value: {
+        'attribute': '"this, is, a, string"',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: '"this, is, a, string"',
+          value: '"this, is, a, string"',
+        }],
+      },
     },
   },
   {
@@ -550,18 +594,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">\'this is a string\'</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '\'this is a string\'',
-    },
-    valData: {
-      'attribute': '\'this is a string\'',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: '\'this is a string\'',
-        value: '\'this is a string\'',
-      }],
+    data: {
+      string: {
+        'attribute': '\'this is a string\'',
+      },
+      value: {
+        'attribute': '\'this is a string\'',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: '\'this is a string\'',
+          value: '\'this is a string\'',
+        }],
+      },
     },
   },
   {
@@ -574,18 +620,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">\'this, is, a, string\'</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': '\'this, is, a, string\'',
-    },
-    valData: {
-      'attribute': '\'this, is, a, string\'',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: '\'this, is, a, string\'',
-        value: '\'this, is, a, string\'',
-      }],
+    data: {
+      string: {
+        'attribute': '\'this, is, a, string\'',
+      },
+      value: {
+        'attribute': '\'this, is, a, string\'',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: '\'this, is, a, string\'',
+          value: '\'this, is, a, string\'',
+        }],
+      },
     },
   },
   // multi-line strings
@@ -602,20 +650,22 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': ' >\n'
-                   + '  line one\n'
-                   + '  line two',
-    },
-    valData: {
-      'attribute': 'line one line two',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: ' >\n  line one\n  line two',
-        value: 'line one line two',
-      }],
+    data: {
+      string: {
+        'attribute': ' >\n'
+                     + '  line one\n'
+                     + '  line two',
+      },
+      value: {
+        'attribute': 'line one line two',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' >\n  line one\n  line two',
+          value: 'line one line two',
+        }],
+      },
     },
   },
   {
@@ -631,20 +681,22 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">line one line two </span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': ' >\n'
-                   + '  line one\n'
-                   + '  line two\n',
-    },
-    valData: {
-      'attribute': 'line one line two ',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: ' >\n  line one\n  line two\n',
-        value: 'line one line two ',
-      }],
+    data: {
+      string: {
+        'attribute': ' >\n'
+                     + '  line one\n'
+                     + '  line two\n',
+      },
+      value: {
+        'attribute': 'line one line two ',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' >\n  line one\n  line two\n',
+          value: 'line one line two ',
+        }],
+      },
     },
   },
   // literal style (|)
@@ -660,20 +712,22 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': ' |\n'
-                   + '  line one\n'
-                   + '  line two',
-    },
-    valData: {
-      'attribute': 'line one\nline two',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: ' |\n  line one\n  line two',
-        value: 'line one\nline two',
-      }],
+    data: {
+      string: {
+        'attribute': ' |\n'
+                     + '  line one\n'
+                     + '  line two',
+      },
+      value: {
+        'attribute': 'line one\nline two',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' |\n  line one\n  line two',
+          value: 'line one\nline two',
+        }],
+      },
     },
   },
   // chomped folded (>-)
@@ -690,20 +744,22 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': ' >-\n'
-                   + '  line one\n'
-                   + '  line two\n',
-    },
-    valData: {
-      'attribute': 'line one line two',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: ' >-\n  line one\n  line two\n',
-        value: 'line one line two',
-      }],
+    data: {
+      string: {
+        'attribute': ' >-\n'
+                     + '  line one\n'
+                     + '  line two\n',
+      },
+      value: {
+        'attribute': 'line one line two',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' >-\n  line one\n  line two\n',
+          value: 'line one line two',
+        }],
+      },
     },
   },
   // chomped literal (>|)
@@ -720,20 +776,22 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': ' >|\n'
-                   + '  line one\n'
-                   + '  line two\n',
-    },
-    valData: {
-      'attribute': 'line one\nline two',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: ' >|\n  line one\n  line two\n',
-        value: 'line one\nline two',
-      }],
+    data: {
+      string: {
+        'attribute': ' >|\n'
+                     + '  line one\n'
+                     + '  line two\n',
+      },
+      value: {
+        'attribute': 'line one\nline two',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' >|\n  line one\n  line two\n',
+          value: 'line one\nline two',
+        }],
+      },
     },
   },
   // edge cases
@@ -748,18 +806,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<dd><span class="attr string attribute"></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
-    strData: {
-      'attribute': ' >\n',
-    },
-    valData: {
-      'attribute': '',
-    },
-    parseData: {
-      'attribute': [{
-        type: 'string',
-        string: ' >\n',
-        value: '',
-      }],
+    data: {
+      string: {
+        'attribute': ' >\n',
+      },
+      value: {
+        'attribute': '',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' >\n',
+          value: '',
+        }],
+      },
     },
   },
 ];
