@@ -12,5 +12,5 @@ export * from './lib/func/load';
 export * from './lib/func/resolve';
 export * from './lib/func/scan';
 
-export * from './lib/func/scan-update-attr';
-export * from './lib/func/update-attr';
+export * from './lib/func/update';
+

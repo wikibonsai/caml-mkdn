@@ -210,6 +210,38 @@ interface CamlValData {
 }
 ```
 
+### `update(content: string, key: string, newVal: string, opts?: UpdateOpts): [number, number, string] | string | undefined`
+
+Find a CAML attribute by key and replace its value. Returns `undefined` if the key is not found. Whitespace around the `::` marker is preserved.
+
+```typescript
+import { update } from 'caml-mkdn';
+import type { UpdateOpts } from 'caml-mkdn';
+
+// default format: 'content' — returns the full string with the replacement applied
+const content = update('attr::old value\n', 'attr', 'new value');
+// content = 'attr::new value\n'
+
+// format: 'offsets' — returns [start, end, replacementText]
+const offsets = update('attr::old value\n', 'attr', 'new value', { format: 'offsets' });
+// offsets = [0, 15, 'attr::new value']
+
+// type-aware matching
+const dated = update(': date :: 2001-12-14\n', 'date', '2022-11-14', { type: 'timestamp' });
+// dated = ': date :: 2022-11-14\n'
+```
+
+#### Options
+
+##### `format: 'content' | 'offsets'`
+
+- `'content'` (default): Returns the full content string with the value replaced inline.
+- `'offsets'`: Returns `[start, end, replacementText]` — the character offsets and the replacement string, useful for editor integrations.
+
+##### `type?: string`
+
+Constrain the match to a specific value type (e.g. `'timestamp'`, `'int'`, `'bool'`). If omitted, matches any value.
+
 ### `scan(content: string): (CamlScanResKey | CamlScanResVal)[]`
 
 Scan a given `content` string and return an array of descriptions of all valid CAML attributes constructs.

@@ -456,25 +456,12 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     },
   },
   {
-    descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; empty list',
+    descr: '[[wikirefs]]; unprefixed; no val; none is not allowed (see no-val cases)',
     mkdn: 'attribute::\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-</dl>
-</aside>
-`,
-    strData: {
-      'attribute': '',
-    },
-    valData: {
-      'attribute': [],
-    },
-    parseData: {
-      'attribute': [],
-    },
+    html: '<p>attribute::</p>\n',
+    strData: {},
+    valData: {},
+    parseData: {},
   },
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; invalid wiki (fallback to string)',

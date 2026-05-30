@@ -2,7 +2,6 @@ import assert from 'node:assert/strict';
 
 import * as caml from '../src';
 
-
 describe('load() -- mixed wiki + primitive types', () => {
 
   const testLoad = (params: any) => () => {
@@ -11,8 +10,6 @@ describe('load() -- mixed wiki + primitive types', () => {
     const res = caml.load(mkdn);
     assert.deepStrictEqual(res.data, expdData);
   };
-
-  // -- comma list; unprefixed ---------------------------------------------
 
   describe('comma list; unprefixed', () => {
 
@@ -63,8 +60,6 @@ describe('load() -- mixed wiki + primitive types', () => {
 
   });
 
-  // -- comma list; prefixed -----------------------------------------------
-
   describe('comma list; prefixed', () => {
 
     it('wiki + string', testLoad({
@@ -98,8 +93,6 @@ describe('load() -- mixed wiki + primitive types', () => {
     }));
 
   });
-
-  // -- mkdn list; unprefixed ----------------------------------------------
 
   describe('mkdn list; unprefixed', () => {
 
@@ -170,8 +163,6 @@ describe('load() -- mixed wiki + primitive types', () => {
 
   });
 
-  // -- mkdn list; prefixed ------------------------------------------------
-
   describe('mkdn list; prefixed', () => {
 
     it('wiki + string', testLoad({
@@ -220,8 +211,6 @@ describe('load() -- mixed wiki + primitive types', () => {
 
   });
 
-  // -- single wiki value --------------------------------------------------
-
   describe('single wiki value', () => {
 
     it('unprefixed', testLoad({
@@ -235,8 +224,6 @@ describe('load() -- mixed wiki + primitive types', () => {
     }));
 
   });
-
-  // -- wiki alongside primitive attr --------------------------------------
 
   describe('wiki alongside primitive attr', () => {
 

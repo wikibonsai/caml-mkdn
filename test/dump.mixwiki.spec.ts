@@ -2,7 +2,6 @@ import assert from 'node:assert/strict';
 
 import * as caml from '../src';
 
-
 describe('dump() -- mixed wiki + primitive types', () => {
 
   const testDump = (params: any) => () => {
@@ -12,8 +11,6 @@ describe('dump() -- mixed wiki + primitive types', () => {
     const actlMkdn: string = caml.dump(data, opts);
     assert.strictEqual(actlMkdn, expdMkdn);
   };
-
-  // -- comma list; unprefixed ---------------------------------------------
 
   describe('comma list; unprefixed', () => {
 
@@ -49,8 +46,6 @@ describe('dump() -- mixed wiki + primitive types', () => {
 
   });
 
-  // -- comma list; prefixed -----------------------------------------------
-
   describe('comma list; prefixed', () => {
 
     it('wiki + string', testDump({
@@ -84,8 +79,6 @@ describe('dump() -- mixed wiki + primitive types', () => {
     }));
 
   });
-
-  // -- mkdn list; unprefixed ----------------------------------------------
 
   describe('mkdn list; unprefixed', () => {
 
@@ -121,8 +114,6 @@ describe('dump() -- mixed wiki + primitive types', () => {
 
   });
 
-  // -- mkdn list; prefixed ------------------------------------------------
-
   describe('mkdn list; prefixed', () => {
 
     it('wiki + string', testDump({
@@ -156,8 +147,6 @@ describe('dump() -- mixed wiki + primitive types', () => {
     }));
 
   });
-
-  // -- single wiki value --------------------------------------------------
 
   describe('single wiki value', () => {
 
