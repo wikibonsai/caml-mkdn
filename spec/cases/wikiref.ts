@@ -73,6 +73,152 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     },
   },
   ////
+  // single wiki value
+  {
+    descr: '[[wikirefs]]; prefixed; single; wiki value',
+    mkdn: ': attribute :: [[wikilink]]\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikilink]]</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    strData: {
+      'attribute': '[[wikilink]]',
+    },
+    valData: {
+      'attribute': 'wikilink',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'wiki',
+        string: '[[wikilink]]',
+        value: 'wikilink',
+      }],
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; single; wiki value',
+    mkdn: 'attribute :: [[wikilink]]\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikilink]]</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    strData: {
+      'attribute': '[[wikilink]]',
+    },
+    valData: {
+      'attribute': 'wikilink',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'wiki',
+        string: '[[wikilink]]',
+        value: 'wikilink',
+      }],
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; single; wiki value with spaces',
+    mkdn: 'attribute :: [[my page]]\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[my page]]</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    strData: {
+      'attribute': '[[my page]]',
+    },
+    valData: {
+      'attribute': 'my page',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'wiki',
+        string: '[[my page]]',
+        value: 'my page',
+      }],
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; single; wiki value with hyphens',
+    mkdn: 'attribute :: [[my-page]]\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[my-page]]</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    strData: {
+      'attribute': '[[my-page]]',
+    },
+    valData: {
+      'attribute': 'my-page',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'wiki',
+        string: '[[my-page]]',
+        value: 'my-page',
+      }],
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; single; invalid wiki; unclosed',
+    mkdn: 'attribute :: [[invalid\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">[[invalid</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    strData: {
+      'attribute': '[[invalid',
+    },
+    valData: {
+      'attribute': '[[invalid',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'string',
+        string: '[[invalid',
+        value: '[[invalid',
+      }],
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; single; invalid wiki; empty brackets',
+    mkdn: 'attribute :: [[]]\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">[[]]</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    strData: {
+      'attribute': '[[]]',
+    },
+    valData: {
+      'attribute': '[[]]',
+    },
+    parseData: {
+      'attribute': [{
+        type: 'string',
+        string: '[[]]',
+        value: '[[]]',
+      }],
+    },
+  },
+  ////
   // list cases
   // all wikilinks
   {
