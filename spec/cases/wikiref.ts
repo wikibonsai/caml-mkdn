@@ -17,16 +17,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; prefixed; single; [[wikilinks]]; should not interfere with empty string processing',
     mkdn: ': attribute :: \'\'\n\n[[wikilink]]\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr string attribute">''</span></dd>
-</dl>
-</aside>
-<p>[[wikilink]]</p>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">\'\'</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<p>[[wikilink]]</p>\n',
     strData: {
       'attribute': '\'\'',
     },
@@ -52,16 +50,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; single; [[wikilinks]]; should not interfere with empty string processing',
     mkdn: 'attribute :: \'\'\n\n[[wikilink]]\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr string attribute">''</span></dd>
-</dl>
-</aside>
-<p>[[wikilink]]</p>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">\'\'</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<p>[[wikilink]]</p>\n',
     strData: {
       'attribute': '\'\'',
     },
@@ -82,16 +78,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; all wiki',
     mkdn: ':attribute::\n- [[wikiref1]]\n- [[wikiref2]]\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>
-<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '\n- [[wikiref1]]\n- [[wikiref2]]',
     },
@@ -116,16 +110,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; all wiki',
     mkdn: ':attribute::[[wikiref1]],[[wikiref2]]\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>
-<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '[[wikiref1]],[[wikiref2]]',
     },
@@ -150,16 +142,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; all wiki',
     mkdn: 'attribute::\n- [[wikiref1]]\n- [[wikiref2]]\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>
-<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '\n- [[wikiref1]]\n- [[wikiref2]]',
     },
@@ -184,16 +174,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; comma-separated; all wiki',
     mkdn: 'attribute::[[wikiref1]],[[wikiref2]]\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>
-<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '[[wikiref1]],[[wikiref2]]',
     },
@@ -219,16 +207,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; mixed wiki and int',
     mkdn: ':attribute::\n- [[wikiref]]\n- 42\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>
-<dd><span class="attr int attribute">42</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr int attribute">42</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '\n- [[wikiref]]\n- 42',
     },
@@ -253,16 +239,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and int',
     mkdn: ':attribute::[[wikiref]],42\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>
-<dd><span class="attr int attribute">42</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr int attribute">42</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '[[wikiref]],42',
     },
@@ -287,16 +271,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and int',
     mkdn: 'attribute::\n- [[wikiref]]\n- 42\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>
-<dd><span class="attr int attribute">42</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr int attribute">42</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '\n- [[wikiref]]\n- 42',
     },
@@ -321,16 +303,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; comma-separated; mixed wiki and int',
     mkdn: 'attribute::[[wikiref]],42\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>
-<dd><span class="attr int attribute">42</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr int attribute">42</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '[[wikiref]],42',
     },
@@ -355,16 +335,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; mixed wiki and bool',
     mkdn: ':attribute::\n- [[wikiref]]\n- true\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>
-<dd><span class="attr bool attribute">true</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr bool attribute">true</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '\n- [[wikiref]]\n- true',
     },
@@ -389,16 +367,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; comma-separated; mixed wiki and bool',
     mkdn: 'attribute::[[wikiref]],true\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>
-<dd><span class="attr bool attribute">true</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr bool attribute">true</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '[[wikiref]],true',
     },
@@ -424,16 +400,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and invalid wiki (fallback to string)',
     mkdn: ':attribute::[[wikiref]],[[invalid\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>
-<dd><span class="attr string attribute">[[invalid</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr string attribute">[[invalid</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '[[wikiref]],[[invalid',
     },
@@ -466,16 +440,14 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; invalid wiki (fallback to string)',
     mkdn: ':attribute::\n- [[invalid\n- 42\n',
-    html:
-`<aside class="attrbox">
-<span class="attrbox-title">Attributes</span>
-<dl>
-<dt>attribute</dt>
-<dd><span class="attr string attribute">[[invalid</span></dd>
-<dd><span class="attr int attribute">42</span></dd>
-</dl>
-</aside>
-`,
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">[[invalid</span></dd>\n'
+        + '<dd><span class="attr int attribute">42</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
     strData: {
       'attribute': '\n- [[invalid\n- 42',
     },
