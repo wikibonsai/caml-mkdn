@@ -1,4 +1,7 @@
+import { getEscIndices, isStrEscaped } from 'escape-mkdn';
+
 import type {
+  CamlScanOpts,
   CamlScanResVal,
   CamlScanResult,
 } from './../types';
@@ -8,12 +11,15 @@ import { resolve} from './resolve';
 
 // scan -- useful for syntax highlights
 
-export function scan(content: string): CamlScanResult[] {
+export function scan(content: string, opts?: CamlScanOpts): CamlScanResult[] {
   const res: CamlScanResult[] = [];
   let attrMatch, valMatch: RegExpExecArray | null;
   const attrsGottaCatchEmAll: RegExp = new RegExp(RGX.CAML, 'gim');
   const multiLineGottaCatchEmAll: RegExp = new RegExp(RGX.MLINE.SINGLE, 'gim');
   const listItemsGottaCatchEmAll: RegExp = new RegExp(RGX.LINE.LIST_ITEM, 'gim');
+  // escape handling
+  const skipEsc: boolean = (opts?.skipEsc !== undefined) ? opts.skipEsc : true;
+  const escdIndices: number[] = getEscIndices(content);
 
   // Handle multi-line strings first
   do {
@@ -27,6 +33,11 @@ export function scan(content: string): CamlScanResult[] {
       // build results
       const contentOffset: number = attrMatch.index;
       const keyOffset: number = attrMatch.index + matchText.indexOf(keyText);
+
+      // skip escaped instances
+      if (skipEsc && isStrEscaped(keyText, content, keyOffset, escdIndices)) {
+        continue;
+      }
 
       // Handle multi-line string
       const fullValue = ` ${indicator}\n${blockContent}`;
@@ -56,6 +67,12 @@ export function scan(content: string): CamlScanResult[] {
       const contentOffset: number = attrMatch.index;
       const keyOffset: number = attrMatch.index + matchText.indexOf(keyText);
       let itemOffset: number = 0;
+
+      // skip escaped instances
+      if (skipEsc && isStrEscaped(keyText, content, keyOffset, escdIndices)) {
+        continue;
+      }
+
       if (valText && !/^\s*$/.exec(valText) && !valText.includes('\n') && !/^[>-|]\|?$/.test(valText)) {
         // key + values
         const trimmedKey: string = keyText.trim();

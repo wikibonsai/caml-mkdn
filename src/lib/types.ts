@@ -25,6 +25,10 @@ export interface CamlLoadPayload {
 
 // scan()
 
+export interface CamlScanOpts {
+  skipEsc?: boolean;  // whether to skip escaped CAML instances (default: true)
+}
+
 export interface ScanTxt {
   text: string;
   start: number;

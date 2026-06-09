@@ -242,7 +242,7 @@ const dated = update(': date :: 2001-12-14\n', 'date', '2022-11-14', { type: 'ti
 
 Constrain the match to a specific value type (e.g. `'timestamp'`, `'int'`, `'bool'`). If omitted, matches any value.
 
-### `scan(content: string): CamlScanResult[]`
+### `scan(content: string, opts?: CamlScanOpts): CamlScanResult[]`
 
 Scan a given `content` string and return an array of descriptions of all valid CAML attribute constructs. Each result groups a key with its values.
 
@@ -267,9 +267,34 @@ const results: CamlScanResult[] = scan(': title :: My Document\n: count :: 42\n'
 // ]
 ```
 
-Result formats:
+#### Options
+
+##### `skipEsc: boolean`
+
+Whether or not to skip escaped CAML construct instances; set to `true` by default.
+
+- `true` (default): CAML inside backticks, code spans, and fenced code blocks is ignored.
+- `false`: All CAML constructs are returned regardless of escaping.
+
+```ts
+const results: CamlScanResult[] = scan('`:attr::value`\n', { skipEsc: true });
+// results = [
+//   {
+//     key: { text: 'attr', start: 1 },
+//     vals: [
+//       { type: 'string', val: { text: 'value', start: 7 } },
+//     ],
+//   },
+// ]
+```
+
+#### Types
 
 ```typescript
+interface CamlScanOpts {
+  skipEsc?: boolean;
+}
+
 interface ScanTxt {
   text: string;
   start: number;

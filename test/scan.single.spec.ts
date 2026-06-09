@@ -411,4 +411,59 @@ describe('scan() -- single', () => {
 
   });
 
+  describe('escaped', () => {
+
+    // code span (backticks) -- caught by escape-mkdn
+    it('code span; skipped by default', testSingle({
+      mkdn: '`attr::value`\n',
+      data: [],
+    }));
+
+    // fenced code block -- caught by regex (backtick excluded from KEY)
+    it('fenced code block; skipped by default', testSingle({
+      mkdn: '```\nattr::value\n```\n',
+      data: [],
+    }));
+
+    // indented code block (4+ spaces) -- caught by regex (indentation)
+    it('indented code block; skipped by default', testSingle({
+      mkdn: '    attr::value\n',
+      data: [],
+    }));
+
+    // math span -- caught by escape-mkdn
+    it('math span; skipped by default', testSingle({
+      mkdn: '$attr::value$\n',
+      data: [],
+    }));
+
+    // math fence -- caught by escape-mkdn
+    it('math fence; skipped by default', testSingle({
+      mkdn: '$$\nattr::value\n$$\n',
+      data: [],
+    }));
+
+    // mixed: escaped + non-escaped
+    it('non-escaped CAML alongside code span is found', () => {
+      const mkdn: string = '`attr1::escaped`\nattr2::visible\n';
+      const actlData: any = caml.scan(mkdn);
+      assert.strictEqual(actlData.length, 1);
+      assert.strictEqual(actlData[0].key.text, 'attr2');
+    });
+
+    it('non-escaped CAML alongside fenced code block is found', () => {
+      const mkdn: string = '```\nattr1::escaped\n```\nattr2::visible\n';
+      const actlData: any = caml.scan(mkdn);
+      assert.strictEqual(actlData.length, 1);
+      assert.strictEqual(actlData[0].key.text, 'attr2');
+    });
+
+    // prefixed code span
+    it('prefixed code span; skipped by default', testSingle({
+      mkdn: '`:attr::value`\n',
+      data: [],
+    }));
+
+  });
+
 });
