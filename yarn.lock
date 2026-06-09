@@ -1834,6 +1834,11 @@ escalade@^3.1.1:
   resolved "https://registry.yarnpkg.com/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"
   integrity sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==
 
+escape-mkdn@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/escape-mkdn/-/escape-mkdn-0.0.3.tgz#518ffda8e9f9ced0888baee05e120aee60f25ad8"
+  integrity sha512-c4v1FQEXTpMokLf7GzxSQHoDbcjJdy+YlWIAmGLNhblefN6g4GsLTtxSuD6GkZx2H8FhzMSoPk5zMvwhZRuzOg==
+
 escape-string-regexp@4.0.0, escape-string-regexp@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
