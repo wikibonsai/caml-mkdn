@@ -339,99 +339,15 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    // multi-line
+    // multi-line string
 
-    it('multi-line; folded (gt); w/out whitespace', testSingle({
+    it('multi-line; folded (gt); basic', testSingle({
       mkdn: 'attr::>\n  this is a long string\n  that spans multiple\n  lines\n',
       data: [
         {
           key: { text: 'attr', start: 0 },
           vals: [
-            { type: 'string', val: { text: 'this is a long string that spans multiple lines', start: 6 } },
-          ],
-        },
-      ],
-    }));
-
-    it('multi-line; folded (gt); w/ whitespace', testSingle({
-      mkdn: 'attr::value with whitespace\n',
-      data: [
-        {
-          key: { text: 'attr', start: 0 },
-          vals: [
-            { type: 'string', val: { text: 'value with whitespace', start: 6 } },
-          ],
-        },
-      ],
-    }));
-
-    it('multi-line; folded (gt); w/ colon prefix', testSingle({
-      mkdn: ':attr::value with whitespace\n',
-      data: [
-        {
-          key: { text: 'attr', start: 1 },
-          vals: [
-            { type: 'string', val: { text: 'value with whitespace', start: 7 } },
-          ],
-        },
-      ],
-    }));
-
-    it('multi-line; folded (gt); w/ colon prefix; w/ whitespace pad', testSingle({
-      mkdn: ': attr  ::value with whitespace\n',
-      data: [
-        {
-          key: { text: 'attr', start: 2 },
-          vals: [
-            { type: 'string', val: { text: 'value with whitespace', start: 10 } },
-          ],
-        },
-      ],
-    }));
-
-    it('multi-line; literal (pipe); w/out whitespace', testSingle({
-      mkdn: 'attr::value-w/out-whitespace\n',
-      data: [
-        {
-          key: { text: 'attr', start: 0 },
-          vals: [
-            { type: 'string', val: { text: 'value-w/out-whitespace', start: 6 } },
-          ],
-        },
-      ],
-    }));
-
-    it('multi-line; literal (pipe); w/ whitespace', testSingle({
-      mkdn: 'attr::value with whitespace\n',
-      data: [
-        {
-          key: { text: 'attr', start: 0 },
-          vals: [
-            { type: 'string', val: { text: 'value with whitespace', start: 6 } },
-          ],
-        },
-      ],
-    }));
-
-    it('multi-line; literal (pipe); w/ colon prefix', testSingle({
-      mkdn: ':attr::value with whitespace\n',
-      data: [
-        {
-          key: { text: 'attr', start: 1 },
-          vals: [
-            { type: 'string', val: { text: 'value with whitespace', start: 7 } },
-          ],
-        },
-      ],
-    }));
-
-    it('multi-line; literal (pipe); w/ colon prefix; w/ whitespace pad', testSingle({
-      mkdn: ': attr  ::value with whitespace\n',
-      data: [
-        {
-          key: { text: 'attr', start: 2 },
-          vals: [
-            { type: 'string', val: { text: 'value with whitespace', start: 10 } },
+            { type: 'string', val: { text: 'this is a long string that spans multiple lines\n', start: 6 } },
           ],
         },
       ],

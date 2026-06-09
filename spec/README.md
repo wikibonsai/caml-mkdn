@@ -3,6 +3,14 @@
 [![A WikiBonsai Project](https://img.shields.io/badge/%F0%9F%8E%8B-A%20WikiBonsai%20Project-brightgreen)](https://github.com/wikibonsai/wikibonsai)
 [![NPM package](https://img.shields.io/npm/v/caml-spec)](https://npmjs.org/package/caml-spec)
 
+CAML attributes are block-level constructs. They are not parsed inside other markdown constructs:
+
+- Inline code: `` `:attrtype::value` `` renders as a code span.
+- Fenced code blocks: CAML inside triple backticks is treated as literal text.
+- Indented code blocks: lines indented 4+ spaces are not parsed as CAML.
+- Blockquotes: CAML inside `>` blockquotes is not parsed as an attribute.
+- List items: CAML inside `- ` list items is not parsed as an attribute.
+
 CAML attrs are meant to be compatible with [wikiattrs](https://github.com/wikibonsai/wikirefs/tree/main/spec#wikiattrs).
 
 ### Single
@@ -146,49 +154,6 @@ Optional whitespace is defined as follows:
 - Attrtype text may be prefixed (between first colon `:` and attrtype text) or suffixed (between attrtype text and double colon `::`) by one space.
 - List item prefix whitespace (space before the bullet `-*+`) can have any number of spaces.
 
-Multi-Line Strings (see [yaml reference](https://yaml-multiline.info/)):
-
-Similar to `block style` YAML multi-line strings, they start with a greate rthan (`>`) or pipe (`|`) and terminate when a line with indentation of 0 is detected.
-
-- `>` - folded (replace newlines with space, except for a single final newline)
-- `|` - literal (include newlines)
-
-While both will render similar HTML, single space and newlines will show up in json data.
-
-Folded (`>`).
-
-```markdown
-: attrtype :: >
-              This is a long string
-              that spans multiple
-              lines.
-
-```
-
-```json
-{
-  // has whitespace
-  "attrtype": "This is a long string that spans multiple lines.\n",
-}
-```
-
-Literal (`|`).
-
-```markdown
-: attrtype :: |
-              This is a long string
-              that spans multiple
-              lines.
-
-```
-
-```json
-{
-  // has newlines
-  "attrtype": "This is a long string\nthat spans multiple\nlines.\n",
-}
-```
-
 ### Types
 
 CAML supports different value types, [similar to YAML](https://yaml.org/spec/1.2.2/#chapter-10-recommended-schemas):
@@ -229,4 +194,213 @@ Types can be mixed, also similarly to YAML:
 
 ```
 : attrtype :: null, False, 0, nothing, 2002-12-14, [[wikilink]]
+```
+
+### Multi-Line Strings
+
+Multi-line strings follow the [YAML block scalar](https://yaml.org/spec/1.2.2/#81-block-scalar-headers) spec (see also [yaml-multiline.info](https://yaml-multiline.info/)). They start with a style indicator and terminate when a line with indentation of 0 is detected.
+
+Style indicators determine how newlines within the block are handled:
+
+- `>` folded: replaces newlines with spaces
+- `|` literal: preserves newlines
+
+An optional chomping indicator controls trailing newlines:
+
+- (default) clip: adds a single trailing newline
+- `-` strip: removes all trailing newlines
+- `+` keep: preserves all trailing newlines
+
+This gives six combinations: `>`, `>-`, `>+`, `|`, `|-`, `|+`.
+
+Folded (`>`). Newlines become spaces, one trailing newline added (clip).
+
+```markdown
+: attrtype :: >
+              This is a long string
+              that spans multiple
+              lines.
+
+```
+
+Resulting JSON:
+
+```json
+{
+  "attrtype": "This is a long string that spans multiple lines.\n"
+}
+```
+
+Literal (`|`). Newlines preserved, one trailing newline added (clip).
+
+```markdown
+: attrtype :: |
+              This is a long string
+              that spans multiple
+              lines.
+
+```
+
+Resulting JSON:
+
+```json
+{
+  "attrtype": "This is a long string\nthat spans multiple\nlines.\n"
+}
+```
+
+Folded strip (`>-`). Newlines become spaces, no trailing newline.
+
+```markdown
+: attrtype :: >-
+              This is a long string
+              that spans multiple
+              lines.
+
+```
+
+Resulting JSON:
+
+```json
+{
+  "attrtype": "This is a long string that spans multiple lines."
+}
+```
+
+Literal strip (`|-`). Newlines preserved, no trailing newline.
+
+```markdown
+: attrtype :: |-
+              line one
+              line two
+
+```
+
+Resulting JSON:
+
+```json
+{
+  "attrtype": "line one\nline two"
+}
+```
+
+Literal keep (`|+`). Newlines preserved, all trailing newlines preserved.
+
+```markdown
+: attrtype :: |+
+              line one
+              line two
+
+```
+
+Resulting JSON:
+
+```json
+{
+  "attrtype": "line one\nline two\n\n"
+}
+```
+
+Folded keep (`>+`). Newlines become spaces, all trailing newlines preserved.
+
+```markdown
+: attrtype :: >+
+              line one
+              line two
+
+```
+
+Resulting JSON:
+
+```json
+{
+  "attrtype": "line one line two\n\n"
+}
+```
+
+Note on Edge Cases:
+
+Multi-paragraph (blank line within block). Folded mode produces a double space; literal mode preserves the blank line.
+
+```markdown
+: attrtype :: >
+              line one
+
+              line two
+
+```
+
+Resulting JSON:
+
+```json
+{
+  "attrtype": "line one  line two\n"
+}
+```
+
+Nested indentation. Literal mode preserves relative indentation.
+
+```markdown
+: attrtype :: |
+              line one
+                indented
+              line two
+
+```
+
+Resulting JSON:
+
+```json
+{
+  "attrtype": "line one\n  indented\nline two\n"
+}
+```
+
+Empty block. Clip mode produces a single newline.
+
+```markdown
+: attrtype :: >
+
+```
+
+Resulting JSON:
+
+```json
+{
+  "attrtype": "\n"
+}
+```
+
+Note on HTML Rendering:
+
+Newlines in multi-line values are rendered as `<br>` elements in the attrbox HTML:
+
+Resulting HTML:
+
+```html
+<aside class="attrbox">
+  <span class="attrbox-title">Attributes</span>
+    <dl>
+      <dt>attrtype</dt>
+        <dd><span class="attr string attrtype">line one<br>line two<br></span></dd>
+    </dl>
+</aside>
+```
+
+Multi-line strings can also appear in lists:
+
+```markdown
+:attrtype::first, |
+  line one
+  line two
+
+```
+
+```markdown
+:attrtype::
+- first
+- |
+  line one
+  line two
+
 ```

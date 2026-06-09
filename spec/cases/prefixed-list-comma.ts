@@ -729,7 +729,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   // multi-line strings
   // folded style (>)
   {
-    descr: 'prefixed; list; comma-separated; string; folded (>); basic',
+    descr: 'prefixed; list; comma-separated; multi-line; folded (>); basic',
     mkdn: ':attribute::first, >\n'
           + '  line one\n'
           + '  line two\n',
@@ -738,7 +738,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">first</span></dd>\n'
-        + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two<br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -748,7 +748,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
                      + '  line two',
       },
       value: {
-        'attribute': ['first', 'line one line two'],
+        'attribute': ['first', 'line one line two\n'],
       },
       parse: {
         'attribute': [
@@ -760,14 +760,14 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
           {
             type: 'string',
             string: '>\n  line one\n  line two',
-            value: 'line one line two',
+            value: 'line one line two\n',
           },
         ],
       },
     },
   },
   {
-    descr: 'prefixed; list; comma-separated; string; folded (>); with trailing newline',
+    descr: 'prefixed; list; comma-separated; multi-line; folded (>); with trailing newline',
     mkdn: ':attribute::first, >\n'
           + '  line one\n'
           + '  line two\n'
@@ -777,7 +777,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">first</span></dd>\n'
-        + '<dd><span class="attr string attribute">line one line two </span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two<br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -787,7 +787,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
                      + '  line two\n',
       },
       value: {
-        'attribute': ['first', 'line one line two '],
+        'attribute': ['first', 'line one line two\n'],
       },
       parse: {
         'attribute': [
@@ -799,7 +799,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
           {
             type: 'string',
             string: '>\n  line one\n  line two\n',
-            value: 'line one line two ',
+            value: 'line one line two\n',
           },
         ],
       },
@@ -807,7 +807,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   },
   // literal style (|)
   {
-    descr: 'prefixed; list; comma-separated; string; literal (|); basic',
+    descr: 'prefixed; list; comma-separated; multi-line; literal (|); basic',
     mkdn: ':attribute::first, |\n'
           + '  line one\n'
           + '  line two\n',
@@ -816,7 +816,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">first</span></dd>\n'
-        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one<br>line two<br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -826,7 +826,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
                      + '  line two',
       },
       value: {
-        'attribute': ['first', 'line one\nline two'],
+        'attribute': ['first', 'line one\nline two\n'],
       },
       parse: {
         'attribute': [
@@ -838,7 +838,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
           {
             type: 'string',
             string: '|\n  line one\n  line two',
-            value: 'line one\nline two',
+            value: 'line one\nline two\n',
           },
         ],
       },
@@ -846,7 +846,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   },
   // chomped folded (>-)
   {
-    descr: 'prefixed; list; comma-separated; string; folded chomped (>-); strips trailing newlines',
+    descr: 'prefixed; list; comma-separated; multi-line; folded chomped (>-); strips trailing newlines',
     mkdn: ':attribute::first, >-\n'
           + '  line one\n'
           + '  line two\n'
@@ -884,10 +884,10 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
       },
     },
   },
-  // chomped literal (>|)
+  // literal strip (|-)
   {
-    descr: 'prefixed; list; comma-separated; string; literal chomped (>|); strips trailing newlines',
-    mkdn: ':attribute::first, >|\n'
+    descr: 'prefixed; list; comma-separated; multi-line; literal strip (|-); strips trailing newlines',
+    mkdn: ':attribute::first, |-\n'
           + '  line one\n'
           + '  line two\n'
           + '\n',
@@ -896,12 +896,12 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">first</span></dd>\n'
-        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one<br>line two</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': 'first, >|\n'
+        'attribute': 'first, |-\n'
                      + '  line one\n'
                      + '  line two\n',
       },
@@ -917,8 +917,88 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
           },
           {
             type: 'string',
-            string: '>|\n  line one\n  line two\n',
+            string: '|-\n  line one\n  line two\n',
             value: 'line one\nline two',
+          },
+        ],
+      },
+    },
+  },
+  // literal keep (|+)
+  {
+    descr: 'prefixed; list; comma-separated; multi-line; literal keep (|+); preserves trailing newlines',
+    mkdn: ':attribute::first, |+\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one<br>line two<br><br></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': 'first, |+\n'
+                     + '  line one\n'
+                     + '  line two\n',
+      },
+      value: {
+        'attribute': ['first', 'line one\nline two\n\n'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'first',
+            value: 'first',
+          },
+          {
+            type: 'string',
+            string: '|+\n  line one\n  line two\n\n',
+            value: 'line one\nline two\n\n',
+          },
+        ],
+      },
+    },
+  },
+  // folded keep (>+)
+  {
+    descr: 'prefixed; list; comma-separated; multi-line; folded keep (>+); preserves trailing newlines',
+    mkdn: ':attribute::first, >+\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two<br><br></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': 'first, >+\n'
+                     + '  line one\n'
+                     + '  line two\n',
+      },
+      value: {
+        'attribute': ['first', 'line one line two\n\n'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'first',
+            value: 'first',
+          },
+          {
+            type: 'string',
+            string: '>+\n  line one\n  line two\n\n',
+            value: 'line one line two\n\n',
           },
         ],
       },
@@ -926,7 +1006,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
   },
   // edge cases
   {
-    descr: 'prefixed; list; comma-separated; string; folded (>); empty block',
+    descr: 'prefixed; list; comma-separated; multi-line; folded (>); empty block',
     mkdn: ':attribute::first, >\n'
           + '\n',
     html: '<aside class="attrbox">\n'
@@ -934,7 +1014,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">first</span></dd>\n'
-        + '<dd><span class="attr string attribute"></span></dd>\n'
+        + '<dd><span class="attr string attribute"><br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -942,7 +1022,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
         'attribute': 'first, >\n',
       },
       value: {
-        'attribute': ['first', ''],
+        'attribute': ['first', '\n'],
       },
       parse: {
         'attribute': [
@@ -954,7 +1034,7 @@ export const camlPrefixedListCommaCases: CamlTestCase[] = [
           {
             type: 'string',
             string: '>\n',
-            value: '',
+            value: '\n',
           },
         ],
       },

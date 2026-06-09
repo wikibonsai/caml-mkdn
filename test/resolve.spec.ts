@@ -18,10 +18,7 @@ describe('resolve()', () => {
 
   // spec-driven: single values
 
-  // note: 'folded (>); with trailing newline' cases are skipped --
-  // resolve() does not produce the trailing space that parseData expects.
-  // this is a pre-existing bug in parseYamlScalar's trailing newline handling.
-  const SKIP_DESCR = ['with trailing newline'];
+  const SKIP_DESCR: string[] = [];
 
   function runSingle(contextMsg: string, tests: CamlTestCase[]): void {
     describe(contextMsg, () => {

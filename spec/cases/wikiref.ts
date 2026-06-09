@@ -610,6 +610,371 @@ export const camlWikiRefsCases: CamlTestCase[] = [
       },
     },
   },
+  // mixed wiki and bool (missing combos)
+  {
+    descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and bool',
+    mkdn: ':attribute::[[wikiref]],true\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr bool attribute">true</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '[[wikiref]],true',
+      },
+      value: {
+        'attribute': ['wikiref', true],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'bool',
+            string: 'true',
+            value: true,
+          },
+        ],
+      },
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and bool',
+    mkdn: 'attribute::\n'
+          + '- [[wikiref]]\n'
+          + '- true\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr bool attribute">true</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- [[wikiref]]\n'
+                     + '- true',
+      },
+      value: {
+        'attribute': ['wikiref', true],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'bool',
+            string: 'true',
+            value: true,
+          },
+        ],
+      },
+    },
+  },
+  // mixed wiki and string
+  {
+    descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and string',
+    mkdn: ':attribute::[[wikiref]],hello\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr string attribute">hello</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '[[wikiref]],hello',
+      },
+      value: {
+        'attribute': ['wikiref', 'hello'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'string',
+            string: 'hello',
+            value: 'hello',
+          },
+        ],
+      },
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and string',
+    mkdn: 'attribute::\n'
+          + '- [[wikiref]]\n'
+          + '- hello\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr string attribute">hello</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- [[wikiref]]\n'
+                     + '- hello',
+      },
+      value: {
+        'attribute': ['wikiref', 'hello'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'string',
+            string: 'hello',
+            value: 'hello',
+          },
+        ],
+      },
+    },
+  },
+  // mixed wiki and float
+  {
+    descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and float',
+    mkdn: ':attribute::[[wikiref]],1.5\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr float attribute">1.5</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '[[wikiref]],1.5',
+      },
+      value: {
+        'attribute': ['wikiref', 1.5],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'float',
+            string: '1.5',
+            value: 1.5,
+          },
+        ],
+      },
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and float',
+    mkdn: 'attribute::\n'
+          + '- [[wikiref]]\n'
+          + '- 1.5\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr float attribute">1.5</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- [[wikiref]]\n'
+                     + '- 1.5',
+      },
+      value: {
+        'attribute': ['wikiref', 1.5],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'float',
+            string: '1.5',
+            value: 1.5,
+          },
+        ],
+      },
+    },
+  },
+  // mixed wiki and time
+  {
+    descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and time',
+    mkdn: ':attribute::[[wikiref]],2001-12-14\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr time attribute">2001-12-14</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '[[wikiref]],2001-12-14',
+      },
+      value: {
+        'attribute': ['wikiref', new Date('2001-12-14')],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'time',
+            string: '2001-12-14',
+            value: new Date('2001-12-14'),
+          },
+        ],
+      },
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and time',
+    mkdn: 'attribute::\n'
+          + '- [[wikiref]]\n'
+          + '- 2001-12-14\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr time attribute">2001-12-14</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- [[wikiref]]\n'
+                     + '- 2001-12-14',
+      },
+      value: {
+        'attribute': ['wikiref', new Date('2001-12-14')],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'time',
+            string: '2001-12-14',
+            value: new Date('2001-12-14'),
+          },
+        ],
+      },
+    },
+  },
+  // mixed wiki and null
+  {
+    descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and null',
+    mkdn: ':attribute::[[wikiref]],null\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '[[wikiref]],null',
+      },
+      value: {
+        'attribute': ['wikiref', null],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'null',
+            string: 'null',
+            value: null,
+          },
+        ],
+      },
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and null',
+    mkdn: 'attribute::\n'
+          + '- [[wikiref]]\n'
+          + '- null\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
+        + '<dd><span class="attr null attribute">null</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- [[wikiref]]\n'
+                     + '- null',
+      },
+      value: {
+        'attribute': ['wikiref', null],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'wiki',
+            string: '[[wikiref]]',
+            value: 'wikiref',
+          },
+          {
+            type: 'null',
+            string: 'null',
+            value: null,
+          },
+        ],
+      },
+    },
+  },
   // edge cases
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and invalid wiki (fallback to string)',

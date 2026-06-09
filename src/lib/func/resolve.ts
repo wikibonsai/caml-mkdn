@@ -5,24 +5,53 @@ import {
   parseSexagesimal,
 } from './../yaml';
 
+// YAML block scalar parser
+// ref: https://yaml.org/spec/1.2.2/#81-block-scalar-headers
+//
+// Style:
+//   literal (|): preserve newlines
+//   folded  (>): replace newlines with spaces
+//
+// Chomping (controls trailing newlines):
+//   clip (default): single trailing newline
+//   strip (-):      no trailing newline
+//   keep  (+):      preserve all trailing newlines
+//
 function parseYamlScalar(indicator: string, block: string): string {
-  const chomp = indicator.endsWith('-') || indicator.endsWith('|');
+  // Parse indicator into style and chomping mode
   const style = indicator[0]; // > or |
-  const isLiteral = style === '|' || indicator === '>|';
+  const isLiteral: boolean = (style === '|');
+  let chompMode: 'clip' | 'strip' | 'keep';
+  if (indicator.endsWith('-')) {
+    chompMode = 'strip';
+  } else if (indicator.endsWith('+')) {
+    chompMode = 'keep';
+  } else {
+    chompMode = 'clip';
+  }
+
   let lines = block.split('\n');
-  
-  // Check if there's a trailing newline in the original block
-  const hasTrailingNewline = block.endsWith('\n');
-  const hasDoubleNewline = block.endsWith('\n\n');
-  
-  // Remove leading/trailing empty lines and handle indentation
+
+  // Count trailing empty lines before stripping
+  let trailingEmptyCount = 0;
+  for (let i = lines.length - 1; i >= 0; i--) {
+    if (lines[i].trim() === '') {
+      trailingEmptyCount++;
+    } else {
+      break;
+    }
+  }
+
+  // Remove leading empty lines
   while (lines.length > 0 && lines[0].trim() === '') {
     lines.shift();
   }
+
+  // Remove trailing empty lines (we'll re-add per chomp mode)
   while (lines.length > 0 && lines[lines.length - 1].trim() === '') {
     lines.pop();
   }
-  
+
   // Find minimum indentation (ignoring empty lines)
   const nonEmptyLines = lines.filter(line => line.trim() !== '');
   let minIndent = Infinity;
@@ -32,20 +61,32 @@ function parseYamlScalar(indicator: string, block: string): string {
       minIndent = indent;
     }
   }
-  
+
   // Remove common indentation
   if (minIndent !== Infinity && minIndent > 0) {
     lines = lines.map(line => line.length >= minIndent ? line.slice(minIndent) : line);
   }
-  
+
+  // Join lines per style
+  let result: string;
   if (isLiteral) {
-    // Literal: preserve newlines
-    const result = lines.join('\n');
-    return chomp ? result : result + (hasDoubleNewline ? '\n' : '');
+    result = lines.join('\n');
   } else {
-    // Folded: join with spaces
-    const result = lines.map(line => line.trim()).join(' ');
-    return chomp ? result : result + (hasDoubleNewline ? ' ' : '');
+    result = lines.map(line => line.trim()).join(' ');
+  }
+
+  // Apply chomping
+  switch (chompMode) {
+  case 'strip':
+    // no trailing newline
+    return result;
+  case 'keep':
+    // preserve all trailing newlines
+    return result + '\n'.repeat(trailingEmptyCount);
+  case 'clip':
+  default:
+    // single trailing newline
+    return result + '\n';
   }
 }
 
@@ -67,7 +108,8 @@ export function resolve(value: string): CamlValData {
     };
   }
   // if the value is a multi-line string, treat it as a string
-  const multiLineIndicators: string[] = ['>-', '>|', '>', '|'];
+  // order matters: longer patterns first to avoid partial matches
+  const multiLineIndicators: string[] = ['>-', '>+', '|-', '|+', '>', '|'];
   if (multiLineIndicators.some(ind => value.trim().startsWith(ind))) {
     const indicator: string = multiLineIndicators.find(ind => value.trim().startsWith(ind))!;
     const trimmedValue = value.trim();

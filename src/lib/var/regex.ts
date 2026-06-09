@@ -13,8 +13,10 @@ export namespace RGX {
     KEY_PRFX       : /(?:: ?)/,
     // match: wikilink's RGX.SP_CHAR.LINKTYPE
     COL            : /(?: *:: ?)/,
-    // multi-line string indicators
-    MLINE_STR      : /(>-|>\||>|\|)/,
+    // multi-line string indicators (YAML block scalar styles)
+    // ref: https://yaml.org/spec/1.2.2/#81-block-scalar-headers
+    // order matters: longer patterns first to avoid partial matches
+    MLINE_STR      : /(>-|>\+|\|-|\|\+|>|\|)/,
   } as const;
 
   // for whitespace handling...
@@ -26,13 +28,17 @@ export namespace RGX {
   export const VALID_CHARS = {
     // todo: add link
     // match: wikilink's RGX.USABLE_CHAR.LINKTYPE
-    KEY            : /[^\n\r!:^|[\]]+/i,
+    KEY            : /[^\n\r!:^|[\]`]+/i,
+    // permissive: used by parsers (micromark) for character-level tokenization
     VAL            : /[^\n]+/,
+    // restrictive: excludes brackets so LINE.KEY doesn't swallow typed wikilinks
+    VAL_LINE       : /[^\n[\]]+/,
   } as const;
 
   export const CAP_GRP = {
     KEY            : new RegExp('(' + VALID_CHARS.KEY.source + ')'),
     VAL            : new RegExp('(' + VALID_CHARS.VAL.source + ')'),
+    VAL_LINE       : new RegExp('(' + VALID_CHARS.VAL_LINE.source + ')'),
     VAL_MSTR       : /((?:\s+.*\n?)*)/,
   } as const;
 
@@ -42,7 +48,7 @@ export namespace RGX {
                                     + MARKER.KEY_PRFX.source + '?'
                                     + CAP_GRP.KEY.source
                                     + MARKER.COL.source
-                                    + CAP_GRP.VAL.source + '?'
+                                    + CAP_GRP.VAL_LINE.source + '?'
                                   + '$'
                                 , 'im'),
     LIST_ITEM      : new RegExp(

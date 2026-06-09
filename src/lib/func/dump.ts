@@ -47,7 +47,14 @@ export function dump(attrs: any, opts?: CamlDumpOpts): string {
     }
     // single
     if (!Array.isArray(value)) {
-      attrString += `${value}\n`;
+      const strVal: string = `${value}`;
+      attrString += strVal;
+      // multi-line keep mode (|+, >+) strings end with \n\n — don't add another
+      if (strVal.endsWith('\n\n')) {
+        // keep mode: trailing newlines are already included
+      } else {
+        attrString += '\n';
+      }
     // list
     } else {
       for (const [i, v] of value.entries()) {

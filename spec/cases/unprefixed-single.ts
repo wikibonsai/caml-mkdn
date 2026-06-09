@@ -639,7 +639,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   // multi-line strings
   // folded style (>)
   {
-    descr: 'unprefixed; single; string; folded (>); basic',
+    descr: 'unprefixed; single; multi-line; folded (>); basic',
     mkdn: 'attribute:: >\n'
           + '  line one\n'
           + '  line two\n',
@@ -647,7 +647,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two<br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -657,19 +657,19 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
                      + '  line two',
       },
       value: {
-        'attribute': 'line one line two',
+        'attribute': 'line one line two\n',
       },
       parse: {
         'attribute': [{
           type: 'string',
           string: ' >\n  line one\n  line two',
-          value: 'line one line two',
+          value: 'line one line two\n',
         }],
       },
     },
   },
   {
-    descr: 'unprefixed; single; string; folded (>); with trailing newline',
+    descr: 'unprefixed; single; multi-line; folded (>); with trailing newline',
     mkdn: 'attribute:: >\n'
           + '  line one\n'
           + '  line two\n'
@@ -678,7 +678,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><span class="attr string attribute">line one line two </span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two<br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -688,20 +688,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
                      + '  line two\n',
       },
       value: {
-        'attribute': 'line one line two ',
+        'attribute': 'line one line two\n',
       },
       parse: {
         'attribute': [{
           type: 'string',
           string: ' >\n  line one\n  line two\n',
-          value: 'line one line two ',
+          value: 'line one line two\n',
         }],
       },
     },
   },
   // literal style (|)
   {
-    descr: 'unprefixed; single; string; literal (|); basic',
+    descr: 'unprefixed; single; multi-line; literal (|); basic',
     mkdn: 'attribute:: |\n'
           + '  line one\n'
           + '  line two\n',
@@ -709,7 +709,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one<br>line two<br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -719,20 +719,20 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
                      + '  line two',
       },
       value: {
-        'attribute': 'line one\nline two',
+        'attribute': 'line one\nline two\n',
       },
       parse: {
         'attribute': [{
           type: 'string',
           string: ' |\n  line one\n  line two',
-          value: 'line one\nline two',
+          value: 'line one\nline two\n',
         }],
       },
     },
   },
   // chomped folded (>-)
   {
-    descr: 'unprefixed; single; string; folded chomped (>-); strips trailing newlines',
+    descr: 'unprefixed; single; multi-line; folded chomped (>-); strips trailing newlines',
     mkdn: 'attribute:: >-\n'
           + '  line one\n'
           + '  line two\n'
@@ -762,48 +762,16 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
       },
     },
   },
-  // chomped literal (>|)
+  // empty block
   {
-    descr: 'unprefixed; single; string; literal chomped (>|); strips trailing newlines',
-    mkdn: 'attribute:: >|\n'
-          + '  line one\n'
-          + '  line two\n'
-          + '\n',
-    html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
-        + '<dl>\n'
-        + '<dt>attribute</dt>\n'
-        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
-        + '</dl>\n'
-        + '</aside>\n',
-    data: {
-      string: {
-        'attribute': ' >|\n'
-                     + '  line one\n'
-                     + '  line two\n',
-      },
-      value: {
-        'attribute': 'line one\nline two',
-      },
-      parse: {
-        'attribute': [{
-          type: 'string',
-          string: ' >|\n  line one\n  line two\n',
-          value: 'line one\nline two',
-        }],
-      },
-    },
-  },
-  // edge cases
-  {
-    descr: 'unprefixed; single; string; folded (>); empty block',
+    descr: 'unprefixed; single; multi-line; folded (>); empty block',
     mkdn: 'attribute:: >\n'
           + '\n',
     html: '<aside class="attrbox">\n'
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><span class="attr string attribute"></span></dd>\n'
+        + '<dd><span class="attr string attribute"><br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -811,15 +779,355 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         'attribute': ' >\n',
       },
       value: {
-        'attribute': '',
+        'attribute': '\n',
       },
       parse: {
         'attribute': [{
           type: 'string',
           string: ' >\n',
-          value: '',
+          value: '\n',
         }],
       },
+    },
+  },
+  // multi-paragraph: blank line within folded block
+  {
+    descr: 'unprefixed; single; multi-line; folded (>); multi-paragraph',
+    mkdn: 'attribute:: >\n'
+          + '  line one\n'
+          + '\n'
+          + '  line two\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">line one  line two<br></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': ' >\n  line one\n\n  line two',
+      },
+      value: {
+        'attribute': 'line one  line two\n',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' >\n  line one\n\n  line two',
+          value: 'line one  line two\n',
+        }],
+      },
+    },
+  },
+  // multi-paragraph: blank line within literal block
+  {
+    descr: 'unprefixed; single; multi-line; literal (|); multi-paragraph',
+    mkdn: 'attribute:: |\n'
+          + '  line one\n'
+          + '\n'
+          + '  line two\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">line one<br><br>line two<br></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': ' |\n  line one\n\n  line two',
+      },
+      value: {
+        'attribute': 'line one\n\nline two\n',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' |\n  line one\n\n  line two',
+          value: 'line one\n\nline two\n',
+        }],
+      },
+    },
+  },
+  // nested indentation: relative indent preserved in literal
+  {
+    descr: 'unprefixed; single; multi-line; literal (|); nested indentation',
+    mkdn: 'attribute:: |\n'
+          + '  line one\n'
+          + '    indented\n'
+          + '  line two\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">line one<br>  indented<br>line two<br></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': ' |\n  line one\n    indented\n  line two',
+      },
+      value: {
+        'attribute': 'line one\n  indented\nline two\n',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' |\n  line one\n    indented\n  line two',
+          value: 'line one\n  indented\nline two\n',
+        }],
+      },
+    },
+  },
+  // YAML chomping variants
+  // literal strip (|-)
+  {
+    descr: 'unprefixed; single; multi-line; literal strip (|-); strips trailing newlines',
+    mkdn: 'attribute:: |-\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">line one<br>line two</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': ' |-\n  line one\n  line two\n',
+      },
+      value: {
+        'attribute': 'line one\nline two',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' |-\n  line one\n  line two\n',
+          value: 'line one\nline two',
+        }],
+      },
+    },
+  },
+  // literal keep (|+)
+  {
+    descr: 'unprefixed; single; multi-line; literal keep (|+); preserves trailing newlines',
+    mkdn: 'attribute:: |+\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">line one<br>line two<br><br></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': ' |+\n  line one\n  line two\n\n',
+      },
+      value: {
+        'attribute': 'line one\nline two\n\n',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' |+\n  line one\n  line two\n\n',
+          value: 'line one\nline two\n\n',
+        }],
+      },
+    },
+  },
+  // folded keep (>+)
+  {
+    descr: 'unprefixed; single; multi-line; folded keep (>+); preserves trailing newlines',
+    mkdn: 'attribute:: >+\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">line one line two<br><br></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': ' >+\n  line one\n  line two\n\n',
+      },
+      value: {
+        'attribute': 'line one line two\n\n',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: ' >+\n  line one\n  line two\n\n',
+          value: 'line one line two\n\n',
+        }],
+      },
+    },
+  },
+  // escaped: inline code span
+  {
+    descr: 'unprefixed; single; escaped; code span',
+    mkdn: '`attribute:: value`\n',
+    html: '<p><code>attribute:: value</code></p>\n',
+  },
+  // escaped: fenced code block
+  {
+    descr: 'unprefixed; single; escaped; fenced code block',
+    mkdn: '```\n'
+        + 'attribute:: value\n'
+        + '```\n',
+    html: '<pre><code>attribute:: value\n</code></pre>\n',
+  },
+  // escaped: indented code block (4+ spaces)
+  {
+    descr: 'unprefixed; single; escaped; indented code block (4 spaces)',
+    mkdn: '    attribute:: value\n',
+    html: '<pre><code>attribute:: value\n</code></pre>\n',
+  },
+  // nested: blockquote; not allowed inside
+  {
+    descr: 'unprefixed; single; w/ other mkdn constructs; nested; blockquote; not allowed inside',
+    mkdn: '> attribute:: value\n',
+    html: '<blockquote>\n<p>attribute:: value</p>\n</blockquote>\n',
+  },
+  // nested: list item; not allowed inside
+  {
+    descr: 'unprefixed; single; w/ other mkdn constructs; nested; list; not allowed inside',
+    mkdn: '- attribute:: value\n',
+    html: '<ul>\n<li>attribute:: value</li>\n</ul>\n',
+  },
+  // near: headers
+  {
+    descr: 'unprefixed; single; w/ other mkdn constructs; near headers; before',
+    mkdn: 'attribute:: value\n'
+        + '\n'
+        + '# heading\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">value</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<h1>heading</h1>\n',
+    data: {
+      string: { 'attribute': 'value' },
+      value: { 'attribute': 'value' },
+      parse: { 'attribute': [{ type: 'string', string: 'value', value: 'value' }] },
+    },
+  },
+  {
+    descr: 'unprefixed; single; w/ other mkdn constructs; near headers; after',
+    mkdn: '# heading\n'
+        + '\n'
+        + 'attribute:: value\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">value</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<h1>heading</h1>\n',
+    data: {
+      string: { 'attribute': 'value' },
+      value: { 'attribute': 'value' },
+      parse: { 'attribute': [{ type: 'string', string: 'value', value: 'value' }] },
+    },
+  },
+  // near: blockquotes
+  {
+    descr: 'unprefixed; single; w/ other mkdn constructs; near blockquotes; before',
+    mkdn: 'attribute:: value\n'
+        + '\n'
+        + '> some text\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">value</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<blockquote>\n'
+        + '<p>some text</p>\n'
+        + '</blockquote>\n',
+    data: {
+      string: { 'attribute': 'value' },
+      value: { 'attribute': 'value' },
+      parse: { 'attribute': [{ type: 'string', string: 'value', value: 'value' }] },
+    },
+  },
+  // near: blockquotes; after
+  {
+    descr: 'unprefixed; single; w/ other mkdn constructs; near blockquotes; after',
+    mkdn: '> some text\n'
+        + '\n'
+        + 'attribute:: value\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">value</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<blockquote>\n'
+        + '<p>some text</p>\n'
+        + '</blockquote>\n',
+    data: {
+      string: { 'attribute': 'value' },
+      value: { 'attribute': 'value' },
+      parse: { 'attribute': [{ type: 'string', string: 'value', value: 'value' }] },
+    },
+  },
+  // near: lists
+  {
+    descr: 'unprefixed; single; w/ other mkdn constructs; near lists; before',
+    mkdn: 'attribute:: value\n'
+        + '\n'
+        + '- list item\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">value</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<ul>\n'
+        + '<li>list item</li>\n'
+        + '</ul>\n',
+    data: {
+      string: { 'attribute': 'value' },
+      value: { 'attribute': 'value' },
+      parse: { 'attribute': [{ type: 'string', string: 'value', value: 'value' }] },
+    },
+  },
+  // near: lists; after
+  {
+    descr: 'unprefixed; single; w/ other mkdn constructs; near lists; after',
+    mkdn: '- list item\n'
+        + '\n'
+        + 'attribute:: value\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">value</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<ul>\n'
+        + '<li>list item</li>\n'
+        + '</ul>\n',
+    data: {
+      string: { 'attribute': 'value' },
+      value: { 'attribute': 'value' },
+      parse: { 'attribute': [{ type: 'string', string: 'value', value: 'value' }] },
     },
   },
 ];

@@ -770,7 +770,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   // multi-line strings
   // folded style (>)
   {
-    descr: 'prefixed; list; mkdn-separated; string; folded (>); basic',
+    descr: 'prefixed; list; mkdn-separated; multi-line; folded (>); basic',
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- >\n'
@@ -781,7 +781,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">first</span></dd>\n'
-        + '<dd><span class="attr string attribute">line one line two</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two<br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -793,7 +793,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
                      + '  line two',
       },
       value: {
-        'attribute': ['first', 'line one line two'],
+        'attribute': ['first', 'line one line two\n'],
       },
       parse: {
         'attribute': [
@@ -805,14 +805,14 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           {
             type: 'string',
             string: '>\n  line one\n  line two',
-            value: 'line one line two',
+            value: 'line one line two\n',
           },
         ],
       },
     },
   },
   {
-    descr: 'prefixed; list; mkdn-separated; string; folded (>); with trailing newline',
+    descr: 'prefixed; list; mkdn-separated; multi-line; folded (>); with trailing newline',
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- >\n'
@@ -824,7 +824,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">first</span></dd>\n'
-        + '<dd><span class="attr string attribute">line one line two </span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two<br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -836,7 +836,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
                      + '  line two\n',
       },
       value: {
-        'attribute': ['first', 'line one line two '],
+        'attribute': ['first', 'line one line two\n'],
       },
       parse: {
         'attribute': [
@@ -848,7 +848,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           {
             type: 'string',
             string: '>\n  line one\n  line two\n',
-            value: 'line one line two ',
+            value: 'line one line two\n',
           },
         ],
       },
@@ -856,7 +856,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   // literal style (|)
   {
-    descr: 'prefixed; list; mkdn-separated; string; literal (|); basic',
+    descr: 'prefixed; list; mkdn-separated; multi-line; literal (|); basic',
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- |\n'
@@ -867,7 +867,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">first</span></dd>\n'
-        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one<br>line two<br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -879,7 +879,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
                      + '  line two',
       },
       value: {
-        'attribute': ['first', 'line one\nline two'],
+        'attribute': ['first', 'line one\nline two\n'],
       },
       parse: {
         'attribute': [
@@ -891,7 +891,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           {
             type: 'string',
             string: '|\n  line one\n  line two',
-            value: 'line one\nline two',
+            value: 'line one\nline two\n',
           },
         ],
       },
@@ -899,7 +899,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   // chomped folded (>-)
   {
-    descr: 'prefixed; list; mkdn-separated; string; folded chomped (>-); strips trailing newlines',
+    descr: 'prefixed; list; mkdn-separated; multi-line; folded chomped (>-); strips trailing newlines',
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- >-\n'
@@ -941,30 +941,29 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
       },
     },
   },
-  // chomped literal (>|)
+  // literal strip (|-)
   {
-    descr: 'prefixed; list; mkdn-separated; string; literal chomped (>|); strips trailing newlines',
+    descr: 'prefixed; list; mkdn-separated; multi-line; literal strip (|-); strips trailing newlines',
     mkdn: ':attribute::\n'
           + '- first\n'
-          + '- >|\n'
+          + '- |-\n'
           + '  line one\n'
-          + '  line two\n'
-          + '\n',
+          + '  line two\n',
     html: '<aside class="attrbox">\n'
         + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">first</span></dd>\n'
-        + '<dd><span class="attr string attribute">line one\nline two</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one<br>line two</span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
         'attribute': '\n'
                      + '- first\n'
-                     + '- >|\n'
+                     + '- |-\n'
                      + '  line one\n'
-                     + '  line two\n',
+                     + '  line two',
       },
       value: {
         'attribute': ['first', 'line one\nline two'],
@@ -978,8 +977,96 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           },
           {
             type: 'string',
-            string: '>|\n  line one\n  line two\n',
+            string: '|-\n  line one\n  line two',
             value: 'line one\nline two',
+          },
+        ],
+      },
+    },
+  },
+  // literal keep (|+)
+  {
+    descr: 'prefixed; list; mkdn-separated; multi-line; literal keep (|+); preserves trailing newlines',
+    mkdn: ':attribute::\n'
+          + '- first\n'
+          + '- |+\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one<br>line two<br><br></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- first\n'
+                     + '- |+\n'
+                     + '  line one\n'
+                     + '  line two\n',
+      },
+      value: {
+        'attribute': ['first', 'line one\nline two\n\n'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'first',
+            value: 'first',
+          },
+          {
+            type: 'string',
+            string: '|+\n  line one\n  line two\n\n',
+            value: 'line one\nline two\n\n',
+          },
+        ],
+      },
+    },
+  },
+  // folded keep (>+)
+  {
+    descr: 'prefixed; list; mkdn-separated; multi-line; folded keep (>+); preserves trailing newlines',
+    mkdn: ':attribute::\n'
+          + '- first\n'
+          + '- >+\n'
+          + '  line one\n'
+          + '  line two\n'
+          + '\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">first</span></dd>\n'
+        + '<dd><span class="attr string attribute">line one line two<br><br></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': '\n'
+                     + '- first\n'
+                     + '- >+\n'
+                     + '  line one\n'
+                     + '  line two\n',
+      },
+      value: {
+        'attribute': ['first', 'line one line two\n\n'],
+      },
+      parse: {
+        'attribute': [
+          {
+            type: 'string',
+            string: 'first',
+            value: 'first',
+          },
+          {
+            type: 'string',
+            string: '>+\n  line one\n  line two\n\n',
+            value: 'line one line two\n\n',
           },
         ],
       },
@@ -987,7 +1074,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
   },
   // edge cases
   {
-    descr: 'prefixed; list; mkdn-separated; string; folded (>); empty block',
+    descr: 'prefixed; list; mkdn-separated; multi-line; folded (>); empty block',
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- >\n'
@@ -997,7 +1084,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
         + '<dl>\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">first</span></dd>\n'
-        + '<dd><span class="attr string attribute"></span></dd>\n'
+        + '<dd><span class="attr string attribute"><br></span></dd>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
@@ -1007,7 +1094,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
                      + '- >\n',
       },
       value: {
-        'attribute': ['first', ''],
+        'attribute': ['first', '\n'],
       },
       parse: {
         'attribute': [
@@ -1019,7 +1106,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           {
             type: 'string',
             string: '>\n',
-            value: '',
+            value: '\n',
           },
         ],
       },
