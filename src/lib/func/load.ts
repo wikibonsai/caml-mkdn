@@ -27,17 +27,58 @@ function parseMultiLineString(indicator: string, blockContent: string): any {
 }
 
 function handleStandaloneMultiLine(content: string, res: CamlLoadPayload): string {
-  return content.replace(RGX.MLINE.SINGLE, (match, key, indicator, blockContent) => {
-    // Parse the multi-line string using shared function
+  const lines = content.split('\n');
+  const headerRgx = new RegExp(
+    '^' + RGX.MARKER.KEY_PRFX.source + '?'
+    + '(' + RGX.VALID_CHARS.KEY.source + ')'
+    + RGX.MARKER.COL.source
+    + ' *' + RGX.MARKER.MLINE_STR.source + '$'
+  , 'i');
+  const consumed: Set<number> = new Set();
+
+  for (let i = 0; i < lines.length; i++) {
+    const headerMatch = headerRgx.exec(lines[i]);
+    if (!headerMatch) continue;
+    const trimmedKey = headerMatch[1].trim();
+    const indicator = headerMatch[2];
+    consumed.add(i);
+    // collect continuation lines: indented or empty (but stop at non-indented content)
+    const blockLines: string[] = [];
+    let j = i + 1;
+    while (j < lines.length) {
+      const line = lines[j];
+      if (line.trim() === '') {
+        // empty line: include if next line is indented, otherwise end
+        if (j + 1 < lines.length && /^\s+/.test(lines[j + 1])) {
+          blockLines.push(line);
+          consumed.add(j);
+          j++;
+        } else {
+          // trailing empty line(s) — collect all for keep mode
+          while (j < lines.length && lines[j].trim() === '') {
+            blockLines.push(lines[j]);
+            consumed.add(j);
+            j++;
+          }
+          break;
+        }
+      } else if (/^\s/.test(line)) {
+        blockLines.push(line);
+        consumed.add(j);
+        j++;
+      } else {
+        break;
+      }
+    }
+    i = j - 1;
+    const blockContent = blockLines.join('\n');
     const parsedValue = parseMultiLineString(indicator, blockContent);
-    
-    // Store the parsed value directly in the result
-    const trimmedKey = key.trim();
     res.data[trimmedKey] = parsedValue;
-    
-    // Return empty string to remove this from content
-    return '';
-  });
+  }
+
+  // rebuild content without consumed lines
+  const remaining = lines.filter((_, idx) => !consumed.has(idx));
+  return remaining.join('\n');
 }
 
 function handleCommaListMultiLine(content: string, res: CamlLoadPayload): string {
@@ -108,37 +149,6 @@ function handleMkdnListMultiLine(content: string, res: CamlLoadPayload): string 
   });
 }
 
-function extractMultiLineBlock(lines: string[], startIndex: number): {content: string, lineCount: number} {
-  const blockLines: string[] = [];
-  let i = startIndex;
-  
-  while (i < lines.length) {
-    const line = lines[i];
-    
-    if (line.trim() === '') {
-      // Empty line - check if next line is indented
-      if (i + 1 < lines.length && /^\s+/.test(lines[i + 1])) {
-        blockLines.push(line);
-        i++;
-        continue;
-      } else {
-        break; // End of block
-      }
-    } else if (/^\s+/.test(line)) {
-      // Indented line - part of block
-      blockLines.push(line);
-      i++;
-    } else {
-      // Non-indented line - end of block
-      break;
-    }
-  }
-  
-  return {
-    content: blockLines.join('\n'),
-    lineCount: i - startIndex
-  };
-}
 
 function normalizeMultiLineContent(content: string): string {
   // Remove common leading whitespace but preserve relative indentation
