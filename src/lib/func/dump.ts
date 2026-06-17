@@ -9,6 +9,15 @@ export function dump(attrs: any, opts?: CamlDumpOpts): string {
   const multiLine: 'none' | 'literal' | 'folded' = opts?.multiLine  ?? 'none';
   const chomp: 'clip' | 'strip' | 'keep'         = opts?.chomp      ?? 'clip';
   const indent: number                           = opts?.indent     ?? 2;
+  // validate: multi-line strings are not supported in comma-separated lists
+  if (multiLine !== 'none' && listFormat === 'comma') {
+    const hasMultiLineValues = Object.values(attrs).some((v: any) =>
+      Array.isArray(v) && v.some((item: any) => `${item}`.includes('\n'))
+    );
+    if (hasMultiLineValues) {
+      console.warn('dump(): multi-line strings are not supported in comma-separated lists. Use listFormat: \'mkdn\' instead.');
+    }
+  }
   let attrString: string = '';
   // find longest key to prettify against
   let prettyPad: number = 0;
@@ -88,7 +97,12 @@ export function dump(attrs: any, opts?: CamlDumpOpts): string {
               attrString += ' ';
             }
           }
-          attrString += '- ' + v + '\n';
+          const strV: string = `${v}`;
+          if (multiLine !== 'none' && strV.includes('\n')) {
+            attrString += '- ' + serializeMultiLine(strV, multiLine, chomp, indent);
+          } else {
+            attrString += '- ' + strV + '\n';
+          }
           break;
         default:
           console.error('not a valid listFormat');

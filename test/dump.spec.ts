@@ -39,13 +39,16 @@ describe('dump()', () => {
         if (test.data && typeof test.data.string === 'object' && Object.keys(test.data.string).length > 1) { return; }
         const mlOpts = getMultiLineOpts(test.descr);
         if (mlOpts) {
-          // multi-line in lists can't round-trip — dump doesn't serialize
-          // individual list items as block scalars
-          if (test.descr.includes('list;')) { return; }
-          // multi-line single: round-trip test (data equality, not string equality)
+          // comma lists don't support multi-line (indicators are literal strings)
+          if (test.descr.includes('comma-separated')) { return; }
+          // multi-line: round-trip test (data equality, not string equality)
+          // add listFormat for mkdn list cases
           it(desc, () => {
             const loaded = caml.load(test.mkdn);
             const opts: any = { ...test.opts, ...mlOpts };
+            if (test.descr.includes('mkdn-separated')) {
+              opts.listFormat = 'mkdn';
+            }
             const dumped: string = caml.dump(loaded.data, opts);
             const reloaded = caml.load(dumped);
             assert.deepStrictEqual(reloaded.data, loaded.data);
@@ -144,6 +147,19 @@ describe('dump()', () => {
         caml.dump({ title: 'simple' }, { prefix: true, format: 'none', multiLine: 'literal', chomp: 'clip' }),
         ':title::simple\n',
       );
+    });
+
+    it('comma list with multi-line value warns and dumps inline', () => {
+      const warnings: string[] = [];
+      const origWarn = console.warn;
+      console.warn = (msg: string) => warnings.push(msg);
+      caml.dump(
+        { tags: ['first', 'line one\nline two\n'] },
+        { prefix: true, format: 'none', listFormat: 'comma', multiLine: 'literal', chomp: 'clip' },
+      );
+      console.warn = origWarn;
+      assert.strictEqual(warnings.length, 1);
+      assert.ok(warnings[0].includes('not supported in comma-separated'));
     });
 
   });

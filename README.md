@@ -139,6 +139,17 @@ Dump CAML attribute lists by comma-separation or mkdn-list-separation.
     - 2
     - 3
     ```
+
+Note: multi-line strings in lists are only supported with `'mkdn'` format. When `multiLine` is set and a list item contains newlines, it is serialized as a block scalar:
+
+```ts
+dump({ tags: ['first', 'line one\nline two\n'] }, { listFormat: 'mkdn', multiLine: 'literal', chomp: 'clip' });
+// : tags ::
+//   - first
+//   - |
+//     line one
+//     line two
+```
 ##### `prefix: boolean`
 
 Whether or not to use the colon `:` prefix when dumping CAML attributes.
