@@ -108,9 +108,11 @@ export function resolve(value: string): CamlValData {
     };
   }
   // if the value is a multi-line string, treat it as a string
+  // must contain \n (actual block content) — bare indicators without
+  // content are treated as literal string values
   // order matters: longer patterns first to avoid partial matches
   const multiLineIndicators: string[] = ['>-', '>+', '|-', '|+', '>', '|'];
-  if (multiLineIndicators.some(ind => value.trim().startsWith(ind))) {
+  if (value.includes('\n') && multiLineIndicators.some(ind => value.trim().startsWith(ind))) {
     const indicator: string = multiLineIndicators.find(ind => value.trim().startsWith(ind))!;
     const trimmedValue = value.trim();
     const block: string = value.slice(value.trim().indexOf(indicator) + indicator.length + 1);

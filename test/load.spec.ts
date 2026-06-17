@@ -47,4 +47,25 @@ describe('load()', () => {
   run('prefixed', camlPrefixedCases);
   run('unprefixed', camlUnprefixedCases);
 
+  describe('load() multi-line in lists', () => {
+
+    it('comma list does NOT support multi-line indicators (treated as literal strings)', () => {
+      const r = caml.load(':attr::first, >\n');
+      assert.deepStrictEqual(r.data['attr'], ['first', '>']);
+      const r2 = caml.load(':attr::first, |\n');
+      assert.deepStrictEqual(r2.data['attr'], ['first', '|']);
+      const r3 = caml.load(':attr::first, >-\n');
+      assert.deepStrictEqual(r3.data['attr'], ['first', '>-']);
+    });
+
+    it('mkdn list with all indicators', () => {
+      const r = caml.load(':a::\n- x\n- >\n  folded\n:b::\n- x\n- |\n  literal\n:c::\n- x\n- >-\n  strip\n:d::\n- x\n- |-\n  lit-strip\n');
+      assert.deepStrictEqual(r.data['a'], ['x', 'folded\n']);
+      assert.deepStrictEqual(r.data['b'], ['x', 'literal\n']);
+      assert.deepStrictEqual(r.data['c'], ['x', 'strip']);
+      assert.deepStrictEqual(r.data['d'], ['x', 'lit-strip']);
+    });
+
+  });
+
 });

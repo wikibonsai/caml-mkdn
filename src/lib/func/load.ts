@@ -8,11 +8,10 @@ function preprocessMultiLineStrings(content: string, res: CamlLoadPayload): stri
   
   // Handle standalone multi-line strings first - parse them directly
   result = handleStandaloneMultiLine(result, res);
-  
-  // Handle multi-line strings in comma-separated lists
-  result = handleCommaListMultiLine(result, res);
-  
+
   // Handle multi-line strings in markdown lists
+  // Note: multi-line strings are NOT supported in comma-separated lists.
+  // Indicators (>, |, etc.) in comma lists are treated as literal string values.
   result = handleMkdnListMultiLine(result, res);
   
   return result;
@@ -81,44 +80,17 @@ function handleStandaloneMultiLine(content: string, res: CamlLoadPayload): strin
   return remaining.join('\n');
 }
 
-function handleCommaListMultiLine(content: string, res: CamlLoadPayload): string {
-  // Pattern: ":key::value1,value2, >\n  multi-line content"
-  const commaMultiLinePattern = /^((?:: ?)?[^\n\r!:^|[\]]+)(?: *:: ?)([^,\n]*(?:,[^,\n]*)*), *(>-|>\||>|\|)\s*\n((?:\s+.*\n?)*)/gm;
-  
-  return content.replace(commaMultiLinePattern, (match, key, previousValues, indicator, blockContent) => {
-    // Parse the multi-line part using shared function
-    const parsedValue = parseMultiLineString(indicator, blockContent);
-    
-    // Parse all previous comma-separated values
-    const trimmedKey = key.replace(/^: ?/, '').trim();
-    const values: any[] = [];
-    
-    // Split and parse previous values
-    if (previousValues.trim()) {
-      const prevItems = previousValues.split(',');
-      for (const item of prevItems) {
-        const trimmedItem = item.trim();
-        if (trimmedItem) {
-          const itemParsed = resolve(trimmedItem);
-          values.push(itemParsed.value);
-        }
-      }
-    }
-    
-    // Add the multi-line value
-    values.push(parsedValue);
-    
-    // Store the complete array
-    res.data[trimmedKey] = values;
-    
-    // Return empty string to remove this from content
-    return '';
-  });
-}
 
 function handleMkdnListMultiLine(content: string, res: CamlLoadPayload): string {
   // Pattern: ":key::\n- value1\n- >\n  multi-line content"
-  const mkdnMultiLinePattern = /^((?:: ?)?[^\n\r!:^|[\]]+)(?: *:: ?)\n((?:- [^\n]*\n)*?)- *(>-|>\||>|\|)\s*\n((?:\s+.*\n?)*)/gm;
+  const mkdnMultiLinePattern = new RegExp(
+    '^' + RGX.MARKER.KEY_PRFX.source + '?'
+    + '(' + RGX.VALID_CHARS.KEY.source + ')'
+    + RGX.MARKER.COL.source + '\\n'
+    + '((?:- [^\\n]*\\n)*?)- *'
+    + RGX.MARKER.MLINE_STR.source + '\\s*\\n'
+    + '((?:\\s+.*\\n?)*)'
+  , 'gm');
   
   return content.replace(mkdnMultiLinePattern, (match, key, previousItems, indicator, blockContent) => {
     // Parse the multi-line part using shared function

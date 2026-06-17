@@ -387,14 +387,7 @@ Resulting HTML:
 </aside>
 ```
 
-Multi-line strings can also appear in lists:
-
-```markdown
-:attrtype::first, |
-  line one
-  line two
-
-```
+Multi-line strings can appear in markdown-style lists:
 
 ```markdown
 :attrtype::
@@ -403,4 +396,16 @@ Multi-line strings can also appear in lists:
   line one
   line two
 
+```
+
+Multi-line strings are NOT supported in comma-separated lists. Indicators in comma lists are treated as literal string values:
+
+```markdown
+:attrtype::first, >
+```
+
+```json
+{
+  "attrtype": ["first", ">"]
+}
 ```
