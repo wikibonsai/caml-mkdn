@@ -729,7 +729,7 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
   // multi-line strings
   // folded style (>)
   {
-    descr: 'unprefixed; list; comma-separated; multi-line; folded (>); basic',
+    descr: 'unprefixed; list; comma-separated; string; multi-line; folded (>); basic',
     mkdn: 'attribute::first, >\n'
           + '  line one\n'
           + '  line two\n',
@@ -767,7 +767,7 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
     },
   },
   {
-    descr: 'unprefixed; list; comma-separated; multi-line; folded (>); with trailing newline',
+    descr: 'unprefixed; list; comma-separated; string; multi-line; folded (>); with trailing newline',
     mkdn: 'attribute::first, >\n'
           + '  line one\n'
           + '  line two\n'
@@ -807,7 +807,7 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
   },
   // literal style (|)
   {
-    descr: 'unprefixed; list; comma-separated; multi-line; literal (|); basic',
+    descr: 'unprefixed; list; comma-separated; string; multi-line; literal (|); basic',
     mkdn: 'attribute::first, |\n'
           + '  line one\n'
           + '  line two\n',
@@ -846,7 +846,7 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
   },
   // chomped folded (>-)
   {
-    descr: 'unprefixed; list; comma-separated; multi-line; folded chomped (>-); strips trailing newlines',
+    descr: 'unprefixed; list; comma-separated; string; multi-line; folded chomped (>-); strips trailing newlines',
     mkdn: 'attribute::first, >-\n'
           + '  line one\n'
           + '  line two\n'
@@ -886,7 +886,7 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
   },
   // literal strip (|-)
   {
-    descr: 'unprefixed; list; comma-separated; multi-line; literal strip (|-); strips trailing newlines',
+    descr: 'unprefixed; list; comma-separated; string; multi-line; literal strip (|-); strips trailing newlines',
     mkdn: 'attribute::first, |-\n'
           + '  line one\n'
           + '  line two\n'
@@ -926,7 +926,7 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
   },
   // literal keep (|+)
   {
-    descr: 'unprefixed; list; comma-separated; multi-line; literal keep (|+); preserves trailing newlines',
+    descr: 'unprefixed; list; comma-separated; string; multi-line; literal keep (|+); preserves trailing newlines',
     mkdn: 'attribute::first, |+\n'
           + '  line one\n'
           + '  line two\n'
@@ -966,7 +966,7 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
   },
   // folded keep (>+)
   {
-    descr: 'unprefixed; list; comma-separated; multi-line; folded keep (>+); preserves trailing newlines',
+    descr: 'unprefixed; list; comma-separated; string; multi-line; folded keep (>+); preserves trailing newlines',
     mkdn: 'attribute::first, >+\n'
           + '  line one\n'
           + '  line two\n'
@@ -1006,7 +1006,7 @@ export const camlUnprefixedListCommaCases: CamlTestCase[] = [
   },
   // edge cases
   {
-    descr: 'unprefixed; list; comma-separated; multi-line; folded (>); empty block',
+    descr: 'unprefixed; list; comma-separated; string; multi-line; folded (>); empty block',
     mkdn: 'attribute::first, >\n'
           + '\n',
     html: '<aside class="attrbox">\n'

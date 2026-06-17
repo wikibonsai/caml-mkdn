@@ -639,7 +639,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   // multi-line strings
   // folded style (>)
   {
-    descr: 'unprefixed; single; multi-line; folded (>); basic',
+    descr: 'unprefixed; single; string; multi-line; folded (>); basic',
     mkdn: 'attribute:: >\n'
           + '  line one\n'
           + '  line two\n',
@@ -669,7 +669,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     },
   },
   {
-    descr: 'unprefixed; single; multi-line; folded (>); with trailing newline',
+    descr: 'unprefixed; single; string; multi-line; folded (>); with trailing newline',
     mkdn: 'attribute:: >\n'
           + '  line one\n'
           + '  line two\n'
@@ -701,7 +701,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   },
   // literal style (|)
   {
-    descr: 'unprefixed; single; multi-line; literal (|); basic',
+    descr: 'unprefixed; single; string; multi-line; literal (|); basic',
     mkdn: 'attribute:: |\n'
           + '  line one\n'
           + '  line two\n',
@@ -732,7 +732,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   },
   // chomped folded (>-)
   {
-    descr: 'unprefixed; single; multi-line; folded chomped (>-); strips trailing newlines',
+    descr: 'unprefixed; single; string; multi-line; folded chomped (>-); strips trailing newlines',
     mkdn: 'attribute:: >-\n'
           + '  line one\n'
           + '  line two\n'
@@ -764,7 +764,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   },
   // empty block
   {
-    descr: 'unprefixed; single; multi-line; folded (>); empty block',
+    descr: 'unprefixed; single; string; multi-line; folded (>); empty block',
     mkdn: 'attribute:: >\n'
           + '\n',
     html: '<aside class="attrbox">\n'
@@ -792,7 +792,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   },
   // multi-paragraph: blank line within folded block
   {
-    descr: 'unprefixed; single; multi-line; folded (>); multi-paragraph',
+    descr: 'unprefixed; single; string; multi-line; folded (>); multi-paragraph',
     mkdn: 'attribute:: >\n'
           + '  line one\n'
           + '\n'
@@ -822,7 +822,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   },
   // multi-paragraph: blank line within literal block
   {
-    descr: 'unprefixed; single; multi-line; literal (|); multi-paragraph',
+    descr: 'unprefixed; single; string; multi-line; literal (|); multi-paragraph',
     mkdn: 'attribute:: |\n'
           + '  line one\n'
           + '\n'
@@ -852,7 +852,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   },
   // nested indentation: relative indent preserved in literal
   {
-    descr: 'unprefixed; single; multi-line; literal (|); nested indentation',
+    descr: 'unprefixed; single; string; multi-line; literal (|); nested indentation',
     mkdn: 'attribute:: |\n'
           + '  line one\n'
           + '    indented\n'
@@ -883,7 +883,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   // YAML chomping variants
   // literal strip (|-)
   {
-    descr: 'unprefixed; single; multi-line; literal strip (|-); strips trailing newlines',
+    descr: 'unprefixed; single; string; multi-line; literal strip (|-); strips trailing newlines',
     mkdn: 'attribute:: |-\n'
           + '  line one\n'
           + '  line two\n'
@@ -913,7 +913,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   },
   // literal keep (|+)
   {
-    descr: 'unprefixed; single; multi-line; literal keep (|+); preserves trailing newlines',
+    descr: 'unprefixed; single; string; multi-line; literal keep (|+); preserves trailing newlines',
     mkdn: 'attribute:: |+\n'
           + '  line one\n'
           + '  line two\n'
@@ -943,7 +943,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   },
   // folded keep (>+)
   {
-    descr: 'unprefixed; single; multi-line; folded keep (>+); preserves trailing newlines',
+    descr: 'unprefixed; single; string; multi-line; folded keep (>+); preserves trailing newlines',
     mkdn: 'attribute:: >+\n'
           + '  line one\n'
           + '  line two\n'
@@ -968,6 +968,183 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
           string: ' >+\n  line one\n  line two\n\n',
           value: 'line one line two\n\n',
         }],
+      },
+    },
+  },
+  {
+    descr: 'unprefixed; single; string; multi-line; adjacent; two multi-line attrs back-to-back',
+    mkdn: 'description:: >\n'
+        + '  This is folded text.\n'
+        + 'notes:: |\n'
+        + '  line one\n'
+        + '  line two\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>description</dt>\n'
+        + '<dd><span class="attr string description">This is folded text.<br></span></dd>\n'
+        + '<dt>notes</dt>\n'
+        + '<dd><span class="attr string notes">line one<br>line two<br></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'description': ' >\n  This is folded text.',
+        'notes': ' |\n  line one\n  line two',
+      },
+      value: {
+        'description': 'This is folded text.\n',
+        'notes': 'line one\nline two\n',
+      },
+      parse: {
+        'description': [{ type: 'string', string: ' >\n  This is folded text.', value: 'This is folded text.\n' }],
+        'notes': [{ type: 'string', string: ' |\n  line one\n  line two', value: 'line one\nline two\n' }],
+      },
+    },
+  },
+  {
+    descr: 'unprefixed; single; string; multi-line; adjacent; multi-line followed by regular attr',
+    mkdn: 'description:: >\n'
+        + '  folded text.\n'
+        + 'count:: 42\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>description</dt>\n'
+        + '<dd><span class="attr string description">folded text.<br></span></dd>\n'
+        + '<dt>count</dt>\n'
+        + '<dd><span class="attr int count">42</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'description': ' >\n  folded text.',
+        'count': '42',
+      },
+      value: {
+        'description': 'folded text.\n',
+        'count': 42,
+      },
+      parse: {
+        'description': [{ type: 'string', string: ' >\n  folded text.', value: 'folded text.\n' }],
+        'count': [{ type: 'int', string: '42', value: 42 }],
+      },
+    },
+  },
+  {
+    descr: 'unprefixed; single; string; multi-line; adjacent; regular attr followed by multi-line',
+    mkdn: 'title:: Doc\n'
+        + 'description:: >\n'
+        + '  folded text.\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>title</dt>\n'
+        + '<dd><span class="attr string title">Doc</span></dd>\n'
+        + '<dt>description</dt>\n'
+        + '<dd><span class="attr string description">folded text.<br></span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'title': 'Doc',
+        'description': ' >\n  folded text.',
+      },
+      value: {
+        'title': 'Doc',
+        'description': 'folded text.\n',
+      },
+      parse: {
+        'title': [{ type: 'string', string: 'Doc', value: 'Doc' }],
+        'description': [{ type: 'string', string: ' >\n  folded text.', value: 'folded text.\n' }],
+      },
+    },
+  },
+  {
+    descr: 'unprefixed; single; string; multi-line; adjacent; four indicators back-to-back',
+    mkdn: 'a:: >\n'
+        + '  folded\n'
+        + 'b:: |\n'
+        + '  literal\n'
+        + 'c:: >-\n'
+        + '  strip-folded\n'
+        + 'd:: |-\n'
+        + '  strip-literal\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>a</dt>\n'
+        + '<dd><span class="attr string a">folded<br></span></dd>\n'
+        + '<dt>b</dt>\n'
+        + '<dd><span class="attr string b">literal<br></span></dd>\n'
+        + '<dt>c</dt>\n'
+        + '<dd><span class="attr string c">strip-folded</span></dd>\n'
+        + '<dt>d</dt>\n'
+        + '<dd><span class="attr string d">strip-literal</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'a': ' >\n  folded',
+        'b': ' |\n  literal',
+        'c': ' >-\n  strip-folded',
+        'd': ' |-\n  strip-literal',
+      },
+      value: {
+        'a': 'folded\n',
+        'b': 'literal\n',
+        'c': 'strip-folded',
+        'd': 'strip-literal',
+      },
+      parse: {
+        'a': [{ type: 'string', string: ' >\n  folded', value: 'folded\n' }],
+        'b': [{ type: 'string', string: ' |\n  literal', value: 'literal\n' }],
+        'c': [{ type: 'string', string: ' >-\n  strip-folded', value: 'strip-folded' }],
+        'd': [{ type: 'string', string: ' |-\n  strip-literal', value: 'strip-literal' }],
+      },
+    },
+  },
+  {
+    descr: 'unprefixed; single; string; multi-line; adjacent; multi-line with content preserved',
+    mkdn: 'title:: Test\n'
+        + 'desc:: >\n'
+        + '  folded text.\n'
+        + 'tags:: a, b, c\n'
+        + '\n'
+        + 'Some paragraph content.\n',
+    html: '<aside class="attrbox">\n'
+        + '<span class="attrbox-title">Attributes</span>\n'
+        + '<dl>\n'
+        + '<dt>title</dt>\n'
+        + '<dd><span class="attr string title">Test</span></dd>\n'
+        + '<dt>desc</dt>\n'
+        + '<dd><span class="attr string desc">folded text.<br></span></dd>\n'
+        + '<dt>tags</dt>\n'
+        + '<dd><span class="attr string tags">a</span></dd>\n'
+        + '<dd><span class="attr string tags">b</span></dd>\n'
+        + '<dd><span class="attr string tags">c</span></dd>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<p>Some paragraph content.</p>\n',
+    data: {
+      string: {
+        'title': 'Test',
+        'desc': ' >\n  folded text.',
+        'tags': 'a, b, c',
+      },
+      value: {
+        'title': 'Test',
+        'desc': 'folded text.\n',
+        'tags': ['a', 'b', 'c'],
+      },
+      parse: {
+        'title': [{ type: 'string', string: 'Test', value: 'Test' }],
+        'desc': [{ type: 'string', string: ' >\n  folded text.', value: 'folded text.\n' }],
+        'tags': [
+          { type: 'string', string: 'a', value: 'a' },
+          { type: 'string', string: 'b', value: 'b' },
+          { type: 'string', string: 'c', value: 'c' },
+        ],
       },
     },
   },

@@ -770,7 +770,7 @@ export const camlUnprefixedListMkdnCases: CamlTestCase[] = [
   // multi-line strings
   // folded style (>)
   {
-    descr: 'unprefixed; list; mkdn-separated; multi-line; folded (>); basic',
+    descr: 'unprefixed; list; mkdn-separated; string; multi-line; folded (>); basic',
     mkdn: 'attribute::\n'
           + '- first\n'
           + '- >\n'
@@ -812,7 +812,7 @@ export const camlUnprefixedListMkdnCases: CamlTestCase[] = [
     },
   },
   {
-    descr: 'unprefixed; list; mkdn-separated; multi-line; folded (>); with trailing newline',
+    descr: 'unprefixed; list; mkdn-separated; string; multi-line; folded (>); with trailing newline',
     mkdn: 'attribute::\n'
           + '- first\n'
           + '- >\n'
@@ -856,7 +856,7 @@ export const camlUnprefixedListMkdnCases: CamlTestCase[] = [
   },
   // literal style (|)
   {
-    descr: 'unprefixed; list; mkdn-separated; multi-line; literal (|); basic',
+    descr: 'unprefixed; list; mkdn-separated; string; multi-line; literal (|); basic',
     mkdn: 'attribute::\n'
           + '- first\n'
           + '- |\n'
@@ -899,7 +899,7 @@ export const camlUnprefixedListMkdnCases: CamlTestCase[] = [
   },
   // chomped folded (>-)
   {
-    descr: 'unprefixed; list; mkdn-separated; multi-line; folded chomped (>-); strips trailing newlines',
+    descr: 'unprefixed; list; mkdn-separated; string; multi-line; folded chomped (>-); strips trailing newlines',
     mkdn: 'attribute::\n'
           + '- first\n'
           + '- >-\n'
@@ -943,7 +943,7 @@ export const camlUnprefixedListMkdnCases: CamlTestCase[] = [
   },
   // literal strip (|-)
   {
-    descr: 'unprefixed; list; mkdn-separated; multi-line; literal strip (|-); strips trailing newlines',
+    descr: 'unprefixed; list; mkdn-separated; string; multi-line; literal strip (|-); strips trailing newlines',
     mkdn: 'attribute::\n'
           + '- first\n'
           + '- |-\n'
@@ -986,7 +986,7 @@ export const camlUnprefixedListMkdnCases: CamlTestCase[] = [
   },
   // literal keep (|+)
   {
-    descr: 'unprefixed; list; mkdn-separated; multi-line; literal keep (|+); preserves trailing newlines',
+    descr: 'unprefixed; list; mkdn-separated; string; multi-line; literal keep (|+); preserves trailing newlines',
     mkdn: 'attribute::\n'
           + '- first\n'
           + '- |+\n'
@@ -1030,7 +1030,7 @@ export const camlUnprefixedListMkdnCases: CamlTestCase[] = [
   },
   // folded keep (>+)
   {
-    descr: 'unprefixed; list; mkdn-separated; multi-line; folded keep (>+); preserves trailing newlines',
+    descr: 'unprefixed; list; mkdn-separated; string; multi-line; folded keep (>+); preserves trailing newlines',
     mkdn: 'attribute::\n'
           + '- first\n'
           + '- >+\n'
@@ -1074,7 +1074,7 @@ export const camlUnprefixedListMkdnCases: CamlTestCase[] = [
   },
   // edge cases
   {
-    descr: 'unprefixed; list; mkdn-separated; multi-line; folded (>); empty block',
+    descr: 'unprefixed; list; mkdn-separated; string; multi-line; folded (>); empty block',
     mkdn: 'attribute::\n'
           + '- first\n'
           + '- >\n'

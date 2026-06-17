@@ -339,9 +339,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    // multi-line string
-
-    it('multi-line; folded (gt); basic', testSingle({
+    it('string; multi-line; folded (gt); basic', testSingle({
       mkdn: 'attr::>\n  this is a long string\n  that spans multiple\n  lines\n',
       data: [
         {
