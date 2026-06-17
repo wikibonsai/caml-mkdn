@@ -11,9 +11,12 @@ export interface CamlValData {
 // dump()
 
 export interface CamlDumpOpts {
-  format: 'pretty' | 'pad' | 'none';
-  listFormat: 'comma' | 'mkdn';
-  prefix: boolean;
+  format?: 'pretty' | 'pad' | 'none';
+  listFormat?: 'comma' | 'mkdn';
+  prefix?: boolean;
+  multiLine?: 'none' | 'literal' | 'folded';
+  chomp?: 'clip' | 'strip' | 'keep';
+  indent?: number;
 }
 
 // load()

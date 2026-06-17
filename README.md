@@ -139,7 +139,7 @@ Dump CAML attribute lists by comma-separation or mkdn-list-separation.
     - 2
     - 3
     ```
-##### `prefix: boolean;`
+##### `prefix: boolean`
 
 Whether or not to use the colon `:` prefix when dumping CAML attributes.
 - With:
@@ -150,6 +150,56 @@ Whether or not to use the colon `:` prefix when dumping CAML attributes.
   ```markdown
   key :: value
   ```
+
+##### `multiLine: 'none' | 'literal' | 'folded'`
+
+How to serialize string values that contain newlines.
+- `'none'` (default): dumps the value as-is (newlines appear inline).
+- `'literal'`: emits a `|` block scalar with indented content (preserves newlines).
+- `'folded'`: emits a `>` block scalar, wrapping long lines at ~72 characters (replaces newlines with spaces).
+
+```ts
+const attrs = { poem: 'roses are red\nviolets are blue\n' };
+
+dump(attrs, { multiLine: 'literal' });
+// : poem :: |
+//   roses are red
+//   violets are blue
+
+dump(attrs, { multiLine: 'folded' });
+// : poem :: >
+//   roses are red violets are blue
+```
+
+##### `chomp: 'clip' | 'strip' | 'keep'`
+
+Controls trailing newline behavior for multi-line block scalars. Only applies when `multiLine` is `'literal'` or `'folded'`.
+- `'clip'` (default): emits `|` or `>` — adds a single trailing newline.
+- `'strip'`: emits `|-` or `>-` — no trailing newline.
+- `'keep'`: emits `|+` or `>+` — preserves all trailing newlines from the value.
+
+```ts
+const attrs = { notes: 'line one\nline two' };
+
+dump(attrs, { multiLine: 'literal', chomp: 'clip' });
+// : notes :: |
+//   line one
+//   line two
+
+dump(attrs, { multiLine: 'literal', chomp: 'strip' });
+// : notes :: |-
+//   line one
+//   line two
+
+dump(attrs, { multiLine: 'literal', chomp: 'keep' });
+// : notes :: |+
+//   line one
+//   line two
+```
+
+##### `indent: number`
+
+Number of spaces to indent multi-line block content. Defaults to `2`. Only applies when `multiLine` is `'literal'` or `'folded'`.
 
 ### `load(content: string): CamlLoadPayload`
 

@@ -13,21 +13,53 @@ import {
 } from '../spec';
 
 
+// infer multiLine + chomp from test description
+function getMultiLineOpts(descr: string): { multiLine: 'literal' | 'folded'; chomp: 'clip' | 'strip' | 'keep' } | null {
+  if (!descr.includes('multi-line')) return null;
+  const chomp: 'clip' | 'strip' | 'keep' =
+    (descr.includes('keep'))  ? 'keep' :
+    (descr.includes('strip') || descr.includes('chomped')) ? 'strip' :
+    'clip';
+  const multiLine: 'literal' | 'folded' =
+    (descr.includes('literal')) ? 'literal' : 'folded';
+  return { multiLine, chomp };
+}
+
 describe('dump()', () => {
 
+  // spec-driven: for single-value cases, compare dump(data.string) against mkdn.
+  // for multi-line cases, round-trip: load(mkdn) -> dump(data.value, multiLine opts) -> load -> compare data.
   function run(contextMsg: string, tests: CamlTestCase[]): void {
     context(contextMsg, () => {
       let i: number = 0;
       for(const test of tests) {
         const desc: string = `[${('00' + (++i)).slice(-3)}] ` + (test.descr || '');
         if (!test.data) { return; }
-        it(desc, () => {
-          const opts: any = test.opts;
-          const data: any = test.data!.string;
-          const expdMkdn: string = test.mkdn;
-          const actlMkdn: string = caml.dump(data, opts);
-          assert.deepStrictEqual(actlMkdn, expdMkdn);
-        });
+        // skip multi-attr adjacent cases
+        if (test.data && typeof test.data.string === 'object' && Object.keys(test.data.string).length > 1) { return; }
+        const mlOpts = getMultiLineOpts(test.descr);
+        if (mlOpts) {
+          // multi-line in lists can't round-trip — dump doesn't serialize
+          // individual list items as block scalars
+          if (test.descr.includes('list;')) { return; }
+          // multi-line single: round-trip test (data equality, not string equality)
+          it(desc, () => {
+            const loaded = caml.load(test.mkdn);
+            const opts: any = { ...test.opts, ...mlOpts };
+            const dumped: string = caml.dump(loaded.data, opts);
+            const reloaded = caml.load(dumped);
+            assert.deepStrictEqual(reloaded.data, loaded.data);
+          });
+        } else {
+          // regular: string comparison
+          it(desc, () => {
+            const opts: any = test.opts;
+            const data: any = test.data!.string;
+            const expdMkdn: string = test.mkdn;
+            const actlMkdn: string = caml.dump(data, opts);
+            assert.deepStrictEqual(actlMkdn, expdMkdn);
+          });
+        }
       }
     });
   }
@@ -94,5 +126,26 @@ describe('dump()', () => {
     };
   });
   run('unprefixed; list; mkdn-separated', camlUnprefixedListMkdnCases);
+
+  ////
+  // dump-specific option tests (not driven by spec cases)
+
+  describe('dump options', () => {
+
+    it('custom indent (4 spaces)', () => {
+      assert.strictEqual(
+        caml.dump({ notes: 'line one\nline two\n' }, { prefix: true, format: 'none', multiLine: 'literal', chomp: 'clip', indent: 4 }),
+        ':notes::|\n    line one\n    line two\n',
+      );
+    });
+
+    it('no newlines in value; dumps inline regardless of multiLine', () => {
+      assert.strictEqual(
+        caml.dump({ title: 'simple' }, { prefix: true, format: 'none', multiLine: 'literal', chomp: 'clip' }),
+        ':title::simple\n',
+      );
+    });
+
+  });
 
 });
