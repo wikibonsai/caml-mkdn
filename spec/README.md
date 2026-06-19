@@ -44,11 +44,12 @@ Resulting HTML:
 
 ```html
 <aside class="attrbox">
-  <span class="attrbox-title">Attributes</span>
-    <dl>
+  <dl>
+    <div class="attr-item">
       <dt>attrtype</dt>
-        <dd>a-string</dd>
-    </dl>
+      <dd>a-string</dd>
+    </div>
+  </dl>
 </aside>
 <p>Some more text.</p>
 ```
@@ -123,14 +124,15 @@ Resulting HTML:
 
 ```html
 <aside class="attrbox">
-  <span class="attrbox-title">Attributes</span>
-    <dl>
+  <dl>
+    <div class="attr-item">
       <dt>attrtype</dt>
-        <dd>string-a</dd>
-        <dd>string-b</dd>
-        <dd>string-c</dd>
-        <!-- etc. -->
-    </dl>
+      <dd>string-a</dd>
+      <dd>string-b</dd>
+      <dd>string-c</dd>
+      <!-- etc. -->
+    </div>
+  </dl>
 </aside>
 ```
 
@@ -379,11 +381,12 @@ Resulting HTML:
 
 ```html
 <aside class="attrbox">
-  <span class="attrbox-title">Attributes</span>
-    <dl>
+  <dl>
+    <div class="attr-item">
       <dt>attrtype</dt>
-        <dd><span class="attr string attrtype">line one<br>line two<br></span></dd>
-    </dl>
+      <dd><span class="attr string attrtype">line one<br>line two<br></span></dd>
+    </div>
+  </dl>
 </aside>
 ```
 

@@ -11,7 +11,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; null; all lowercase',
     mkdn: 'attribute::null\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -39,7 +38,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; null; camelCase',
     mkdn: 'attribute::Null\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -67,7 +65,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; null; all uppercase',
     mkdn: 'attribute::NULL\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -96,7 +93,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; bool; all lowercase',
     mkdn: 'attribute::true\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -124,7 +120,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; bool; camelCase',
     mkdn: 'attribute::True\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -152,7 +147,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; bool; all uppercase',
     mkdn: 'attribute::TRUE\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -181,7 +175,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; int; canonical',
     mkdn: 'attribute::1\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -209,7 +202,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; int; octal',
     mkdn: 'attribute::0o14\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -237,7 +229,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; int; hexadecimal',
     mkdn: 'attribute::0xC\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -266,7 +257,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; float; canonical',
     mkdn: 'attribute::1.23015\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -294,7 +284,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; float; exp -- exponential',
     mkdn: 'attribute::12.3015e+02\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -322,7 +311,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; float; nan -- not a number',
     mkdn: 'attribute::.nan\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -351,7 +339,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; time; canonical',
     mkdn: 'attribute::2001-12-15T02:59:43.1Z\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -379,7 +366,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; time; iso8601',
     mkdn: 'attribute::2001-12-14t21:59:43.10-05:00\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -407,7 +393,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; time; spaced',
     mkdn: 'attribute::2001-12-14 21:59:43.10 -5\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -435,7 +420,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; time; date only',
     mkdn: 'attribute::2001-12-14\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -463,7 +447,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; time; int',
     mkdn: 'attribute::+12:00\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -491,7 +474,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; time; float',
     mkdn: 'attribute::+12:00.123\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -520,7 +502,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; string; single-line; w/o whitespace',
     mkdn: 'attribute::this-is-a-string\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -548,7 +529,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; string; single-line; w/ whitespace',
     mkdn: 'attribute::this is a string\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -576,7 +556,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; string; single-line; quotes (double)',
     mkdn: 'attribute::"this is a string"\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -604,7 +583,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; string; single-line; quotes (double); escape commas',
     mkdn: 'attribute::"this, is, a, string"\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -632,7 +610,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; string; single-line; quotes (single)',
     mkdn: 'attribute::\'this is a string\'\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -660,7 +637,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     descr: 'unprefixed; single; string; single-line; quotes (single); escape commas',
     mkdn: 'attribute::\'this, is, a, string\'\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -692,7 +668,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
           + '  line one\n'
           + '  line two\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -725,7 +700,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
           + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -758,7 +732,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
           + '  line one\n'
           + '  line two\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -792,7 +765,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
           + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -824,7 +796,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
     mkdn: 'attribute:: >\n'
           + '\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -856,7 +827,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
           + '\n'
           + '  line two\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -888,7 +858,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
           + '\n'
           + '  line two\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -920,7 +889,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
           + '    indented\n'
           + '  line two\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -953,7 +921,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
           + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -985,7 +952,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
           + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -1017,7 +983,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
           + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -1049,7 +1014,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '  line one\n'
         + '  line two\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>description</dt>\n'
@@ -1082,7 +1046,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '  folded text.\n'
         + 'count:: 42\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>description</dt>\n'
@@ -1115,7 +1078,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + 'description:: >\n'
         + '  folded text.\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>title</dt>\n'
@@ -1153,7 +1115,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + 'd:: |-\n'
         + '  strip-literal\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>a</dt>\n'
@@ -1203,7 +1164,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '\n'
         + 'Some paragraph content.\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>title</dt>\n'
@@ -1283,7 +1243,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '\n'
         + '# heading\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -1304,7 +1263,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '\n'
         + 'attribute:: value\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -1326,7 +1284,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '\n'
         + '> some text\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -1350,7 +1307,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '\n'
         + 'attribute:: value\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -1374,7 +1330,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '\n'
         + '- list item\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -1398,7 +1353,6 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
         + '\n'
         + 'attribute:: value\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'

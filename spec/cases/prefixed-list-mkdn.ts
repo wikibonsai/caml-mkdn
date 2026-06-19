@@ -13,7 +13,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- null\n'
           + '- null\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -51,7 +50,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- Null\n'
           + '- Null\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -89,7 +87,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- NULL\n'
           + '- NULL\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -127,7 +124,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- true\n'
           + '- false\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -165,7 +161,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- True\n'
           + '- False\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -203,7 +198,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- TRUE\n'
           + '- FALSE\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -242,7 +236,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- 10\n'
           + '- -123\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -280,7 +273,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- 0o10\n'
           + '- 0o123\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -318,7 +310,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- 0xC\n'
           + '- 0x014D\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -357,7 +348,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- 1.23015\n'
           + '- -1.23015\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -395,7 +385,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- 12.3015e+02\n'
           + '- 12.3015e-02\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -433,7 +422,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- .NaN\n'
           + '- .nan\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -472,7 +460,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- 2001-12-15T02:59:43.1Z\n'
           + '- 2022-12-15T02:59:43.1Z\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -510,7 +497,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- 2001-12-14t21:59:43.10-05:00\n'
           + '- 2022-12-14t21:59:43.10-05:00\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -548,7 +534,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- 2001-12-14 21:59:43.10 -5\n'
           + '- 2022-12-14 21:59:43.10 -5\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -586,7 +571,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- 2001-12-14\n'
           + '- 2022-12-14\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -624,7 +608,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- +12:00\n'
           + '- 12:00\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -662,7 +645,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- +12:00.123\n'
           + '- 12:00.123\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -701,7 +683,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- this-is-a-string\n'
           + '- and-another-string\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -739,7 +720,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- this is a string\n'
           + '- and another string\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -777,7 +757,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- "this-is,a-string"\n'
           + '- and-another-string\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -819,7 +798,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '  line one\n'
           + '  line two\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -864,7 +842,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -909,7 +886,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '  line one\n'
           + '  line two\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -955,7 +931,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -1000,7 +975,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '  line one\n'
           + '  line two\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -1046,7 +1020,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -1092,7 +1065,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
@@ -1136,7 +1108,6 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           + '- >\n'
           + '\n',
     html: '<aside class="attrbox">\n'
-        + '<span class="attrbox-title">Attributes</span>\n'
         + '<dl>\n'
         + '<div class="attr-group">\n'
         + '<dt>attribute</dt>\n'
