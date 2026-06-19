@@ -25,7 +25,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '[[wikilink]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">\'\'</span></dd>\n'
         + '</div>\n'
@@ -67,7 +67,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '[[wikilink]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">\'\'</span></dd>\n'
         + '</div>\n'
@@ -97,7 +97,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: ': attribute :: [[wikilink]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikilink]]</span></dd>\n'
         + '</div>\n'
@@ -124,7 +124,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: 'attribute :: [[wikilink]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikilink]]</span></dd>\n'
         + '</div>\n'
@@ -151,7 +151,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: 'attribute :: [[my page]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[my page]]</span></dd>\n'
         + '</div>\n'
@@ -178,7 +178,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: 'attribute :: [[my-page]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[my-page]]</span></dd>\n'
         + '</div>\n'
@@ -205,7 +205,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: 'attribute :: [[invalid\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">[[invalid</span></dd>\n'
         + '</div>\n'
@@ -232,7 +232,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: 'attribute :: [[]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">[[]]</span></dd>\n'
         + '</div>\n'
@@ -264,7 +264,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '- [[wikiref2]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
@@ -301,7 +301,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: ':attribute::[[wikiref1]],[[wikiref2]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
@@ -338,7 +338,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '- [[wikiref2]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
@@ -375,7 +375,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: 'attribute::[[wikiref1]],[[wikiref2]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref1]]</span></dd>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref2]]</span></dd>\n'
@@ -413,7 +413,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '- 42\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr int attribute">42</span></dd>\n'
@@ -450,7 +450,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: ':attribute::[[wikiref]],42\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr int attribute">42</span></dd>\n'
@@ -487,7 +487,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '- 42\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr int attribute">42</span></dd>\n'
@@ -524,7 +524,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: 'attribute::[[wikiref]],42\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr int attribute">42</span></dd>\n'
@@ -561,7 +561,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '- true\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr bool attribute">true</span></dd>\n'
@@ -598,7 +598,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: 'attribute::[[wikiref]],true\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr bool attribute">true</span></dd>\n'
@@ -634,7 +634,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: ':attribute::[[wikiref]],true\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr bool attribute">true</span></dd>\n'
@@ -671,7 +671,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '- true\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr bool attribute">true</span></dd>\n'
@@ -709,7 +709,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: ':attribute::[[wikiref]],hello\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr string attribute">hello</span></dd>\n'
@@ -746,7 +746,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '- hello\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr string attribute">hello</span></dd>\n'
@@ -784,7 +784,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: ':attribute::[[wikiref]],1.5\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr float attribute">1.5</span></dd>\n'
@@ -821,7 +821,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '- 1.5\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr float attribute">1.5</span></dd>\n'
@@ -859,7 +859,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: ':attribute::[[wikiref]],2001-12-14\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr time attribute">2001-12-14</span></dd>\n'
@@ -896,7 +896,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '- 2001-12-14\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr time attribute">2001-12-14</span></dd>\n'
@@ -934,7 +934,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: ':attribute::[[wikiref]],null\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr null attribute">null</span></dd>\n'
@@ -971,7 +971,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '- null\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr null attribute">null</span></dd>\n'
@@ -1009,7 +1009,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     mkdn: ':attribute::[[wikiref]],[[invalid\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr wiki attribute">[[wikiref]]</span></dd>\n'
         + '<dd><span class="attr string attribute">[[invalid</span></dd>\n'
@@ -1056,7 +1056,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
           + '- 42\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
-        + '<div class="attr-group">\n'
+        + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
         + '<dd><span class="attr string attribute">[[invalid</span></dd>\n'
         + '<dd><span class="attr int attribute">42</span></dd>\n'
