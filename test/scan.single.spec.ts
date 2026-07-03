@@ -340,7 +340,7 @@ describe('scan() -- single', () => {
     }));
 
     it('string; multi-line; folded (gt); basic', testSingle({
-      mkdn: 'attr::>\n  this is a long string\n  that spans multiple\n  lines\n',
+      mkdn: 'attr::>\n    this is a long string\n    that spans multiple\n    lines\n',
       data: [
         {
           key: { text: 'attr', start: 0 },
@@ -460,6 +460,206 @@ describe('scan() -- single', () => {
     it('prefixed code span; skipped by default', testSingle({
       mkdn: '`:attr::value`\n',
       data: [],
+    }));
+
+  });
+
+  describe('multi-line; boundary', () => {
+
+    it('multi-line folded stops at blank line; next attr parsed separately', testSingle({
+      mkdn: ':desc:: >\n    folded text\n    here\n\ntitle:: Test\n',
+      data: [
+        {
+          key: { text: 'desc', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'folded text here\n', start: 8 } },
+          ],
+        },
+        {
+          key: { text: 'title', start: 36 },
+          vals: [
+            { type: 'string', val: { text: 'Test', start: 44 } },
+          ],
+        },
+      ],
+    }));
+
+    it('multi-line literal stops at blank line; next attr parsed separately', testSingle({
+      mkdn: ':poem:: |\n    roses are red\n    violets are blue\n\n:author:: someone\n',
+      data: [
+        {
+          key: { text: 'poem', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'roses are red\nviolets are blue\n', start: 8 } },
+          ],
+        },
+        {
+          key: { text: 'author', start: 51 },
+          vals: [
+            { type: 'string', val: { text: 'someone', start: 60 } },
+          ],
+        },
+      ],
+    }));
+
+    it('multiple multi-line attrs separated by blank lines', testSingle({
+      mkdn: ':first:: >\n    aaa\n    bbb\n\n:second:: |\n    ccc\n    ddd\n\ntitle:: end\n',
+      data: [
+        {
+          key: { text: 'first', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'aaa bbb\n', start: 9 } },
+          ],
+        },
+        {
+          key: { text: 'second', start: 29 },
+          vals: [
+            { type: 'string', val: { text: 'ccc\nddd\n', start: 38 } },
+          ],
+        },
+        {
+          key: { text: 'title', start: 57 },
+          vals: [
+            { type: 'string', val: { text: 'end', start: 65 } },
+          ],
+        },
+      ],
+    }));
+
+    it('multi-line does not swallow non-indented line after blank', testSingle({
+      mkdn: ':note:: >\n    content\n\nnot-an-attr\n',
+      data: [
+        {
+          key: { text: 'note', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'content\n', start: 8 } },
+          ],
+        },
+      ],
+    }));
+
+    it('multi-line stops before parenthetical text after blank', testSingle({
+      mkdn: ':description:: >\n    This is a long description\n    that spans multiple lines\n    and gets folded into one.\n\n(see attrbox for output)\n',
+      data: [
+        {
+          key: { text: 'description', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'This is a long description that spans multiple lines and gets folded into one.\n', start: 15 } },
+          ],
+        },
+      ],
+    }));
+
+    it('blank line within multi-line block is preserved', testSingle({
+      mkdn: ':poem:: |\n    verse one\n\n    verse two\n\nnot indented\n',
+      data: [
+        {
+          key: { text: 'poem', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'verse one\n\nverse two\n', start: 8 } },
+          ],
+        },
+      ],
+    }));
+
+  });
+
+  describe('multi-line; indentation (min 2-space continuation)', () => {
+
+    it('4 spaces: continuation', testSingle({
+      mkdn: ':note:: >\n    four spaces\n    continues\n',
+      data: [
+        {
+          key: { text: 'note', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'four spaces continues\n', start: 8 } },
+          ],
+        },
+      ],
+    }));
+
+    it('tab: continuation', testSingle({
+      mkdn: ':note:: >\n\ttab indented\n\tcontinues\n',
+      data: [
+        {
+          key: { text: 'note', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'tab indented continues\n', start: 8 } },
+          ],
+        },
+      ],
+    }));
+
+    it('3 spaces: continuation', testSingle({
+      mkdn: ':note:: >\n   three spaces\n',
+      data: [
+        {
+          key: { text: 'note', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'three spaces\n', start: 8 } },
+          ],
+        },
+      ],
+    }));
+
+    it('2 spaces: continuation', testSingle({
+      mkdn: ':note:: >\n  two spaces\n',
+      data: [
+        {
+          key: { text: 'note', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'two spaces\n', start: 8 } },
+          ],
+        },
+      ],
+    }));
+
+    it('1 space: NOT continuation (below 2-space floor)', testSingle({
+      mkdn: ':note:: >\n one space\n',
+      data: [
+        {
+          key: { text: 'note', start: 1 },
+          vals: [
+            { type: 'string', val: { text: '\n', start: 8 } },
+          ],
+        },
+      ],
+    }));
+
+    it('0 spaces: NOT continuation', testSingle({
+      mkdn: ':note:: >\nno indent\n',
+      data: [
+        {
+          key: { text: 'note', start: 1 },
+          vals: [
+            { type: 'string', val: { text: '\n', start: 8 } },
+          ],
+        },
+      ],
+    }));
+
+    it('8 spaces: continuation', testSingle({
+      mkdn: ':note:: >\n        eight spaces\n',
+      data: [
+        {
+          key: { text: 'note', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'eight spaces\n', start: 8 } },
+          ],
+        },
+      ],
+    }));
+
+    it('non-indented line terminates the block', testSingle({
+      mkdn: ':note:: >\n    first line\nnot indented\n',
+      data: [
+        {
+          key: { text: 'note', start: 1 },
+          vals: [
+            { type: 'string', val: { text: 'first line\n', start: 8 } },
+          ],
+        },
+      ],
     }));
 
   });

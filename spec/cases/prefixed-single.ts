@@ -584,8 +584,8 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; multi-line; folded (>); basic',
     mkdn: ':attribute:: >\n'
-          + '  line one\n'
-          + '  line two\n',
+          + '    line one\n'
+          + '    line two\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -597,8 +597,8 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': ' >\n'
-                     + '  line one\n'
-                     + '  line two',
+                     + '    line one\n'
+                     + '    line two',
       },
       value: {
         'attribute': 'line one line two\n',
@@ -606,7 +606,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       parse: {
         'attribute': [{
           type: 'string',
-          string: ' >\n  line one\n  line two',
+          string: ' >\n    line one\n    line two',
           value: 'line one line two\n',
         }],
       },
@@ -615,8 +615,8 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; multi-line; folded (>); with trailing newline',
     mkdn: ':attribute:: >\n'
-          + '  line one\n'
-          + '  line two\n'
+          + '    line one\n'
+          + '    line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
@@ -629,8 +629,8 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': ' >\n'
-                     + '  line one\n'
-                     + '  line two\n',
+                     + '    line one\n'
+                     + '    line two\n',
       },
       value: {
         'attribute': 'line one line two\n',
@@ -638,7 +638,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       parse: {
         'attribute': [{
           type: 'string',
-          string: ' >\n  line one\n  line two\n',
+          string: ' >\n    line one\n    line two\n',
           value: 'line one line two\n',
         }],
       },
@@ -648,8 +648,8 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; multi-line; literal (|); basic',
     mkdn: ':attribute:: |\n'
-          + '  line one\n'
-          + '  line two\n',
+          + '    line one\n'
+          + '    line two\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -661,8 +661,8 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': ' |\n'
-                     + '  line one\n'
-                     + '  line two',
+                     + '    line one\n'
+                     + '    line two',
       },
       value: {
         'attribute': 'line one\nline two\n',
@@ -670,7 +670,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       parse: {
         'attribute': [{
           type: 'string',
-          string: ' |\n  line one\n  line two',
+          string: ' |\n    line one\n    line two',
           value: 'line one\nline two\n',
         }],
       },
@@ -680,8 +680,8 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; multi-line; folded chomped (>-); strips trailing newlines',
     mkdn: ':attribute:: >-\n'
-          + '  line one\n'
-          + '  line two\n'
+          + '    line one\n'
+          + '    line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
@@ -694,8 +694,8 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': ' >-\n'
-                     + '  line one\n'
-                     + '  line two\n',
+                     + '    line one\n'
+                     + '    line two\n',
       },
       value: {
         'attribute': 'line one line two',
@@ -703,7 +703,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       parse: {
         'attribute': [{
           type: 'string',
-          string: ' >-\n  line one\n  line two\n',
+          string: ' >-\n    line one\n    line two\n',
           value: 'line one line two',
         }],
       },
@@ -742,9 +742,9 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; multi-line; folded (>); multi-paragraph',
     mkdn: ':attribute:: >\n'
-          + '  line one\n'
+          + '    line one\n'
           + '\n'
-          + '  line two\n',
+          + '    line two\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -755,7 +755,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
         + '</aside>\n',
     data: {
       string: {
-        'attribute': ' >\n  line one\n\n  line two',
+        'attribute': ' >\n    line one\n\n    line two',
       },
       value: {
         'attribute': 'line one  line two\n',
@@ -763,7 +763,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       parse: {
         'attribute': [{
           type: 'string',
-          string: ' >\n  line one\n\n  line two',
+          string: ' >\n    line one\n\n    line two',
           value: 'line one  line two\n',
         }],
       },
@@ -773,9 +773,9 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; multi-line; literal (|); multi-paragraph',
     mkdn: ':attribute:: |\n'
-          + '  line one\n'
+          + '    line one\n'
           + '\n'
-          + '  line two\n',
+          + '    line two\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -786,7 +786,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
         + '</aside>\n',
     data: {
       string: {
-        'attribute': ' |\n  line one\n\n  line two',
+        'attribute': ' |\n    line one\n\n    line two',
       },
       value: {
         'attribute': 'line one\n\nline two\n',
@@ -794,7 +794,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       parse: {
         'attribute': [{
           type: 'string',
-          string: ' |\n  line one\n\n  line two',
+          string: ' |\n    line one\n\n    line two',
           value: 'line one\n\nline two\n',
         }],
       },
@@ -804,9 +804,9 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; multi-line; literal (|); nested indentation',
     mkdn: ':attribute:: |\n'
-          + '  line one\n'
-          + '    indented\n'
-          + '  line two\n',
+          + '    line one\n'
+          + '      indented\n'
+          + '    line two\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -817,7 +817,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
         + '</aside>\n',
     data: {
       string: {
-        'attribute': ' |\n  line one\n    indented\n  line two',
+        'attribute': ' |\n    line one\n      indented\n    line two',
       },
       value: {
         'attribute': 'line one\n  indented\nline two\n',
@@ -825,7 +825,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       parse: {
         'attribute': [{
           type: 'string',
-          string: ' |\n  line one\n    indented\n  line two',
+          string: ' |\n    line one\n      indented\n    line two',
           value: 'line one\n  indented\nline two\n',
         }],
       },
@@ -841,8 +841,8 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; multi-line; literal strip (|-); strips trailing newlines',
     mkdn: ':attribute:: |-\n'
-          + '  line one\n'
-          + '  line two\n'
+          + '    line one\n'
+          + '    line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
@@ -854,7 +854,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
         + '</aside>\n',
     data: {
       string: {
-        'attribute': ' |-\n  line one\n  line two\n',
+        'attribute': ' |-\n    line one\n    line two\n',
       },
       value: {
         'attribute': 'line one\nline two',
@@ -862,7 +862,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       parse: {
         'attribute': [{
           type: 'string',
-          string: ' |-\n  line one\n  line two\n',
+          string: ' |-\n    line one\n    line two\n',
           value: 'line one\nline two',
         }],
       },
@@ -872,8 +872,8 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; multi-line; literal keep (|+); preserves trailing newlines',
     mkdn: ':attribute:: |+\n'
-          + '  line one\n'
-          + '  line two\n'
+          + '    line one\n'
+          + '    line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
@@ -885,7 +885,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
         + '</aside>\n',
     data: {
       string: {
-        'attribute': ' |+\n  line one\n  line two\n\n',
+        'attribute': ' |+\n    line one\n    line two\n\n',
       },
       value: {
         'attribute': 'line one\nline two\n\n',
@@ -893,7 +893,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       parse: {
         'attribute': [{
           type: 'string',
-          string: ' |+\n  line one\n  line two\n\n',
+          string: ' |+\n    line one\n    line two\n\n',
           value: 'line one\nline two\n\n',
         }],
       },
@@ -903,8 +903,8 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; multi-line; folded keep (>+); preserves trailing newlines',
     mkdn: ':attribute:: >+\n'
-          + '  line one\n'
-          + '  line two\n'
+          + '    line one\n'
+          + '    line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
@@ -916,7 +916,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
         + '</aside>\n',
     data: {
       string: {
-        'attribute': ' >+\n  line one\n  line two\n\n',
+        'attribute': ' >+\n    line one\n    line two\n\n',
       },
       value: {
         'attribute': 'line one line two\n\n',
@@ -924,7 +924,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       parse: {
         'attribute': [{
           type: 'string',
-          string: ' >+\n  line one\n  line two\n\n',
+          string: ' >+\n    line one\n    line two\n\n',
           value: 'line one line two\n\n',
         }],
       },
@@ -933,10 +933,10 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
   {
     descr: 'prefixed; single; string; multi-line; adjacent; two multi-line attrs back-to-back',
     mkdn: ':description:: >\n'
-        + '  This is folded text.\n'
+        + '    This is folded text.\n'
         + ':notes:: |\n'
-        + '  line one\n'
-        + '  line two\n',
+        + '    line one\n'
+        + '    line two\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -951,23 +951,23 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
         + '</aside>\n',
     data: {
       string: {
-        'description': ' >\n  This is folded text.',
-        'notes': ' |\n  line one\n  line two',
+        'description': ' >\n    This is folded text.',
+        'notes': ' |\n    line one\n    line two',
       },
       value: {
         'description': 'This is folded text.\n',
         'notes': 'line one\nline two\n',
       },
       parse: {
-        'description': [{ type: 'string', string: ' >\n  This is folded text.', value: 'This is folded text.\n' }],
-        'notes': [{ type: 'string', string: ' |\n  line one\n  line two', value: 'line one\nline two\n' }],
+        'description': [{ type: 'string', string: ' >\n    This is folded text.', value: 'This is folded text.\n' }],
+        'notes': [{ type: 'string', string: ' |\n    line one\n    line two', value: 'line one\nline two\n' }],
       },
     },
   },
   {
     descr: 'prefixed; single; string; multi-line; adjacent; multi-line followed by regular attr',
     mkdn: ':description:: >\n'
-        + '  folded text.\n'
+        + '    folded text.\n'
         + ':count:: 42\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
@@ -983,7 +983,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
         + '</aside>\n',
     data: {
       string: {
-        'description': ' >\n  folded text.',
+        'description': ' >\n    folded text.',
         'count': '42',
       },
       value: {
@@ -991,7 +991,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
         'count': 42,
       },
       parse: {
-        'description': [{ type: 'string', string: ' >\n  folded text.', value: 'folded text.\n' }],
+        'description': [{ type: 'string', string: ' >\n    folded text.', value: 'folded text.\n' }],
         'count': [{ type: 'int', string: '42', value: 42 }],
       },
     },
@@ -1000,7 +1000,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
     descr: 'prefixed; single; string; multi-line; adjacent; regular attr followed by multi-line',
     mkdn: ':title:: Doc\n'
         + ':description:: >\n'
-        + '  folded text.\n',
+        + '    folded text.\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -1016,7 +1016,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
     data: {
       string: {
         'title': 'Doc',
-        'description': ' >\n  folded text.',
+        'description': ' >\n    folded text.',
       },
       value: {
         'title': 'Doc',
@@ -1024,20 +1024,20 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       },
       parse: {
         'title': [{ type: 'string', string: 'Doc', value: 'Doc' }],
-        'description': [{ type: 'string', string: ' >\n  folded text.', value: 'folded text.\n' }],
+        'description': [{ type: 'string', string: ' >\n    folded text.', value: 'folded text.\n' }],
       },
     },
   },
   {
     descr: 'prefixed; single; string; multi-line; adjacent; four indicators back-to-back',
     mkdn: ':a:: >\n'
-        + '  folded\n'
+        + '    folded\n'
         + ':b:: |\n'
-        + '  literal\n'
+        + '    literal\n'
         + ':c:: >-\n'
-        + '  strip-folded\n'
+        + '    strip-folded\n'
         + ':d:: |-\n'
-        + '  strip-literal\n',
+        + '    strip-literal\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -1060,10 +1060,10 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
         + '</aside>\n',
     data: {
       string: {
-        'a': ' >\n  folded',
-        'b': ' |\n  literal',
-        'c': ' >-\n  strip-folded',
-        'd': ' |-\n  strip-literal',
+        'a': ' >\n    folded',
+        'b': ' |\n    literal',
+        'c': ' >-\n    strip-folded',
+        'd': ' |-\n    strip-literal',
       },
       value: {
         'a': 'folded\n',
@@ -1072,10 +1072,10 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
         'd': 'strip-literal',
       },
       parse: {
-        'a': [{ type: 'string', string: ' >\n  folded', value: 'folded\n' }],
-        'b': [{ type: 'string', string: ' |\n  literal', value: 'literal\n' }],
-        'c': [{ type: 'string', string: ' >-\n  strip-folded', value: 'strip-folded' }],
-        'd': [{ type: 'string', string: ' |-\n  strip-literal', value: 'strip-literal' }],
+        'a': [{ type: 'string', string: ' >\n    folded', value: 'folded\n' }],
+        'b': [{ type: 'string', string: ' |\n    literal', value: 'literal\n' }],
+        'c': [{ type: 'string', string: ' >-\n    strip-folded', value: 'strip-folded' }],
+        'd': [{ type: 'string', string: ' |-\n    strip-literal', value: 'strip-literal' }],
       },
     },
   },
@@ -1083,7 +1083,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
     descr: 'prefixed; single; string; multi-line; adjacent; multi-line with content preserved',
     mkdn: ':title:: Test\n'
         + ':desc:: >\n'
-        + '  folded text.\n'
+        + '    folded text.\n'
         + ':tags:: a, b, c\n'
         + '\n'
         + 'Some paragraph content.\n',
@@ -1109,7 +1109,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
     data: {
       string: {
         'title': 'Test',
-        'desc': ' >\n  folded text.',
+        'desc': ' >\n    folded text.',
         'tags': 'a, b, c',
       },
       value: {
@@ -1119,7 +1119,7 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       },
       parse: {
         'title': [{ type: 'string', string: 'Test', value: 'Test' }],
-        'desc': [{ type: 'string', string: ' >\n  folded text.', value: 'folded text.\n' }],
+        'desc': [{ type: 'string', string: ' >\n    folded text.', value: 'folded text.\n' }],
         'tags': [
           { type: 'string', string: 'a', value: 'a' },
           { type: 'string', string: 'b', value: 'b' },
@@ -1294,6 +1294,133 @@ export const camlPrefixedSingleCases: CamlTestCase[] = [
       string: { 'attribute': 'value' },
       value: { 'attribute': 'value' },
       parse: { 'attribute': [{ type: 'string', string: 'value', value: 'value' }] },
+    },
+  },
+  // multi-line boundary: stops at blank line, next attr parsed separately
+  {
+    descr: 'prefixed; single; multi-line folded; stops at blank line; next attr separate',
+    mkdn: ':desc:: >\n'
+          + '    folded text\n'
+          + '    here\n'
+          + '\n'
+          + ':title:: Test\n',
+    html: '<aside class="attrbox">\n'
+        + '<dl>\n'
+        + '<div class="attr-item">\n'
+        + '<dt>desc</dt>\n'
+        + '<dd><span class="attr string desc">folded text here<br></span></dd>\n'
+        + '</div>\n'
+        + '<div class="attr-item">\n'
+        + '<dt>title</dt>\n'
+        + '<dd><span class="attr string title">Test</span></dd>\n'
+        + '</div>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'desc': ' >\n    folded text\n    here',
+        'title': 'Test',
+      },
+      value: {
+        'desc': 'folded text here\n',
+        'title': 'Test',
+      },
+      parse: {
+        'desc': [{ type: 'string', string: ' >\n    folded text\n    here', value: 'folded text here\n' }],
+        'title': [{ type: 'string', string: 'Test', value: 'Test' }],
+      },
+    },
+  },
+  {
+    descr: 'prefixed; single; multi-line literal; stops at blank line; next attr separate',
+    mkdn: ':poem:: |\n'
+          + '    roses are red\n'
+          + '    violets are blue\n'
+          + '\n'
+          + ':author:: someone\n',
+    html: '<aside class="attrbox">\n'
+        + '<dl>\n'
+        + '<div class="attr-item">\n'
+        + '<dt>poem</dt>\n'
+        + '<dd><span class="attr string poem">roses are red<br>violets are blue<br></span></dd>\n'
+        + '</div>\n'
+        + '<div class="attr-item">\n'
+        + '<dt>author</dt>\n'
+        + '<dd><span class="attr string author">someone</span></dd>\n'
+        + '</div>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'poem': ' |\n    roses are red\n    violets are blue',
+        'author': 'someone',
+      },
+      value: {
+        'poem': 'roses are red\nviolets are blue\n',
+        'author': 'someone',
+      },
+      parse: {
+        'poem': [{ type: 'string', string: ' |\n    roses are red\n    violets are blue', value: 'roses are red\nviolets are blue\n' }],
+        'author': [{ type: 'string', string: 'someone', value: 'someone' }],
+      },
+    },
+  },
+  {
+    descr: 'prefixed; single; multi-line folded; stops before non-indented text',
+    mkdn: ':description:: >\n'
+          + '    This is a long description\n'
+          + '    that spans multiple lines\n'
+          + '    and gets folded into one.\n'
+          + '\n'
+          + '(see attrbox for output)\n',
+    html: '<aside class="attrbox">\n'
+        + '<dl>\n'
+        + '<div class="attr-item">\n'
+        + '<dt>description</dt>\n'
+        + '<dd><span class="attr string description">This is a long description that spans multiple lines and gets folded into one.<br></span></dd>\n'
+        + '</div>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<p>(see attrbox for output)</p>\n',
+    data: {
+      string: {
+        'description': ' >\n    This is a long description\n    that spans multiple lines\n    and gets folded into one.',
+      },
+      value: {
+        'description': 'This is a long description that spans multiple lines and gets folded into one.\n',
+      },
+      parse: {
+        'description': [{ type: 'string', string: ' >\n    This is a long description\n    that spans multiple lines\n    and gets folded into one.', value: 'This is a long description that spans multiple lines and gets folded into one.\n' }],
+      },
+    },
+  },
+  {
+    descr: 'prefixed; single; multi-line literal; blank line within block preserved',
+    mkdn: ':poem:: |\n'
+          + '    verse one\n'
+          + '\n'
+          + '    verse two\n'
+          + '\n'
+          + 'not indented\n',
+    html: '<aside class="attrbox">\n'
+        + '<dl>\n'
+        + '<div class="attr-item">\n'
+        + '<dt>poem</dt>\n'
+        + '<dd><span class="attr string poem">verse one<br><br>verse two<br></span></dd>\n'
+        + '</div>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<p>not indented</p>\n',
+    data: {
+      string: {
+        'poem': ' |\n    verse one\n\n    verse two',
+      },
+      value: {
+        'poem': 'verse one\n\nverse two\n',
+      },
+      parse: {
+        'poem': [{ type: 'string', string: ' |\n    verse one\n\n    verse two', value: 'verse one\n\nverse two\n' }],
+      },
     },
   },
 ];

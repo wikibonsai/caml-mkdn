@@ -41,14 +41,16 @@ function handleStandaloneMultiLine(content: string, res: CamlLoadPayload): strin
     const trimmedKey = headerMatch[1].trim();
     const indicator = headerMatch[2];
     consumed.add(i);
-    // collect continuation lines: indented or empty (but stop at non-indented content)
+    // collect continuation lines: indented >= 2 spaces (or a tab), or empty
+    // (but stop at a line indented < 2 spaces). matches VAL_MSTR.
     const blockLines: string[] = [];
+    const INDENT_RE = /^(?:[ ]{2,}|\t)/;
     let j = i + 1;
     while (j < lines.length) {
       const line = lines[j];
       if (line.trim() === '') {
         // empty line: include if next line is indented, otherwise end
-        if (j + 1 < lines.length && /^\s+/.test(lines[j + 1])) {
+        if (j + 1 < lines.length && INDENT_RE.test(lines[j + 1])) {
           blockLines.push(line);
           consumed.add(j);
           j++;
@@ -61,7 +63,7 @@ function handleStandaloneMultiLine(content: string, res: CamlLoadPayload): strin
           }
           break;
         }
-      } else if (/^\s/.test(line)) {
+      } else if (INDENT_RE.test(line)) {
         blockLines.push(line);
         consumed.add(j);
         j++;

@@ -147,8 +147,8 @@ dump({ tags: ['first', 'line one\nline two\n'] }, { listFormat: 'mkdn', multiLin
 // : tags ::
 //   - first
 //   - |
-//     line one
-//     line two
+//   line one
+//   line two
 ```
 ##### `prefix: boolean`
 
@@ -211,6 +211,39 @@ dump(attrs, { multiLine: 'literal', chomp: 'keep' });
 ##### `indent: number`
 
 Number of spaces to indent multi-line block content. Defaults to `2`. Only applies when `multiLine` is `'literal'` or `'folded'`.
+
+#### Multi-Line Parsing Rules
+
+When parsing multi-line block scalars (folded `>`, literal `|`, and their chomped variants `>-`, `|-`, `>+`, `|+`), continuation lines must be indented with **2 or more spaces** (or a tab). Two spaces is the minimum *intentional* indent, and it stays below markdown's 4-space indented-code-block threshold, so prose values don't render as code. `dump` emits two-space indentation by default.
+
+The block ends when a non-blank line is indented with fewer than 2 spaces (e.g. a line at column 0). Blank lines within the block are preserved.
+
+```markdown
+:poem:: |
+  verse one
+
+  verse two
+
+This line ends the block (not indented).
+```
+
+Parses as:
+- `poem` = `"verse one\n\nverse two\n"` (blank line preserved)
+- `"This line ends the block..."` is content, not part of the attribute.
+
+Multiple multi-line attributes can appear consecutively, separated by non-indented content (including other CAML attributes):
+
+```markdown
+:description:: >
+  A long description
+  that gets folded.
+
+:poem:: |
+  roses are red
+  violets are blue
+```
+
+Each block stops at the blank line + next non-indented line.
 
 ### `load(content: string): CamlLoadPayload`
 

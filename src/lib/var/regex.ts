@@ -39,7 +39,9 @@ export namespace RGX {
     KEY            : new RegExp('(' + VALID_CHARS.KEY.source + ')'),
     VAL            : new RegExp('(' + VALID_CHARS.VAL.source + ')'),
     VAL_LINE       : new RegExp('(' + VALID_CHARS.VAL_LINE.source + ')'),
-    VAL_MSTR       : /((?:\s+.*\n?)*)/,
+    // multi-line block body: continuation requires >= 2 spaces (or a tab);
+    // blank lines allowed; a line indented < 2 spaces ends the block.
+    VAL_MSTR       : /((?:(?:(?:[ ]{2,}|\t).*|[ \t]*)\n)*)/,
   } as const;
 
   export const LINE = {

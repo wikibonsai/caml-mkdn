@@ -200,7 +200,9 @@ Types can be mixed, also similarly to YAML:
 
 ### Multi-Line Strings
 
-Multi-line strings follow the [YAML block scalar](https://yaml.org/spec/1.2.2/#81-block-scalar-headers) spec (see also [yaml-multiline.info](https://yaml-multiline.info/)). They start with a style indicator and terminate when a line with indentation of 0 is detected.
+Multi-line strings follow the [YAML block scalar](https://yaml.org/spec/1.2.2/#81-block-scalar-headers) spec (see also [yaml-multiline.info](https://yaml-multiline.info/)). They start with a style indicator. Continuation lines must be **indented by at least two spaces (or a tab)** — `dump` emits two-space indentation by default. A line indented less than two spaces ends the block, as does end of input. A blank line is kept as content only when the following line is still indented; otherwise it ends the block — so blank lines *within* an indented block are preserved (multi-paragraph values are supported). Common leading indentation is stripped, so you may indent further for readability without affecting the value.
+
+Multi-line strings are **not** supported in comma-separated lists (`a, b, >`): the indicator is treated as a literal string value. Use a markdown (`-`) list or a single value for a multi-line string.
 
 Style indicators determine how newlines within the block are handled:
 
