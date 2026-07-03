@@ -26,8 +26,11 @@ const shared = {
 };
 
 // babel plugin
+// NOTE: 'bundled' (inline helpers) rather than 'runtime' — 'runtime' requires a
+// @babel/plugin-transform-runtime babel config, which isn't present; 'bundled'
+// needs no babel config or @babel/runtime dep. Revisit during build modernization.
 const babelPlugin = babel({
-  babelHelpers: 'runtime',
+  babelHelpers: 'bundled',
   exclude: ['node_modules/**']
 });
 
