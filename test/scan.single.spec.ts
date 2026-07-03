@@ -340,7 +340,7 @@ describe('scan() -- single', () => {
     }));
 
     it('string; multi-line; folded (gt); basic', testSingle({
-      mkdn: 'attr::>\n    this is a long string\n    that spans multiple\n    lines\n',
+      mkdn: 'attr::>\n  this is a long string\n  that spans multiple\n  lines\n',
       data: [
         {
           key: { text: 'attr', start: 0 },
@@ -467,7 +467,7 @@ describe('scan() -- single', () => {
   describe('multi-line; boundary', () => {
 
     it('multi-line folded stops at blank line; next attr parsed separately', testSingle({
-      mkdn: ':desc:: >\n    folded text\n    here\n\ntitle:: Test\n',
+      mkdn: ':desc:: >\n  folded text\n  here\n\ntitle:: Test\n',
       data: [
         {
           key: { text: 'desc', start: 1 },
@@ -476,16 +476,16 @@ describe('scan() -- single', () => {
           ],
         },
         {
-          key: { text: 'title', start: 36 },
+          key: { text: 'title', start: 32 },
           vals: [
-            { type: 'string', val: { text: 'Test', start: 44 } },
+            { type: 'string', val: { text: 'Test', start: 40 } },
           ],
         },
       ],
     }));
 
     it('multi-line literal stops at blank line; next attr parsed separately', testSingle({
-      mkdn: ':poem:: |\n    roses are red\n    violets are blue\n\n:author:: someone\n',
+      mkdn: ':poem:: |\n  roses are red\n  violets are blue\n\n:author:: someone\n',
       data: [
         {
           key: { text: 'poem', start: 1 },
@@ -494,16 +494,16 @@ describe('scan() -- single', () => {
           ],
         },
         {
-          key: { text: 'author', start: 51 },
+          key: { text: 'author', start: 47 },
           vals: [
-            { type: 'string', val: { text: 'someone', start: 60 } },
+            { type: 'string', val: { text: 'someone', start: 56 } },
           ],
         },
       ],
     }));
 
     it('multiple multi-line attrs separated by blank lines', testSingle({
-      mkdn: ':first:: >\n    aaa\n    bbb\n\n:second:: |\n    ccc\n    ddd\n\ntitle:: end\n',
+      mkdn: ':first:: >\n  aaa\n  bbb\n\n:second:: |\n  ccc\n  ddd\n\ntitle:: end\n',
       data: [
         {
           key: { text: 'first', start: 1 },
@@ -512,22 +512,22 @@ describe('scan() -- single', () => {
           ],
         },
         {
-          key: { text: 'second', start: 29 },
+          key: { text: 'second', start: 25 },
           vals: [
-            { type: 'string', val: { text: 'ccc\nddd\n', start: 38 } },
+            { type: 'string', val: { text: 'ccc\nddd\n', start: 34 } },
           ],
         },
         {
-          key: { text: 'title', start: 57 },
+          key: { text: 'title', start: 49 },
           vals: [
-            { type: 'string', val: { text: 'end', start: 65 } },
+            { type: 'string', val: { text: 'end', start: 57 } },
           ],
         },
       ],
     }));
 
     it('multi-line does not swallow non-indented line after blank', testSingle({
-      mkdn: ':note:: >\n    content\n\nnot-an-attr\n',
+      mkdn: ':note:: >\n  content\n\nnot-an-attr\n',
       data: [
         {
           key: { text: 'note', start: 1 },
@@ -539,7 +539,7 @@ describe('scan() -- single', () => {
     }));
 
     it('multi-line stops before parenthetical text after blank', testSingle({
-      mkdn: ':description:: >\n    This is a long description\n    that spans multiple lines\n    and gets folded into one.\n\n(see attrbox for output)\n',
+      mkdn: ':description:: >\n  This is a long description\n  that spans multiple lines\n  and gets folded into one.\n\n(see attrbox for output)\n',
       data: [
         {
           key: { text: 'description', start: 1 },
@@ -551,7 +551,7 @@ describe('scan() -- single', () => {
     }));
 
     it('blank line within multi-line block is preserved', testSingle({
-      mkdn: ':poem:: |\n    verse one\n\n    verse two\n\nnot indented\n',
+      mkdn: ':poem:: |\n  verse one\n\n  verse two\n\nnot indented\n',
       data: [
         {
           key: { text: 'poem', start: 1 },
@@ -651,7 +651,7 @@ describe('scan() -- single', () => {
     }));
 
     it('non-indented line terminates the block', testSingle({
-      mkdn: ':note:: >\n    first line\nnot indented\n',
+      mkdn: ':note:: >\n  first line\nnot indented\n',
       data: [
         {
           key: { text: 'note', start: 1 },

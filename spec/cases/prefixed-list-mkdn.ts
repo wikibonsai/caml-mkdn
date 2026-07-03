@@ -795,8 +795,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- >\n'
-          + '    line one\n'
-          + '    line two\n',
+          + '  line one\n'
+          + '  line two\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -811,8 +811,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
         'attribute': '\n'
                      + '- first\n'
                      + '- >\n'
-                     + '    line one\n'
-                     + '    line two',
+                     + '  line one\n'
+                     + '  line two',
       },
       value: {
         'attribute': ['first', 'line one line two\n'],
@@ -826,7 +826,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           },
           {
             type: 'string',
-            string: '>\n    line one\n    line two',
+            string: '>\n  line one\n  line two',
             value: 'line one line two\n',
           },
         ],
@@ -838,8 +838,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- >\n'
-          + '    line one\n'
-          + '    line two\n'
+          + '  line one\n'
+          + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
@@ -855,8 +855,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
         'attribute': '\n'
                      + '- first\n'
                      + '- >\n'
-                     + '    line one\n'
-                     + '    line two\n',
+                     + '  line one\n'
+                     + '  line two\n',
       },
       value: {
         'attribute': ['first', 'line one line two\n'],
@@ -870,7 +870,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           },
           {
             type: 'string',
-            string: '>\n    line one\n    line two\n',
+            string: '>\n  line one\n  line two\n',
             value: 'line one line two\n',
           },
         ],
@@ -883,8 +883,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- |\n'
-          + '    line one\n'
-          + '    line two\n',
+          + '  line one\n'
+          + '  line two\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -899,8 +899,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
         'attribute': '\n'
                      + '- first\n'
                      + '- |\n'
-                     + '    line one\n'
-                     + '    line two',
+                     + '  line one\n'
+                     + '  line two',
       },
       value: {
         'attribute': ['first', 'line one\nline two\n'],
@@ -914,7 +914,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           },
           {
             type: 'string',
-            string: '|\n    line one\n    line two',
+            string: '|\n  line one\n  line two',
             value: 'line one\nline two\n',
           },
         ],
@@ -927,8 +927,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- >-\n'
-          + '    line one\n'
-          + '    line two\n'
+          + '  line one\n'
+          + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
@@ -944,8 +944,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
         'attribute': '\n'
                      + '- first\n'
                      + '- >-\n'
-                     + '    line one\n'
-                     + '    line two\n',
+                     + '  line one\n'
+                     + '  line two\n',
       },
       value: {
         'attribute': ['first', 'line one line two'],
@@ -959,7 +959,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           },
           {
             type: 'string',
-            string: '>-\n    line one\n    line two\n',
+            string: '>-\n  line one\n  line two\n',
             value: 'line one line two',
           },
         ],
@@ -972,8 +972,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- |-\n'
-          + '    line one\n'
-          + '    line two\n',
+          + '  line one\n'
+          + '  line two\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -988,8 +988,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
         'attribute': '\n'
                      + '- first\n'
                      + '- |-\n'
-                     + '    line one\n'
-                     + '    line two',
+                     + '  line one\n'
+                     + '  line two',
       },
       value: {
         'attribute': ['first', 'line one\nline two'],
@@ -1003,7 +1003,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           },
           {
             type: 'string',
-            string: '|-\n    line one\n    line two',
+            string: '|-\n  line one\n  line two',
             value: 'line one\nline two',
           },
         ],
@@ -1016,8 +1016,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- |+\n'
-          + '    line one\n'
-          + '    line two\n'
+          + '  line one\n'
+          + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
@@ -1033,8 +1033,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
         'attribute': '\n'
                      + '- first\n'
                      + '- |+\n'
-                     + '    line one\n'
-                     + '    line two\n',
+                     + '  line one\n'
+                     + '  line two\n',
       },
       value: {
         'attribute': ['first', 'line one\nline two\n\n'],
@@ -1048,7 +1048,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           },
           {
             type: 'string',
-            string: '|+\n    line one\n    line two\n\n',
+            string: '|+\n  line one\n  line two\n\n',
             value: 'line one\nline two\n\n',
           },
         ],
@@ -1061,8 +1061,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
     mkdn: ':attribute::\n'
           + '- first\n'
           + '- >+\n'
-          + '    line one\n'
-          + '    line two\n'
+          + '  line one\n'
+          + '  line two\n'
           + '\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
@@ -1078,8 +1078,8 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
         'attribute': '\n'
                      + '- first\n'
                      + '- >+\n'
-                     + '    line one\n'
-                     + '    line two\n',
+                     + '  line one\n'
+                     + '  line two\n',
       },
       value: {
         'attribute': ['first', 'line one line two\n\n'],
@@ -1093,7 +1093,7 @@ export const camlPrefixedListMkdnCases: CamlTestCase[] = [
           },
           {
             type: 'string',
-            string: '>+\n    line one\n    line two\n\n',
+            string: '>+\n  line one\n  line two\n\n',
             value: 'line one line two\n\n',
           },
         ],
