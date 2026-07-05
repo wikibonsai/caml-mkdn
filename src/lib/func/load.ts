@@ -1,19 +1,21 @@
+import { getEscIndices, isStrEscaped } from 'escape-mkdn';
+
 import type { CamlLoadPayload } from './../types';
 import { RGX } from './../var/regex';
 import { resolve} from './resolve';
 
 
-function preprocessMultiLineStrings(content: string, res: CamlLoadPayload): string {
+function preprocessMultiLineStrings(content: string, res: CamlLoadPayload, skipEsc: boolean): string {
   let result = content;
-  
+
   // Handle standalone multi-line strings first - parse them directly
-  result = handleStandaloneMultiLine(result, res);
+  result = handleStandaloneMultiLine(result, res, skipEsc);
 
   // Handle multi-line strings in markdown lists
   // Note: multi-line strings are NOT supported in comma-separated lists.
   // Indicators (>, |, etc.) in comma lists are treated as literal string values.
-  result = handleMkdnListMultiLine(result, res);
-  
+  result = handleMkdnListMultiLine(result, res, skipEsc);
+
   return result;
 }
 
@@ -25,8 +27,12 @@ function parseMultiLineString(indicator: string, blockContent: string): any {
   return parsed.value;
 }
 
-function handleStandaloneMultiLine(content: string, res: CamlLoadPayload): string {
+function handleStandaloneMultiLine(content: string, res: CamlLoadPayload, skipEsc: boolean): string {
   const lines = content.split('\n');
+  // escape gate: per-line start offsets into `content` for isStrEscaped
+  const escdIndices: number[] = skipEsc ? getEscIndices(content) : [];
+  const lineStarts: number[] = [];
+  { let off = 0; for (const ln of lines) { lineStarts.push(off); off += ln.length + 1; } }
   const headerRgx = new RegExp(
     '^' + RGX.MARKER.KEY_PRFX.source + '?'
     + '(' + RGX.VALID_CHARS.KEY.source + ')'
@@ -38,6 +44,8 @@ function handleStandaloneMultiLine(content: string, res: CamlLoadPayload): strin
   for (let i = 0; i < lines.length; i++) {
     const headerMatch = headerRgx.exec(lines[i]);
     if (!headerMatch) continue;
+    // skip escaped multi-line CAML (e.g. inside a code block)
+    if (skipEsc && isStrEscaped(lines[i], content, lineStarts[i], escdIndices)) { continue; }
     const trimmedKey = headerMatch[1].trim();
     const indicator = headerMatch[2];
     consumed.add(i);
@@ -83,7 +91,8 @@ function handleStandaloneMultiLine(content: string, res: CamlLoadPayload): strin
 }
 
 
-function handleMkdnListMultiLine(content: string, res: CamlLoadPayload): string {
+function handleMkdnListMultiLine(content: string, res: CamlLoadPayload, skipEsc: boolean): string {
+  const escdIndices: number[] = skipEsc ? getEscIndices(content) : [];
   // Pattern: ":key::\n- value1\n- >\n  multi-line content"
   const mkdnMultiLinePattern = new RegExp(
     '^' + RGX.MARKER.KEY_PRFX.source + '?'
@@ -93,8 +102,10 @@ function handleMkdnListMultiLine(content: string, res: CamlLoadPayload): string 
     + RGX.MARKER.MLINE_STR.source + '\\s*\\n'
     + '((?:\\s+.*\\n?)*)'
   , 'gm');
-  
-  return content.replace(mkdnMultiLinePattern, (match, key, previousItems, indicator, blockContent) => {
+
+  return content.replace(mkdnMultiLinePattern, (match, key, previousItems, indicator, blockContent, offset) => {
+    // skip escaped list multi-line CAML (e.g. inside a code block); leave it in place
+    if (skipEsc && isStrEscaped(match, content, offset, escdIndices)) { return match; }
     // Parse the multi-line part using shared function
     const parsedValue = parseMultiLineString(indicator, blockContent);
     
@@ -148,15 +159,19 @@ function normalizeMultiLineContent(content: string): string {
   return normalizedLines.join('\n');
 }
 
-export function load(content: string): CamlLoadPayload {
+export function load(content: string, opts?: { skipEsc?: boolean }): CamlLoadPayload {
+  const skipEsc: boolean = (opts?.skipEsc !== undefined) ? opts.skipEsc : true;
   const res: CamlLoadPayload = {
     data: {},
     content: '',
   } as CamlLoadPayload;
   
   // Preprocess multi-line strings - they get parsed directly into res.data
-  content = preprocessMultiLineStrings(content, res);
+  content = preprocessMultiLineStrings(content, res, skipEsc);
   const replaceMatches: string[] = [];
+  // escape gate: escaped CAML (e.g. inside code blocks) must not be parsed as
+  // attributes; computed on the post-preprocess content this loop parses.
+  const escdIndices: number[] = skipEsc ? getEscIndices(content) : [];
   let attrMatch, valMatch: RegExpExecArray | null;
   const attrsGottaCatchEmAll: RegExp = new RegExp(RGX.CAML, 'gim');
   const listItemsGottaCatchEmAll: RegExp = new RegExp(RGX.LINE.LIST_ITEM, 'gim');
@@ -166,6 +181,8 @@ export function load(content: string): CamlLoadPayload {
     if (attrMatch) {
       // extract match text
       const matchText: string = attrMatch[0];
+      // skip escaped CAML (e.g. inside a code block) — leave it in res.content
+      if (skipEsc && isStrEscaped(matchText, content, attrMatch.index, escdIndices)) { continue; }
       const keyText: string = attrMatch[1];
       const valText: string = attrMatch[2];
       // const keyOffset: number = attrMatch.index + matchText.indexOf(keyText);

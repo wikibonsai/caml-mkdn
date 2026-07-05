@@ -68,4 +68,33 @@ describe('load()', () => {
 
   });
 
+  describe('load() skipEsc (escape handling)', () => {
+
+    it('single-line CAML in a fenced code block is skipped by default', () => {
+      const res = caml.load('```\ncaged::inblock\n```\nreal::value\n');
+      assert.deepStrictEqual(res.data, { real: 'value' });
+    });
+
+    it('escaped CAML is included when skipEsc:false', () => {
+      const res = caml.load('```\ncaged::inblock\n```\nreal::value\n', { skipEsc: false });
+      assert.deepStrictEqual(res.data, { caged: 'inblock', real: 'value' });
+    });
+
+    it('res.content preserves the escaped code block (not stripped)', () => {
+      const res = caml.load('```\ncaged::inblock\n```\nreal::value\n');
+      assert.ok(res.content.includes('```\ncaged::inblock\n```'), 'code block should remain in content');
+    });
+
+    it('non-escaped CAML alongside a fence is still found (regression)', () => {
+      const res = caml.load('real::value\n```\ncode::here\n```\n');
+      assert.deepStrictEqual(res.data, { real: 'value' });
+    });
+
+    it('multi-line CAML inside a fence is skipped by default', () => {
+      const res = caml.load('```\nml:: >\n  folded\n```\ntitle::doc\n');
+      assert.deepStrictEqual(res.data, { title: 'doc' });
+    });
+
+  });
+
 });

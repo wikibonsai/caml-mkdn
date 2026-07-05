@@ -206,4 +206,54 @@ describe('update()', () => {
 
   });
 
+  describe('skipEsc (escape handling)', () => {
+
+    const testContent = (params: any) => () => {
+      const opts: any = { type: params.type };
+      if (params.skipEsc !== undefined) { opts.skipEsc = params.skipEsc; }
+      if (params.format !== undefined) { opts.format = params.format; }
+      const actlResult = caml.update(params.mkdn, params.key, params.newVal, opts);
+      assert.deepStrictEqual(actlResult, params.result);
+    };
+
+    it('escaped attr (fenced code) skipped by default; updates the real one', testContent({
+      mkdn: '```\nattr::caged\n```\nattr::real\n',
+      key: 'attr',
+      newVal: 'new',
+      result: '```\nattr::caged\n```\nattr::new\n',
+    }));
+
+    it('escaped attr updated when skipEsc:false (first match)', testContent({
+      mkdn: '```\nattr::caged\n```\nattr::real\n',
+      key: 'attr',
+      newVal: 'new',
+      skipEsc: false,
+      result: '```\nattr::new\n```\nattr::real\n',
+    }));
+
+    it('only an escaped attr; skipped by default returns undefined', testContent({
+      mkdn: '```\nattr::caged\n```\n',
+      key: 'attr',
+      newVal: 'new',
+      result: undefined,
+    }));
+
+    it('only an escaped attr; updated when skipEsc:false', testContent({
+      mkdn: '```\nattr::caged\n```\n',
+      key: 'attr',
+      newVal: 'new',
+      skipEsc: false,
+      result: '```\nattr::new\n```\n',
+    }));
+
+    it('offsets format also skips escaped by default', testContent({
+      mkdn: '```\nattr::caged\n```\nattr::real\n',
+      key: 'attr',
+      newVal: 'new',
+      format: 'offsets',
+      result: [20, 30, 'attr::new'],
+    }));
+
+  });
+
 });
