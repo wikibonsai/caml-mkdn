@@ -10,8 +10,8 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     descr: 'no val; prefixed; single; [[wikilinks]]; should not be processed here',
     mkdn: ': attribute ::\n'
           + '\n'
-          + '[[wikilink]]\n',
-    html: '<p>: attribute ::</p>\n<p>[[wikilink]]</p>\n',
+          + '[[fname-a]]\n',
+    html: '<p>: attribute ::</p>\n<p>[[fname-a]]</p>\n',
     data: {
       string: {},
       value: {},
@@ -22,7 +22,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     descr: '[[wikirefs]]; prefixed; single; [[wikilinks]]; should not interfere with empty string processing',
     mkdn: ': attribute :: \'\'\n'
           + '\n'
-          + '[[wikilink]]\n',
+          + '[[fname-a]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -31,7 +31,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n'
-        + '<p>[[wikilink]]</p>\n',
+        + '<p>[[fname-a]]</p>\n',
     data: {
       string: {
         'attribute': '\'\'',
@@ -52,8 +52,8 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     descr: '[[wikirefs]]; unprefixed; single; [[wikilinks]]; should not be processed here',
     mkdn: ' attribute ::\n'
           + '\n'
-          + '[[wikilink]]\n',
-    html: '<p>attribute ::</p>\n<p>[[wikilink]]</p>\n',
+          + '[[fname-a]]\n',
+    html: '<p>attribute ::</p>\n<p>[[fname-a]]</p>\n',
     data: {
       string: {},
       value: {},
@@ -64,7 +64,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     descr: '[[wikirefs]]; unprefixed; single; [[wikilinks]]; should not interfere with empty string processing',
     mkdn: 'attribute :: \'\'\n'
           + '\n'
-          + '[[wikilink]]\n',
+          + '[[fname-a]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
@@ -73,7 +73,7 @@ export const camlWikiRefsCases: CamlTestCase[] = [
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n'
-        + '<p>[[wikilink]]</p>\n',
+        + '<p>[[fname-a]]</p>\n',
     data: {
       string: {
         'attribute': '\'\'',
@@ -94,108 +94,108 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   // single wiki value
   {
     descr: '[[wikirefs]]; prefixed; single; wiki value',
-    mkdn: ': attribute :: [[wikilink]]\n',
+    mkdn: ': attribute :: [[fname-a]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikilink" data-href="/tests/fixtures/wikilink">wikilink</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikilink]]',
+        'attribute': '[[fname-a]]',
       },
       value: {
-        'attribute': 'wikilink',
+        'attribute': 'fname-a',
       },
       parse: {
         'attribute': [{
           type: 'wiki',
-          string: '[[wikilink]]',
-          value: 'wikilink',
+          string: '[[fname-a]]',
+          value: 'fname-a',
         }],
       },
     },
   },
   {
     descr: '[[wikirefs]]; unprefixed; single; wiki value',
-    mkdn: 'attribute :: [[wikilink]]\n',
+    mkdn: 'attribute :: [[fname-a]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikilink" data-href="/tests/fixtures/wikilink">wikilink</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikilink]]',
+        'attribute': '[[fname-a]]',
       },
       value: {
-        'attribute': 'wikilink',
+        'attribute': 'fname-a',
       },
       parse: {
         'attribute': [{
           type: 'wiki',
-          string: '[[wikilink]]',
-          value: 'wikilink',
+          string: '[[fname-a]]',
+          value: 'fname-a',
         }],
       },
     },
   },
   {
     descr: '[[wikirefs]]; unprefixed; single; wiki value with spaces',
-    mkdn: 'attribute :: [[my page]]\n',
+    mkdn: 'attribute :: [[fname-a]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/my page" data-href="/tests/fixtures/my page">my page</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[my page]]',
+        'attribute': '[[fname-a]]',
       },
       value: {
-        'attribute': 'my page',
+        'attribute': 'fname-a',
       },
       parse: {
         'attribute': [{
           type: 'wiki',
-          string: '[[my page]]',
-          value: 'my page',
+          string: '[[fname-a]]',
+          value: 'fname-a',
         }],
       },
     },
   },
   {
     descr: '[[wikirefs]]; unprefixed; single; wiki value with hyphens',
-    mkdn: 'attribute :: [[my-page]]\n',
+    mkdn: 'attribute :: [[fname-a]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/my-page" data-href="/tests/fixtures/my-page">my page</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[my-page]]',
+        'attribute': '[[fname-a]]',
       },
       value: {
-        'attribute': 'my-page',
+        'attribute': 'fname-a',
       },
       parse: {
         'attribute': [{
           type: 'wiki',
-          string: '[[my-page]]',
-          value: 'my-page',
+          string: '[[fname-a]]',
+          value: 'fname-a',
         }],
       },
     },
@@ -260,37 +260,37 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; all wiki',
     mkdn: ':attribute::\n'
-          + '- [[wikiref1]]\n'
-          + '- [[wikiref2]]\n',
+          + '- [[fname-a]]\n'
+          + '- [[fname-b]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref1" data-href="/tests/fixtures/wikiref1">wikiref1</a></dd>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref2" data-href="/tests/fixtures/wikiref2">wikiref2</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-b" data-href="/tests/fixtures/fname-b">title b</a></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
         'attribute': '\n'
-                     + '- [[wikiref1]]\n'
-                     + '- [[wikiref2]]',
+                     + '- [[fname-a]]\n'
+                     + '- [[fname-b]]',
       },
       value: {
-        'attribute': ['wikiref1', 'wikiref2'],
+        'attribute': ['fname-a', 'fname-b'],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref1]]',
-            value: 'wikiref1',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'wiki',
-            string: '[[wikiref2]]',
-            value: 'wikiref2',
+            string: '[[fname-b]]',
+            value: 'fname-b',
           },
         ],
       },
@@ -298,34 +298,34 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; all wiki',
-    mkdn: ':attribute::[[wikiref1]],[[wikiref2]]\n',
+    mkdn: ':attribute::[[fname-a]],[[fname-b]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref1" data-href="/tests/fixtures/wikiref1">wikiref1</a></dd>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref2" data-href="/tests/fixtures/wikiref2">wikiref2</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-b" data-href="/tests/fixtures/fname-b">title b</a></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikiref1]],[[wikiref2]]',
+        'attribute': '[[fname-a]],[[fname-b]]',
       },
       value: {
-        'attribute': ['wikiref1', 'wikiref2'],
+        'attribute': ['fname-a', 'fname-b'],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref1]]',
-            value: 'wikiref1',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'wiki',
-            string: '[[wikiref2]]',
-            value: 'wikiref2',
+            string: '[[fname-b]]',
+            value: 'fname-b',
           },
         ],
       },
@@ -334,37 +334,37 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; all wiki',
     mkdn: 'attribute::\n'
-          + '- [[wikiref1]]\n'
-          + '- [[wikiref2]]\n',
+          + '- [[fname-a]]\n'
+          + '- [[fname-b]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref1" data-href="/tests/fixtures/wikiref1">wikiref1</a></dd>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref2" data-href="/tests/fixtures/wikiref2">wikiref2</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-b" data-href="/tests/fixtures/fname-b">title b</a></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
         'attribute': '\n'
-                     + '- [[wikiref1]]\n'
-                     + '- [[wikiref2]]',
+                     + '- [[fname-a]]\n'
+                     + '- [[fname-b]]',
       },
       value: {
-        'attribute': ['wikiref1', 'wikiref2'],
+        'attribute': ['fname-a', 'fname-b'],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref1]]',
-            value: 'wikiref1',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'wiki',
-            string: '[[wikiref2]]',
-            value: 'wikiref2',
+            string: '[[fname-b]]',
+            value: 'fname-b',
           },
         ],
       },
@@ -372,34 +372,34 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; unprefixed; list; comma-separated; all wiki',
-    mkdn: 'attribute::[[wikiref1]],[[wikiref2]]\n',
+    mkdn: 'attribute::[[fname-a]],[[fname-b]]\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref1" data-href="/tests/fixtures/wikiref1">wikiref1</a></dd>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref2" data-href="/tests/fixtures/wikiref2">wikiref2</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-b" data-href="/tests/fixtures/fname-b">title b</a></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikiref1]],[[wikiref2]]',
+        'attribute': '[[fname-a]],[[fname-b]]',
       },
       value: {
-        'attribute': ['wikiref1', 'wikiref2'],
+        'attribute': ['fname-a', 'fname-b'],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref1]]',
-            value: 'wikiref1',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'wiki',
-            string: '[[wikiref2]]',
-            value: 'wikiref2',
+            string: '[[fname-b]]',
+            value: 'fname-b',
           },
         ],
       },
@@ -409,13 +409,13 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; mixed wiki and int',
     mkdn: ':attribute::\n'
-          + '- [[wikiref]]\n'
+          + '- [[fname-a]]\n'
           + '- 42\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr int attribute">42</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
@@ -423,18 +423,18 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': '\n'
-                     + '- [[wikiref]]\n'
+                     + '- [[fname-a]]\n'
                      + '- 42',
       },
       value: {
-        'attribute': ['wikiref', 42],
+        'attribute': ['fname-a', 42],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'int',
@@ -447,29 +447,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and int',
-    mkdn: ':attribute::[[wikiref]],42\n',
+    mkdn: ':attribute::[[fname-a]],42\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr int attribute">42</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikiref]],42',
+        'attribute': '[[fname-a]],42',
       },
       value: {
-        'attribute': ['wikiref', 42],
+        'attribute': ['fname-a', 42],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'int',
@@ -483,13 +483,13 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and int',
     mkdn: 'attribute::\n'
-          + '- [[wikiref]]\n'
+          + '- [[fname-a]]\n'
           + '- 42\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr int attribute">42</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
@@ -497,18 +497,18 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': '\n'
-                     + '- [[wikiref]]\n'
+                     + '- [[fname-a]]\n'
                      + '- 42',
       },
       value: {
-        'attribute': ['wikiref', 42],
+        'attribute': ['fname-a', 42],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'int',
@@ -521,29 +521,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; unprefixed; list; comma-separated; mixed wiki and int',
-    mkdn: 'attribute::[[wikiref]],42\n',
+    mkdn: 'attribute::[[fname-a]],42\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr int attribute">42</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikiref]],42',
+        'attribute': '[[fname-a]],42',
       },
       value: {
-        'attribute': ['wikiref', 42],
+        'attribute': ['fname-a', 42],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'int',
@@ -557,13 +557,13 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; prefixed; list; mkdn-separated; mixed wiki and bool',
     mkdn: ':attribute::\n'
-          + '- [[wikiref]]\n'
+          + '- [[fname-a]]\n'
           + '- true\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr bool attribute">true</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
@@ -571,18 +571,18 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': '\n'
-                     + '- [[wikiref]]\n'
+                     + '- [[fname-a]]\n'
                      + '- true',
       },
       value: {
-        'attribute': ['wikiref', true],
+        'attribute': ['fname-a', true],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'bool',
@@ -595,29 +595,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   },
   {
     descr: '[[wikirefs]]; unprefixed; list; comma-separated; mixed wiki and bool',
-    mkdn: 'attribute::[[wikiref]],true\n',
+    mkdn: 'attribute::[[fname-a]],true\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr bool attribute">true</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikiref]],true',
+        'attribute': '[[fname-a]],true',
       },
       value: {
-        'attribute': ['wikiref', true],
+        'attribute': ['fname-a', true],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'bool',
@@ -631,29 +631,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   // mixed wiki and bool (missing combos)
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and bool',
-    mkdn: ':attribute::[[wikiref]],true\n',
+    mkdn: ':attribute::[[fname-a]],true\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr bool attribute">true</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikiref]],true',
+        'attribute': '[[fname-a]],true',
       },
       value: {
-        'attribute': ['wikiref', true],
+        'attribute': ['fname-a', true],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'bool',
@@ -667,13 +667,13 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and bool',
     mkdn: 'attribute::\n'
-          + '- [[wikiref]]\n'
+          + '- [[fname-a]]\n'
           + '- true\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr bool attribute">true</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
@@ -681,18 +681,18 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': '\n'
-                     + '- [[wikiref]]\n'
+                     + '- [[fname-a]]\n'
                      + '- true',
       },
       value: {
-        'attribute': ['wikiref', true],
+        'attribute': ['fname-a', true],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'bool',
@@ -706,29 +706,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   // mixed wiki and string
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and string',
-    mkdn: ':attribute::[[wikiref]],hello\n',
+    mkdn: ':attribute::[[fname-a]],hello\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr string attribute">hello</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikiref]],hello',
+        'attribute': '[[fname-a]],hello',
       },
       value: {
-        'attribute': ['wikiref', 'hello'],
+        'attribute': ['fname-a', 'hello'],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'string',
@@ -742,13 +742,13 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and string',
     mkdn: 'attribute::\n'
-          + '- [[wikiref]]\n'
+          + '- [[fname-a]]\n'
           + '- hello\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr string attribute">hello</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
@@ -756,18 +756,18 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': '\n'
-                     + '- [[wikiref]]\n'
+                     + '- [[fname-a]]\n'
                      + '- hello',
       },
       value: {
-        'attribute': ['wikiref', 'hello'],
+        'attribute': ['fname-a', 'hello'],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'string',
@@ -781,29 +781,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   // mixed wiki and float
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and float',
-    mkdn: ':attribute::[[wikiref]],1.5\n',
+    mkdn: ':attribute::[[fname-a]],1.5\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr float attribute">1.5</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikiref]],1.5',
+        'attribute': '[[fname-a]],1.5',
       },
       value: {
-        'attribute': ['wikiref', 1.5],
+        'attribute': ['fname-a', 1.5],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'float',
@@ -817,13 +817,13 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and float',
     mkdn: 'attribute::\n'
-          + '- [[wikiref]]\n'
+          + '- [[fname-a]]\n'
           + '- 1.5\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr float attribute">1.5</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
@@ -831,18 +831,18 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': '\n'
-                     + '- [[wikiref]]\n'
+                     + '- [[fname-a]]\n'
                      + '- 1.5',
       },
       value: {
-        'attribute': ['wikiref', 1.5],
+        'attribute': ['fname-a', 1.5],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'float',
@@ -856,29 +856,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   // mixed wiki and time
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and time',
-    mkdn: ':attribute::[[wikiref]],2001-12-14\n',
+    mkdn: ':attribute::[[fname-a]],2001-12-14\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr time attribute">2001-12-14</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikiref]],2001-12-14',
+        'attribute': '[[fname-a]],2001-12-14',
       },
       value: {
-        'attribute': ['wikiref', new Date('2001-12-14')],
+        'attribute': ['fname-a', new Date('2001-12-14')],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'time',
@@ -892,13 +892,13 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and time',
     mkdn: 'attribute::\n'
-          + '- [[wikiref]]\n'
+          + '- [[fname-a]]\n'
           + '- 2001-12-14\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr time attribute">2001-12-14</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
@@ -906,18 +906,18 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': '\n'
-                     + '- [[wikiref]]\n'
+                     + '- [[fname-a]]\n'
                      + '- 2001-12-14',
       },
       value: {
-        'attribute': ['wikiref', new Date('2001-12-14')],
+        'attribute': ['fname-a', new Date('2001-12-14')],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'time',
@@ -931,29 +931,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   // mixed wiki and null
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and null',
-    mkdn: ':attribute::[[wikiref]],null\n',
+    mkdn: ':attribute::[[fname-a]],null\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr null attribute">null</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikiref]],null',
+        'attribute': '[[fname-a]],null',
       },
       value: {
-        'attribute': ['wikiref', null],
+        'attribute': ['fname-a', null],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'null',
@@ -967,13 +967,13 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   {
     descr: '[[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and null',
     mkdn: 'attribute::\n'
-          + '- [[wikiref]]\n'
+          + '- [[fname-a]]\n'
           + '- null\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr null attribute">null</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
@@ -981,18 +981,18 @@ export const camlWikiRefsCases: CamlTestCase[] = [
     data: {
       string: {
         'attribute': '\n'
-                     + '- [[wikiref]]\n'
+                     + '- [[fname-a]]\n'
                      + '- null',
       },
       value: {
-        'attribute': ['wikiref', null],
+        'attribute': ['fname-a', null],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'null',
@@ -1006,29 +1006,29 @@ export const camlWikiRefsCases: CamlTestCase[] = [
   // edge cases
   {
     descr: '[[wikirefs]]; prefixed; list; comma-separated; mixed wiki and invalid wiki (fallback to string)',
-    mkdn: ':attribute::[[wikiref]],[[invalid\n',
+    mkdn: ':attribute::[[fname-a]],[[invalid\n',
     html: '<aside class="attrbox">\n'
         + '<dl>\n'
         + '<div class="attr-item">\n'
         + '<dt>attribute</dt>\n'
-        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/wikiref" data-href="/tests/fixtures/wikiref">wikiref</a></dd>\n'
+        + '<dd><a class="attr wiki reftype__attribute" href="/tests/fixtures/fname-a" data-href="/tests/fixtures/fname-a">title a</a></dd>\n'
         + '<dd><span class="attr string attribute">[[invalid</span></dd>\n'
         + '</div>\n'
         + '</dl>\n'
         + '</aside>\n',
     data: {
       string: {
-        'attribute': '[[wikiref]],[[invalid',
+        'attribute': '[[fname-a]],[[invalid',
       },
       value: {
-        'attribute': ['wikiref', '[[invalid'],
+        'attribute': ['fname-a', '[[invalid'],
       },
       parse: {
         'attribute': [
           {
             type: 'wiki',
-            string: '[[wikiref]]',
-            value: 'wikiref',
+            string: '[[fname-a]]',
+            value: 'fname-a',
           },
           {
             type: 'string',
