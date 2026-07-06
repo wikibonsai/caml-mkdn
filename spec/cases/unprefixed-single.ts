@@ -1221,7 +1221,7 @@ export const camlUnprefixedSingleCases: CamlTestCase[] = [
   // escaped: indented code block (4+ spaces)
   {
     descr: 'unprefixed; single; escaped; indented code block (4 spaces)',
-    mkdn: '  attribute:: value\n',
+    mkdn: '    attribute:: value\n',
     html: '<pre><code>attribute:: value\n</code></pre>\n',
   },
   // nested: blockquote; not allowed inside
