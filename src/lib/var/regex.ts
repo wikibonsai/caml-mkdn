@@ -12,7 +12,13 @@ export namespace RGX {
     // match: wkilink's RGX.SP_CHAR.LINKTYPE_PRFX -- with the exception of the final '?' which is added here
     KEY_PRFX       : /(?:: ?)/,
     // match: wikilink's RGX.SP_CHAR.LINKTYPE
-    COL            : /(?: *:: ?)/,
+    // negative lookbehind `(?<!\\)`: a backslash-escaped delimiter (`\::`) is NOT
+    // an attr delimiter — the line renders as plain text (parity with wikirefs,
+    // whose attr value must be an un-escaped `[[wikilink]]`). NOTE: escape-mkdn's
+    // getEscIndices does not flag backslashes, so this escape is handled here in
+    // the delimiter regex (shared by scan/load + all caml parsers) rather than via
+    // isStrEscaped (which still guards code-fence / indent / math escapes).
+    COL            : /(?: *(?<!\\):: ?)/,
     // multi-line string indicators (YAML block scalar styles)
     // ref: https://yaml.org/spec/1.2.2/#81-block-scalar-headers
     // order matters: longer patterns first to avoid partial matches
