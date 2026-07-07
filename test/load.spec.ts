@@ -66,6 +66,17 @@ describe('load()', () => {
       assert.deepStrictEqual(r.data['d'], ['x', 'lit-strip']);
     });
 
+    // markdown allows '-', '+', and '*' as unordered-list bullets (parity with
+    // single-line list parsing, which uses RGX.MARKER.BULLET = /[+*-]/)
+    it('mkdn multi-line list supports + and * bullets (not just -)', () => {
+      const rPlus = caml.load(':a::\n+ x\n+ >\n  folded\n');
+      assert.deepStrictEqual(rPlus.data['a'], ['x', 'folded\n']);
+      const rStar = caml.load(':b::\n* x\n* >\n  folded\n');
+      assert.deepStrictEqual(rStar.data['b'], ['x', 'folded\n']);
+      const rStripPlus = caml.load(':c::\n+ x\n+ >-\n  strip\n');
+      assert.deepStrictEqual(rStripPlus.data['c'], ['x', 'strip']);
+    });
+
   });
 
   describe('load() skipEsc (escape handling)', () => {

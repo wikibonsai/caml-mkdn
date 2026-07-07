@@ -93,12 +93,17 @@ function handleStandaloneMultiLine(content: string, res: CamlLoadPayload, skipEs
 
 function handleMkdnListMultiLine(content: string, res: CamlLoadPayload, skipEsc: boolean): string {
   const escdIndices: number[] = skipEsc ? getEscIndices(content) : [];
+  // markdown allows '-', '+', and '*' as unordered-list bullets; mirror the bullet
+  // char class from the canonical RGX.MARKER.BULLET (= /[^\S\r\n]{0,4}([+*-]) /) so
+  // multi-line list values reach parity with single-line list parsing. (Inlined as a
+  // plain char class rather than reusing BULLET.source to avoid adding a capture group
+  // that would shift the positional args in the .replace() callback below.)
   // Pattern: ":key::\n- value1\n- >\n  multi-line content"
   const mkdnMultiLinePattern = new RegExp(
     '^' + RGX.MARKER.KEY_PRFX.source + '?'
     + '(' + RGX.VALID_CHARS.KEY.source + ')'
     + RGX.MARKER.COL.source + '\\n'
-    + '((?:- [^\\n]*\\n)*?)- *'
+    + '((?:[+*-] [^\\n]*\\n)*?)[+*-] *'
     + RGX.MARKER.MLINE_STR.source + '\\s*\\n'
     + '((?:\\s+.*\\n?)*)'
   , 'gm');
@@ -114,7 +119,7 @@ function handleMkdnListMultiLine(content: string, res: CamlLoadPayload, skipEsc:
     const values: any[] = [];
     
     // Extract previous items
-    const itemMatches = previousItems.matchAll(/^- *([^\n]*)/gm);
+    const itemMatches = previousItems.matchAll(/^[+*-] *([^\n]*)/gm);
     for (const itemMatch of itemMatches) {
       const itemValue = itemMatch[1].trim();
       if (itemValue) {
