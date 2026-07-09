@@ -13,6 +13,86 @@ CAML attributes are block-level constructs. They are not parsed inside other mar
 
 CAML attrs are meant to be compatible with [wikiattrs](https://github.com/wikibonsai/wikirefs/tree/main/spec#wikiattrs).
 
+## Use
+
+Below is an example usage of the test cases provided by `caml-spec`:
+
+```js
+import assert from 'node:assert/strict';
+import { camlCases } from 'caml-spec';
+
+function run(contextMsg: string, tests: TestCase[]): void {
+  context(contextMsg, () => {
+    for(const test of tests) {
+      it(test.descr, () => {
+        const expdHTML: string = test.html;
+        const actlHTML: string = md.render(test.mkdn, env);
+        assert.strictEqual(actlHTML, expdHTML);
+      });
+    }
+  });
+}
+```
+
+Tests without wikirefs:
+
+```js
+import { camlCases, camlWithoutWikiRefsCases } from 'caml-spec';
+
+describe('render caml; mkdn -> html', () => {
+
+  run('caml cases', camlCases);
+  run('w/o wikirefs cases', camlWithoutWikiRefsCases);
+
+});
+```
+
+Tests with wikirefs:
+
+Import `wikiAttrCases` from [wikirefs-spec](https://github.com/wikibonsai/wikirefs/tree/main/spec).
+
+```js
+import { camlCases } from 'caml-spec';
+import { wikiAttrCases } from 'wikirefs-spec';
+
+describe('render caml + wikirefs; mkdn -> html', () => {
+
+  run('caml cases', camlCases);
+  run('w/ wikiattr cases', wikiAttrCases);
+
+});
+```
+
+### Customizing Tests
+
+#todo -- replace wikirefs examples with caml examples.
+
+Downstream implementations may need to adjust spec test expectations due to differences in how markdown renderers handle non-standardized features. Common reasons include:
+
+- **Non-standardized HTML output** — Features like GFM strikethroughs (`<del>` vs `<s>`) and footnotes vary across renderers since they are not part of the core CommonMark specification.
+- **Renderer-specific behavior** — Some renderers add extra attributes, wrap elements differently, or handle whitespace in ways that differ from the spec's expected HTML.
+- **Platform-specific requirements** — Target environments may need additional attributes (e.g., `target="_blank"`) or different URL formats.
+
+They can be altered in a test suite in the following manner -- this example is taken from [markdown-it-wikirefs](https://github.com/wikibonsai/markdown-it-wikirefs):
+
+```js
+import { wikiRefCases } from 'wikirefs-spec';
+
+before(() => {
+  // markdown-it implements...
+  wikiRefCases.forEach((testcase: WikiRefTestCase) => {
+    // ...gfm strikethroughs differently by...
+    if (testcase.descr.includes('gfm')
+    && testcase.descr.includes('strikethrough')) {
+      // ...using '<s>' instead of '<del>'
+      testcase.html = testcase.html.replace(/del>/g, 's>');
+    }
+  });
+});
+```
+
+Before running (inside the `before`), all test cases are looped through and changed by filtering tests by the `descr` and then applying the desired change to the test case's `html` -- or `mkdn` if so desired.
+
 ### Single
 
 All of the following examples should generate the same html:

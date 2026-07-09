@@ -5,91 +5,7 @@
 import type { CamlTestCase } from '../types';
 
 
-export const camlWikiRefsCases: CamlTestCase[] = [
-  {
-    descr: 'no val; prefixed; single; [[wikilinks]]; should not be processed here',
-    mkdn: ': attribute ::\n'
-          + '\n'
-          + '[[fname-a]]\n',
-    html: '<p>: attribute ::</p>\n<p>[[fname-a]]</p>\n',
-    data: {
-      string: {},
-      value: {},
-      parse: {},
-    },
-  },
-  {
-    descr: '[[wikirefs]]; prefixed; single; [[wikilinks]]; should not interfere with empty string processing',
-    mkdn: ': attribute :: \'\'\n'
-          + '\n'
-          + '[[fname-a]]\n',
-    html: '<aside class="attrbox">\n'
-        + '<dl>\n'
-        + '<div class="attr-item">\n'
-        + '<dt>attribute</dt>\n'
-        + '<dd><span class="attr string attribute">\'\'</span></dd>\n'
-        + '</div>\n'
-        + '</dl>\n'
-        + '</aside>\n'
-        + '<p>[[fname-a]]</p>\n',
-    data: {
-      string: {
-        'attribute': '\'\'',
-      },
-      value: {
-        'attribute': '\'\'',
-      },
-      parse: {
-        'attribute': [{
-          type: 'string',
-          string: '\'\'',
-          value: '\'\'',
-        }],
-      },
-    },
-  },
-  {
-    descr: '[[wikirefs]]; unprefixed; single; [[wikilinks]]; should not be processed here',
-    mkdn: ' attribute ::\n'
-          + '\n'
-          + '[[fname-a]]\n',
-    html: '<p>attribute ::</p>\n<p>[[fname-a]]</p>\n',
-    data: {
-      string: {},
-      value: {},
-      parse: {},
-    },
-  },
-  {
-    descr: '[[wikirefs]]; unprefixed; single; [[wikilinks]]; should not interfere with empty string processing',
-    mkdn: 'attribute :: \'\'\n'
-          + '\n'
-          + '[[fname-a]]\n',
-    html: '<aside class="attrbox">\n'
-        + '<dl>\n'
-        + '<div class="attr-item">\n'
-        + '<dt>attribute</dt>\n'
-        + '<dd><span class="attr string attribute">\'\'</span></dd>\n'
-        + '</div>\n'
-        + '</dl>\n'
-        + '</aside>\n'
-        + '<p>[[fname-a]]</p>\n',
-    data: {
-      string: {
-        'attribute': '\'\'',
-      },
-      value: {
-        'attribute': '\'\'',
-      },
-      parse: {
-        'attribute': [{
-          type: 'string',
-          string: '\'\'',
-          value: '\'\'',
-        }],
-      },
-    },
-  },
+export const camlWithoutWikiRefsCases: CamlTestCase[] = [
   ////
   // single wiki value
   {
@@ -1085,6 +1001,91 @@ export const camlWikiRefsCases: CamlTestCase[] = [
             value: 42,
           },
         ],
+      },
+    },
+  },
+  // misc cases
+  {
+    descr: 'no val; prefixed; single; [[wikirefs]]; should not be processed here',
+    mkdn: ': attribute ::\n'
+          + '\n'
+          + '[[fname-a]]\n',
+    html: '<p>: attribute ::</p>\n<p>[[fname-a]]</p>\n',
+    data: {
+      string: {},
+      value: {},
+      parse: {},
+    },
+  },
+  {
+    descr: '[[wikirefs]]; prefixed; single; [[wikilinks]]; should not interfere with empty string processing',
+    mkdn: ': attribute :: \'\'\n'
+          + '\n'
+          + '[[fname-a]]\n',
+    html: '<aside class="attrbox">\n'
+        + '<dl>\n'
+        + '<div class="attr-item">\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">\'\'</span></dd>\n'
+        + '</div>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<p>[[fname-a]]</p>\n',
+    data: {
+      string: {
+        'attribute': '\'\'',
+      },
+      value: {
+        'attribute': '\'\'',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: '\'\'',
+          value: '\'\'',
+        }],
+      },
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; single; [[wikilinks]]; should not be processed here',
+    mkdn: ' attribute ::\n'
+          + '\n'
+          + '[[fname-a]]\n',
+    html: '<p>attribute ::</p>\n<p>[[fname-a]]</p>\n',
+    data: {
+      string: {},
+      value: {},
+      parse: {},
+    },
+  },
+  {
+    descr: '[[wikirefs]]; unprefixed; single; [[wikilinks]]; should not interfere with empty string processing',
+    mkdn: 'attribute :: \'\'\n'
+          + '\n'
+          + '[[fname-a]]\n',
+    html: '<aside class="attrbox">\n'
+        + '<dl>\n'
+        + '<div class="attr-item">\n'
+        + '<dt>attribute</dt>\n'
+        + '<dd><span class="attr string attribute">\'\'</span></dd>\n'
+        + '</div>\n'
+        + '</dl>\n'
+        + '</aside>\n'
+        + '<p>[[fname-a]]</p>\n',
+    data: {
+      string: {
+        'attribute': '\'\'',
+      },
+      value: {
+        'attribute': '\'\'',
+      },
+      parse: {
+        'attribute': [{
+          type: 'string',
+          string: '\'\'',
+          value: '\'\'',
+        }],
       },
     },
   },

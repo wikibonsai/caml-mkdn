@@ -11,7 +11,6 @@ import { camlUnprefixedListMkdnCases } from './cases/unprefixed-list-mkdn';
 import { camlUnprefixedSingleCases } from './cases/unprefixed-single';
 
 import { camlNoValCases } from './cases/no-val';
-import { camlWikiRefsCases } from './cases/wikiref';
 
 
 /* eslint-disable indent */
@@ -23,8 +22,7 @@ const camlUnprefixedCases : CamlTestCase[]  = ([] as CamlTestCase[]).concat(caml
                                                                     .concat(camlUnprefixedListMkdnCases);
 const camlCases           : CamlTestCase[]  = ([] as CamlTestCase[]).concat(camlPrefixedCases)
                                                                     .concat(camlUnprefixedCases)
-                                                                    .concat(camlNoValCases)
-                                                                    .concat(camlWikiRefsCases);
+                                                                    .concat(camlNoValCases);
 /* eslint-enable indent */
 
 // export
@@ -35,13 +33,14 @@ export { camlPrefixedSingleCases } from './cases/prefixed-single';
 export { camlUnprefixedListCommaCases } from './cases/unprefixed-list-comma';
 export { camlUnprefixedListMkdnCases } from './cases/unprefixed-list-mkdn';
 export { camlUnprefixedSingleCases } from './cases/unprefixed-single';
+// handle wikirefs cases separately -- dependent on plugin setup context (i.e. has sibling wikirefs plugin installed or not)
+export { camlWithoutWikiRefsCases } from './cases/without-wikiref';
 
 // 'edge' cases
 export { camlNoValCases } from './cases/no-val';
-export { camlWikiRefsCases } from './cases/wikiref';
+
 
 export { camlCases, camlPrefixedCases, camlUnprefixedCases };
-
 
 // types
 
