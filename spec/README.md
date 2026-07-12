@@ -65,27 +65,24 @@ describe('render caml + wikirefs; mkdn -> html', () => {
 
 ### Customizing Tests
 
-#todo -- replace wikirefs examples with caml examples.
-
 Downstream implementations may need to adjust spec test expectations due to differences in how markdown renderers handle non-standardized features. Common reasons include:
 
 - **Non-standardized HTML output** — Features like GFM strikethroughs (`<del>` vs `<s>`) and footnotes vary across renderers since they are not part of the core CommonMark specification.
 - **Renderer-specific behavior** — Some renderers add extra attributes, wrap elements differently, or handle whitespace in ways that differ from the spec's expected HTML.
 - **Platform-specific requirements** — Target environments may need additional attributes (e.g., `target="_blank"`) or different URL formats.
 
-They can be altered in a test suite in the following manner -- this example is taken from [markdown-it-wikirefs](https://github.com/wikibonsai/markdown-it-wikirefs):
+They can be altered in a test suite in the following manner -- this example is taken from [marked-caml](https://github.com/wikibonsai/marked-caml):
 
 ```js
-import { wikiRefCases } from 'wikirefs-spec';
+import { camlCases } from 'caml-spec';
 
 before(() => {
-  // markdown-it implements...
-  wikiRefCases.forEach((testcase: WikiRefTestCase) => {
-    // ...gfm strikethroughs differently by...
-    if (testcase.descr.includes('gfm')
-    && testcase.descr.includes('strikethrough')) {
-      // ...using '<s>' instead of '<del>'
-      testcase.html = testcase.html.replace(/del>/g, 's>');
+  // marked preserves leading whitespace...
+  camlCases.forEach((testcase: CamlTestCase) => {
+    // ...so this whitespace-flexible attr renders with a leading space...
+    if (testcase.descr === '[[wikirefs]]; unprefixed; single; [[wikilinks]]; should not be processed here') {
+      // ...that the spec's expected html doesn't carry.
+      testcase.html = testcase.html.replace('<p>attribute ::</p>', '<p> attribute ::</p>');
     }
   });
 });
