@@ -8,7 +8,7 @@ import {
   camlNoValCases,
   camlPrefixedCases,
   camlUnprefixedCases,
-  camlWikiRefsCases,
+  camlWithoutWikiRefsCases,
 } from '../spec';
 
 
@@ -42,7 +42,7 @@ describe('load()', () => {
   });
 
   run('no value', camlNoValCases);
-  run('[[wikirefs]]', camlWikiRefsCases);
+  run('[[wikirefs]]', camlWithoutWikiRefsCases);
 
   run('prefixed', camlPrefixedCases);
   run('unprefixed', camlUnprefixedCases);

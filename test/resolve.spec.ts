@@ -10,7 +10,7 @@ import {
   camlPrefixedListMkdnCases,
   camlUnprefixedListCommaCases,
   camlUnprefixedListMkdnCases,
-  camlWikiRefsCases,
+  camlWithoutWikiRefsCases,
 } from '../spec';
 
 
@@ -68,7 +68,7 @@ describe('resolve()', () => {
 
   // spec-driven: wiki
 
-  runSingle('wiki; single', camlWikiRefsCases);
-  runList('wiki; list', camlWikiRefsCases);
+  runSingle('wiki; single', camlWithoutWikiRefsCases);
+  runList('wiki; list', camlWithoutWikiRefsCases);
 
 });
