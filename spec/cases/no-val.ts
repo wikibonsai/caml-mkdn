@@ -27,4 +27,45 @@ export const camlNoValCases: CamlTestCase[] = [
       parse: {},
     },
   },
+  // no-val
+  {
+    descr: 'no val; unprefixed; single; immediately before thematic break (setext); none is not allowed',
+    mkdn: 'attribute::\n---\n',
+    html: '<h2>attribute::</h2>\n',
+    data: {
+      string: {},
+      value: {},
+      parse: {},
+    },
+  },
+  {
+    descr: 'no val; prefixed; single; immediately before thematic break (setext); none is not allowed',
+    mkdn: ':attribute::\n---\n',
+    html: '<h2>:attribute::</h2>\n',
+    data: {
+      string: {},
+      value: {},
+      parse: {},
+    },
+  },
+  {
+    descr: 'no val; unprefixed; single; immediately before blockquote; none is not allowed',
+    mkdn: 'attribute::\n> quote text\n',
+    html: '<p>attribute::</p>\n<blockquote>\n<p>quote text</p>\n</blockquote>\n',
+    data: {
+      string: {},
+      value: {},
+      parse: {},
+    },
+  },
+  {
+    descr: 'no val; prefixed; single; immediately before blockquote; none is not allowed',
+    mkdn: ':attribute::\n> quote text\n',
+    html: '<p>:attribute::</p>\n<blockquote>\n<p>quote text</p>\n</blockquote>\n',
+    data: {
+      string: {},
+      value: {},
+      parse: {},
+    },
+  },
 ];
