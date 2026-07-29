@@ -11,6 +11,7 @@ import { camlUnprefixedListMkdnCases } from './cases/unprefixed-list-mkdn';
 import { camlUnprefixedSingleCases } from './cases/unprefixed-single';
 
 import { camlNoValCases } from './cases/no-val';
+import { camlInvalidCases } from './cases/invalid';
 
 
 /* eslint-disable indent */
@@ -22,7 +23,8 @@ const camlUnprefixedCases : CamlTestCase[]  = ([] as CamlTestCase[]).concat(caml
                                                                     .concat(camlUnprefixedListMkdnCases);
 const camlCases           : CamlTestCase[]  = ([] as CamlTestCase[]).concat(camlPrefixedCases)
                                                                     .concat(camlUnprefixedCases)
-                                                                    .concat(camlNoValCases);
+                                                                    .concat(camlNoValCases)
+                                                                    .concat(camlInvalidCases);
 /* eslint-enable indent */
 
 // export
@@ -38,6 +40,7 @@ export { camlWithoutWikiRefsCases } from './cases/without-wikiref';
 
 // 'edge' cases
 export { camlNoValCases } from './cases/no-val';
+export { camlInvalidCases } from './cases/invalid';
 
 
 export { camlCases, camlPrefixedCases, camlUnprefixedCases };

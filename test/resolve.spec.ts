@@ -4,6 +4,7 @@ import * as caml from '../src';
 
 import type { CamlTestCase } from '../spec/types';
 import {
+  camlNoValCases,
   camlPrefixedSingleCases,
   camlUnprefixedSingleCases,
   camlPrefixedListCommaCases,
@@ -11,6 +12,7 @@ import {
   camlUnprefixedListCommaCases,
   camlUnprefixedListMkdnCases,
   camlWithoutWikiRefsCases,
+  camlInvalidCases,
 } from '../spec';
 
 
@@ -65,6 +67,9 @@ describe('resolve()', () => {
   runList('prefixed; list; mkdn', camlPrefixedListMkdnCases);
   runList('unprefixed; list; comma', camlUnprefixedListCommaCases);
   runList('unprefixed; list; mkdn', camlUnprefixedListMkdnCases);
+  runList('no val', camlNoValCases);
+  runList('invalid', camlInvalidCases);
+  runSingle('invalid', camlInvalidCases);
 
   // spec-driven: wiki
 
