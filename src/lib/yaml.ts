@@ -123,6 +123,9 @@ export function constructYamlTimestamp(data: any): Date {
   // YAML_TIMESTAMP_REGEXP: https://github.com/nodeca/js-yaml/blob/master/lib/type/timestamp.js#L10
   // const match : RegExpMatchArray | null = VAL.TIMESTAMP.exec(data);
   // if (match === null) throw new Error('Date resolve error');
+  // strict 2-digit date form (js-yaml parity): unpadded input like `2025-1-30` matches
+  // neither this nor the timestamp form (which requires a time), so it throws -> the
+  // caller (resolve) falls back to `string`. we do NOT accept unpadded dates.
   let match : RegExpMatchArray | null = YAML_DATE_REGEXP.exec(data);
   if (match === null) match = YAML_TIMESTAMP_REGEXP.exec(data);
   if (match === null) throw new Error('Date resolve error');
@@ -134,7 +137,16 @@ export function constructYamlTimestamp(data: any): Date {
   day = +(match[3]);
 
   if (!match[4]) { // no hour
-    return new Date(Date.UTC(year, month, day));
+    const dateOnly: Date = new Date(Date.UTC(year, month, day));
+    // round-trip check: reject out-of-range values (e.g. 2025-13-45, 2025-02-30) instead
+    // of silently rolling over via Date. caller (resolve) catches -> falls back to string.
+    if (dateOnly.getUTCFullYear() !== year
+      || dateOnly.getUTCMonth() !== month
+      || dateOnly.getUTCDate() !== day
+    ) {
+      throw new Error('Date resolve error');
+    }
+    return dateOnly;
   }
 
   // match: [4] hour [5] minute [6] second [7] fraction

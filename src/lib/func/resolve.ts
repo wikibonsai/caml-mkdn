@@ -94,6 +94,19 @@ function parseYamlScalar(indicator: string, block: string): string {
 // see: wikirefs/src/lib/var/regex.ts
 const WIKI_RGX: RegExp = /^\[\[[^\n\r!#:^|[\]]+\]\]$/i;
 
+// resolve a valid timestamp to a Date; return null for an invalid one (bad format or
+// out-of-range) so resolution falls back to `string`. constructYamlTimestamp throws on
+// invalid dates (js-yaml parity) — this contains the throw so resolve() can branch on it
+// rather than swallow it. type resolution is total: a value that can't be a real date is
+// a string.
+function tryTimestamp(value: string): Date | null {
+  try {
+    return constructYamlTimestamp(value);
+  } catch {
+    return null;
+  }
+}
+
 // todo: what if there's leading/trailing whitespace? (trimming beforehand, for now)
 export function resolve(value: string): CamlValData {
   // wikilink
@@ -191,11 +204,15 @@ export function resolve(value: string): CamlValData {
   }
   // time
   if (TYPE.TIMESTAMP.exec(value)) {
-    return {
-      type: 'time',
-      string: value,
-      value: constructYamlTimestamp(value),
-    };
+    const time: Date | null = tryTimestamp(value);
+    if (time !== null) {
+      return {
+        type: 'time',
+        string: value,
+        value: time,
+      };
+    }
+    // else: not a real date -> fall through to `string`
   }
   if (TYPE.TIME_INT.exec(value)) {
     return {
