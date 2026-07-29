@@ -233,6 +233,43 @@ Optional whitespace is defined as follows:
 - Attrtype text may be prefixed (between first colon `:` and attrtype text) or suffixed (between attrtype text and double colon `::`) by one space.
 - List item prefix whitespace (space before the bullet `-*+`) can have any number of spaces.
 
+### No Value
+
+A `key::` with no value is **not** an attribute — it renders as plain text:
+
+```markdown
+attribute::
+```
+
+```html
+<p>attribute::</p>
+```
+
+This holds even when a block immediately follows (no blank line): the bare key is not an attr, so the following block parses natively. Before a thematic break (which makes the key line a setext heading):
+
+```markdown
+attribute::
+---
+```
+
+```html
+<h2>attribute::</h2>
+```
+
+Before a blockquote:
+
+```markdown
+attribute::
+> quote text
+```
+
+```html
+<p>attribute::</p>
+<blockquote>
+<p>quote text</p>
+</blockquote>
+```
+
 ### Types
 
 CAML supports different value types, [similar to YAML](https://yaml.org/spec/1.2.2/#chapter-10-recommended-schemas):
@@ -267,6 +304,8 @@ CAML supports different value types, [similar to YAML](https://yaml.org/spec/1.2
                  - 2001-12-14t21:59:43.10-05:00 // iso8601
                  - 2001-12-14 21:59:43.10 -5    // spaced
                  - 2002-12-14                   // date
+: wiki-type    ::
+                 - [[wiki]]                     // a wiki value (use in conjunction with [wikirefs](https://github.com/wikibonsai/wikirefs))
 ```
 
 Types can be mixed, also similarly to YAML:
