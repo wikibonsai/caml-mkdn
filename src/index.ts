@@ -1,5 +1,6 @@
 // const
 
+export * from './lib/var/const';
 export * from './lib/var/regex';
 export * from './lib/types';
 

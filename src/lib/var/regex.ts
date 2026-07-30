@@ -1,6 +1,8 @@
 /* eslint-disable indent */
 /* eslint-disable @typescript-eslint/no-namespace */
 
+import { CONST } from './const';
+
 
 export namespace RGX {
 
@@ -10,7 +12,8 @@ export namespace RGX {
 
     // todo: add links
     // match: wkilink's RGX.SP_CHAR.LINKTYPE_PRFX -- with the exception of the final '?' which is added here
-    KEY_PRFX       : /(?:: ?)/,
+    // derived from CONST.MARKER.KEY_PRFX (':') so the literal lives in one place
+    KEY_PRFX       : new RegExp('(?:' + CONST.MARKER.KEY_PRFX + ' ?)'),
     // match: wikilink's RGX.SP_CHAR.LINKTYPE
     // negative lookbehind `(?<!\\)`: a backslash-escaped delimiter (`\::`) is NOT
     // an attr delimiter — the line renders as plain text (parity with wikirefs,
@@ -18,7 +21,8 @@ export namespace RGX {
     // getEscIndices does not flag backslashes, so this escape is handled here in
     // the delimiter regex (shared by scan/load + all caml parsers) rather than via
     // isStrEscaped (which still guards code-fence / indent / math escapes).
-    COL            : /(?: *(?<!\\):: ?)/,
+    // derived from CONST.MARKER.COL ('::') so the literal lives in one place
+    COL            : new RegExp('(?: *(?<!\\\\)' + CONST.MARKER.COL + ' ?)'),
     // multi-line string indicators (YAML block scalar styles)
     // ref: https://yaml.org/spec/1.2.2/#81-block-scalar-headers
     // order matters: longer patterns first to avoid partial matches
