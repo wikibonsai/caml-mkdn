@@ -4,31 +4,18 @@ import * as caml from '../src';
 
 describe('update()', () => {
 
+  const testUpdate = (params: any) => (): void => {
+    const opts: any = { type: params.type };
+    if (params.skipEsc !== undefined) { opts.skipEsc = params.skipEsc; }
+    if (params.format !== undefined) { opts.format = params.format; }
+    assert.deepStrictEqual(caml.update(params.mkdn, params.key, params.newVal, opts), params.result);
+  };
+
   describe('format: content (default)', () => {
-
-    const testContent = (params: any) => () => {
-      const mkdn: string = params.mkdn;
-      const key: string = params.key;
-      const newVal: string = params.newVal;
-      const type: string | undefined = params.type;
-      const expdContent: string | undefined = params.result;
-      const actlContent = caml.update(mkdn, key, newVal, { type });
-      assert.deepStrictEqual(actlContent, expdContent);
-    };
-
-    const testContentExplicit = (params: any) => () => {
-      const mkdn: string = params.mkdn;
-      const key: string = params.key;
-      const newVal: string = params.newVal;
-      const type: string | undefined = params.type;
-      const expdContent: string | undefined = params.result;
-      const actlContent = caml.update(mkdn, key, newVal, { type, format: 'content' });
-      assert.deepStrictEqual(actlContent, expdContent);
-    };
 
     describe('default (no format specified)', () => {
 
-      it('timestamp', testContent({
+      it('timestamp', testUpdate({
         mkdn: 'attr::2001-12-15T02:59:43.1Z\n',
         key: 'attr',
         newVal: '2022-11-15T02:55:10.1Z',
@@ -36,7 +23,7 @@ describe('update()', () => {
         result: 'attr::2022-11-15T02:55:10.1Z\n',
       }));
 
-      it('date only', testContent({
+      it('date only', testUpdate({
         mkdn: 'attr::2001-12-14\n',
         key: 'attr',
         newVal: '2022-11-14',
@@ -44,7 +31,7 @@ describe('update()', () => {
         result: 'attr::2022-11-14\n',
       }));
 
-      it('date only; prefixed; pad', testContent({
+      it('date only; prefixed; pad', testUpdate({
         mkdn: ': attr :: 2001-12-14\n',
         key: 'attr',
         newVal: '2022-11-14',
@@ -52,7 +39,7 @@ describe('update()', () => {
         result: ': attr :: 2022-11-14\n',
       }));
 
-      it('time int', testContent({
+      it('time int', testUpdate({
         mkdn: 'attr::+12:00\n',
         key: 'attr',
         newVal: '-09:30',
@@ -60,7 +47,7 @@ describe('update()', () => {
         result: 'attr::-09:30\n',
       }));
 
-      it('time float', testContent({
+      it('time float', testUpdate({
         mkdn: 'attr::+12:00.123\n',
         key: 'attr',
         newVal: '-09:30.321',
@@ -68,14 +55,14 @@ describe('update()', () => {
         result: 'attr::-09:30.321\n',
       }));
 
-      it('string', testContent({
+      it('string', testUpdate({
         mkdn: 'attr::old value\n',
         key: 'attr',
         newVal: 'new value',
         result: 'attr::new value\n',
       }));
 
-      it('int', testContent({
+      it('int', testUpdate({
         mkdn: 'attr::42\n',
         key: 'attr',
         newVal: '99',
@@ -83,7 +70,7 @@ describe('update()', () => {
         result: 'attr::99\n',
       }));
 
-      it('bool', testContent({
+      it('bool', testUpdate({
         mkdn: 'attr::true\n',
         key: 'attr',
         newVal: 'false',
@@ -91,14 +78,14 @@ describe('update()', () => {
         result: 'attr::false\n',
       }));
 
-      it('not found returns undefined', testContent({
+      it('not found returns undefined', testUpdate({
         mkdn: 'attr::value\n',
         key: 'missing',
         newVal: 'x',
         result: undefined,
       }));
 
-      it('preserves surrounding content', testContent({
+      it('preserves surrounding content', testUpdate({
         mkdn: 'title::hello\n'
             + 'attr::old value\n'
             + 'tags::wiki\n',
@@ -113,7 +100,7 @@ describe('update()', () => {
 
     describe('explicit format: content', () => {
 
-      it('returns same as default', testContentExplicit({
+      it('returns same as default', testUpdate({
         mkdn: 'attr::2001-12-14\n',
         key: 'attr',
         newVal: '2022-11-14',
@@ -127,40 +114,33 @@ describe('update()', () => {
 
   describe('format: offsets', () => {
 
-    const testOffsets = (params: any) => () => {
-      const mkdn: string = params.mkdn;
-      const key: string = params.key;
-      const newVal: string = params.newVal;
-      const type: string | undefined = params.type;
-      const expdResult: [number, number, string] | undefined = params.result;
-      const actlResult = caml.update(mkdn, key, newVal, { type, format: 'offsets' });
-      assert.deepStrictEqual(actlResult, expdResult);
-    };
-
-    it('timestamp', testOffsets({
+    it('timestamp', testUpdate({
       mkdn: 'attr::2001-12-15T02:59:43.1Z\n',
       key: 'attr',
       newVal: '2022-11-15T02:55:10.1Z',
       type: 'timestamp',
+      format: 'offsets',
       result: [0, 28, 'attr::2022-11-15T02:55:10.1Z'],
     }));
 
-    it('date only', testOffsets({
+    it('date only', testUpdate({
       mkdn: 'attr::2001-12-14\n',
       key: 'attr',
       newVal: '2022-11-14',
       type: 'timestamp',
+      format: 'offsets',
       result: [0, 16, 'attr::2022-11-14'],
     }));
 
-    it('string', testOffsets({
+    it('string', testUpdate({
       mkdn: 'attr::old value\n',
       key: 'attr',
       newVal: 'new value',
+      format: 'offsets',
       result: [0, 15, 'attr::new value'],
     }));
 
-    it('not found returns undefined', testOffsets({
+    it('not found returns undefined', testUpdate({
       mkdn: 'attr::value\n',
       key: 'missing',
       newVal: 'x',
@@ -171,33 +151,28 @@ describe('update()', () => {
 
   describe('whitespace preservation', () => {
 
-    const testContent = (params: any) => () => {
-      const actlResult = caml.update(params.mkdn, params.key, params.newVal, { type: params.type });
-      assert.deepStrictEqual(actlResult, params.result);
-    };
-
-    it('no padding', testContent({
+    it('no padding', testUpdate({
       mkdn: 'attr::old\n',
       key: 'attr',
       newVal: 'new',
       result: 'attr::new\n',
     }));
 
-    it('space after ::', testContent({
+    it('space after ::', testUpdate({
       mkdn: 'attr:: old\n',
       key: 'attr',
       newVal: 'new',
       result: 'attr:: new\n',
     }));
 
-    it('space before ::', testContent({
+    it('space before ::', testUpdate({
       mkdn: 'attr ::old\n',
       key: 'attr',
       newVal: 'new',
       result: 'attr ::new\n',
     }));
 
-    it('prefixed; pad', testContent({
+    it('prefixed; pad', testUpdate({
       mkdn: ': attr :: old\n',
       key: 'attr',
       newVal: 'new',
@@ -208,22 +183,14 @@ describe('update()', () => {
 
   describe('skipEsc (escape handling)', () => {
 
-    const testContent = (params: any) => () => {
-      const opts: any = { type: params.type };
-      if (params.skipEsc !== undefined) { opts.skipEsc = params.skipEsc; }
-      if (params.format !== undefined) { opts.format = params.format; }
-      const actlResult = caml.update(params.mkdn, params.key, params.newVal, opts);
-      assert.deepStrictEqual(actlResult, params.result);
-    };
-
-    it('escaped attr (fenced code) skipped by default; updates the real one', testContent({
+    it('escaped attr (fenced code) skipped by default; updates the real one', testUpdate({
       mkdn: '```\nattr::caged\n```\nattr::real\n',
       key: 'attr',
       newVal: 'new',
       result: '```\nattr::caged\n```\nattr::new\n',
     }));
 
-    it('escaped attr updated when skipEsc:false (first match)', testContent({
+    it('escaped attr updated when skipEsc:false (first match)', testUpdate({
       mkdn: '```\nattr::caged\n```\nattr::real\n',
       key: 'attr',
       newVal: 'new',
@@ -231,14 +198,14 @@ describe('update()', () => {
       result: '```\nattr::new\n```\nattr::real\n',
     }));
 
-    it('only an escaped attr; skipped by default returns undefined', testContent({
+    it('only an escaped attr; skipped by default returns undefined', testUpdate({
       mkdn: '```\nattr::caged\n```\n',
       key: 'attr',
       newVal: 'new',
       result: undefined,
     }));
 
-    it('only an escaped attr; updated when skipEsc:false', testContent({
+    it('only an escaped attr; updated when skipEsc:false', testUpdate({
       mkdn: '```\nattr::caged\n```\n',
       key: 'attr',
       newVal: 'new',
@@ -246,7 +213,7 @@ describe('update()', () => {
       result: '```\nattr::new\n```\n',
     }));
 
-    it('offsets format also skips escaped by default', testContent({
+    it('offsets format also skips escaped by default', testUpdate({
       mkdn: '```\nattr::caged\n```\nattr::real\n',
       key: 'attr',
       newVal: 'new',

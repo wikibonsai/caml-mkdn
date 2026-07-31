@@ -29,7 +29,7 @@ describe('dump()', () => {
 
   // spec-driven: for single-value cases, compare dump(data.string) against mkdn.
   // for multi-line cases, round-trip: load(mkdn) -> dump(data.value, multiLine opts) -> load -> compare data.
-  function run(contextMsg: string, tests: CamlTestCase[]): void {
+  function run(contextMsg: string, tests: CamlTestCase[], expdOpts?: any): void {
     context(contextMsg, () => {
       let i: number = 0;
       for(const test of tests) {
@@ -45,7 +45,7 @@ describe('dump()', () => {
           // add listFormat for mkdn list cases
           it(desc, () => {
             const loaded = caml.load(test.mkdn);
-            const opts: any = { ...test.opts, ...mlOpts };
+            const opts: any = { ...expdOpts, ...mlOpts };
             if (test.descr.includes('mkdn-separated')) {
               opts.listFormat = 'mkdn';
             }
@@ -56,10 +56,9 @@ describe('dump()', () => {
         } else {
           // regular: string comparison
           it(desc, () => {
-            const opts: any = test.opts;
             const data: any = test.data!.string;
             const expdMkdn: string = test.mkdn;
-            const actlMkdn: string = caml.dump(data, opts);
+            const actlMkdn: string = caml.dump(data, expdOpts);
             assert.deepStrictEqual(actlMkdn, expdMkdn);
           });
         }
@@ -75,60 +74,16 @@ describe('dump()', () => {
   ////
   // prefixed
 
-  camlPrefixedSingleCases.forEach((testcase: CamlTestCase) => {
-    testcase['opts'] = {
-      prefix: true,
-      format: 'none',
-    };
-  });
-  run('prefixed; single', camlPrefixedSingleCases);
-
-  camlPrefixedListCommaCases.forEach((testcase: CamlTestCase) => {
-    testcase['opts'] = {
-      prefix: true,
-      listFormat: 'comma',
-      format: 'none',
-    };
-  });
-  run('prefixed; list; comma-separated', camlPrefixedListCommaCases);
-
-  camlPrefixedListMkdnCases.forEach((testcase: CamlTestCase) => {
-    testcase['opts'] = {
-      prefix: true,
-      listFormat: 'mkdn',
-      format: 'none',
-    };
-  });
-  run('prefixed; list; mkdn-separated', camlPrefixedListMkdnCases);
+  run('prefixed; single', camlPrefixedSingleCases, { prefix: true, format: 'none' });
+  run('prefixed; list; comma-separated', camlPrefixedListCommaCases, { prefix: true, listFormat: 'comma', format: 'none' });
+  run('prefixed; list; mkdn-separated', camlPrefixedListMkdnCases, { prefix: true, listFormat: 'mkdn', format: 'none' });
 
   ////
   // unprefixed
 
-  camlUnprefixedSingleCases.forEach((testcase: CamlTestCase) => {
-    testcase['opts'] = {
-      prefix: false,
-      format: 'none',
-    };
-  });
-  run('unprefixed; single', camlUnprefixedSingleCases);
-
-  camlUnprefixedListCommaCases.forEach((testcase: CamlTestCase) => {
-    testcase['opts'] = {
-      prefix: false,
-      listFormat: 'comma',
-      format: 'none',
-    };
-  });
-  run('unprefixed; list; comma-separated', camlUnprefixedListCommaCases);
-
-  camlUnprefixedListMkdnCases.forEach((testcase: CamlTestCase) => {
-    testcase['opts'] = {
-      prefix: false,
-      listFormat: 'mkdn',
-      format: 'none',
-    };
-  });
-  run('unprefixed; list; mkdn-separated', camlUnprefixedListMkdnCases);
+  run('unprefixed; single', camlUnprefixedSingleCases, { prefix: false, format: 'none' });
+  run('unprefixed; list; comma-separated', camlUnprefixedListCommaCases, { prefix: false, listFormat: 'comma', format: 'none' });
+  run('unprefixed; list; mkdn-separated', camlUnprefixedListMkdnCases, { prefix: false, listFormat: 'mkdn', format: 'none' });
 
   ////
   // dump-specific option tests (not driven by spec cases)

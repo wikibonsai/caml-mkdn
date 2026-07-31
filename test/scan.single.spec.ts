@@ -5,21 +5,18 @@ import * as caml from '../src';
 
 describe('scan() -- single', () => {
 
-  const testSingle = (params: any) => () => {
-    const mkdn: string = params.mkdn;
-    const expdData: any = params.data;
-    const actlData: any = caml.scan(mkdn);
-    assert.deepStrictEqual(actlData, expdData);
+  const testScan = (params: any) => (): void => {
+    assert.deepStrictEqual(caml.scan(params.mkdn), params.data);
   };
 
   describe('null', () => {
 
-    it('none is not allowed', testSingle({
+    it('none is not allowed', testScan({
       mkdn: 'attr::\n',
       data: [],
     }));
 
-    it('lowercase', testSingle({
+    it('lowercase', testScan({
       mkdn: 'attr::null\n',
       data: [
         {
@@ -31,7 +28,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('camelCase', testSingle({
+    it('camelCase', testScan({
       mkdn: 'attr::Null\n',
       data: [
         {
@@ -43,7 +40,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('uppercase', testSingle({
+    it('uppercase', testScan({
       mkdn: 'attr::NULL\n',
       data: [
         {
@@ -59,7 +56,7 @@ describe('scan() -- single', () => {
 
   describe('bool', () => {
 
-    it('lowercase', testSingle({
+    it('lowercase', testScan({
       mkdn: 'attr::true\n',
       data: [
         {
@@ -71,7 +68,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('camelCase', testSingle({
+    it('camelCase', testScan({
       mkdn: 'attr::True\n',
       data: [
         {
@@ -83,7 +80,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('uppercase', testSingle({
+    it('uppercase', testScan({
       mkdn: 'attr::TRUE\n',
       data: [
         {
@@ -99,7 +96,7 @@ describe('scan() -- single', () => {
 
   describe('int', () => {
 
-    it('canonical', testSingle({
+    it('canonical', testScan({
       mkdn: 'attr::10\n',
       data: [
         {
@@ -111,7 +108,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('octal', testSingle({
+    it('octal', testScan({
       mkdn: 'attr::0o10\n',
       data: [
         {
@@ -123,7 +120,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('hexadecimal', testSingle({
+    it('hexadecimal', testScan({
       mkdn: 'attr::0x14\n',
       data: [
         {
@@ -139,7 +136,7 @@ describe('scan() -- single', () => {
 
   describe('float', () => {
 
-    it('canonical', testSingle({
+    it('canonical', testScan({
       mkdn: 'attr::1.23015\n',
       data: [
         {
@@ -151,7 +148,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('exp -- exponential', testSingle({
+    it('exp -- exponential', testScan({
       mkdn: 'attr::12.3015e+02\n',
       data: [
         {
@@ -163,7 +160,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('nan -- not a number', testSingle({
+    it('nan -- not a number', testScan({
       mkdn: 'attr::.nan\n',
       data: [
         {
@@ -179,7 +176,7 @@ describe('scan() -- single', () => {
 
   describe('time', () => {
 
-    it('canonical', testSingle({
+    it('canonical', testScan({
       mkdn: 'attr::2001-12-15T02:59:43.1Z\n',
       data: [
         {
@@ -191,7 +188,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('iso8601', testSingle({
+    it('iso8601', testScan({
       mkdn: 'attr::2001-12-14t21:59:43.10-05:00\n',
       data: [
         {
@@ -203,7 +200,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('spaced', testSingle({
+    it('spaced', testScan({
       mkdn: 'attr::2001-12-14 21:59:43.10 -5\n',
       data: [
         {
@@ -215,7 +212,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('date only', testSingle({
+    it('date only', testScan({
       mkdn: 'attr::2001-12-14\n',
       data: [
         {
@@ -227,7 +224,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('int', testSingle({
+    it('int', testScan({
       mkdn: 'attr::+12:00\n',
       data: [
         {
@@ -239,7 +236,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('float', testSingle({
+    it('float', testScan({
       mkdn: 'attr::+12:00.123\n',
       data: [
         {
@@ -255,7 +252,7 @@ describe('scan() -- single', () => {
 
   describe('string', () => {
 
-    it('single-line; w/out whitespace', testSingle({
+    it('single-line; w/out whitespace', testScan({
       mkdn: 'attr::value-w/out-whitespace\n',
       data: [
         {
@@ -267,7 +264,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('single-line, w/ whitespace', testSingle({
+    it('single-line, w/ whitespace', testScan({
       mkdn: 'attr::value with whitespace\n',
       data: [
         {
@@ -279,7 +276,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('single-line; w/ colon prefix', testSingle({
+    it('single-line; w/ colon prefix', testScan({
       mkdn: ':attr::value with whitespace\n',
       data: [
         {
@@ -291,7 +288,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('single-line; w/ colon prefix; w/ whitespace pad', testSingle({
+    it('single-line; w/ colon prefix; w/ whitespace pad', testScan({
       mkdn: ': attr  ::value with whitespace\n',
       data: [
         {
@@ -303,7 +300,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('single-line; w/ colon prefix; math value', testSingle({
+    it('single-line; w/ colon prefix; math value', testScan({
       mkdn: ': gravity :: 9.8m/s^2\n',
       data: [
         {
@@ -315,7 +312,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('single-line; w/ colon prefix; skip wikiref', testSingle({
+    it('single-line; w/ colon prefix; skip wikiref', testScan({
       mkdn: ': tldr :: \'\'\n\n[[wikilink]]\n',
       data: [
         {
@@ -327,7 +324,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('single-line; w/ colon prefix; fixed bug', testSingle({
+    it('single-line; w/ colon prefix; fixed bug', testScan({
       mkdn: ': tldr :: tldr\n',
       data: [
         {
@@ -339,7 +336,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('string; multi-line; folded (gt); basic', testSingle({
+    it('string; multi-line; folded (gt); basic', testScan({
       mkdn: 'attr::>\n  this is a long string\n  that spans multiple\n  lines\n',
       data: [
         {
@@ -355,7 +352,7 @@ describe('scan() -- single', () => {
 
   describe('mixed', () => {
 
-    it('multiple values', testSingle({
+    it('multiple values', testScan({
       mkdn: 'attr1::value-w/out-whitespace\nattr2::123\n',
       data: [
         {
@@ -377,7 +374,7 @@ describe('scan() -- single', () => {
 
   describe('wikilinks', () => {
 
-    it('[[wikilinks]] resolved as wiki type', testSingle({
+    it('[[wikilinks]] resolved as wiki type', testScan({
       mkdn: 'attr :: [[wikilink]]\n',
       data: [
         {
@@ -389,7 +386,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('[[wikilinks]] alongside primitives', testSingle({
+    it('[[wikilinks]] alongside primitives', testScan({
       mkdn: 'attr1 :: a string\nattr2 :: [[wikilink]]\n',
       data: [
         {
@@ -412,31 +409,31 @@ describe('scan() -- single', () => {
   describe('escaped', () => {
 
     // code span (backticks) -- caught by escape-mkdn
-    it('code span; skipped by default', testSingle({
+    it('code span; skipped by default', testScan({
       mkdn: '`attr::value`\n',
       data: [],
     }));
 
     // fenced code block -- caught by regex (backtick excluded from KEY)
-    it('fenced code block; skipped by default', testSingle({
+    it('fenced code block; skipped by default', testScan({
       mkdn: '```\nattr::value\n```\n',
       data: [],
     }));
 
     // indented code block (4+ spaces) -- caught by regex (indentation)
-    it('indented code block; skipped by default', testSingle({
+    it('indented code block; skipped by default', testScan({
       mkdn: '    attr::value\n',
       data: [],
     }));
 
     // math span -- caught by escape-mkdn
-    it('math span; skipped by default', testSingle({
+    it('math span; skipped by default', testScan({
       mkdn: '$attr::value$\n',
       data: [],
     }));
 
     // math fence -- caught by escape-mkdn
-    it('math fence; skipped by default', testSingle({
+    it('math fence; skipped by default', testScan({
       mkdn: '$$\nattr::value\n$$\n',
       data: [],
     }));
@@ -457,7 +454,7 @@ describe('scan() -- single', () => {
     });
 
     // prefixed code span
-    it('prefixed code span; skipped by default', testSingle({
+    it('prefixed code span; skipped by default', testScan({
       mkdn: '`:attr::value`\n',
       data: [],
     }));
@@ -466,7 +463,7 @@ describe('scan() -- single', () => {
 
   describe('multi-line; boundary', () => {
 
-    it('multi-line folded stops at blank line; next attr parsed separately', testSingle({
+    it('multi-line folded stops at blank line; next attr parsed separately', testScan({
       mkdn: ':desc:: >\n  folded text\n  here\n\ntitle:: Test\n',
       data: [
         {
@@ -484,7 +481,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('multi-line literal stops at blank line; next attr parsed separately', testSingle({
+    it('multi-line literal stops at blank line; next attr parsed separately', testScan({
       mkdn: ':poem:: |\n  roses are red\n  violets are blue\n\n:author:: someone\n',
       data: [
         {
@@ -502,7 +499,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('multiple multi-line attrs separated by blank lines', testSingle({
+    it('multiple multi-line attrs separated by blank lines', testScan({
       mkdn: ':first:: >\n  aaa\n  bbb\n\n:second:: |\n  ccc\n  ddd\n\ntitle:: end\n',
       data: [
         {
@@ -526,7 +523,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('multi-line does not swallow non-indented line after blank', testSingle({
+    it('multi-line does not swallow non-indented line after blank', testScan({
       mkdn: ':note:: >\n  content\n\nnot-an-attr\n',
       data: [
         {
@@ -538,7 +535,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('multi-line stops before parenthetical text after blank', testSingle({
+    it('multi-line stops before parenthetical text after blank', testScan({
       mkdn: ':description:: >\n  This is a long description\n  that spans multiple lines\n  and gets folded into one.\n\n(see attrbox for output)\n',
       data: [
         {
@@ -550,7 +547,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('blank line within multi-line block is preserved', testSingle({
+    it('blank line within multi-line block is preserved', testScan({
       mkdn: ':poem:: |\n  verse one\n\n  verse two\n\nnot indented\n',
       data: [
         {
@@ -566,7 +563,7 @@ describe('scan() -- single', () => {
 
   describe('multi-line; indentation (min 2-space continuation)', () => {
 
-    it('4 spaces: continuation', testSingle({
+    it('4 spaces: continuation', testScan({
       mkdn: ':note:: >\n    four spaces\n    continues\n',
       data: [
         {
@@ -578,7 +575,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('tab: continuation', testSingle({
+    it('tab: continuation', testScan({
       mkdn: ':note:: >\n\ttab indented\n\tcontinues\n',
       data: [
         {
@@ -590,7 +587,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('3 spaces: continuation', testSingle({
+    it('3 spaces: continuation', testScan({
       mkdn: ':note:: >\n   three spaces\n',
       data: [
         {
@@ -602,7 +599,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('2 spaces: continuation', testSingle({
+    it('2 spaces: continuation', testScan({
       mkdn: ':note:: >\n  two spaces\n',
       data: [
         {
@@ -614,7 +611,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('1 space: NOT continuation (below 2-space floor)', testSingle({
+    it('1 space: NOT continuation (below 2-space floor)', testScan({
       mkdn: ':note:: >\n one space\n',
       data: [
         {
@@ -626,7 +623,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('0 spaces: NOT continuation', testSingle({
+    it('0 spaces: NOT continuation', testScan({
       mkdn: ':note:: >\nno indent\n',
       data: [
         {
@@ -638,7 +635,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('8 spaces: continuation', testSingle({
+    it('8 spaces: continuation', testScan({
       mkdn: ':note:: >\n        eight spaces\n',
       data: [
         {
@@ -650,7 +647,7 @@ describe('scan() -- single', () => {
       ],
     }));
 
-    it('non-indented line terminates the block', testSingle({
+    it('non-indented line terminates the block', testScan({
       mkdn: ':note:: >\n  first line\nnot indented\n',
       data: [
         {
@@ -664,4 +661,41 @@ describe('scan() -- single', () => {
 
   });
 
+
+  ////
+  // mixed wiki + primitive types (relocated from scan.mixwiki.spec.ts)
+
+  describe('mixed wiki + primitive types', () => {
+
+    it('single wiki value now returns data', testScan({
+      mkdn: 'attr :: [[wikilink]]\n',
+      data: [
+        {
+          key: { text: 'attr', start: 0 },
+          vals: [
+            { type: 'wiki', val: { text: '[[wikilink]]', start: 8 } },
+          ],
+        },
+      ],
+    }));
+
+    it('wiki attr alongside primitive attr', testScan({
+      mkdn: 'attr1 :: a string\n'
+          + 'attr2 :: [[wikilink]]\n',
+      data: [
+        {
+          key: { text: 'attr1', start: 0 },
+          vals: [
+            { type: 'string', val: { text: 'a string', start: 9 } },
+          ],
+        },
+        {
+          key: { text: 'attr2', start: 18 },
+          vals: [
+            { type: 'wiki', val: { text: '[[wikilink]]', start: 27 } },
+          ],
+        },
+      ],
+    }));
+  });
 });

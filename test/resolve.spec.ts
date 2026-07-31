@@ -22,40 +22,31 @@ describe('resolve()', () => {
 
   const SKIP_DESCR: string[] = [];
 
-  function runSingle(contextMsg: string, tests: CamlTestCase[]): void {
+  // resolve() takes ONE value-string at a time. a case's `data.string[key]` is either a
+  // scalar string (single-value attr) or an array of strings (list attr); `data.parse[key]`
+  // is always an array of the resolved value(s). one runner handles both shapes:
+  //   - array `.string`  -> resolve each element vs `parsed[i]`, one `it` per element.
+  //   - scalar `.string` -> resolve it vs `parsed[0]`, but ONLY when the parse is a single
+  //     value. a scalar whose parse is multi-valued (e.g. a single-fixture whose value later
+  //     splits, like a multi-line-adjacent case) is NOT a resolve()-single scenario, so it is
+  //     skipped here (covered by scan). this `parsed.length === 1` gate is load-bearing.
+  // mixed case-sets (invalid, wiki) carry both shapes and so run once through this runner.
+  function run(contextMsg: string, tests: CamlTestCase[]): void {
     describe(contextMsg, () => {
       for (const test of tests) {
         if (!test.data) { continue; }
         if (SKIP_DESCR.some((s) => test.descr.includes(s))) { continue; }
         for (const [key, parsed] of Object.entries(test.data.parse as Record<string, any[]>)) {
-          const strVal = (test.data.string as Record<string, any>)[key];
-          if (typeof strVal !== 'string') { continue; }
-          if (parsed.length !== 1) { continue; }
-          it(test.descr, () => {
-            const result = caml.resolve(strVal);
-            assert.deepStrictEqual(result, parsed[0]);
-          });
-        }
-      }
-    });
-  }
-
-  runSingle('prefixed; single', camlPrefixedSingleCases);
-  runSingle('unprefixed; single', camlUnprefixedSingleCases);
-
-  // spec-driven: list values
-
-  function runList(contextMsg: string, tests: CamlTestCase[]): void {
-    describe(contextMsg, () => {
-      for (const test of tests) {
-        if (!test.data) { continue; }
-        for (const [key, parsed] of Object.entries(test.data.parse as Record<string, any[]>)) {
-          const strVals = (test.data.string as Record<string, any>)[key];
-          if (!Array.isArray(strVals)) { continue; }
-          for (let i = 0; i < strVals.length; i++) {
-            it(`${test.descr} [${i}]`, () => {
-              const result = caml.resolve(strVals[i]);
-              assert.deepStrictEqual(result, parsed[i]);
+          const raw = (test.data.string as Record<string, any>)[key];
+          if (Array.isArray(raw)) {
+            raw.forEach((strVal: string, i: number) => {
+              it(`${test.descr} [${i}]`, () => {
+                assert.deepStrictEqual(caml.resolve(strVal), parsed[i]);
+              });
+            });
+          } else if (typeof raw === 'string' && parsed.length === 1) {
+            it(test.descr, () => {
+              assert.deepStrictEqual(caml.resolve(raw), parsed[0]);
             });
           }
         }
@@ -63,17 +54,19 @@ describe('resolve()', () => {
     });
   }
 
-  runList('prefixed; list; comma', camlPrefixedListCommaCases);
-  runList('prefixed; list; mkdn', camlPrefixedListMkdnCases);
-  runList('unprefixed; list; comma', camlUnprefixedListCommaCases);
-  runList('unprefixed; list; mkdn', camlUnprefixedListMkdnCases);
-  runList('no val', camlNoValCases);
-  runList('invalid', camlInvalidCases);
-  runSingle('invalid', camlInvalidCases);
+  // single
+  run('prefixed; single', camlPrefixedSingleCases);
+  run('unprefixed; single', camlUnprefixedSingleCases);
 
-  // spec-driven: wiki
+  // list
+  run('prefixed; list; comma', camlPrefixedListCommaCases);
+  run('prefixed; list; mkdn', camlPrefixedListMkdnCases);
+  run('unprefixed; list; comma', camlUnprefixedListCommaCases);
+  run('unprefixed; list; mkdn', camlUnprefixedListMkdnCases);
+  run('no val', camlNoValCases);
+  run('invalid', camlInvalidCases);
 
-  runSingle('wiki; single', camlWithoutWikiRefsCases);
-  runList('wiki; list', camlWithoutWikiRefsCases);
+  // wiki plugin not installed
+  run('wiki', camlWithoutWikiRefsCases);
 
 });
