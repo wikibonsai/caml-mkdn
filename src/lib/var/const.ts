@@ -16,6 +16,24 @@ export namespace CONST {
     COL      : '::',
   } as const;
 
+  // multi-line (block-scalar) value indicators — yaml block-scalar headers: style
+  // `|` literal / `>` folded, with chomp `-` strip / `+` keep / (none) clip.
+  export const MLINE = {
+    LITERAL       : '|',    // literal, clip
+    LITERAL_STRIP : '|-',
+    LITERAL_KEEP  : '|+',
+    FOLDED        : '>',    // folded, clip
+    FOLDED_STRIP  : '>-',
+    FOLDED_KEEP   : '>+',
+  } as const;
+
+  // prefix-match order: longest-first so `|` / `>` don't shadow the two-char forms.
+  export const MLINE_INDICATORS: string[] = [
+    MLINE.FOLDED_STRIP, MLINE.FOLDED_KEEP,
+    MLINE.LITERAL_STRIP, MLINE.LITERAL_KEEP,
+    MLINE.FOLDED, MLINE.LITERAL,
+  ];
+
 }
 
 export const VAL_HASH = {

@@ -4,6 +4,7 @@ import {
   constructYamlTimestamp,
   parseSexagesimal,
 } from './../yaml';
+import { CONST } from './../var/const';
 
 // YAML block scalar parser
 // ref: https://yaml.org/spec/1.2.2/#81-block-scalar-headers
@@ -123,10 +124,9 @@ export function resolve(value: string): CamlValData {
   // if the value is a multi-line string, treat it as a string
   // must contain \n (actual block content) — bare indicators without
   // content are treated as literal string values
-  // order matters: longer patterns first to avoid partial matches
-  const multiLineIndicators: string[] = ['>-', '>+', '|-', '|+', '>', '|'];
-  if (value.includes('\n') && multiLineIndicators.some(ind => value.trim().startsWith(ind))) {
-    const indicator: string = multiLineIndicators.find(ind => value.trim().startsWith(ind))!;
+  // order matters: longer patterns first to avoid partial matches (see CONST.MLINE_INDICATORS)
+  if (value.includes('\n') && CONST.MLINE_INDICATORS.some(ind => value.trim().startsWith(ind))) {
+    const indicator: string = CONST.MLINE_INDICATORS.find(ind => value.trim().startsWith(ind))!;
     const trimmedValue = value.trim();
     const block: string = value.slice(value.trim().indexOf(indicator) + indicator.length + 1);
     const parsed: string = parseYamlScalar(indicator, block);
