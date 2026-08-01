@@ -15,7 +15,7 @@ import * as path from 'path';
 import {
   camlPrefixedCases,
   camlUnprefixedCases,
-  camlWithoutWikiRefsCases,
+  camlWikiParseCases,
   camlNoValCases,
   camlInvalidCases,
 } from '../index';
@@ -30,7 +30,7 @@ const specDir: string = path.join(__dirname, '..');
 const verboseGroups: ShowcaseGroup[] = [
   { title: 'Prefixed', cases: camlPrefixedCases },
   { title: 'Unprefixed', cases: camlUnprefixedCases },
-  { title: 'Wiki Values', cases: camlWithoutWikiRefsCases },
+  { title: 'Wiki', cases: camlWikiParseCases },
   { title: 'No Value', cases: camlNoValCases },
   { title: 'Invalid', cases: camlInvalidCases },
 ];

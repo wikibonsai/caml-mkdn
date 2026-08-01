@@ -35,8 +35,9 @@ export { camlPrefixedSingleCases } from './cases/prefixed-single';
 export { camlUnprefixedListCommaCases } from './cases/unprefixed-list-comma';
 export { camlUnprefixedListMkdnCases } from './cases/unprefixed-list-mkdn';
 export { camlUnprefixedSingleCases } from './cases/unprefixed-single';
-// handle wikirefs cases separately -- dependent on plugin setup context (i.e. has sibling wikirefs plugin installed or not)
-export { camlWithoutWikiRefsCases } from './cases/without-wikiref';
+// wikirefs cases
+export { camlWikiNoParseCases } from './cases/wiki-no-parse'; // parse 'wiki' type as string
+export { camlWikiParseCases } from './cases/wiki-parse';      // parse 'wiki' type as 'wiki'
 
 // 'edge' cases
 export { camlNoValCases } from './cases/no-val';

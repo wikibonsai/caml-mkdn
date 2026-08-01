@@ -37,12 +37,12 @@ function run(contextMsg: string, tests: TestCase[]): void {
 Tests without wikirefs:
 
 ```js
-import { camlCases, camlWithoutWikiRefsCases } from 'caml-spec';
+import { camlCases, camlWikiNoParseCases } from 'caml-spec';
 
 describe('render caml; mkdn -> html', () => {
 
   run('caml cases', camlCases);
-  run('w/o wikirefs cases', camlWithoutWikiRefsCases);
+  run('wikirefs no parse cases', camlWikiNoParseCases);
 
 });
 ```
