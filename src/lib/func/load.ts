@@ -164,8 +164,12 @@ function normalizeMultiLineContent(content: string): string {
   return normalizedLines.join('\n');
 }
 
-export function load(content: string, opts?: { skipEsc?: boolean }): CamlLoadPayload {
+export function load(content: string, opts?: { skipEsc?: boolean; wikirefs?: boolean }): CamlLoadPayload {
   const skipEsc: boolean = (opts?.skipEsc !== undefined) ? opts.skipEsc : true;
+  // wikirefs-awareness: recognize `[[x]]` values as 'wiki' type (default false). the
+  // multi-line-block helpers never see a `[[x]]` (block scalars aren't wikilinks), so
+  // only the inline value resolutions below thread it.
+  const wikirefs: boolean = (opts?.wikirefs !== undefined) ? opts.wikirefs : false;
   const res: CamlLoadPayload = {
     data: {},
     content: '',
@@ -223,13 +227,13 @@ export function load(content: string, opts?: { skipEsc?: boolean }): CamlLoadPay
         vals.push(curVal);
         if (vals.length === 1) {
           const trimmedVal: string = vals[0].trim();
-          const valParsed = resolve(trimmedVal);
+          const valParsed = resolve(trimmedVal, { wikirefs });
           itemOffset = matchText.indexOf(trimmedVal, itemOffset);
           res.data[trimmedKey] = valParsed.value;
         } else {
           for (const val of vals) {
             const trimmedVal: string = val.trim();
-            const valParsed = resolve(trimmedVal);
+            const valParsed = resolve(trimmedVal, { wikirefs });
             itemOffset = matchText.indexOf(trimmedVal, itemOffset);
             res.data[trimmedKey].push(valParsed.value);
             itemOffset += val.length;
@@ -249,7 +253,7 @@ export function load(content: string, opts?: { skipEsc?: boolean }): CamlLoadPay
           if (valMatch) {
             const valText: string = valMatch[2];
             const trimmedVal: string = valText.trim();
-            const valParsed = resolve(trimmedVal);
+            const valParsed = resolve(trimmedVal, { wikirefs });
             itemOffset = matchText.indexOf(trimmedVal, itemOffset);
             res.data[trimmedKey].push(valParsed.value);
             itemOffset += valText.length;

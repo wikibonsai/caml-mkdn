@@ -8,13 +8,14 @@ import {
   camlNoValCases,
   camlPrefixedCases,
   camlUnprefixedCases,
-  camlWithoutWikiRefsCases,
+  camlWikiNoParseCases,
+  camlWikiParseCases,
 } from '../spec';
 
 
 describe('load()', () => {
 
-  function run(contextMsg: string, tests: CamlTestCase[]): void {
+  function run(contextMsg: string, tests: CamlTestCase[], opts?: { wikirefs?: boolean }): void {
     context(contextMsg, () => {
       let i: number = 0;
       for(const test of tests) {
@@ -23,7 +24,7 @@ describe('load()', () => {
         it(desc, () => {
           const mkdn: string = test.mkdn;
           const expdData: any = test.data!.value;
-          const res: CamlLoadPayload = caml.load(mkdn);
+          const res: CamlLoadPayload = caml.load(mkdn, opts);
           const actlData: any = res.data;
           assert.deepStrictEqual(actlData, expdData);
         });
@@ -42,7 +43,10 @@ describe('load()', () => {
   });
 
   run('no value', camlNoValCases);
-  run('[[wikirefs]]', camlWithoutWikiRefsCases);
+  // wikiref values, plugin ABSENT (default) — `[[x]]` loads as a plain string
+  run('wiki-no-parse (default → string)', camlWikiNoParseCases);
+  // wikiref values, plugin SIGNALLED (`{ wikirefs: true }`) — `[[x]]` loads as a 'wiki' value
+  run('wiki-parse (wikirefs:true → wiki)', camlWikiParseCases, { wikirefs: true });
 
   run('prefixed', camlPrefixedCases);
   run('unprefixed', camlUnprefixedCases);

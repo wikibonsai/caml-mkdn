@@ -19,6 +19,8 @@ export function scan(content: string, opts?: CamlScanOpts): CamlScanResult[] {
   const listItemsGottaCatchEmAll: RegExp = new RegExp(RGX.LINE.LIST_ITEM, 'gim');
   // escape handling
   const skipEsc: boolean = (opts?.skipEsc !== undefined) ? opts.skipEsc : true;
+  // wikirefs-awareness: recognize `[[x]]` values as 'wiki' type (default false)
+  const wikirefs: boolean = (opts?.wikirefs !== undefined) ? opts.wikirefs : false;
   const escdIndices: number[] = getEscIndices(content);
 
   // Handle multi-line strings first
@@ -41,7 +43,7 @@ export function scan(content: string, opts?: CamlScanOpts): CamlScanResult[] {
 
       // Handle multi-line string
       const fullValue = ` ${indicator}\n${blockContent}`;
-      const valParsed = resolve(fullValue);
+      const valParsed = resolve(fullValue, { wikirefs });
       const trimmedKey: string = keyText.trim();
       res.push({
         key: { text: trimmedKey, start: keyOffset },
@@ -86,7 +88,7 @@ export function scan(content: string, opts?: CamlScanOpts): CamlScanResult[] {
         for (const val of valParts) {
           const trimmedVal: string = val.trim();
           itemOffset = matchText.indexOf(trimmedVal, itemOffset);
-          const valParsed = resolve(trimmedVal);
+          const valParsed = resolve(trimmedVal, { wikirefs });
           vals.push({
             type: valParsed.type,
             val: { text: trimmedVal, start: contentOffset + itemOffset },
@@ -107,7 +109,7 @@ export function scan(content: string, opts?: CamlScanOpts): CamlScanResult[] {
               const valText: string = valMatch[2];
               const trimmedVal: string = valText.trim();
               itemOffset = matchText.indexOf(trimmedVal, itemOffset);
-              const valParsed = resolve(trimmedVal);
+              const valParsed = resolve(trimmedVal, { wikirefs });
               vals.push({
                 type: valParsed.type,
                 val: { text: trimmedVal, start: contentOffset + itemOffset },

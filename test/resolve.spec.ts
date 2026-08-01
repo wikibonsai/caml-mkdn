@@ -11,7 +11,8 @@ import {
   camlPrefixedListMkdnCases,
   camlUnprefixedListCommaCases,
   camlUnprefixedListMkdnCases,
-  camlWithoutWikiRefsCases,
+  camlWikiNoParseCases,
+  camlWikiParseCases,
   camlInvalidCases,
 } from '../spec';
 
@@ -31,7 +32,7 @@ describe('resolve()', () => {
   //     splits, like a multi-line-adjacent case) is NOT a resolve()-single scenario, so it is
   //     skipped here (covered by scan). this `parsed.length === 1` gate is load-bearing.
   // mixed case-sets (invalid, wiki) carry both shapes and so run once through this runner.
-  function run(contextMsg: string, tests: CamlTestCase[]): void {
+  function run(contextMsg: string, tests: CamlTestCase[], opts?: { wikirefs?: boolean }): void {
     describe(contextMsg, () => {
       for (const test of tests) {
         if (!test.data) { continue; }
@@ -41,12 +42,12 @@ describe('resolve()', () => {
           if (Array.isArray(raw)) {
             raw.forEach((strVal: string, i: number) => {
               it(`${test.descr} [${i}]`, () => {
-                assert.deepStrictEqual(caml.resolve(strVal), parsed[i]);
+                assert.deepStrictEqual(caml.resolve(strVal, opts), parsed[i]);
               });
             });
           } else if (typeof raw === 'string' && parsed.length === 1) {
             it(test.descr, () => {
-              assert.deepStrictEqual(caml.resolve(raw), parsed[0]);
+              assert.deepStrictEqual(caml.resolve(raw, opts), parsed[0]);
             });
           }
         }
@@ -66,7 +67,11 @@ describe('resolve()', () => {
   run('no val', camlNoValCases);
   run('invalid', camlInvalidCases);
 
-  // wiki plugin not installed
-  run('wiki', camlWithoutWikiRefsCases);
+  // wikiref values, plugin ABSENT (default) — `[[x]]` resolves to a plain string (brackets
+  // kept). caml's wikirefs-agnostic default.
+  run('wiki-no-parse (default → string)', camlWikiNoParseCases);
+  // wikiref values, plugin SIGNALLED (`{ wikirefs: true }`) — `[[x]]` resolves to a 'wiki'
+  // type (brackets stripped), handed to wikirefs for link resolution.
+  run('wiki-parse (wikirefs:true → wiki)', camlWikiParseCases, { wikirefs: true });
 
 });

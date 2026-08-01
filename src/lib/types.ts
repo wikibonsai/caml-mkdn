@@ -29,7 +29,8 @@ export interface CamlLoadPayload {
 // scan()
 
 export interface CamlScanOpts {
-  skipEsc?: boolean;  // whether to skip escaped CAML instances (default: true)
+  skipEsc?: boolean;    // whether to skip escaped CAML instances (default: true)
+  wikirefs?: boolean;   // recognize `[[x]]` values as a 'wiki' type (default: false — treat as string)
 }
 
 export interface ScanTxt {

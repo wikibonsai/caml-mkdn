@@ -5,8 +5,10 @@ import * as caml from '../src';
 
 describe('scan() -- list-mkdn', () => {
 
+  // wikirefs-aware: these suites include `[[x]]` wiki-value cases (type 'wiki'), so
+  // scan runs with wikirefs:true. primitive cases are unaffected (no `[[x]]`).
   const testScan = (params: any) => (): void => {
-    assert.deepStrictEqual(caml.scan(params.mkdn), params.data);
+    assert.deepStrictEqual(caml.scan(params.mkdn, { wikirefs: true }), params.data);
   };
 
   describe('null', () => {

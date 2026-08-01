@@ -109,9 +109,12 @@ function tryTimestamp(value: string): Date | null {
 }
 
 // todo: what if there's leading/trailing whitespace? (trimming beforehand, for now)
-export function resolve(value: string): CamlValData {
-  // wikilink
-  if (WIKI_RGX.test(value.trim())) {
+export function resolve(value: string, opts?: { wikirefs?: boolean }): CamlValData {
+  // wikilink — only recognized as a distinct 'wiki' type when the wikirefs plugin is
+  // signalled (opts.wikirefs). caml is wikirefs-agnostic by DEFAULT: `[[x]]` falls
+  // through to a plain string value (brackets kept), leaving link resolution to
+  // wikirefs.
+  if (opts?.wikirefs && WIKI_RGX.test(value.trim())) {
     const trimmed: string = value.trim();
     // strip [[ and ]] to extract filename
     const filename: string = trimmed.slice(2, -2);
