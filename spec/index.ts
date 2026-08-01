@@ -45,6 +45,11 @@ export { camlInvalidCases } from './cases/invalid';
 
 export { camlCases, camlPrefixedCases, camlUnprefixedCases };
 
+// showcase builder (markdown catalog from cases; see showcase/generate.ts)
+
+export { buildMkdnCatalog } from './showcase/build';
+export type { ShowcaseGroup, ShowcaseDocOpts } from './showcase/build';
+
 // types
 
 export type { CamlTestCase } from './types';

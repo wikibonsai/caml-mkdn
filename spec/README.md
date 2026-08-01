@@ -90,6 +90,43 @@ before(() => {
 
 Before running (inside the `before`), all test cases are looped through and changed by filtering tests by the `descr` and then applying the desired change to the test case's `html` -- or `mkdn` if so desired.
 
+### Showcase
+
+Human-facing caml *source* for a quick visual check of caml parsing/rendering. Two
+files (in `showcase/pages/`):
+
+| file              | ext   | scope     | authored  |
+| ----------------- | ----- | --------- | --------- |
+| `test.md`         | `.md` | curated   | by hand   |
+| `test-verbose.md` | `.md` | all cases | generated |
+
+- `test.md` is a small, curated live page (the one an SSG vendors) — the
+  hand-authored source of truth.
+- `test-verbose.md` is generated from every case in `spec/cases/` — a source
+  catalog of the whole spec.
+
+Both hold caml source. caml attributes render into a file-level attrbox, so run
+these through a caml processor (or your SSG) to see the rendered output.
+
+Regenerate `test-verbose.md` with `yarn gen:showcase` (only `test.md` is maintained
+by hand).
+
+#### Consuming Test Files (e.g. from an SSG)
+
+`caml-spec` is primarily a **devDependency**, not a runtime dependency. The files
+ship in the published package (see `files` in `package.json`), so they resolve by
+path:
+
+```js
+const specTestMd = require.resolve('caml-spec/showcase/pages/test.md');
+// copy it into your content dir at build time
+```
+
+Note: caml values in the showcase are mostly self-contained primitives. The one
+wiki-value example (`[[fname-a]]`) renders as a plain string span in standalone
+caml output; install [wikirefs](https://github.com/wikibonsai/wikirefs) alongside
+to resolve it to a link.
+
 ### Single
 
 All of the following examples should generate the same html:

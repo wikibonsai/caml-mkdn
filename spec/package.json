@@ -13,16 +13,21 @@
     "directory": "spec"
   },
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "showcase/**/*.md"
   ],
   "source": "index.ts",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "browser": "./dist/index.umd.js",
   "scripts": {
+    "gen:showcase": "ts-node showcase/generate.ts",
+    "verify:showcase": "yarn gen:showcase && git diff --exit-code showcase/pages/test-verbose.md",
+    "prebuild": "yarn gen:showcase",
     "build": "rollup -c",
     "clean": "npx del dist",
-    "rebuild": "yarn clean; yarn build",
+    "rebuild": "yarn clean && yarn build",
+    "prepublishOnly": "yarn rebuild",
     "lint": "eslint ./src ./test --ext .ts"
   },
   "dependencies": {},
