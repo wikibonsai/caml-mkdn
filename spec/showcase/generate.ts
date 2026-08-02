@@ -25,8 +25,10 @@ import type { ShowcaseGroup } from './build';
 const pagesDir: string = path.join(__dirname, 'pages');
 const specDir: string = path.join(__dirname, '..');
 
-// every case, grouped by attr form. caml attributes render into a file-level
-// attrbox (never in place), so this is a source catalog only.
+// every case, grouped by attr form. each case shows its fenced source example and
+// the live attribute below it. caml collects attributes into a file-level attrbox
+// (rendered at the top of the page, keyed by attr name), so the live attributes
+// surface there rather than in place.
 const verboseGroups: ShowcaseGroup[] = [
   { title: 'Prefixed', cases: camlPrefixedCases },
   { title: 'Unprefixed', cases: camlUnprefixedCases },
@@ -35,9 +37,9 @@ const verboseGroups: ShowcaseGroup[] = [
   { title: 'Invalid', cases: camlInvalidCases },
 ];
 
-const verboseIntro: string = 'Every caml spec case, shown as source. caml attributes are collected into a file-level attrbox (they do not render at their source location) — run this through a caml processor (or your SSG) to see the rendered attrbox output.';
+const verboseIntro: string = 'Every caml spec case: the fenced source example, then the live attribute below it. caml collects attributes into a file-level attrbox (rendered at the top of the page, keyed by attr name), so the live attributes below surface together there.';
 
-const content: string = buildMkdnCatalog(verboseGroups, { title: 'CAML (All Spec Cases)', intro: verboseIntro });
+const content: string = buildMkdnCatalog(verboseGroups, { title: 'CAML (All Spec Cases)', intro: verboseIntro, live: true });
 
 fs.mkdirSync(pagesDir, { recursive: true });
 const dest: string = path.join(pagesDir, 'test-verbose.md');

@@ -1,6 +1,6 @@
 # CAML (All Spec Cases)
 
-Every caml spec case, shown as source. caml attributes are collected into a file-level attrbox (they do not render at their source location) — run this through a caml processor (or your SSG) to see the rendered attrbox output.
+Every caml spec case: the fenced source example, then the live attribute below it. caml collects attributes into a file-level attrbox (rendered at the top of the page, keyed by attr name), so the live attributes below surface together there.
 
 > Generated from the caml-spec test cases by `showcase/generate.ts` — do not edit by hand; run `yarn gen:showcase`.
 
@@ -12,11 +12,15 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :attribute::null
 ```
 
+:attribute::null
+
 ### prefixed; single; null; camelCase
 
 ```markdown
 :attribute::Null
 ```
+
+:attribute::Null
 
 ### prefixed; single; null; all uppercase
 
@@ -24,11 +28,15 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :attribute::NULL
 ```
 
+:attribute::NULL
+
 ### prefixed; single; bool; all lowercase
 
 ```markdown
 :attribute::true
 ```
+
+:attribute::true
 
 ### prefixed; single; bool; camelCase
 
@@ -36,11 +44,15 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :attribute::True
 ```
 
+:attribute::True
+
 ### prefixed; single; bool; all uppercase
 
 ```markdown
 :attribute::TRUE
 ```
+
+:attribute::TRUE
 
 ### prefixed; single; int; canonical
 
@@ -48,11 +60,15 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :attribute::1
 ```
 
+:attribute::1
+
 ### prefixed; single; int; octal
 
 ```markdown
 :attribute::0o14
 ```
+
+:attribute::0o14
 
 ### prefixed; single; int; hexadecimal
 
@@ -60,11 +76,15 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :attribute::0xC
 ```
 
+:attribute::0xC
+
 ### prefixed; single; float; canonical
 
 ```markdown
 :attribute::1.23015
 ```
+
+:attribute::1.23015
 
 ### prefixed; single; float; exp -- exponential
 
@@ -72,11 +92,15 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :attribute::12.3015e+02
 ```
 
+:attribute::12.3015e+02
+
 ### prefixed; single; float; nan -- not a number
 
 ```markdown
 :attribute::.nan
 ```
+
+:attribute::.nan
 
 ### prefixed; single; time; canonical
 
@@ -84,11 +108,15 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :attribute::2001-12-15T02:59:43.1Z
 ```
 
+:attribute::2001-12-15T02:59:43.1Z
+
 ### prefixed; single; time; iso8601
 
 ```markdown
 :attribute::2001-12-14t21:59:43.10-05:00
 ```
+
+:attribute::2001-12-14t21:59:43.10-05:00
 
 ### prefixed; single; time; spaced
 
@@ -96,11 +124,15 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :attribute::2001-12-14 21:59:43.10 -5
 ```
 
+:attribute::2001-12-14 21:59:43.10 -5
+
 ### prefixed; single; time; date only
 
 ```markdown
 :attribute::2001-12-14
 ```
+
+:attribute::2001-12-14
 
 ### prefixed; single; time; int
 
@@ -108,11 +140,15 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :attribute::+12:00
 ```
 
+:attribute::+12:00
+
 ### prefixed; single; time; float
 
 ```markdown
 :attribute::+12:00.123
 ```
+
+:attribute::+12:00.123
 
 ### prefixed; single; string; single-line; w/o whitespace
 
@@ -120,17 +156,23 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :attribute::this-is-a-string
 ```
 
+:attribute::this-is-a-string
+
 ### prefixed; single; string; single-line; w/ whitespace
 
 ```markdown
 :attribute::this is a string
 ```
 
+:attribute::this is a string
+
 ### prefixed; single; string; single-line; quotes (double); escape commas
 
 ```markdown
 :attribute::"this, is, a, string"
 ```
+
+:attribute::"this, is, a, string"
 
 ### prefixed; single; string; multi-line; folded (>); basic
 
@@ -140,6 +182,10 @@ Every caml spec case, shown as source. caml attributes are collected into a file
   line two
 ```
 
+:attribute:: >
+  line one
+  line two
+
 ### prefixed; single; string; multi-line; folded (>); with trailing newline
 
 ```markdown
@@ -147,6 +193,10 @@ Every caml spec case, shown as source. caml attributes are collected into a file
   line one
   line two
 ```
+
+:attribute:: >
+  line one
+  line two
 
 ### prefixed; single; string; multi-line; literal (|); basic
 
@@ -156,6 +206,10 @@ Every caml spec case, shown as source. caml attributes are collected into a file
   line two
 ```
 
+:attribute:: |
+  line one
+  line two
+
 ### prefixed; single; string; multi-line; folded chomped (>-); strips trailing newlines
 
 ```markdown
@@ -164,11 +218,17 @@ Every caml spec case, shown as source. caml attributes are collected into a file
   line two
 ```
 
+:attribute:: >-
+  line one
+  line two
+
 ### prefixed; single; string; multi-line; folded (>); empty block
 
 ```markdown
 :attribute:: >
 ```
+
+:attribute:: >
 
 ### prefixed; single; string; multi-line; folded (>); multi-paragraph
 
@@ -179,6 +239,11 @@ Every caml spec case, shown as source. caml attributes are collected into a file
   line two
 ```
 
+:attribute:: >
+  line one
+
+  line two
+
 ### prefixed; single; string; multi-line; literal (|); multi-paragraph
 
 ```markdown
@@ -187,6 +252,11 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 
   line two
 ```
+
+:attribute:: |
+  line one
+
+  line two
 
 ### prefixed; single; string; multi-line; literal (|); nested indentation
 
@@ -197,6 +267,11 @@ Every caml spec case, shown as source. caml attributes are collected into a file
   line two
 ```
 
+:attribute:: |
+  line one
+    indented
+  line two
+
 ### prefixed; single; string; multi-line; literal strip (|-); strips trailing newlines
 
 ```markdown
@@ -204,6 +279,10 @@ Every caml spec case, shown as source. caml attributes are collected into a file
   line one
   line two
 ```
+
+:attribute:: |-
+  line one
+  line two
 
 ### prefixed; single; string; multi-line; literal keep (|+); preserves trailing newlines
 
@@ -213,6 +292,10 @@ Every caml spec case, shown as source. caml attributes are collected into a file
   line two
 ```
 
+:attribute:: |+
+  line one
+  line two
+
 ### prefixed; single; string; multi-line; folded keep (>+); preserves trailing newlines
 
 ```markdown
@@ -220,6 +303,10 @@ Every caml spec case, shown as source. caml attributes are collected into a file
   line one
   line two
 ```
+
+:attribute:: >+
+  line one
+  line two
 
 ### prefixed; single; string; multi-line; adjacent; two multi-line attrs back-to-back
 
@@ -231,6 +318,12 @@ Every caml spec case, shown as source. caml attributes are collected into a file
   line two
 ```
 
+:description:: >
+  This is folded text.
+:notes:: |
+  line one
+  line two
+
 ### prefixed; single; string; multi-line; adjacent; multi-line followed by regular attr
 
 ```markdown
@@ -239,6 +332,10 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :count:: 42
 ```
 
+:description:: >
+  folded text.
+:count:: 42
+
 ### prefixed; single; string; multi-line; adjacent; regular attr followed by multi-line
 
 ```markdown
@@ -246,6 +343,10 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 :description:: >
   folded text.
 ```
+
+:title:: Doc
+:description:: >
+  folded text.
 
 ### prefixed; single; string; multi-line; adjacent; four indicators back-to-back
 
@@ -260,6 +361,15 @@ Every caml spec case, shown as source. caml attributes are collected into a file
   strip-literal
 ```
 
+:a:: >
+  folded
+:b:: |
+  literal
+:c:: >-
+  strip-folded
+:d:: |-
+  strip-literal
+
 ### prefixed; single; string; multi-line; adjacent; multi-line with content preserved
 
 ```markdown
@@ -271,11 +381,20 @@ Every caml spec case, shown as source. caml attributes are collected into a file
 Some paragraph content.
 ```
 
+:title:: Test
+:desc:: >
+  folded text.
+:tags:: a, b, c
+
+Some paragraph content.
+
 ### prefixed; single; escaped; code span
 
 ```markdown
 `:attribute:: value`
 ```
+
+`:attribute:: value`
 
 ### prefixed; single; escaped; fenced code block
 
@@ -285,11 +404,17 @@ Some paragraph content.
 ```
 ````
 
+```
+:attribute:: value
+```
+
 ### prefixed; single; escaped; indented code block (4 spaces)
 
 ```markdown
     :attribute:: value
 ```
+
+    :attribute:: value
 
 ### prefixed; single; w/ other mkdn constructs; nested; blockquote; not allowed inside
 
@@ -297,11 +422,15 @@ Some paragraph content.
 > :attribute:: value
 ```
 
+> :attribute:: value
+
 ### prefixed; single; w/ other mkdn constructs; nested; list; not allowed inside
 
 ```markdown
 - :attribute:: value
 ```
+
+- :attribute:: value
 
 ### prefixed; single; w/ other mkdn constructs; near headers; before
 
@@ -311,6 +440,10 @@ Some paragraph content.
 # heading
 ```
 
+:attribute:: value
+
+# heading
+
 ### prefixed; single; w/ other mkdn constructs; near headers; after
 
 ```markdown
@@ -318,6 +451,10 @@ Some paragraph content.
 
 :attribute:: value
 ```
+
+# heading
+
+:attribute:: value
 
 ### prefixed; single; w/ other mkdn constructs; near blockquotes; before
 
@@ -327,6 +464,10 @@ Some paragraph content.
 > some text
 ```
 
+:attribute:: value
+
+> some text
+
 ### prefixed; single; w/ other mkdn constructs; near blockquotes; after
 
 ```markdown
@@ -334,6 +475,10 @@ Some paragraph content.
 
 :attribute:: value
 ```
+
+> some text
+
+:attribute:: value
 
 ### prefixed; single; w/ other mkdn constructs; near lists; before
 
@@ -343,6 +488,10 @@ Some paragraph content.
 - list item
 ```
 
+:attribute:: value
+
+- list item
+
 ### prefixed; single; w/ other mkdn constructs; near lists; after
 
 ```markdown
@@ -350,6 +499,10 @@ Some paragraph content.
 
 :attribute:: value
 ```
+
+- list item
+
+:attribute:: value
 
 ### prefixed; single; multi-line folded; stops at blank line; next attr separate
 
@@ -361,6 +514,12 @@ Some paragraph content.
 :title:: Test
 ```
 
+:desc:: >
+  folded text
+  here
+
+:title:: Test
+
 ### prefixed; single; multi-line literal; stops at blank line; next attr separate
 
 ```markdown
@@ -370,6 +529,12 @@ Some paragraph content.
 
 :author:: someone
 ```
+
+:poem:: |
+  roses are red
+  violets are blue
+
+:author:: someone
 
 ### prefixed; single; multi-line folded; stops before non-indented text
 
@@ -382,6 +547,13 @@ Some paragraph content.
 (see attrbox for output)
 ```
 
+:description:: >
+  This is a long description
+  that spans multiple lines
+  and gets folded into one.
+
+(see attrbox for output)
+
 ### prefixed; single; multi-line literal; blank line within block preserved
 
 ```markdown
@@ -393,11 +565,20 @@ Some paragraph content.
 not indented
 ```
 
+:poem:: |
+  verse one
+
+  verse two
+
+not indented
+
 ### prefixed; list; comma-separated; null; all lowercase
 
 ```markdown
 :attribute::null,null
 ```
+
+:attribute::null,null
 
 ### prefixed; list; comma-separated; null; camelCase
 
@@ -405,11 +586,15 @@ not indented
 :attribute::Null,Null
 ```
 
+:attribute::Null,Null
+
 ### prefixed; list; comma-separated; null; all lowercase
 
 ```markdown
 :attribute::NULL,NULL
 ```
+
+:attribute::NULL,NULL
 
 ### prefixed; list; comma-separated; bool; all lowercase
 
@@ -417,11 +602,15 @@ not indented
 :attribute::true,false
 ```
 
+:attribute::true,false
+
 ### prefixed; list; comma-separated; bool; camelCase
 
 ```markdown
 :attribute::True,False
 ```
+
+:attribute::True,False
 
 ### prefixed; list; comma-separated; bool; all uppercase
 
@@ -429,11 +618,15 @@ not indented
 :attribute::TRUE,FALSE
 ```
 
+:attribute::TRUE,FALSE
+
 ### prefixed; list; comma-separated; int; canonical
 
 ```markdown
 :attribute::10,-123
 ```
+
+:attribute::10,-123
 
 ### prefixed; list; comma-separated; int; octal
 
@@ -441,11 +634,15 @@ not indented
 :attribute::0o10,0o123
 ```
 
+:attribute::0o10,0o123
+
 ### prefixed; list; comma-separated; int; hexadecimal
 
 ```markdown
 :attribute::0xC,0x014D
 ```
+
+:attribute::0xC,0x014D
 
 ### prefixed; list; comma-separated; float; canonical
 
@@ -453,11 +650,15 @@ not indented
 :attribute::1.23015,-1.23015
 ```
 
+:attribute::1.23015,-1.23015
+
 ### prefixed; list; comma-separated; float; exp -- exponential
 
 ```markdown
 :attribute::12.3015e+02,12.3015e-02
 ```
+
+:attribute::12.3015e+02,12.3015e-02
 
 ### prefixed; list; comma-separated; float; nan -- not a number
 
@@ -465,11 +666,15 @@ not indented
 :attribute::.NaN,.nan
 ```
 
+:attribute::.NaN,.nan
+
 ### prefixed; list; comma-separated; time; canonical
 
 ```markdown
 :attribute::2001-12-15T02:59:43.1Z,2022-12-15T02:59:43.1Z
 ```
+
+:attribute::2001-12-15T02:59:43.1Z,2022-12-15T02:59:43.1Z
 
 ### prefixed; list; comma-separated; time; iso8601
 
@@ -477,11 +682,15 @@ not indented
 :attribute::2001-12-14t21:59:43.10-05:00,2022-12-14t21:59:43.10-05:00
 ```
 
+:attribute::2001-12-14t21:59:43.10-05:00,2022-12-14t21:59:43.10-05:00
+
 ### prefixed; list; comma-separated; time; spaced
 
 ```markdown
 :attribute::2001-12-14 21:59:43.10 -5,2022-12-14 21:59:43.10 -5
 ```
+
+:attribute::2001-12-14 21:59:43.10 -5,2022-12-14 21:59:43.10 -5
 
 ### prefixed; list; comma-separated; time; date only
 
@@ -489,11 +698,15 @@ not indented
 :attribute::2001-12-14,2022-12-14
 ```
 
+:attribute::2001-12-14,2022-12-14
+
 ### prefixed; list; comma-separated; time; int
 
 ```markdown
 :attribute::+12:00,12:00
 ```
+
+:attribute::+12:00,12:00
 
 ### prefixed; list; comma-separated; time; float
 
@@ -501,11 +714,15 @@ not indented
 :attribute::+12:00.123,12:00.123
 ```
 
+:attribute::+12:00.123,12:00.123
+
 ### prefixed; list; comma-separated; string; single-line; w/o whitespace
 
 ```markdown
 :attribute::this-is-a-string,and-another-string
 ```
+
+:attribute::this-is-a-string,and-another-string
 
 ### prefixed; list; comma-separated; string; single-line; w/ whitespace
 
@@ -513,17 +730,23 @@ not indented
 :attribute::this is a string,and another string
 ```
 
+:attribute::this is a string,and another string
+
 ### prefixed; list; comma-separated; string; single-line; w/o whitespace; quotes (double); comma
 
 ```markdown
 :attribute::"this-is,a-string",and-another-string
 ```
 
+:attribute::"this-is,a-string",and-another-string
+
 ### prefixed; list; comma-separated; string; multi-line; not supported (indicator treated as literal)
 
 ```markdown
 :attribute::first, >
 ```
+
+:attribute::first, >
 
 ### prefixed; list; mkdn-separated; null; all lowercase
 
@@ -533,6 +756,10 @@ not indented
 - null
 ```
 
+:attribute::
+- null
+- null
+
 ### prefixed; list; mkdn-separated; null; camelCase
 
 ```markdown
@@ -540,6 +767,10 @@ not indented
 - Null
 - Null
 ```
+
+:attribute::
+- Null
+- Null
 
 ### prefixed; list; mkdn-separated; null; all uppercase
 
@@ -549,6 +780,10 @@ not indented
 - NULL
 ```
 
+:attribute::
+- NULL
+- NULL
+
 ### prefixed; list; mkdn-separated; bool; all lowercase
 
 ```markdown
@@ -556,6 +791,10 @@ not indented
 - true
 - false
 ```
+
+:attribute::
+- true
+- false
 
 ### prefixed; list; mkdn-separated; bool; camelCase
 
@@ -565,6 +804,10 @@ not indented
 - False
 ```
 
+:attribute::
+- True
+- False
+
 ### prefixed; list; mkdn-separated; bool; all uppercase
 
 ```markdown
@@ -572,6 +815,10 @@ not indented
 - TRUE
 - FALSE
 ```
+
+:attribute::
+- TRUE
+- FALSE
 
 ### prefixed; list; mkdn-separated; int; canonical
 
@@ -581,6 +828,10 @@ not indented
 - -123
 ```
 
+:attribute::
+- 10
+- -123
+
 ### prefixed; list; mkdn-separated; int; octal
 
 ```markdown
@@ -588,6 +839,10 @@ not indented
 - 0o10
 - 0o123
 ```
+
+:attribute::
+- 0o10
+- 0o123
 
 ### prefixed; list; mkdn-separated; int; hexadecimal
 
@@ -597,6 +852,10 @@ not indented
 - 0x014D
 ```
 
+:attribute::
+- 0xC
+- 0x014D
+
 ### prefixed; list; mkdn-separated; float; canonical
 
 ```markdown
@@ -604,6 +863,10 @@ not indented
 - 1.23015
 - -1.23015
 ```
+
+:attribute::
+- 1.23015
+- -1.23015
 
 ### prefixed; list; mkdn-separated; float; exp -- exponential
 
@@ -613,6 +876,10 @@ not indented
 - 12.3015e-02
 ```
 
+:attribute::
+- 12.3015e+02
+- 12.3015e-02
+
 ### prefixed; list; mkdn-separated; float; nan -- not a number
 
 ```markdown
@@ -620,6 +887,10 @@ not indented
 - .NaN
 - .nan
 ```
+
+:attribute::
+- .NaN
+- .nan
 
 ### prefixed; list; mkdn-separated; time; canonical
 
@@ -629,6 +900,10 @@ not indented
 - 2022-12-15T02:59:43.1Z
 ```
 
+:attribute::
+- 2001-12-15T02:59:43.1Z
+- 2022-12-15T02:59:43.1Z
+
 ### prefixed; list; mkdn-separated; time; iso8601
 
 ```markdown
@@ -636,6 +911,10 @@ not indented
 - 2001-12-14t21:59:43.10-05:00
 - 2022-12-14t21:59:43.10-05:00
 ```
+
+:attribute::
+- 2001-12-14t21:59:43.10-05:00
+- 2022-12-14t21:59:43.10-05:00
 
 ### prefixed; list; mkdn-separated; time; spaced
 
@@ -645,6 +924,10 @@ not indented
 - 2022-12-14 21:59:43.10 -5
 ```
 
+:attribute::
+- 2001-12-14 21:59:43.10 -5
+- 2022-12-14 21:59:43.10 -5
+
 ### prefixed; list; mkdn-separated; time; date only
 
 ```markdown
@@ -652,6 +935,10 @@ not indented
 - 2001-12-14
 - 2022-12-14
 ```
+
+:attribute::
+- 2001-12-14
+- 2022-12-14
 
 ### prefixed; list; mkdn-separated; time; int
 
@@ -661,6 +948,10 @@ not indented
 - 12:00
 ```
 
+:attribute::
+- +12:00
+- 12:00
+
 ### prefixed; list; mkdn-separated; time; float
 
 ```markdown
@@ -668,6 +959,10 @@ not indented
 - +12:00.123
 - 12:00.123
 ```
+
+:attribute::
+- +12:00.123
+- 12:00.123
 
 ### prefixed; list; mkdn-separated; string; single-line; w/o whitespace
 
@@ -677,6 +972,10 @@ not indented
 - and-another-string
 ```
 
+:attribute::
+- this-is-a-string
+- and-another-string
+
 ### prefixed; list; mkdn-separated; string; single-line; w/ whitespace
 
 ```markdown
@@ -685,6 +984,10 @@ not indented
 - and another string
 ```
 
+:attribute::
+- this is a string
+- and another string
+
 ### prefixed; list; mkdn-separated; string; single-line; w/o whitespace; quotes (double); comma
 
 ```markdown
@@ -692,6 +995,10 @@ not indented
 - "this-is,a-string"
 - and-another-string
 ```
+
+:attribute::
+- "this-is,a-string"
+- and-another-string
 
 ### prefixed; list; mkdn-separated; string; multi-line; folded (>); basic
 
@@ -703,6 +1010,12 @@ not indented
   line two
 ```
 
+:attribute::
+- first
+- >
+  line one
+  line two
+
 ### prefixed; list; mkdn-separated; string; multi-line; folded (>); with trailing newline
 
 ```markdown
@@ -712,6 +1025,12 @@ not indented
   line one
   line two
 ```
+
+:attribute::
+- first
+- >
+  line one
+  line two
 
 ### prefixed; list; mkdn-separated; string; multi-line; literal (|); basic
 
@@ -723,6 +1042,12 @@ not indented
   line two
 ```
 
+:attribute::
+- first
+- |
+  line one
+  line two
+
 ### prefixed; list; mkdn-separated; string; multi-line; folded chomped (>-); strips trailing newlines
 
 ```markdown
@@ -732,6 +1057,12 @@ not indented
   line one
   line two
 ```
+
+:attribute::
+- first
+- >-
+  line one
+  line two
 
 ### prefixed; list; mkdn-separated; string; multi-line; literal strip (|-); strips trailing newlines
 
@@ -743,6 +1074,12 @@ not indented
   line two
 ```
 
+:attribute::
+- first
+- |-
+  line one
+  line two
+
 ### prefixed; list; mkdn-separated; string; multi-line; literal keep (|+); preserves trailing newlines
 
 ```markdown
@@ -752,6 +1089,12 @@ not indented
   line one
   line two
 ```
+
+:attribute::
+- first
+- |+
+  line one
+  line two
 
 ### prefixed; list; mkdn-separated; string; multi-line; folded keep (>+); preserves trailing newlines
 
@@ -763,6 +1106,12 @@ not indented
   line two
 ```
 
+:attribute::
+- first
+- >+
+  line one
+  line two
+
 ### prefixed; list; mkdn-separated; string; multi-line; folded (>); empty block
 
 ```markdown
@@ -770,6 +1119,10 @@ not indented
 - first
 - >
 ```
+
+:attribute::
+- first
+- >
 
 ## Unprefixed
 
@@ -779,11 +1132,15 @@ not indented
 attribute::null
 ```
 
+attribute::null
+
 ### unprefixed; single; null; camelCase
 
 ```markdown
 attribute::Null
 ```
+
+attribute::Null
 
 ### unprefixed; single; null; all uppercase
 
@@ -791,11 +1148,15 @@ attribute::Null
 attribute::NULL
 ```
 
+attribute::NULL
+
 ### unprefixed; single; bool; all lowercase
 
 ```markdown
 attribute::true
 ```
+
+attribute::true
 
 ### unprefixed; single; bool; camelCase
 
@@ -803,11 +1164,15 @@ attribute::true
 attribute::True
 ```
 
+attribute::True
+
 ### unprefixed; single; bool; all uppercase
 
 ```markdown
 attribute::TRUE
 ```
+
+attribute::TRUE
 
 ### unprefixed; single; int; canonical
 
@@ -815,11 +1180,15 @@ attribute::TRUE
 attribute::1
 ```
 
+attribute::1
+
 ### unprefixed; single; int; octal
 
 ```markdown
 attribute::0o14
 ```
+
+attribute::0o14
 
 ### unprefixed; single; int; hexadecimal
 
@@ -827,11 +1196,15 @@ attribute::0o14
 attribute::0xC
 ```
 
+attribute::0xC
+
 ### unprefixed; single; float; canonical
 
 ```markdown
 attribute::1.23015
 ```
+
+attribute::1.23015
 
 ### unprefixed; single; float; exp -- exponential
 
@@ -839,11 +1212,15 @@ attribute::1.23015
 attribute::12.3015e+02
 ```
 
+attribute::12.3015e+02
+
 ### unprefixed; single; float; nan -- not a number
 
 ```markdown
 attribute::.nan
 ```
+
+attribute::.nan
 
 ### unprefixed; single; time; canonical
 
@@ -851,11 +1228,15 @@ attribute::.nan
 attribute::2001-12-15T02:59:43.1Z
 ```
 
+attribute::2001-12-15T02:59:43.1Z
+
 ### unprefixed; single; time; iso8601
 
 ```markdown
 attribute::2001-12-14t21:59:43.10-05:00
 ```
+
+attribute::2001-12-14t21:59:43.10-05:00
 
 ### unprefixed; single; time; spaced
 
@@ -863,11 +1244,15 @@ attribute::2001-12-14t21:59:43.10-05:00
 attribute::2001-12-14 21:59:43.10 -5
 ```
 
+attribute::2001-12-14 21:59:43.10 -5
+
 ### unprefixed; single; time; date only
 
 ```markdown
 attribute::2001-12-14
 ```
+
+attribute::2001-12-14
 
 ### unprefixed; single; time; int
 
@@ -875,11 +1260,15 @@ attribute::2001-12-14
 attribute::+12:00
 ```
 
+attribute::+12:00
+
 ### unprefixed; single; time; float
 
 ```markdown
 attribute::+12:00.123
 ```
+
+attribute::+12:00.123
 
 ### unprefixed; single; string; single-line; w/o whitespace
 
@@ -887,11 +1276,15 @@ attribute::+12:00.123
 attribute::this-is-a-string
 ```
 
+attribute::this-is-a-string
+
 ### unprefixed; single; string; single-line; w/ whitespace
 
 ```markdown
 attribute::this is a string
 ```
+
+attribute::this is a string
 
 ### unprefixed; single; string; single-line; quotes (double)
 
@@ -899,11 +1292,15 @@ attribute::this is a string
 attribute::"this is a string"
 ```
 
+attribute::"this is a string"
+
 ### unprefixed; single; string; single-line; quotes (double); escape commas
 
 ```markdown
 attribute::"this, is, a, string"
 ```
+
+attribute::"this, is, a, string"
 
 ### unprefixed; single; string; single-line; quotes (single)
 
@@ -911,11 +1308,15 @@ attribute::"this, is, a, string"
 attribute::'this is a string'
 ```
 
+attribute::'this is a string'
+
 ### unprefixed; single; string; single-line; quotes (single); escape commas
 
 ```markdown
 attribute::'this, is, a, string'
 ```
+
+attribute::'this, is, a, string'
 
 ### unprefixed; single; string; multi-line; folded (>); basic
 
@@ -925,6 +1326,10 @@ attribute:: >
   line two
 ```
 
+attribute:: >
+  line one
+  line two
+
 ### unprefixed; single; string; multi-line; folded (>); with trailing newline
 
 ```markdown
@@ -932,6 +1337,10 @@ attribute:: >
   line one
   line two
 ```
+
+attribute:: >
+  line one
+  line two
 
 ### unprefixed; single; string; multi-line; literal (|); basic
 
@@ -941,6 +1350,10 @@ attribute:: |
   line two
 ```
 
+attribute:: |
+  line one
+  line two
+
 ### unprefixed; single; string; multi-line; folded chomped (>-); strips trailing newlines
 
 ```markdown
@@ -949,11 +1362,17 @@ attribute:: >-
   line two
 ```
 
+attribute:: >-
+  line one
+  line two
+
 ### unprefixed; single; string; multi-line; folded (>); empty block
 
 ```markdown
 attribute:: >
 ```
+
+attribute:: >
 
 ### unprefixed; single; string; multi-line; folded (>); multi-paragraph
 
@@ -964,6 +1383,11 @@ attribute:: >
   line two
 ```
 
+attribute:: >
+  line one
+
+  line two
+
 ### unprefixed; single; string; multi-line; literal (|); multi-paragraph
 
 ```markdown
@@ -972,6 +1396,11 @@ attribute:: |
 
   line two
 ```
+
+attribute:: |
+  line one
+
+  line two
 
 ### unprefixed; single; string; multi-line; literal (|); nested indentation
 
@@ -982,6 +1411,11 @@ attribute:: |
   line two
 ```
 
+attribute:: |
+  line one
+    indented
+  line two
+
 ### unprefixed; single; string; multi-line; literal strip (|-); strips trailing newlines
 
 ```markdown
@@ -989,6 +1423,10 @@ attribute:: |-
   line one
   line two
 ```
+
+attribute:: |-
+  line one
+  line two
 
 ### unprefixed; single; string; multi-line; literal keep (|+); preserves trailing newlines
 
@@ -998,6 +1436,10 @@ attribute:: |+
   line two
 ```
 
+attribute:: |+
+  line one
+  line two
+
 ### unprefixed; single; string; multi-line; folded keep (>+); preserves trailing newlines
 
 ```markdown
@@ -1005,6 +1447,10 @@ attribute:: >+
   line one
   line two
 ```
+
+attribute:: >+
+  line one
+  line two
 
 ### unprefixed; single; string; multi-line; adjacent; two multi-line attrs back-to-back
 
@@ -1016,6 +1462,12 @@ notes:: |
   line two
 ```
 
+description:: >
+  This is folded text.
+notes:: |
+  line one
+  line two
+
 ### unprefixed; single; string; multi-line; adjacent; multi-line followed by regular attr
 
 ```markdown
@@ -1024,6 +1476,10 @@ description:: >
 count:: 42
 ```
 
+description:: >
+  folded text.
+count:: 42
+
 ### unprefixed; single; string; multi-line; adjacent; regular attr followed by multi-line
 
 ```markdown
@@ -1031,6 +1487,10 @@ title:: Doc
 description:: >
   folded text.
 ```
+
+title:: Doc
+description:: >
+  folded text.
 
 ### unprefixed; single; string; multi-line; adjacent; four indicators back-to-back
 
@@ -1045,6 +1505,15 @@ d:: |-
   strip-literal
 ```
 
+a:: >
+  folded
+b:: |
+  literal
+c:: >-
+  strip-folded
+d:: |-
+  strip-literal
+
 ### unprefixed; single; string; multi-line; adjacent; multi-line with content preserved
 
 ```markdown
@@ -1056,11 +1525,20 @@ tags:: a, b, c
 Some paragraph content.
 ```
 
+title:: Test
+desc:: >
+  folded text.
+tags:: a, b, c
+
+Some paragraph content.
+
 ### unprefixed; single; escaped; code span
 
 ```markdown
 `attribute:: value`
 ```
+
+`attribute:: value`
 
 ### unprefixed; single; escaped; fenced code block
 
@@ -1070,11 +1548,17 @@ attribute:: value
 ```
 ````
 
+```
+attribute:: value
+```
+
 ### unprefixed; single; escaped; indented code block (4 spaces)
 
 ```markdown
     attribute:: value
 ```
+
+    attribute:: value
 
 ### unprefixed; single; w/ other mkdn constructs; nested; blockquote; not allowed inside
 
@@ -1082,11 +1566,15 @@ attribute:: value
 > attribute:: value
 ```
 
+> attribute:: value
+
 ### unprefixed; single; w/ other mkdn constructs; nested; list; not allowed inside
 
 ```markdown
 - attribute:: value
 ```
+
+- attribute:: value
 
 ### unprefixed; single; w/ other mkdn constructs; near headers; before
 
@@ -1096,6 +1584,10 @@ attribute:: value
 # heading
 ```
 
+attribute:: value
+
+# heading
+
 ### unprefixed; single; w/ other mkdn constructs; near headers; after
 
 ```markdown
@@ -1103,6 +1595,10 @@ attribute:: value
 
 attribute:: value
 ```
+
+# heading
+
+attribute:: value
 
 ### unprefixed; single; w/ other mkdn constructs; near blockquotes; before
 
@@ -1112,6 +1608,10 @@ attribute:: value
 > some text
 ```
 
+attribute:: value
+
+> some text
+
 ### unprefixed; single; w/ other mkdn constructs; near blockquotes; after
 
 ```markdown
@@ -1119,6 +1619,10 @@ attribute:: value
 
 attribute:: value
 ```
+
+> some text
+
+attribute:: value
 
 ### unprefixed; single; w/ other mkdn constructs; near lists; before
 
@@ -1128,6 +1632,10 @@ attribute:: value
 - list item
 ```
 
+attribute:: value
+
+- list item
+
 ### unprefixed; single; w/ other mkdn constructs; near lists; after
 
 ```markdown
@@ -1135,6 +1643,10 @@ attribute:: value
 
 attribute:: value
 ```
+
+- list item
+
+attribute:: value
 
 ### unprefixed; single; multi-line folded; stops at blank line; next attr separate
 
@@ -1146,6 +1658,12 @@ desc:: >
 title:: Test
 ```
 
+desc:: >
+  folded text
+  here
+
+title:: Test
+
 ### unprefixed; single; multi-line literal; stops at blank line; next attr separate
 
 ```markdown
@@ -1156,11 +1674,19 @@ poem:: |
 author:: someone
 ```
 
+poem:: |
+  roses are red
+  violets are blue
+
+author:: someone
+
 ### unprefixed; list; comma-separated; null; all lowercase
 
 ```markdown
 attribute::null,null
 ```
+
+attribute::null,null
 
 ### unprefixed; list; comma-separated; null; camelCase
 
@@ -1168,11 +1694,15 @@ attribute::null,null
 attribute::Null,Null
 ```
 
+attribute::Null,Null
+
 ### unprefixed; list; comma-separated; null; all lowercase
 
 ```markdown
 attribute::NULL,NULL
 ```
+
+attribute::NULL,NULL
 
 ### unprefixed; list; comma-separated; bool; all lowercase
 
@@ -1180,11 +1710,15 @@ attribute::NULL,NULL
 attribute::true,false
 ```
 
+attribute::true,false
+
 ### unprefixed; list; comma-separated; bool; camelCase
 
 ```markdown
 attribute::True,False
 ```
+
+attribute::True,False
 
 ### unprefixed; list; comma-separated; bool; all uppercase
 
@@ -1192,11 +1726,15 @@ attribute::True,False
 attribute::TRUE,FALSE
 ```
 
+attribute::TRUE,FALSE
+
 ### unprefixed; list; comma-separated; int; canonical
 
 ```markdown
 attribute::10,-123
 ```
+
+attribute::10,-123
 
 ### unprefixed; list; comma-separated; int; octal
 
@@ -1204,11 +1742,15 @@ attribute::10,-123
 attribute::0o10,0o123
 ```
 
+attribute::0o10,0o123
+
 ### unprefixed; list; comma-separated; int; hexadecimal
 
 ```markdown
 attribute::0xC,0x014D
 ```
+
+attribute::0xC,0x014D
 
 ### unprefixed; list; comma-separated; float; canonical
 
@@ -1216,11 +1758,15 @@ attribute::0xC,0x014D
 attribute::1.23015,-1.23015
 ```
 
+attribute::1.23015,-1.23015
+
 ### unprefixed; list; comma-separated; float; exp -- exponential
 
 ```markdown
 attribute::12.3015e+02,12.3015e-02
 ```
+
+attribute::12.3015e+02,12.3015e-02
 
 ### unprefixed; list; comma-separated; float; nan -- not a number
 
@@ -1228,11 +1774,15 @@ attribute::12.3015e+02,12.3015e-02
 attribute::.NaN,.nan
 ```
 
+attribute::.NaN,.nan
+
 ### unprefixed; list; comma-separated; time; canonical
 
 ```markdown
 attribute::2001-12-15T02:59:43.1Z,2022-12-15T02:59:43.1Z
 ```
+
+attribute::2001-12-15T02:59:43.1Z,2022-12-15T02:59:43.1Z
 
 ### unprefixed; list; comma-separated; time; iso8601
 
@@ -1240,11 +1790,15 @@ attribute::2001-12-15T02:59:43.1Z,2022-12-15T02:59:43.1Z
 attribute::2001-12-14t21:59:43.10-05:00,2022-12-14t21:59:43.10-05:00
 ```
 
+attribute::2001-12-14t21:59:43.10-05:00,2022-12-14t21:59:43.10-05:00
+
 ### unprefixed; list; comma-separated; time; spaced
 
 ```markdown
 attribute::2001-12-14 21:59:43.10 -5,2022-12-14 21:59:43.10 -5
 ```
+
+attribute::2001-12-14 21:59:43.10 -5,2022-12-14 21:59:43.10 -5
 
 ### unprefixed; list; comma-separated; time; date only
 
@@ -1252,11 +1806,15 @@ attribute::2001-12-14 21:59:43.10 -5,2022-12-14 21:59:43.10 -5
 attribute::2001-12-14,2022-12-14
 ```
 
+attribute::2001-12-14,2022-12-14
+
 ### unprefixed; list; comma-separated; time; int
 
 ```markdown
 attribute::+12:00,12:00
 ```
+
+attribute::+12:00,12:00
 
 ### unprefixed; list; comma-separated; time; float
 
@@ -1264,11 +1822,15 @@ attribute::+12:00,12:00
 attribute::+12:00.123,12:00.123
 ```
 
+attribute::+12:00.123,12:00.123
+
 ### unprefixed; list; comma-separated; string; single-line; w/o whitespace
 
 ```markdown
 attribute::this-is-a-string,and-another-string
 ```
+
+attribute::this-is-a-string,and-another-string
 
 ### unprefixed; list; comma-separated; string; single-line; w/ whitespace
 
@@ -1276,17 +1838,23 @@ attribute::this-is-a-string,and-another-string
 attribute::this is a string,and another string
 ```
 
+attribute::this is a string,and another string
+
 ### unprefixed; list; comma-separated; string; single-line; w/o whitespace; quotes (double); comma
 
 ```markdown
 attribute::"this-is,a-string",and-another-string
 ```
 
+attribute::"this-is,a-string",and-another-string
+
 ### unprefixed; list; comma-separated; string; multi-line; not supported (indicator treated as literal)
 
 ```markdown
 attribute::first, >
 ```
+
+attribute::first, >
 
 ### unprefixed; list; mkdn-separated; null; all lowercase
 
@@ -1296,6 +1864,10 @@ attribute::
 - null
 ```
 
+attribute::
+- null
+- null
+
 ### unprefixed; list; mkdn-separated; null; camelCase
 
 ```markdown
@@ -1303,6 +1875,10 @@ attribute::
 - Null
 - Null
 ```
+
+attribute::
+- Null
+- Null
 
 ### unprefixed; list; mkdn-separated; null; all uppercase
 
@@ -1312,6 +1888,10 @@ attribute::
 - NULL
 ```
 
+attribute::
+- NULL
+- NULL
+
 ### unprefixed; list; mkdn-separated; bool; all lowercase
 
 ```markdown
@@ -1319,6 +1899,10 @@ attribute::
 - true
 - false
 ```
+
+attribute::
+- true
+- false
 
 ### unprefixed; list; mkdn-separated; bool; camelCase
 
@@ -1328,6 +1912,10 @@ attribute::
 - False
 ```
 
+attribute::
+- True
+- False
+
 ### unprefixed; list; mkdn-separated; bool; all uppercase
 
 ```markdown
@@ -1335,6 +1923,10 @@ attribute::
 - TRUE
 - FALSE
 ```
+
+attribute::
+- TRUE
+- FALSE
 
 ### unprefixed; list; mkdn-separated; int; canonical
 
@@ -1344,6 +1936,10 @@ attribute::
 - -123
 ```
 
+attribute::
+- 10
+- -123
+
 ### unprefixed; list; mkdn-separated; int; octal
 
 ```markdown
@@ -1351,6 +1947,10 @@ attribute::
 - 0o10
 - 0o123
 ```
+
+attribute::
+- 0o10
+- 0o123
 
 ### unprefixed; list; mkdn-separated; int; hexadecimal
 
@@ -1360,6 +1960,10 @@ attribute::
 - 0x014D
 ```
 
+attribute::
+- 0xC
+- 0x014D
+
 ### unprefixed; list; mkdn-separated; float; canonical
 
 ```markdown
@@ -1367,6 +1971,10 @@ attribute::
 - 1.23015
 - -1.23015
 ```
+
+attribute::
+- 1.23015
+- -1.23015
 
 ### unprefixed; list; mkdn-separated; float; exp -- exponential
 
@@ -1376,6 +1984,10 @@ attribute::
 - 12.3015e-02
 ```
 
+attribute::
+- 12.3015e+02
+- 12.3015e-02
+
 ### unprefixed; list; mkdn-separated; float; nan -- not a number
 
 ```markdown
@@ -1383,6 +1995,10 @@ attribute::
 - .NaN
 - .nan
 ```
+
+attribute::
+- .NaN
+- .nan
 
 ### unprefixed; list; mkdn-separated; time; canonical
 
@@ -1392,6 +2008,10 @@ attribute::
 - 2022-12-15T02:59:43.1Z
 ```
 
+attribute::
+- 2001-12-15T02:59:43.1Z
+- 2022-12-15T02:59:43.1Z
+
 ### unprefixed; list; mkdn-separated; time; iso8601
 
 ```markdown
@@ -1399,6 +2019,10 @@ attribute::
 - 2001-12-14t21:59:43.10-05:00
 - 2022-12-14t21:59:43.10-05:00
 ```
+
+attribute::
+- 2001-12-14t21:59:43.10-05:00
+- 2022-12-14t21:59:43.10-05:00
 
 ### unprefixed; list; mkdn-separated; time; spaced
 
@@ -1408,6 +2032,10 @@ attribute::
 - 2022-12-14 21:59:43.10 -5
 ```
 
+attribute::
+- 2001-12-14 21:59:43.10 -5
+- 2022-12-14 21:59:43.10 -5
+
 ### unprefixed; list; mkdn-separated; time; date only
 
 ```markdown
@@ -1415,6 +2043,10 @@ attribute::
 - 2001-12-14
 - 2022-12-14
 ```
+
+attribute::
+- 2001-12-14
+- 2022-12-14
 
 ### unprefixed; list; mkdn-separated; time; int
 
@@ -1424,6 +2056,10 @@ attribute::
 - 12:00
 ```
 
+attribute::
+- +12:00
+- 12:00
+
 ### unprefixed; list; mkdn-separated; time; float
 
 ```markdown
@@ -1431,6 +2067,10 @@ attribute::
 - +12:00.123
 - 12:00.123
 ```
+
+attribute::
+- +12:00.123
+- 12:00.123
 
 ### unprefixed; list; mkdn-separated; string; single-line; w/o whitespace
 
@@ -1440,6 +2080,10 @@ attribute::
 - and-another-string
 ```
 
+attribute::
+- this-is-a-string
+- and-another-string
+
 ### unprefixed; list; mkdn-separated; string; single-line; w/ whitespace
 
 ```markdown
@@ -1448,6 +2092,10 @@ attribute::
 - and another string
 ```
 
+attribute::
+- this is a string
+- and another string
+
 ### unprefixed; list; mkdn-separated; string; single-line; w/o whitespace; quotes (double); comma
 
 ```markdown
@@ -1455,6 +2103,10 @@ attribute::
 - "this-is,a-string"
 - and-another-string
 ```
+
+attribute::
+- "this-is,a-string"
+- and-another-string
 
 ### unprefixed; list; mkdn-separated; string; multi-line; folded (>); basic
 
@@ -1466,6 +2118,12 @@ attribute::
   line two
 ```
 
+attribute::
+- first
+- >
+  line one
+  line two
+
 ### unprefixed; list; mkdn-separated; string; multi-line; folded (>); with trailing newline
 
 ```markdown
@@ -1475,6 +2133,12 @@ attribute::
   line one
   line two
 ```
+
+attribute::
+- first
+- >
+  line one
+  line two
 
 ### unprefixed; list; mkdn-separated; string; multi-line; literal (|); basic
 
@@ -1486,6 +2150,12 @@ attribute::
   line two
 ```
 
+attribute::
+- first
+- |
+  line one
+  line two
+
 ### unprefixed; list; mkdn-separated; string; multi-line; folded chomped (>-); strips trailing newlines
 
 ```markdown
@@ -1495,6 +2165,12 @@ attribute::
   line one
   line two
 ```
+
+attribute::
+- first
+- >-
+  line one
+  line two
 
 ### unprefixed; list; mkdn-separated; string; multi-line; literal strip (|-); strips trailing newlines
 
@@ -1506,6 +2182,12 @@ attribute::
   line two
 ```
 
+attribute::
+- first
+- |-
+  line one
+  line two
+
 ### unprefixed; list; mkdn-separated; string; multi-line; literal keep (|+); preserves trailing newlines
 
 ```markdown
@@ -1515,6 +2197,12 @@ attribute::
   line one
   line two
 ```
+
+attribute::
+- first
+- |+
+  line one
+  line two
 
 ### unprefixed; list; mkdn-separated; string; multi-line; folded keep (>+); preserves trailing newlines
 
@@ -1526,6 +2214,12 @@ attribute::
   line two
 ```
 
+attribute::
+- first
+- >+
+  line one
+  line two
+
 ### unprefixed; list; mkdn-separated; string; multi-line; folded (>); empty block
 
 ```markdown
@@ -1534,7 +2228,11 @@ attribute::
 - >
 ```
 
-## Wiki Values
+attribute::
+- first
+- >
+
+## Wiki
 
 ### [[wikirefs]]; prefixed; single; wiki value
 
@@ -1542,11 +2240,15 @@ attribute::
 : attribute :: [[fname-a]]
 ```
 
+: attribute :: [[fname-a]]
+
 ### [[wikirefs]]; unprefixed; single; wiki value
 
 ```markdown
 attribute :: [[fname-a]]
 ```
+
+attribute :: [[fname-a]]
 
 ### [[wikirefs]]; unprefixed; single; wiki value with spaces
 
@@ -1554,11 +2256,15 @@ attribute :: [[fname-a]]
 attribute :: [[fname-a]]
 ```
 
+attribute :: [[fname-a]]
+
 ### [[wikirefs]]; unprefixed; single; wiki value with hyphens
 
 ```markdown
 attribute :: [[fname-a]]
 ```
+
+attribute :: [[fname-a]]
 
 ### [[wikirefs]]; unprefixed; single; invalid wiki; unclosed
 
@@ -1566,11 +2272,15 @@ attribute :: [[fname-a]]
 attribute :: [[invalid
 ```
 
+attribute :: [[invalid
+
 ### [[wikirefs]]; unprefixed; single; invalid wiki; empty brackets
 
 ```markdown
 attribute :: [[]]
 ```
+
+attribute :: [[]]
 
 ### [[wikirefs]]; prefixed; list; mkdn-separated; all wiki
 
@@ -1580,11 +2290,17 @@ attribute :: [[]]
 - [[fname-b]]
 ```
 
+:attribute::
+- [[fname-a]]
+- [[fname-b]]
+
 ### [[wikirefs]]; prefixed; list; comma-separated; all wiki
 
 ```markdown
 :attribute::[[fname-a]],[[fname-b]]
 ```
+
+:attribute::[[fname-a]],[[fname-b]]
 
 ### [[wikirefs]]; unprefixed; list; mkdn-separated; all wiki
 
@@ -1594,11 +2310,17 @@ attribute::
 - [[fname-b]]
 ```
 
+attribute::
+- [[fname-a]]
+- [[fname-b]]
+
 ### [[wikirefs]]; unprefixed; list; comma-separated; all wiki
 
 ```markdown
 attribute::[[fname-a]],[[fname-b]]
 ```
+
+attribute::[[fname-a]],[[fname-b]]
 
 ### [[wikirefs]]; prefixed; list; mkdn-separated; mixed wiki and int
 
@@ -1608,11 +2330,17 @@ attribute::[[fname-a]],[[fname-b]]
 - 42
 ```
 
+:attribute::
+- [[fname-a]]
+- 42
+
 ### [[wikirefs]]; prefixed; list; comma-separated; mixed wiki and int
 
 ```markdown
 :attribute::[[fname-a]],42
 ```
+
+:attribute::[[fname-a]],42
 
 ### [[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and int
 
@@ -1622,11 +2350,17 @@ attribute::
 - 42
 ```
 
+attribute::
+- [[fname-a]]
+- 42
+
 ### [[wikirefs]]; unprefixed; list; comma-separated; mixed wiki and int
 
 ```markdown
 attribute::[[fname-a]],42
 ```
+
+attribute::[[fname-a]],42
 
 ### [[wikirefs]]; prefixed; list; mkdn-separated; mixed wiki and bool
 
@@ -1636,17 +2370,25 @@ attribute::[[fname-a]],42
 - true
 ```
 
+:attribute::
+- [[fname-a]]
+- true
+
 ### [[wikirefs]]; unprefixed; list; comma-separated; mixed wiki and bool
 
 ```markdown
 attribute::[[fname-a]],true
 ```
 
+attribute::[[fname-a]],true
+
 ### [[wikirefs]]; prefixed; list; comma-separated; mixed wiki and bool
 
 ```markdown
 :attribute::[[fname-a]],true
 ```
+
+:attribute::[[fname-a]],true
 
 ### [[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and bool
 
@@ -1656,11 +2398,17 @@ attribute::
 - true
 ```
 
+attribute::
+- [[fname-a]]
+- true
+
 ### [[wikirefs]]; prefixed; list; comma-separated; mixed wiki and string
 
 ```markdown
 :attribute::[[fname-a]],hello
 ```
+
+:attribute::[[fname-a]],hello
 
 ### [[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and string
 
@@ -1670,11 +2418,17 @@ attribute::
 - hello
 ```
 
+attribute::
+- [[fname-a]]
+- hello
+
 ### [[wikirefs]]; prefixed; list; comma-separated; mixed wiki and float
 
 ```markdown
 :attribute::[[fname-a]],1.5
 ```
+
+:attribute::[[fname-a]],1.5
 
 ### [[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and float
 
@@ -1684,11 +2438,17 @@ attribute::
 - 1.5
 ```
 
+attribute::
+- [[fname-a]]
+- 1.5
+
 ### [[wikirefs]]; prefixed; list; comma-separated; mixed wiki and time
 
 ```markdown
 :attribute::[[fname-a]],2001-12-14
 ```
+
+:attribute::[[fname-a]],2001-12-14
 
 ### [[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and time
 
@@ -1698,11 +2458,17 @@ attribute::
 - 2001-12-14
 ```
 
+attribute::
+- [[fname-a]]
+- 2001-12-14
+
 ### [[wikirefs]]; prefixed; list; comma-separated; mixed wiki and null
 
 ```markdown
 :attribute::[[fname-a]],null
 ```
+
+:attribute::[[fname-a]],null
 
 ### [[wikirefs]]; unprefixed; list; mkdn-separated; mixed wiki and null
 
@@ -1712,17 +2478,25 @@ attribute::
 - null
 ```
 
+attribute::
+- [[fname-a]]
+- null
+
 ### [[wikirefs]]; prefixed; list; comma-separated; mixed wiki and invalid wiki (fallback to string)
 
 ```markdown
 :attribute::[[fname-a]],[[invalid
 ```
 
+:attribute::[[fname-a]],[[invalid
+
 ### [[wikirefs]]; unprefixed; no val; none is not allowed (see no-val cases)
 
 ```markdown
 attribute::
 ```
+
+attribute::
 
 ### [[wikirefs]]; prefixed; list; mkdn-separated; invalid wiki (fallback to string)
 
@@ -1732,6 +2506,10 @@ attribute::
 - 42
 ```
 
+:attribute::
+- [[invalid
+- 42
+
 ### no val; prefixed; single; [[wikirefs]]; should not be processed here
 
 ```markdown
@@ -1739,6 +2517,10 @@ attribute::
 
 [[fname-a]]
 ```
+
+: attribute ::
+
+[[fname-a]]
 
 ### [[wikirefs]]; prefixed; single; [[wikilinks]]; should not interfere with empty string processing
 
@@ -1748,6 +2530,10 @@ attribute::
 [[fname-a]]
 ```
 
+: attribute :: ''
+
+[[fname-a]]
+
 ### [[wikirefs]]; unprefixed; single; [[wikilinks]]; should not be processed here
 
 ```markdown
@@ -1755,6 +2541,10 @@ attribute::
 
 [[fname-a]]
 ```
+
+ attribute ::
+
+[[fname-a]]
 
 ### [[wikirefs]]; unprefixed; single; [[wikilinks]]; should not interfere with empty string processing
 
@@ -1764,6 +2554,10 @@ attribute :: ''
 [[fname-a]]
 ```
 
+attribute :: ''
+
+[[fname-a]]
+
 ## No Value
 
 ### no val; prefixed; single; no caml value; none is not allowed
@@ -1772,11 +2566,15 @@ attribute :: ''
 :attribute::
 ```
 
+:attribute::
+
 ### no val; unprefixed; single; no caml value; none is not allowed
 
 ```markdown
 attribute::
 ```
+
+attribute::
 
 ### no val; unprefixed; single; immediately before thematic break (setext); none is not allowed
 
@@ -1785,12 +2583,18 @@ attribute::
 ---
 ```
 
+attribute::
+---
+
 ### no val; prefixed; single; immediately before thematic break (setext); none is not allowed
 
 ```markdown
 :attribute::
 ---
 ```
+
+:attribute::
+---
 
 ### no val; unprefixed; single; immediately before blockquote; none is not allowed
 
@@ -1799,12 +2603,18 @@ attribute::
 > quote text
 ```
 
+attribute::
+> quote text
+
 ### no val; prefixed; single; immediately before blockquote; none is not allowed
 
 ```markdown
 :attribute::
 > quote text
 ```
+
+:attribute::
+> quote text
 
 ## Invalid
 
@@ -1814,11 +2624,15 @@ attribute::
 :attribute::2025-13-45
 ```
 
+:attribute::2025-13-45
+
 ### prefixed; single; date; invalid; day out of range
 
 ```markdown
 :attribute::2025-02-30
 ```
+
+:attribute::2025-02-30
 
 ### prefixed; single; date; invalid; month zero
 
@@ -1826,11 +2640,15 @@ attribute::
 :attribute::2025-00-01
 ```
 
+:attribute::2025-00-01
+
 ### prefixed; single; date; invalid; non-zero-padded
 
 ```markdown
 :attribute::2025-1-30
 ```
+
+:attribute::2025-1-30
 
 ### prefixed; single; date; invalid; non-zero-padded month and day
 
@@ -1838,11 +2656,15 @@ attribute::
 :attribute::2025-1-1
 ```
 
+:attribute::2025-1-1
+
 ### prefixed; single; date; zero-padded
 
 ```markdown
 :attribute::2025-01-30
 ```
+
+:attribute::2025-01-30
 
 ### prefixed; single; int; invalid; incomplete hex
 
@@ -1850,11 +2672,15 @@ attribute::
 :attribute::0x
 ```
 
+:attribute::0x
+
 ### prefixed; single; int; invalid; non-hex digits
 
 ```markdown
 :attribute::0xZZ
 ```
+
+:attribute::0xZZ
 
 ### prefixed; single; int; invalid; non-octal digit
 
@@ -1862,11 +2688,15 @@ attribute::
 :attribute::0o8
 ```
 
+:attribute::0o8
+
 ### prefixed; single; int; invalid; trailing letters
 
 ```markdown
 :attribute::12abc
 ```
+
+:attribute::12abc
 
 ### prefixed; single; float; invalid; two decimal points
 
@@ -1874,11 +2704,15 @@ attribute::
 :attribute::1.2.3
 ```
 
+:attribute::1.2.3
+
 ### prefixed; single; float; invalid; bare exponent
 
 ```markdown
 :attribute::1e
 ```
+
+:attribute::1e
 
 ### prefixed; single; float; invalid; double dot
 
@@ -1886,15 +2720,21 @@ attribute::
 :attribute::1..2
 ```
 
+:attribute::1..2
+
 ### prefixed; single; bool; invalid; typo
 
 ```markdown
 :attribute::treu
 ```
 
+:attribute::treu
+
 ### prefixed; single; bool; invalid; near-word
 
 ```markdown
 :attribute::truthy
 ```
+
+:attribute::truthy
 

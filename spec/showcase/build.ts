@@ -39,13 +39,11 @@ function displaySource(mkdn: string): string {
 
 // -- markdown catalog -------------------------------------------------------
 //
-// Each case shows its `mkdn` fenced (the source). caml attributes are collected
-// into a file-level attrbox (or dropped) — they never render at their source
-// location, so this catalog is source-only.
-//
-// The `opts.live` / `group.live` machinery is retained for parity with the
-// wikirefs showcase (where inline constructs render in place), but caml has no
-// in-place constructs, so it stays off.
+// Each case shows its `mkdn` fenced (the source) and, when `opts.live` is set, the
+// same source again unfenced (the live attribute) — so a downstream render shows
+// the example next to the actual rendered output. caml collects attributes into a
+// file-level attrbox, so the live attributes surface there (keyed by attr name)
+// rather than at their source location.
 
 export function buildMkdnCatalog(groups: ShowcaseGroup[], opts: ShowcaseDocOpts): string {
   const parts: string[] = [];

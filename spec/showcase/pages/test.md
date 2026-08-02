@@ -7,10 +7,10 @@ CAML attributes are collected into a file-level **attrbox** which is rendered at
 ## Scalar values
 
 ```markdown
-:scalar::a
+:scalar-attr::a
 ```
 
-:scalar::a
+:scalar-attr::a
 
 ## Lists
 
