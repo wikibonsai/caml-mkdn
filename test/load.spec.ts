@@ -33,7 +33,7 @@ describe('load()', () => {
   }
 
   // empty case
-  it.skip('empty', () => {
+  it('empty', () => {
     assert.deepStrictEqual(
       caml.load(''),
       {
