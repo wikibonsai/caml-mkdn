@@ -45,6 +45,10 @@ export namespace RGX {
     VAL_LINE       : /[^\n[\]]+/,
   } as const;
 
+  // matches wikirefs' _BASE regex (MARKER.OPEN + VALID_CHARS.FILENAME + MARKER.CLOSE)
+  // see: wikirefs/src/lib/var/regex.ts
+  export const WIKI = /^\[\[[^\n\r!#:^|[\]]+\]\]$/i;
+
   export const CAP_GRP = {
     KEY            : new RegExp('(' + VALID_CHARS.KEY.source + ')'),
     VAL            : new RegExp('(' + VALID_CHARS.VAL.source + ')'),

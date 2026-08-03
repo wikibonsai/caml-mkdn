@@ -1,10 +1,12 @@
-import type { CamlValData } from './../types';
+import type { CamlResolveOpts, CamlValData } from './../types';
 import {
   TYPE,
   constructYamlTimestamp,
   parseSexagesimal,
 } from './../yaml';
 import { CONST } from './../var/const';
+import { RGX } from './../var/regex';
+
 
 // YAML block scalar parser
 // ref: https://yaml.org/spec/1.2.2/#81-block-scalar-headers
@@ -91,10 +93,6 @@ function parseYamlScalar(indicator: string, block: string): string {
   }
 }
 
-// matches wikirefs' _BASE regex (MARKER.OPEN + VALID_CHARS.FILENAME + MARKER.CLOSE)
-// see: wikirefs/src/lib/var/regex.ts
-const WIKI_RGX: RegExp = /^\[\[[^\n\r!#:^|[\]]+\]\]$/i;
-
 // resolve a valid timestamp to a Date; return null for an invalid one (bad format or
 // out-of-range) so resolution falls back to `string`. constructYamlTimestamp throws on
 // invalid dates (js-yaml parity) — this contains the throw so resolve() can branch on it
@@ -109,12 +107,12 @@ function tryTimestamp(value: string): Date | null {
 }
 
 // todo: what if there's leading/trailing whitespace? (trimming beforehand, for now)
-export function resolve(value: string, opts?: { wikirefs?: boolean }): CamlValData {
+export function resolve(value: string, opts?: CamlResolveOpts): CamlValData {
   // wikilink — only recognized as a distinct 'wiki' type when the wikirefs plugin is
   // signalled (opts.wikirefs). caml is wikirefs-agnostic by DEFAULT: `[[x]]` falls
   // through to a plain string value (brackets kept), leaving link resolution to
   // wikirefs.
-  if (opts?.wikirefs && WIKI_RGX.test(value.trim())) {
+  if (opts?.wikirefs && RGX.WIKI.test(value.trim())) {
     const trimmed: string = value.trim();
     // strip [[ and ]] to extract filename
     const filename: string = trimmed.slice(2, -2);

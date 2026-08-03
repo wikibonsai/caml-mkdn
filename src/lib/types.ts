@@ -11,12 +11,12 @@ export interface CamlValData {
 // dump()
 
 export interface CamlDumpOpts {
-  format?: 'pretty' | 'pad' | 'none';
-  listFormat?: 'comma' | 'mkdn';
-  prefix?: boolean;
-  multiLine?: 'none' | 'literal' | 'folded';
-  chomp?: 'clip' | 'strip' | 'keep';
-  indent?: number;
+  format?     : 'pretty' | 'pad'     | 'none';
+  listFormat? : 'comma'  | 'mkdn';
+  prefix?     : boolean;
+  multiLine?  : 'none'   | 'literal' | 'folded';
+  chomp?      : 'clip'   | 'strip'   | 'keep';
+  indent?     : number;
 }
 
 // load()
@@ -24,6 +24,12 @@ export interface CamlDumpOpts {
 export interface CamlLoadPayload {
   data: any;
   content: string;
+}
+
+// resolve()
+
+export interface CamlResolveOpts {
+  wikirefs?: boolean;
 }
 
 // scan()
