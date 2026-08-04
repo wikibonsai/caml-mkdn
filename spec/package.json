@@ -1,6 +1,6 @@
 {
   "name": "caml-spec",
-  "version": "0.0.6-spec",
+  "version": "0.0.7-spec",
   "description": "Spec tests for caml (Colon Attribute Markup Lanugage)",
   "license": "GPL-3.0",
   "author": {
