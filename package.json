@@ -1,6 +1,6 @@
 {
   "name": "caml-mkdn",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Colon Attribute Markup Lanugage -- a YAML-like markup syntax for (semantic) attributes in markdown.",
   "license": "GPL-3.0",
   "author": {
