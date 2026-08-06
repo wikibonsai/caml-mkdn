@@ -21,6 +21,11 @@ export interface CamlDumpOpts {
 
 // load()
 
+export interface CamlLoadOpts {
+  skipEsc?: boolean;
+  wikirefs?: boolean;
+}
+
 export interface CamlLoadPayload {
   data: any;
   content: string;
@@ -31,6 +36,8 @@ export interface CamlLoadPayload {
 export interface CamlResolveOpts {
   wikirefs?: boolean;
 }
+
+// payload is CamlValData (see above)
 
 // scan()
 

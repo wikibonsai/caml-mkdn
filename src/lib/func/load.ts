@@ -1,6 +1,6 @@
 import { getEscIndices, isStrEscaped } from 'escape-mkdn';
 
-import type { CamlLoadPayload } from './../types';
+import type { CamlLoadOpts, CamlLoadPayload } from './../types';
 import { RGX } from './../var/regex';
 import { resolve} from './resolve';
 
@@ -164,7 +164,7 @@ function normalizeMultiLineContent(content: string): string {
   return normalizedLines.join('\n');
 }
 
-export function load(content: string, opts?: { skipEsc?: boolean; wikirefs?: boolean }): CamlLoadPayload {
+export function load(content: string, opts?: CamlLoadOpts): CamlLoadPayload {
   const skipEsc: boolean = (opts?.skipEsc !== undefined) ? opts.skipEsc : true;
   // wikirefs-awareness: recognize `[[x]]` values as 'wiki' type (default false). the
   // multi-line-block helpers never see a `[[x]]` (block scalars aren't wikilinks), so
