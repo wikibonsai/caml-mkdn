@@ -8,7 +8,9 @@ export * from './lib/types';
 
 export * from './lib/yaml';
 
+export * from './lib/func/css';
 export * from './lib/func/dump';
+export * from './lib/func/html';
 export * from './lib/func/load';
 export * from './lib/func/resolve';
 export * from './lib/func/scan';

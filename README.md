@@ -62,6 +62,92 @@ Note: To use commas (,) inside of singular caml string value, make sure to surro
 
 ## API
 
+### `buildHTML(attrs: AttrBoxData, opts?: CamlBuildHTMLOpts): string`
+
+Builds the canonical attrbox HTML for a collection of caml attrs: the one place the attrbox structure and its css-class contract live (the caml twin of [wikirefs' `buildHTML`](https://github.com/wikibonsai/wikirefs)), so parsers and SSGs can route through it and their output cannot drift. Returns the empty string for an empty collection. See [caml-spec](./spec) for the full contract.
+
+```typescript
+import { buildHTML } from 'caml-mkdn';
+import type { AttrBoxData } from 'caml-mkdn';
+
+const attrs: AttrBoxData = {
+  'title': [{
+    type: 'string',
+    string: 'How To Read A Book',
+    value: 'How To Read A Book',
+  }],
+  // scanned 'True' displays as written, even though the typed value is `true`
+  'draft': [{
+    type: 'boolean',
+    string: 'True',
+    value: true,
+  }],
+};
+const html: string = buildHTML(attrs);
+// html = '<aside class="attrbox">\n'
+//      + '<dl>\n'
+//      + '<div class="attr-item">\n'
+//      + '<dt class="key__title">title</dt>\n'
+//      + '<dd><span class="attr string">How To Read A Book</span></dd>\n'
+//      + '</div>\n'
+//      + '<div class="attr-item">\n'
+//      + '<dt class="key__draft">draft</dt>\n'
+//      + '<dd><span class="attr boolean">True</span></dd>\n'
+//      + '</div>\n'
+//      + '</dl>\n'
+//      + '</aside>\n'
+```
+
+`string` is the value's scanned text, `value` its typed load — display uses the **string** verbatim (the author's casing survives), EXCEPT multi-line strings, which display the loaded `value` (block-scalar indentation/chomping applied) with newlines as `<br>`.
+
+The `<dt>` shows the raw key and carries its `key__<slug>` css class (the hook for type-sensitive syntax highlights); value spans carry structural classes only (`attr` + the value type). Wiki values render as plain string spans -- caml never resolves wikirefs; a co-registered [wikirefs](https://github.com/wikibonsai/wikirefs) plugin upgrades those spans to links. A routed consumer with wikirefs co-registered may instead pass a pre-rendered dd body via the item's `html` slot (e.g. the anchor built by wikirefs' own `buildHTML`):
+
+```typescript
+const attrs: AttrBoxData = {
+  'title': [{
+    type: 'wiki',
+    string: '[[how-to-read-a-book]]',
+    value: 'how-to-read-a-book',   // resolve()'s wiki payload: value = the FILENAME
+    html: '<a class="attr wiki" href="/how-to-read-a-book" data-href="/how-to-read-a-book">how-to-read-a-book</a>',
+  }],
+};
+// -> '<dd><a class="attr wiki" href="/how-to-read-a-book" data-href="/how-to-read-a-book">how-to-read-a-book</a></dd>'
+```
+
+#### Options
+
+##### `cssNames: Partial<CamlCssNames>`
+
+Rename any class token: `attrbox` (the `<aside>` wrapper), `attrItem` (the per-key `<div>`), `attr` (the value span's structural class), and `key` (the `<dt>` class *prefix*, default `key__`).
+
+##### `buildWikiValue: (raw: string) => string | null`
+
+The wikirefs delegation slot: wiki-typed items (without a per-item `html` override) are offered here as their raw scanned text -- caml never parses them. Return the dd body, or `null` to fall back to the standalone string span. [wikirefs](https://github.com/wikibonsai/wikirefs) ships the matching plug (`attrValueBuilder`), making a single call render a full attrbox with resolved wiki anchors:
+
+```typescript
+import { buildHTML } from 'caml-mkdn';
+import { attrValueBuilder } from 'wikirefs';
+
+const html: string = buildHTML(attrs, {
+  buildWikiValue: attrValueBuilder({ resolveUri, resolveTitle, resolveDocType }),
+});
+```
+
+### `keyCssClass(key: string): string` / `attrCssClasses(valueType: string): string[]` / `slugifyKey(key: string): string`
+
+The css-class composer underneath `buildHTML` -- pure functions exposing the class contract to consumers that assemble their own HTML (string-parsers, remark's hProperties builders, the wikirefs enrich hand-off):
+
+```typescript
+import { keyCssClass, attrCssClasses, slugifyKey } from 'caml-mkdn';
+
+keyCssClass('My Key');    // 'key__my-key'
+slugifyKey('My Key');     // 'my-key'
+attrCssClasses('number'); // ['attr', 'number']
+attrCssClasses('wiki');   // ['attr', 'string']  <- caml renders wiki values as strings
+```
+
+The `key__` prefix namespaces user-space key names away from the structural classes (a key literally named `attr` must not collide). Colors are a stylesheet concern: consumers inject `.key__<slug> { color: ... }` rules from their own attr schema -- no resolution happens at render time.
+
 ### `dump(attrs: any, opts?: DumpOpts): string`
 
 Serializes object as a CAML document. Similar to [js-yaml's dump()](https://github.com/nodeca/js-yaml#dump-object---options-).
