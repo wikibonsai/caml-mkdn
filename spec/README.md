@@ -127,6 +127,12 @@ wiki-value example (`[[fname-a]]`) renders as a plain string span in standalone
 caml output; install [wikirefs](https://github.com/wikibonsai/wikirefs) alongside
 to resolve it to a link.
 
+## CSS Classnames
+
+In the rendered attrbox, the key name itself carries its css classname: `<dt class="key__<slug>">` -- so stylesheets can color the key to match its graph links. Value spans carry structural classes only (`attr` + the value type, e.g. `attr string`); the raw key no longer rides along on the value.
+
+When run alongside [wikirefs](https://github.com/wikibonsai/wikirefs), caml owns the attrbox: the `<dt>` keeps caml's `key__<slug>` (wikirefs-only attrboxes use `reftype__<slug>` instead).
+
 ### Single
 
 All of the following examples should generate the same html:
@@ -160,8 +166,8 @@ Resulting HTML:
 <aside class="attrbox">
   <dl>
     <div class="attr-item">
-      <dt>attrtype</dt>
-      <dd>a-string</dd>
+      <dt class="key__attrtype">attrtype</dt>
+      <dd><span class="attr string">a-string</span></dd>
     </div>
   </dl>
 </aside>
@@ -240,10 +246,10 @@ Resulting HTML:
 <aside class="attrbox">
   <dl>
     <div class="attr-item">
-      <dt>attrtype</dt>
-      <dd>string-a</dd>
-      <dd>string-b</dd>
-      <dd>string-c</dd>
+      <dt class="key__attrtype">attrtype</dt>
+      <dd><span class="attr string">string-a</span></dd>
+      <dd><span class="attr string">string-b</span></dd>
+      <dd><span class="attr string">string-c</span></dd>
       <!-- etc. -->
     </div>
   </dl>
@@ -540,8 +546,8 @@ Resulting HTML:
 <aside class="attrbox">
   <dl>
     <div class="attr-item">
-      <dt>attrtype</dt>
-      <dd><span class="attr string attrtype">line one<br>line two<br></span></dd>
+      <dt class="key__attrtype">attrtype</dt>
+      <dd><span class="attr string">line one<br>line two<br></span></dd>
     </div>
   </dl>
 </aside>
