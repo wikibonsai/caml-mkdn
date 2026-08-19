@@ -18,9 +18,20 @@
  */
 
 /** Slugify an attr key the same way consumers do (see tendr-app attrKeySlug):
- *  trim, lowercase, spaces -> hyphens, strip non-word chars. */
+ *  trim, lowercase, whitespace -> hyphens, strip non-word chars, collapse + trim
+ *  hyphen runs. MUST match wikirefs' slugify: the same name must slug identically
+ *  as `key__` (caml attrbox) and `reftype__` (wikirefs attrbox) for the shared
+ *  type -> color pipeline (a stripped interior char, e.g. 'Cause & Effect',
+ *  otherwise leaves a double hyphen on one side only). */
 export function slugifyKey(key: string): string {
-  return key.trim().toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+  return key
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
 }
 
 /** The dt's css class for a key: `key__<slug>`. */
