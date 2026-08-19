@@ -63,6 +63,46 @@ describe('render caml + wikirefs; mkdn -> html', () => {
 });
 ```
 
+### Test Case Fields
+
+```ts
+{
+    descr: 'prefixed; single; bool; all lowercase',
+    mkdn: ':attribute::true\n',
+    html: '<aside class="attrbox">\n'
+        + '<dl>\n'
+        + '<div class="attr-item">\n'
+        + '<dt class="key__attribute">attribute</dt>\n'
+        + '<dd><span class="attr bool">true</span></dd>\n'
+        + '</div>\n'
+        + '</dl>\n'
+        + '</aside>\n',
+    data: {
+      string: {
+        'attribute': 'true',
+      },
+      value: {
+        'attribute': true,
+      },
+      parse: {
+        'attribute': [{
+          type: 'bool',
+          string: 'true',
+          value: true,
+        }],
+      },
+    },
+  }
+```
+
+- `descr`: The test name / description.
+- `mkdn`: The markdown syntax being tested.
+- `html`: The intended rendered html.
+- `data`: The expected data to be extracted. Keyed by attribute key, in three facets:
+  - `string`: Attribute values as raw strings.
+  - `value`: Attribute values coerced to their concrete types (what `load()` yields).
+  - `parse`: Attribute values as `CamlValData` (`{ type, string, value }` -- the full type-resolution record from `resolve()`).
+
 ### Customizing Tests
 
 Downstream implementations may need to adjust spec test expectations due to differences in how markdown renderers handle non-standardized features. Common reasons include:
