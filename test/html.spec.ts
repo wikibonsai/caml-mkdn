@@ -106,50 +106,50 @@ describe('buildHTML() (the canonical attrbox builder)', () => {
 
 });
 
-  describe('buildWikiValue (the wikirefs delegation slot)', () => {
+describe('buildWikiValue (the wikirefs delegation slot)', () => {
 
-    it('wiki items are offered to the callback; its string becomes the dd body', () => {
-      const html: string = buildHTML(
-        { 'author': [{ type: 'wiki', string: '[[alice]]', value: 'alice' }] },
-        { buildWikiValue: (raw: string) => `<a class="attr wiki" href="/alice" data-href="/alice">alice</a>` },
-      );
-      assert.ok(html.includes('<dd><a class="attr wiki" href="/alice" data-href="/alice">alice</a></dd>'));
-      assert.ok(!html.includes('[[alice]]'));
-    });
-
-    it('callback receives the RAW scanned value (caml never parses it)', () => {
-      const seen: string[] = [];
-      buildHTML(
-        { 'author': [{ type: 'wiki', string: '[[alice]]', value: 'alice' }] },
-        { buildWikiValue: (raw: string) => { seen.push(raw); return null; } },
-      );
-      assert.deepStrictEqual(seen, ['[[alice]]']);
-    });
-
-    it('null falls back to the standalone string span (spec conformance)', () => {
-      const html: string = buildHTML(
-        { 'author': [{ type: 'wiki', string: '[[alice]]', value: 'alice' }] },
-        { buildWikiValue: () => null },
-      );
-      assert.ok(html.includes('<dd><span class="attr string">[[alice]]</span></dd>'));
-    });
-
-    it('a per-item html slot wins over the callback', () => {
-      const html: string = buildHTML(
-        { 'author': [{ type: 'wiki', string: '[[alice]]', value: 'alice', html: '<b>pre</b>' }] },
-        { buildWikiValue: () => '<i>cb</i>' },
-      );
-      assert.ok(html.includes('<dd><b>pre</b></dd>'));
-    });
-
-    it('non-wiki items are never offered', () => {
-      let called: boolean = false;
-      const html: string = buildHTML(
-        { 'title': [{ type: 'string', string: 'plain', value: 'plain' }] },
-        { buildWikiValue: () => { called = true; return '<i>no</i>'; } },
-      );
-      assert.strictEqual(called, false);
-      assert.ok(html.includes('<dd><span class="attr string">plain</span></dd>'));
-    });
-
+  it('wiki items are offered to the callback; its string becomes the dd body', () => {
+    const html: string = buildHTML(
+      { 'author': [{ type: 'wiki', string: '[[alice]]', value: 'alice' }] },
+      { buildWikiValue: (raw: string) => `<a class="attr wiki" href="/alice" data-href="/alice">alice</a>` },
+    );
+    assert.ok(html.includes('<dd><a class="attr wiki" href="/alice" data-href="/alice">alice</a></dd>'));
+    assert.ok(!html.includes('[[alice]]'));
   });
+
+  it('callback receives the RAW scanned value (caml never parses it)', () => {
+    const seen: string[] = [];
+    buildHTML(
+      { 'author': [{ type: 'wiki', string: '[[alice]]', value: 'alice' }] },
+      { buildWikiValue: (raw: string) => { seen.push(raw); return null; } },
+    );
+    assert.deepStrictEqual(seen, ['[[alice]]']);
+  });
+
+  it('null falls back to the standalone string span (spec conformance)', () => {
+    const html: string = buildHTML(
+      { 'author': [{ type: 'wiki', string: '[[alice]]', value: 'alice' }] },
+      { buildWikiValue: () => null },
+    );
+    assert.ok(html.includes('<dd><span class="attr string">[[alice]]</span></dd>'));
+  });
+
+  it('a per-item html slot wins over the callback', () => {
+    const html: string = buildHTML(
+      { 'author': [{ type: 'wiki', string: '[[alice]]', value: 'alice', html: '<b>pre</b>' }] },
+      { buildWikiValue: () => '<i>cb</i>' },
+    );
+    assert.ok(html.includes('<dd><b>pre</b></dd>'));
+  });
+
+  it('non-wiki items are never offered', () => {
+    let called: boolean = false;
+    const html: string = buildHTML(
+      { 'title': [{ type: 'string', string: 'plain', value: 'plain' }] },
+      { buildWikiValue: () => { called = true; return '<i>no</i>'; } },
+    );
+    assert.strictEqual(called, false);
+    assert.ok(html.includes('<dd><span class="attr string">plain</span></dd>'));
+  });
+
+});

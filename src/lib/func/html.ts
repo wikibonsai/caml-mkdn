@@ -1,5 +1,5 @@
 import type { CamlValData } from '../types';
-import { keyCssClass, slugifyKey, attrCssClasses } from './css';
+import { slugify } from './css';
 
 
 export interface CamlCssNames {
@@ -61,7 +61,7 @@ export function buildHTML(attrs: AttrBoxData, opts: CamlBuildHTMLOpts = {}): str
   let html: string = `<aside class="${cn.attrbox}">\n<dl>\n`;
   for (const key of keys) {
     html += `<div class="${cn.attrItem}">\n`;
-    html += `<dt class="${cn.key + slugifyKey(key)}">${key}</dt>\n`;
+    html += `<dt class="${cn.key + slugify(key)}">${key}</dt>\n`;
     for (const item of attrs[key]) {
       // precedence: per-item html override > wiki delegation > display span
       const delegated: string | null = (item.html === undefined && item.type === 'wiki' && opts.buildWikiValue)
@@ -76,8 +76,8 @@ export function buildHTML(attrs: AttrBoxData, opts: CamlBuildHTMLOpts = {}): str
   return html;
 }
 
-// the composer owns the class VOCABULARY ('attr' + valuetype, wiki -> string);
-// cssNames only renames the structural token.
+// buildHTML owns its class VOCABULARY (mirrors wikirefs' private buildClasses):
+// structural token (cn.attr, overridable) + value type, with wiki -> string.
 function valueClasses(valueType: string, cn: CamlCssNames): string {
-  return attrCssClasses(valueType).map((c: string) => c === 'attr' ? cn.attr : c).join(' ');
+  return [cn.attr, valueType === 'wiki' ? 'string' : valueType].join(' ');
 }

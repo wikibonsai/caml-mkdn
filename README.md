@@ -64,7 +64,7 @@ Note: To use commas (,) inside of singular caml string value, make sure to surro
 
 ### `buildHTML(attrs: AttrBoxData, opts?: CamlBuildHTMLOpts): string`
 
-Builds the canonical attrbox HTML for a collection of caml attrs: the one place the attrbox structure and its css-class contract live (the caml twin of [wikirefs' `buildHTML`](https://github.com/wikibonsai/wikirefs)), so parsers and SSGs can route through it and their output cannot drift. Returns the empty string for an empty collection. See [caml-spec](./spec) for the full contract.
+Builds a complete attrbox from a collection of caml attrs -- the data-to-HTML entry point for SSGs and other routed consumers (the caml twin of [wikirefs' `buildHTML`](https://github.com/wikibonsai/wikirefs)). It owns its class assembly internally, so routed output stays true to the attrbox contract. The streaming render plugins (markdown-it-caml, marked-caml, remark-caml) do NOT call this -- they own their own class assembly, sharing only the [`slugify`](#slugifykey-string-string) primitive below. Returns the empty string for an empty collection. See [caml-spec](./spec) for the full contract.
 
 ```typescript
 import { buildHTML } from 'caml-mkdn';
@@ -133,20 +133,18 @@ const html: string = buildHTML(attrs, {
 });
 ```
 
-### `keyCssClass(key: string): string` / `attrCssClasses(valueType: string): string[]` / `slugifyKey(key: string): string`
+### `slugify(key: string): string`
 
-The css-class composer underneath `buildHTML` -- pure functions exposing the class contract to consumers that assemble their own HTML (string-parsers, remark's hProperties builders, the wikirefs enrich hand-off):
+The one css primitive caml-mkdn shares. Each render plugin (markdown-it-caml, marked-caml, remark-caml) -- and `buildHTML` above -- owns its class-string assembly, driven by its own `cssNames` options; they import just this slug so a key name slugs identically as `key__<slug>` (caml attrbox) and `reftype__<slug>` (wikirefs attrbox) for the shared type→color pipeline:
 
 ```typescript
-import { keyCssClass, attrCssClasses, slugifyKey } from 'caml-mkdn';
+import { slugify } from 'caml-mkdn';
 
-keyCssClass('My Key');    // 'key__my-key'
-slugifyKey('My Key');     // 'my-key'
-attrCssClasses('number'); // ['attr', 'number']
-attrCssClasses('wiki');   // ['attr', 'string']  <- caml renders wiki values as strings
+slugify('My Key');   // 'my-key'
+// a plugin builds its dt class inline:  cssNames.key + slugify(key)  ->  'key__my-key'
 ```
 
-The `key__` prefix namespaces user-space key names away from the structural classes (a key literally named `attr` must not collide). Colors are a stylesheet concern: consumers inject `.key__<slug> { color: ... }` rules from their own attr schema -- no resolution happens at render time.
+The `key__` prefix (the default `cssNames.key`) namespaces user-space key names away from the structural classes (a key literally named `attr` must not collide). Colors are a stylesheet concern: consumers inject `.key__<slug> { color: ... }` rules from their own attr schema -- no resolution happens at render time.
 
 ### `dump(attrs: any, opts?: DumpOpts): string`
 
@@ -356,6 +354,14 @@ interface CamlValData {
   | string;
 }
 ```
+
+### `rename(content: string, oldKey: string, newKey: string, opts?: UpdateOpts): [number, number, string] | string | undefined`
+
+#todo -- look at `tendr-app/.../ripple-sync/reftype.ts`
+
+Find a CAML attribute and rename its key. Returns `undefined` if the key is not found. Whitespace around the `::` marker is preserved.
+
+#todo
 
 ### `update(content: string, key: string, newVal: string, opts?: UpdateOpts): [number, number, string] | string | undefined`
 
