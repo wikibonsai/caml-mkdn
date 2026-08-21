@@ -1,0 +1,9 @@
+{
+  "exclude": [
+    "spec/**",
+    "test/**",
+    "**/*.spec.ts",
+    "coverage/**",
+    "**/*.d.ts"
+  ]
+}
